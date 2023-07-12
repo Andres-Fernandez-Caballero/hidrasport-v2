@@ -1,5 +1,5 @@
 # HidraSport v2
-<img src="" weigth="100" heigth="100" alt="snapshot from front screen">
+![snapshot from front page](https://github.com/Andres-Fernandez-Caballero/hidrasport-v2/blob/main/docs/snapshot/vista.png)
 ## Getting Started
 
 Run in dev mode
