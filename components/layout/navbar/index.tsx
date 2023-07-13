@@ -9,8 +9,8 @@ const Navbar = () => {
       <Link href="/" className="-m-1.5 p-1.5">
         <span className="sr-only">Hidra</span>
 		<figure className='flex items-center'>
-			<Image height={100} width={100} className="h-12 w-auto" src="/images/tortuga_logo.png" alt=""/>
-			<Image height={100} width={200} className="h-10 w-auto" src="/images/hidraLogo.png" alt=""/>
+			<Image height={600} width={600} className="h-12 w-auto" src="/images/tortuga_logo.png" alt=""/>
+			<Image height={600} width={600} className="h-10 w-auto" src="/images/hidraLogo.png" alt=""/>
 		</figure>
       </Link>
     </div>
