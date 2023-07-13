@@ -134,7 +134,7 @@ const Navbar = () => {
       <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Company</a>
     </div>
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="#"><i className="fa-solid fa-cart-shopping fa-2xl text-blue-500"></i></a>
+      <Link href="/carrito"><i className="fa-solid fa-cart-shopping fa-2xl text-blue-500"></i></Link>
       <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Login / Registro</a>
     </div>
   </nav>
