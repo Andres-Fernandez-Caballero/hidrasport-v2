@@ -7,6 +7,7 @@ const Home: NextPage = () => (
         <h1 className="">
           HidraSport 🏊
         </h1>
+        <p><i className="fa-solid fa-magnifying-glass"></i></p>
       </div>
     </div>
   )

@@ -26,9 +26,6 @@ const Navbar = () => {
       <div className="relative">
         <button type="button" className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900" aria-expanded="false">
           Productos
-          <svg className="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-          </svg>
         </button>
 
 {/* 
@@ -41,7 +38,7 @@ const Navbar = () => {
             From: "opacity-100 translate-y-0"
             To: "opacity-0 translate-y-1" */}
 
-        <div style={{display:'none'}} className=" hide absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+        <div className="hidden hide absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
           <div className="p-4">
             <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
               <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -137,7 +134,8 @@ const Navbar = () => {
       <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Company</a>
     </div>
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      <a href="#"><i className="fa-solid fa-cart-shopping fa-2xl text-blue-500"></i></a>
+      <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Login / Registro</a>
     </div>
   </nav>
   {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
