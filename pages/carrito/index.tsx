@@ -1,6 +1,23 @@
 import Image from "next/image";
+import { HIDRA_SERVER_URL } from "@config/index";
+import axios from "axios";
 
-const Cart = () => {
+
+export async function getStaticProps() {
+  const url = HIDRA_SERVER_URL + '/api/sessions/cart/'
+  const res = await axios.get(url, {withCredentials: true})
+  return {
+    props: { cart: res.data },
+  };
+}
+
+export interface CartProps{
+  cart: unknown;
+}
+
+const Cart = ({cart}: CartProps) => {
+  console.log(cart);
+  
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">

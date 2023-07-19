@@ -1,5 +1,0 @@
-const {
-    WHATSAPP_BUSSINESS_NUMBER,
-} = process.env;
-
-export const WHATSAPP_BUSSINESS = WHATSAPP_BUSSINESS_NUMBER ?? '';

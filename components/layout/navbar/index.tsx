@@ -23,9 +23,10 @@ const Navbar = () => {
       </button>
     </div>
     <div className="hidden lg:flex lg:gap-x-12">
-      <Link href="/productos/mujer" className="text-sm font-semibold leading-6 text-gray-900">Mujeres</Link>
-      <Link href="/productos/hombre" className="text-sm font-semibold leading-6 text-gray-900">Hombres</Link>
-      <Link href="/productos/deportes" className="text-sm font-semibold leading-6 text-gray-900">Deportes</Link>
+    <Link href="/productos" className="text-sm font-semibold leading-6 text-gray-900">Productos</Link>
+      <Link href="/productos/Mujer" className="text-sm font-semibold leading-6 text-gray-900">Mujeres</Link>
+      <Link href="/productos/Hombre" className="text-sm font-semibold leading-6 text-gray-900">Hombres</Link>
+      <Link href="/productos/Deportes" className="text-sm font-semibold leading-6 text-gray-900">Deportes</Link>
       <Link href="/productos/guardavidas" className="text-sm font-semibold leading-6 text-red-500">Guardavidas +</Link>
     </div>
     <div className="hidden lg:flex lg:flex-1 lg:justify-end">

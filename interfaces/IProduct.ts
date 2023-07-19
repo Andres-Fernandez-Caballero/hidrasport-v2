@@ -1,3 +1,20 @@
+export interface ICategory {
+	id: number;
+	name: string;
+}
+
+export interface Subproducto {
+	images: Image[];
+}
+
+export interface Product {
+	id: number;
+	price: number;
+	title: string;
+	subproducto: Subproducto[];
+	b2b_price: number;
+}
+
 export interface Title {
 	id: number;
 	titulo: string;
@@ -29,7 +46,7 @@ export interface Image {
 	image: string;
 }
 
-export interface Subproducto {
+export interface ISubproducto {
 	id: number;
 	talles: Talle[];
 	images: Image[];
