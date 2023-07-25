@@ -1,27 +1,49 @@
+import ProductGaleryImage from "@components/product/productGaleryImage";
+import ProductImage from "@components/product/productImage";
+import { IProduct, Product } from "@interfaces/IProduct";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { ReactHTML, useEffect, useState } from "react";
 
-
-export function getStaticPaths() {
-  
-  
-  
-  return {
-    paths: [
-      { params: { id: "1" } },
-      { params: { id: "2" } },
-      { params: { id: "3" } },
-    ],
-    fallback: false,
-  };
-}
 
 const Detalle = () => {
   const router = useRouter();
   const { id } = router.query;
+  const [product, setProduct] = useState<Product>();
+
+  function addToCart(event: Event) {
+    event.preventDefault();
+    const url = `https://hidrasport.com.ar/api/sessions/cart/modify/2534/M/add/1/`
+    fetch(url, {   credentials: 'include'})
+    .then(res => res.json())
+    .then(data => {
+      console.log('cart', data)
+      alert("Agregado al carrito");
+    })
+    .catch(err => alert(err.message))
+
+  }
+
+  function fetchProductById() {
+    fetch(`https://hidrasport.com.ar/api/store/products/${id}/ `)
+    .then(res => res.json())
+      .then(data => setProduct(data))
+
+    .catch(err => alert(err.message))
+  }
+  useEffect(()=> {
+    fetchProductById()
+  },[]
+  )
+  console.log('product', product);
+  
 
   return (
+
     <div className="bg-white">
+      {product && (
+
+     
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol
@@ -69,13 +91,14 @@ const Detalle = () => {
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                Basic Tee 6-Pack
+                {product?.title}
               </a>
             </li>
           </ol>
         </nav>
 
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+
           <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
             <Image
               width={600}
@@ -84,7 +107,7 @@ const Detalle = () => {
               alt="Two each of gray, white, and black shirts laying flat."
               className="h-full w-full object-cover object-center"
             />
-          </div>
+          P</div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <Image
@@ -119,7 +142,7 @@ const Detalle = () => {
         <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
           <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-              Basic Tee 6-Pack
+              {product?.title}
             </h1>
           </div>
 
@@ -203,7 +226,7 @@ const Detalle = () => {
               </div>
             </div>
 
-            <form className="mt-10">
+            <form className="mt-10" onSubmit={addToCart}>
               {/* <!-- Colors --> */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -459,10 +482,9 @@ const Detalle = () => {
               </div>
 
               <button
-                type="submit"
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
-                Add to bag
+                Agregar al carrito
               </button>
             </form>
           </div>
@@ -527,6 +549,7 @@ const Detalle = () => {
           </div>
         </div>
       </div>
+       )}
     </div>
   );
 };

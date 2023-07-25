@@ -8,6 +8,7 @@ import { IProduct, Product } from "@interfaces/IProduct";
 import { HIDRA_SERVER_URL } from "@config/index";
 import axios from "axios";
 import ProductImage from "@components/product/productImage";
+import Link from 'next/link'
 
 export async function getStaticProps() {
   try{
@@ -64,10 +65,10 @@ const Productos = ({products}:InferGetStaticPropsType<typeof getStaticProps> ) =
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <a href="#">
+                      <Link href={`/productos/detalle/${product.id}`}>
                         <span aria-hidden="true" className="absolute inset-0"></span>
                         {product.title}
-                      </a>
+                      </Link>
                     </h3>
                   </div>
                   <p className="text-sm font-medium text-gray-900">${product.price}</p>
