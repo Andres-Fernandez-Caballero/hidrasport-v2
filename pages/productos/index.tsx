@@ -1,12 +1,5 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { InferGetStaticPropsType, GetStaticProps } from "next";
-import { getProducts } from "@interceptors/product.interceptor";
-import ProductCardItem from "@components/product/productCardItem";
-import { useEffect } from "react";
-import { IProduct, Product } from "@interfaces/IProduct";
-import { HIDRA_SERVER_URL } from "@config/index";
-import axios from "axios";
+import { InferGetStaticPropsType } from "next";
+import { Product } from "@interfaces/IProduct";
 import ProductImage from "@components/product/productImage";
 import Link from 'next/link'
 
@@ -39,11 +32,7 @@ export async function getStaticProps() {
 
 const Productos = ({products}:InferGetStaticPropsType<typeof getStaticProps> ) => {
  
-  
-  const router = useRouter();
-  const { categoria } = router.query;
-  console.log('front productos', products.length);
-  
+    
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
