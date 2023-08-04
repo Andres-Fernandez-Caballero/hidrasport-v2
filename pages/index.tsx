@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const Home: NextPage = () => (
     <>
-      <div className='flex justify-center'>
+      <div className='flex justify-center h-screen'>
         <menu className='grid gap-1 grid-rows-1 grid-cols-4 m-2'>
           <figure className=' relative opacity-90'>
             <Image src="/images/banners/mujer.jpeg" alt="mujer atleta" width={500} height={500} className='rounded-sm' />
