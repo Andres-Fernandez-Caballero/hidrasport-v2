@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {FaWhatsapp} from "react-icons/fa"
 const WhatsappFloatingButton = () => {
 
