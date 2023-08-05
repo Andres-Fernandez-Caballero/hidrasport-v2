@@ -17,6 +17,7 @@ const config = {
     '^@/interceptors/(.*)$': '<rootDir>/interceptors/$1',
     '^@/interfaces/(.*)$': '<rootDir>/interfaces/$1',
     '^@/config/(.*)$': '<rootDir>/config/$1',
+    '^@/store/(.*)$': '<rootDir>/store/$1',
 
   },
   testEnvironment: 'jest-environment-jsdom',
