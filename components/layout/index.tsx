@@ -5,6 +5,8 @@ import AuthModal from "./authmodal";
 import { useAuthModalStore } from "@store/authModal.store";
 import HydrationZustand from "./hydrationZustand";
 import { useAuthStore } from "@store/auth.store";
+import WhatsappFloatingButton from "./WhatsappFloatingButton";
+import Footer from "./footer";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -32,14 +34,12 @@ const Layout = ({ children }: LayoutProps) => {
         {isOpen && !isLogedIn() && <AuthModal />}
         {children}
       </main>
+      <WhatsappFloatingButton/>
 
-      <footer>
-        <a href="" target="_blank" rel="noopener noreferrer">
-          GITHUB
-        </a>
-      </footer>
+      <Footer/>
     </HydrationZustand>
   );
 };
+
 
 export default Layout;
