@@ -4,10 +4,10 @@ import InputAuthForm from "./inputAuthForm"
 import { useAuthStore } from "@store/auth.store"
 import { LoginDto } from "@interfaces/IAuth"
 import { useState } from "react"
+import { SERVER_URL } from "@config/index";
 
 
 const Login = () => {
-
     const {closeModal, goTab} = useAuthModalStore()
     const {userSession, login} = useAuthStore()
     const [loginData, setLoginData] = useState<LoginDto>({
@@ -26,7 +26,7 @@ const Login = () => {
         e.preventDefault()
         try{
           alert("cargando")
-        const response = await fetch("/api/auth/login", {
+        const response = await fetch(`${SERVER_URL}/api/accounts/login/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

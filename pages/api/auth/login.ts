@@ -1,13 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Data } from "../interfaz";
-import { HIDRA_SERVER_URL } from "@config/index";
+import { SERVER_URL } from "@config/index";
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   if (req.method === "POST") {
-    fetch(`${HIDRA_SERVER_URL}/api/accounts/login/`, {
+    fetch(`${SERVER_URL}/api/accounts/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

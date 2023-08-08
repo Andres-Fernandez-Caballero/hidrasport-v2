@@ -18,6 +18,12 @@ const DescktopNavbar = ({openModal}: DescktopNavbarProps)=> {
                 </Link>
 
               ))}
+              {userSession.admin ?
+                  <Link href="/tools" className={`text-sm font-semibold leading-6 "text-gray-900"`}>
+                    Herramientas
+                  </Link>
+                : null
+              }
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
               <Link href="/carrito">
