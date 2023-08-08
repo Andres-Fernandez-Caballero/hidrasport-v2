@@ -24,6 +24,8 @@
       "@services/*": ["services/*"],
       "@interceptors/*": ["interceptors/*"],
       "@store/*": ["store/*"],
+      "@api/*": ["api/*"],
+      "@modal/*": ["modal/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tailwind.config.js", "postcss.config.js"],

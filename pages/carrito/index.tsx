@@ -1,19 +1,13 @@
 import Image from "next/image";
-import { HIDRA_SERVER_URL } from "@config/index";
-import axios from "axios";
 import { useEffect } from "react";
-
-
-
-
+import { SERVER_URL } from "@config/index";
 export interface CartProps{
   cart: unknown;
 }
 
 const Cart = () => {
-  
   function fetchCart() {
-    const url = "https://hidrasport.com.ar/api/sessions/cart/"
+    const url = `${SERVER_URL}/api/sessions/cart/`
     fetch(url, {
       credentials: 'include'
     })

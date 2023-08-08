@@ -1,4 +1,4 @@
-import { HIDRA_SERVER_URL } from "@config/index";
+import { SERVER_URL } from "@config/index";
 import { LoginDto, RegisterDto } from "@interfaces/IAuth";
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
@@ -8,6 +8,7 @@ export interface AuthData {
     token: string;
     email: string;
     username: string;
+    admin: boolean;
 }
 
 export interface AuthStore {
@@ -22,6 +23,7 @@ const initialState: AuthData = {
     token: "",
     email: "",
     username: "",
+    admin: false,
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -42,6 +44,7 @@ export const useAuthStore = create<AuthStore>()(
                     token: "123",
                     email: registerDto.email,
                     username: registerDto.username,
+                    admin: false
                 }
                 });
             },
