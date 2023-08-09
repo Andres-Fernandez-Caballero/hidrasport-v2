@@ -25,7 +25,7 @@ const Profile = () => {
           <div className="flex items-center justify-between">
             <header>
               <h2 className="text-gray-700 font-bold text-2xl leading-9">
-                Hola {userSession.username}
+                Mis datos
               </h2>
             </header>
           </div>
@@ -43,11 +43,11 @@ const Profile = () => {
           <div className="flex items-center justify-between mt-5">
             <a
               href="#"
-              className="text-blue-600 dark:text-blue-400 hover:underline leading-6"
+              className="text-blue-600 dark:text-blue-400 hover:underline leading-6 flex items-center"
               tabIndex={0}
               role="link"
             >
-              Editar perfil <IoPencil />
+              Editar perfil <IoPencil className="ml-1" />
             </a>
           </div>
         </article>
