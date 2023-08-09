@@ -1,4 +1,5 @@
 import ProductImage from "@components/product/productImage";
+import { SERVER_URL } from "@config/index";
 import { Product } from "@interfaces/IProduct";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -12,7 +13,7 @@ export async function getServerSideProps(context) {
   let products = [] as Product[];
   const categoria = context.params.categoria;
   const res = await fetch(
-    `https://hidrasport.com.ar/api/store/products/filter/`,
+    `${SERVER_URL}/api/store/products/filter/`,
     {
       method: "POST",
       headers: {
@@ -35,7 +36,6 @@ export interface CategoriaProductProps {
 
 const CategoriaProduct = ({ products }: CategoriaProductProps) => {
   const router = useRouter();
-
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
