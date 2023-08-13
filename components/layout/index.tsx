@@ -7,6 +7,7 @@ import HydrationZustand from "./hydrationZustand";
 import { useAuthStore } from "@store/auth.store";
 import WhatsappFloatingButton from "./WhatsappFloatingButton";
 import Footer from "./footer";
+import { ToastContainer } from "react-toastify";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -33,6 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
       <main>
         {isOpen && !isLogedIn() && <AuthModal />}
         {children}
+        <ToastContainer />
       </main>
       <WhatsappFloatingButton/>
 
