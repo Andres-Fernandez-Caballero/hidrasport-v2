@@ -7,21 +7,23 @@ export interface Subproducto {
 	images: Image[];
 }
 
-export interface Product {
-	id: number;
-	price: number;
-	title: string;
-	subproducto: Subproducto[];
-	b2b_price: number;
-}
 
 export interface Title {
 	id: number;
 	titulo: string;
-	preguntas: string;
-	descripcion: string;
-	info_tienda: string;
+	preguntas?: string;
+	descripcion?: string;
+	info_tienda?: string;
 }
+
+export interface Product {
+	id: number;
+	price: number;
+	title: Title;
+	subproducto: Subproducto[];
+	b2b_price?: number;
+}
+
 
 export interface Talle {
 	id?: number;

@@ -60,7 +60,7 @@ const CategoriaProduct = ({ products }: CategoriaProductProps) => {
                           aria-hidden="true"
                           className="absolute inset-0"
                         ></span>
-                        {product.title}
+                        {product.title.titulo}
                       </Link>
                     </h3>
                   </div>

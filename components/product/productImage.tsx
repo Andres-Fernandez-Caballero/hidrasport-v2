@@ -24,7 +24,7 @@ const ProductImage = ({product}: ProductImageProps) => {
                     height={600}
                     width={600}
                     src={getFrontImage()}
-                    alt={product.title}
+                    alt={product.title.titulo}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
         </figure>
