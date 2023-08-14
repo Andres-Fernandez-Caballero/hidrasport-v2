@@ -56,7 +56,7 @@ const Productos = ({products}:InferGetStaticPropsType<typeof getStaticProps> ) =
                     <h3 className="text-sm text-gray-700">
                       <Link href={`/productos/detalle/${product.id}`}>
                         <span aria-hidden="true" className="absolute inset-0"></span>
-                        {product.title}
+                        {product.title.titulo}
                       </Link>
                     </h3>
                   </div>
