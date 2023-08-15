@@ -20,6 +20,10 @@ export default function handler(
             delete data.response;
             res.status(200).json(data);
           });
+        } else if (response.status === 401) {
+          res.status(401).json({
+            message: "El nombre de usuario o la contraseña son incorrectos.",
+          });
         } else {
           throw new Error("Error al iniciar sesión " + response.statusText);
         }
