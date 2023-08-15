@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/8K2TRtfqZ1utED4jSJs9F/_buildManifest.js",
-    "static/8K2TRtfqZ1utED4jSJs9F/_ssgManifest.js"
+    "static/AG5hPxMfSRaAz36-Ruqpz/_buildManifest.js",
+    "static/AG5hPxMfSRaAz36-Ruqpz/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -21,7 +21,7 @@
       "static/chunks/framework-305cb810cde7afac.js",
       "static/chunks/main-2668f6a8e669a6fc.js",
       "static/css/4a372a14a824067a.css",
-      "static/chunks/pages/_app-cf93d694c4c7c769.js"
+      "static/chunks/pages/_app-b9716119d9ab87a1.js"
     ],
     "/_error": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -33,7 +33,7 @@
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
       "static/chunks/framework-305cb810cde7afac.js",
       "static/chunks/main-2668f6a8e669a6fc.js",
-      "static/chunks/pages/carrito-f17875a1cef5b89b.js"
+      "static/chunks/pages/carrito-ade1205bdead4747.js"
     ],
     "/productos": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -54,7 +54,7 @@
       "static/chunks/977-fc55fc099d0de3c6.js",
       "static/chunks/328-8b99858ceb0971bf.js",
       "static/css/15cbae759d1218d5.css",
-      "static/chunks/pages/productos/detalle/[id]-808dbb8ea4b7a025.js"
+      "static/chunks/pages/productos/detalle/[id]-bbb65415b1ade02c.js"
     ],
     "/productos/detalle/[id]/SelectorVariante": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -69,7 +69,7 @@
       "static/chunks/main-2668f6a8e669a6fc.js",
       "static/chunks/977-fc55fc099d0de3c6.js",
       "static/css/15cbae759d1218d5.css",
-      "static/chunks/pages/productos/detalle/[id]/imageContainer/ImageContainer-e1d2a1a30312b77a.js"
+      "static/chunks/pages/productos/detalle/[id]/imageContainer/ImageContainer-abdbf7a39149bb27.js"
     ],
     "/productos/detalle/[id]/imageContainer/carousseImage": [
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
@@ -90,7 +90,7 @@
       "static/chunks/webpack-b8f8d6679aaa5f42.js",
       "static/chunks/framework-305cb810cde7afac.js",
       "static/chunks/main-2668f6a8e669a6fc.js",
-      "static/chunks/pages/tools-bf07bbcf215c4fbb.js"
+      "static/chunks/pages/tools-21f6eca5dbea3f79.js"
     ]
   },
   "ampFirstPages": []

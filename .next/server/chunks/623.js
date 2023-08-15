@@ -3,21 +3,6 @@ exports.id = 623;
 exports.ids = [623];
 exports.modules = {
 
-/***/ 5819:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   LB: () => (/* binding */ SERVER_URL)
-/* harmony export */ });
-/* unused harmony exports WHATSAPP_BUSSINESS_NUMBER, AFIP_QR, AFFIP_DATA_WEB */
-const WHATSAPP_BUSSINESS_NUMBER = (/* unused pure expression or super */ null && ("123" || 0));
-const AFIP_QR = (/* unused pure expression or super */ null && ("123" || 0));
-const AFFIP_DATA_WEB = (/* unused pure expression or super */ null && ("123" || 0));
-const SERVER_URL = "http://127.0.0.1:8000" || 0;
-
-
-/***/ }),
-
 /***/ 1623:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 

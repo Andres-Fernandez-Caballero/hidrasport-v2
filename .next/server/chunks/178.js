@@ -154,11 +154,13 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _store_auth_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9340);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _config_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(5819);
 /* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3590);
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8819);
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_7__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_store_authModal_store__WEBPACK_IMPORTED_MODULE_1__, _store_auth_store__WEBPACK_IMPORTED_MODULE_4__, react_toastify__WEBPACK_IMPORTED_MODULE_6__]);
 ([_store_authModal_store__WEBPACK_IMPORTED_MODULE_1__, _store_auth_store__WEBPACK_IMPORTED_MODULE_4__, react_toastify__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -191,7 +193,7 @@ const Login = ()=>{
     const handleOnSubmit = async (e)=>{
         e.preventDefault();
         try {
-            const response = await fetch("api/auth/login", {
+            const response = await fetch(`${_config_index__WEBPACK_IMPORTED_MODULE_8__/* .SERVER_URL */ .LB}/api/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -1067,6 +1069,22 @@ const MobileNavbar = ({ isOpen, toggleMobileMenuClose, links, openModal })=>{
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 5819:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LB: () => (/* binding */ SERVER_URL)
+/* harmony export */ });
+/* unused harmony exports WHATSAPP_BUSSINESS_NUMBER, AFIP_QR, AFFIP_DATA_WEB */
+const WHATSAPP_BUSSINESS_NUMBER = (/* unused pure expression or super */ null && ("123" || 0));
+const AFIP_QR = (/* unused pure expression or super */ null && ("123" || 0));
+const AFFIP_DATA_WEB = (/* unused pure expression or super */ null && ("123" || 0));
+const SERVER_URL = "http://127.0.0.1:8000" || 0;
+
 
 /***/ }),
 
