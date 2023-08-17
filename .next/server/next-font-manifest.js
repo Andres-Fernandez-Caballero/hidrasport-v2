@@ -1,1 +1,0 @@
-self.__NEXT_FONT_MANIFEST='{"pages":{"/productos/detalle/[id]/imageContainer/ImageContainer":[],"/productos/detalle/[id]/imageContainer/carousseImage":[],"/productos/detalle/[id]":[]},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';
