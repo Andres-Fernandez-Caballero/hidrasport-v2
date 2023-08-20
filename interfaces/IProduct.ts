@@ -3,25 +3,12 @@ export interface ICategory {
 	name: string;
 }
 
-export interface Subproducto {
-	images: Image[];
-}
-
-
-export interface Title {
-	id: number;
-	titulo: string;
-	preguntas?: string;
-	descripcion?: string;
-	info_tienda?: string;
-}
-
 export interface Product {
-	id: number;
+	title_id: number;
 	price: number;
-	title: Title;
-	subproducto: Subproducto[];
-	b2b_price?: number;
+	title: string;
+	images : Image[];
+	b2b_price: number;
 }
 
 
@@ -57,34 +44,26 @@ export interface ISubproducto {
 	producto: number;
 }
 
-export interface IProduct {
-	id: number;
-	title: Title;
-	subproducto: Subproducto[];
-	code: string;
-	name: string;
-	description: string;
-	sex: string;
-	guard: string;
-	cloth: string;
-	design: string;
-	size: string;
-	weight: number;
-	color_details: string;
-	missing: string | null;
-	price: number;
-	precio_mayorista: number;
-	bestof: boolean;
-
-	tabla_talles: string;
-	discount: number;
-	categories: number[];
-	talles?: Talle[];
-}
-
 export interface IProductListResponse {
 	count: number;
 	next: string | null;
 	previous: string | null;
-	results: IProduct[];
+	results: Product[];
 }
+
+export interface ProductDetail {
+	id: number;
+	title: string;
+	price: number;
+	precio_mayorista: number;
+	available_colors: string[];
+	available_sizes: string[];
+	subcodigo_color_dict: SubCodigoColorDictionary;	
+}
+
+interface SubCodigoColorDictionary {
+	[key: string]: {
+	  color: string;
+	  sizes: string[];
+	};
+  }

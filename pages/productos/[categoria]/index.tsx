@@ -2,7 +2,6 @@ import ProductImage from "@components/product/productImage";
 import { SERVER_URL } from "@config/index";
 import { Product } from "@interfaces/IProduct";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export interface CategoriaProductProps {
   products: Product[];
@@ -26,41 +25,45 @@ export async function getServerSideProps(context) {
   );
   const data = await res.json();
   products = data.results as Product[];
-
-  return { props: { products } };
+  products = products.filter(product => product )
+    
+  return { props: { products, categoria } };
 }
 
 export interface CategoriaProductProps {
   products: Product[];
+  categoria: string;
 }
 
-const CategoriaProduct = ({ products }: CategoriaProductProps) => {
-  const router = useRouter();
+const CategoriaProduct = ({ products, categoria }: CategoriaProductProps) => {
+  
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          Nuestros Productos de Mujer
+          Nuestros Productos de {categoria}
         </h2>
 
-        {products.length === 0 ? (
+        {products.length === 0 ? 
           <section>
+            {/* caso en que no se encuentren productos */}
             <p>No hay productos cargados 😵‍💫</p>
           </section>
-        ) : (
+         : 
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {products.map((product: Product) => (
-              <div key={product.id} className="group relative">
+            {/* caso en que se encuentren productos */}
+            {products.map( (product, index: number) => (
+              <div key={index} className="group relative">
                 <ProductImage product={product} />
                 <div className="mt-4 flex justify-between">
                   <div>
                     <h3 className="text-sm text-gray-700">
-                      <Link href={`/productos/detalle/${product.id}`}>
+                      <Link href={`/productos/detalle/${product.title_id}`}>
                         <span
                           aria-hidden="true"
                           className="absolute inset-0"
                         ></span>
-                        {product.title.titulo}
+                        {product.title}
                       </Link>
                     </h3>
                   </div>
@@ -71,7 +74,7 @@ const CategoriaProduct = ({ products }: CategoriaProductProps) => {
               </div>
             ))}
           </div>
-        )}
+        }
       </div>
     </div>
   );
