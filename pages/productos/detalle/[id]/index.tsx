@@ -1,41 +1,27 @@
-import { Product } from "@interfaces/IProduct";
-import React, {  } from "react";
+import { Product, ProductDetail } from "@interfaces/IProduct";
+import React from "react";
 import { GetServerSideProps } from "next";
 import { SERVER_URL } from "@config/index";
-import ImageContainer from "./imageContainer/ImageContainer";
-import SelectorVariante from "./SelectorVariante";
+import SelectorVariante from "./selectorVariante/SelectorVariante";
 
 export const getServerSideProps: GetServerSideProps<{product: Product | undefined}> = async(context) => {
   const {query} = context
   const result = await fetch(`${SERVER_URL}/api/store/products/${query.id}/ `)
   let product
-  if(result.ok)
+  if(result.status === 200){
     product = await result.json()
-  return {props: {product}}
+    return {props: {product}}
+  }else{
+    return {props: {product: undefined}}
+  }
 }
 
-
-
 interface DetalleProps{
-  product : Product | undefined
+  product : ProductDetail | undefined
 }
 
 const Detalle = ({product}:DetalleProps) => {
   
-  function addToCart(event:React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const url = `https://hidrasport.com.ar/api/sessions/cart/modify/2534/M/add/1/`
-    fetch(url, {   credentials: 'include'})
-    .then(res => res.json())
-    .then(data => {
-      console.log('cart', data)
-      alert("Agregado al carrito");
-    })
-    .catch(err => alert(err.message))
-
-  }
-  
-
   return (
     <>
       {product && 
@@ -44,18 +30,18 @@ const Detalle = ({product}:DetalleProps) => {
           {product && (
 
             <div className="pt-6">
-              <ImageContainer product={product} />
+              {/* <ImageContainer product={product} /> */}
             <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
               <header className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                  {product.title.titulo}
+                  {product.title}
                 </h1>
               </header>
 
               <section className="mt-4 lg:row-span-3 lg:mt-0">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight text-gray-900">${product.price}</p>
-                <SelectorVariante />
+                <SelectorVariante product={product} />
               </section>
 
               <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
