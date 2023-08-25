@@ -1,4 +1,3 @@
-import * as yup from 'yup';
 
 export interface IUser {
     email: string;
@@ -16,6 +15,7 @@ export interface IAuthFailedResponse extends IResponse {}
 export interface LoginDto {
     username: string; // email or username
     password: string;
+    
 }
 
 export interface RegisterDto {

@@ -7,6 +7,14 @@ import { useState } from "react";
 import { SERVER_URL } from "@config/index";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as Yup from 'yup'
+import { fa6 } from "@fortawesome/free-solid-svg-icons";
+
+const validationSchemaLogin = Yup.object().shape({
+  username: Yup.string().required("Ingrese un nombre de usuario"),
+  password: Yup.string().required().min(8, "La contraseña tiene que tener 8 caracteres"),
+
+})
 
 const Login = () => {
   const { closeModal, goTab } = useAuthModalStore();
@@ -32,10 +40,15 @@ const Login = () => {
     });
   };
 
+
+
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+
+
     try {
+      await validationSchemaLogin.validate(loginData, { abortEarly: false })
       const response = await fetch(`${SERVER_URL}/api/auth/login`, {
         method: "POST",
         headers: {
@@ -46,22 +59,28 @@ const Login = () => {
 
       if (!response.ok) {
         const message = await response.text();
-        if (!loginData.password || !loginData.username) {
-          toastMessageError("Por favor ingrese un usuario o contraseña");
-        } else if (response.status === 401) {
-          toastMessageError("Usuario o contraseña incorrecta");
-        } else {
-          toastMessageError(message || "Error del servidor");
-          throw new Error(message);
+        throw new Error(message);
+      }
+
+      const data = await response.json();
+      login(data);
+      toast.success("Login exitoso");
+      closeModal();
+
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const emptyFieldsMessage = "Ingrese su usuario y contraseña";
+        const errorMessages = error.errors.filter(message => message !== emptyFieldsMessage);
+        if (!loginData.username && !loginData.password) {
+          toastMessageError(emptyFieldsMessage);
+        } else if (errorMessages.length >0) {
+          error.errors.forEach(messageError => {
+            toastMessageError(messageError);
+          });
         }
       } else {
-        const data = await response.json();
-        login(data);
-        toast.success("Login exitoso");
-        closeModal();
+        toastMessageError((error as Error).message);
       }
-    } catch (error) {
-      toastMessageError((error as Error).message);
     }
   };
 

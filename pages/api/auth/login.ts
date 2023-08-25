@@ -22,7 +22,7 @@ export default function handler(
           });
         } else if (response.status === 401) {
           res.status(401).json({
-            message: "El nombre de usuario o la contraseña son incorrectos.",
+            message: "Ingrese su usuario y contraseña",
           });
         } else {
           throw new Error("Error al iniciar sesión " + response.statusText);
