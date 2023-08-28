@@ -232,6 +232,7 @@ const CartsManagement = () => {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             {cartData ? (
               Object.keys(cartData).map((key) => {
+                // @ts-ignore
                 const item = cartData[key];
                 return <CartItemCard key={key} item={item} />;
               })
