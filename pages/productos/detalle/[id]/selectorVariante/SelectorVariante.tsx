@@ -1,32 +1,22 @@
-import { ProductDetail } from "@interfaces/IProduct"
+import { ProductDetail, Variant } from "@interfaces/IProduct"
 import { useState } from "react"
 import RadioButtonInput from "@components/RadioButtonInput"
 import { apiCall } from "tools/apiCall"
 import { ResponseCartApi } from "@pages/api/interfaz"
 import { toast } from "react-toastify"
+import useCartStore from "@store/useCartStore"
 
-interface Variant {
-  subProductId: string
-  color: string
-  sizes: string[]
-}
 interface SelectorVarienteProps {
-  product: ProductDetail
+  product: ProductDetail;
+  currentVariant: Variant;
+  variants: Variant[];
+  setCurrentVariant: (variant: Variant) => void;
 }
 
-const SelectorVariante = ({product}: SelectorVarienteProps)=> {
-  
-    const variants = Object.entries(product.subcodigo_color_dict).map(i => (
-      {
-        subProductId: i[0],
-        ...i[1]
-      }
-    )) 
-
-    const [currentVariant, setCurrentVariant] = useState<Variant>(variants[0])
+const SelectorVariante = ({product,variants, currentVariant, setCurrentVariant}: SelectorVarienteProps)=> {
     const [size, setSize] = useState<string>('')
     const [color, setColor] = useState<string>(currentVariant.color)
-
+    const {addToCart, cartIsLoading} = useCartStore()
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setColor(event.target.value)
       const variant = variants.find(v => v.color === event.target.value)
@@ -41,22 +31,27 @@ const SelectorVariante = ({product}: SelectorVarienteProps)=> {
 
     function handleOnSubmit(event: React.FormEvent<HTMLFormElement>){
       event.preventDefault()
-      console.log('submit', currentVariant.subProductId, size );
-      console.log('variantes', product.subcodigo_color_dict)
-      const url = `/api/cart/add/`
-    apiCall<ResponseCartApi>({
-      url,
-      method:'POST',
-      body:{
-        subProductId: currentVariant.subProductId,
-        size,
+
+      const toastMessage = toast.loading('Agregando al carrito ⌛')
+      try{
+        addToCart({
+          size: 'M',
+          subProductId: currentVariant.subProductId
+        })
+        toast.update(toastMessage, {
+          render: 'Agregado al carrito',
+          type: 'success',
+          isLoading: false,
+          autoClose: 2000
+        })
+      }catch(error){
+        toast.update(toastMessage, {
+          render: (error as Error).message,
+          type: 'error',
+          isLoading: false,
+          autoClose: 2000
+        })
       }
-    })
-    .then((data) => {
-      console.log('cart', data)
-      toast.success(data.message);
-    })
-    .catch(err => alert(err.message))
     }
 
     return (

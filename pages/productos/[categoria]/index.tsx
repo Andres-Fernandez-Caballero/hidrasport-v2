@@ -19,10 +19,12 @@ export async function getServerSideProps(context) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        categories: [categoria],
+        categories: categoria,
       }),
     }
   );
+  console.log('res', res);
+  
   const data = await res.json();
   products = data.results as Product[];
   products = products.filter(product => product )

@@ -51,6 +51,7 @@ export interface IProductListResponse {
 	results: Product[];
 }
 
+
 export interface ProductDetail {
 	id: number;
 	title: string;
@@ -61,9 +62,22 @@ export interface ProductDetail {
 	subcodigo_color_dict: SubCodigoColorDictionary;	
 }
 
+export interface ImageProducTetail {
+	front: string;
+	back: string;
+}
+
 interface SubCodigoColorDictionary {
 	[key: string]: {
-	  color: string;
-	  sizes: string[];
+		color: string;
+		sizes: string[];
+		images: ImageProducTetail;
 	};
+  }
+
+  export interface Variant {
+	subProductId: string;
+	color: string;
+	images: ImageProducTetail;
+	sizes: string[];
   }
