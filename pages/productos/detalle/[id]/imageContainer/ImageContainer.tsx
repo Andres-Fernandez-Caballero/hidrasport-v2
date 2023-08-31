@@ -1,17 +1,16 @@
 import { SERVER_URL } from '@config/index'
-import { Product } from '@interfaces/IProduct'
+import { Product, Variant } from '@interfaces/IProduct'
 import Image from 'next/image'
 import CarouselImage from './carousseImage'
 
 export interface ImageContainerProps {
-  product: Product
+  variant: Variant
 }
-const ImageContainer = ({product}: ImageContainerProps) => {
+const ImageContainer = ({variant}: ImageContainerProps) => {
 
-    const images = product.subproducto[0].images.map(item => (item.image.replace('http://localhost:8000', SERVER_URL)?? '/images/remera_frente.png'))
-
+    const images = Object.values(variant.images).map(image => `${SERVER_URL}${image}`)
     return (
-        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         
         {images.map(image => 
           <div key= {image} className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
@@ -19,7 +18,7 @@ const ImageContainer = ({product}: ImageContainerProps) => {
               width={600}
               height={600}
               src={image}
-              alt={product.title.titulo}
+              alt='hidra product'
               className="h-full w-full object-cover object-center"
             />
           </div>  

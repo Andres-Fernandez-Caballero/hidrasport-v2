@@ -11,6 +11,11 @@ export interface iCartProduct {
     weight: number;
 }
 
+export interface iCartRequest {
+    subProductId: string;
+    size: string;
+}
+
 export interface iCartProductList {
   [key: string]: iCartProduct
 }
