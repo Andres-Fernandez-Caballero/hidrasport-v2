@@ -84,10 +84,6 @@ const Login = () => {
     }
   };
 
-  const isValidLogin = () => {
-    return loginData.username.length > 0 && loginData.password.length > 0;
-  };
-
   return (
     <section className="container mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
       <h3>{userSession.username}</h3>
@@ -124,7 +120,6 @@ const Login = () => {
 
         <menu className="justify-items-end px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
           <button
-            disabled={!isValidLogin}
             type="submit"
             className="inline-flex w-full justify-center rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
           >
