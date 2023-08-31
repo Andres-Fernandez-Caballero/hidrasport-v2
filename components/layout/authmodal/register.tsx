@@ -74,10 +74,14 @@ const Register = () => {
       closeModal();
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        if (error.inner.some(err => err.path === 'all-fields-required')) {
-          toastMessageError("todos los campos son obligatorios")
-        } else {
-          toastMessageError(error.message)
+        const emptyFieldsMessage = "Complete todos los campos";
+        const errorMessages = error.errors.filter(message => message !== emptyFieldsMessage);
+        if (!form.username && !form.password && !form.password2 && !form.email) {
+          toastMessageError(emptyFieldsMessage);
+        } else if (errorMessages.length >0) {
+          error.errors.forEach(messageError => {
+            toastMessageError(messageError);
+          });
         }
       } else {
         toast.error((error as Error).message);
