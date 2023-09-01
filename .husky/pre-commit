@@ -2,6 +2,6 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 echo "Running pre-commit hook"
-#pnpm lint
-#pnpm dlx lint-staged 
-#pnpm build
+pnpm lint
+pnpm dlx lint-staged 
+pnpm build
