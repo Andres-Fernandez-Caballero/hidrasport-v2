@@ -19,15 +19,12 @@ const AuthModal = () => {
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
             <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
               <div className="flex justify-between">
-                {tab === "login" ? 
-                  <Login />
-                  :
-                  <Register />
-                }
+                {tab === "login" ? <Login /> : <Register />}
                 <nav>
-                  <button 
-                  onClick={closeModal}
-                  className="border p-1 w-8 h-8 bg-slate-50  rounded-full text-gray-700 shadow-md hover:border-gray-800">
+                  <button
+                    onClick={closeModal}
+                    className="border p-1 w-8 h-8 bg-slate-50  rounded-full text-gray-700 shadow-md hover:border-gray-800"
+                  >
                     <i className="fa-solid fa-xmark"></i>
                   </button>
                 </nav>

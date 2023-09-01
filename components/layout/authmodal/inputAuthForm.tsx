@@ -1,21 +1,18 @@
-type InputType = 'text' | 'password' | 'email';
+type InputType = "text" | "password" | "email";
 
 export interface AuthFormInputProps {
-    label: string;
-    icon: string;
-    type: InputType;
-    name: string;
-    placeholder: string;
-    value?: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label: string;
+  icon: string;
+  type: InputType;
+  name: string;
+  placeholder: string;
+  value?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-
 const InputAuthForm = (props: AuthFormInputProps) => (
-    <div className="flex flex-col mb-2">
-    <label className="text-sm">
-      {props.label}
-    </label>
+  <div className="flex flex-col mb-2">
+    <label className="text-sm">{props.label}</label>
     <div className="">
       <span className="border rounded-l-lg p-2 text-gray-100 my-1 bg-blue-300">
         <i className={props.icon}></i>
@@ -30,6 +27,6 @@ const InputAuthForm = (props: AuthFormInputProps) => (
       />
     </div>
   </div>
-)
+);
 
 export default InputAuthForm;

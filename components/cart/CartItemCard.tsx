@@ -1,5 +1,5 @@
-import { iCartProduct } from '../../interfaces/ICart'
-import { SERVER_URL } from '@config/index';
+import { iCartProduct } from "../../interfaces/ICart";
+import { SERVER_URL } from "@config/index";
 import Image from "next/image";
 
 type CartItemCardProps = {

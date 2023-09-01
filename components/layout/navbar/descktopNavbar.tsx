@@ -7,7 +7,7 @@ import useCartStore from "@store/useCartStore";
 
 const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { isLogedIn, logout, userSession } = useAuthStore();
-  const {cartData} = useCartStore()
+  const { cartData } = useCartStore();
   return (
     <>
       <div className="hidden lg:flex lg:gap-x-12">
@@ -34,12 +34,12 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
       <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
         <Link href="/carrito">
           <span className="relative inline-block">
-          <FaCartShopping className="text-blue-500 text-2xl" />
-          {cartData.length >= 0 &&  
-            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-              {cartData.length}
-            </span>
-          }
+            <FaCartShopping className="text-blue-500 text-2xl" />
+            {cartData.length >= 0 && (
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                {cartData.length}
+              </span>
+            )}
           </span>
         </Link>
         {isLogedIn() ? (

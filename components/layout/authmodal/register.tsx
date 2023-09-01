@@ -44,7 +44,7 @@ const Register = () => {
     email: string,
     password: string,
     password2: string,
-    user: string
+    user: string,
   ) => {
     if (!email || !password || !password2 || !user) {
       toastMessageError("Todos los campos son obligatorios");
@@ -52,32 +52,32 @@ const Register = () => {
     }
 
     if (!form.username) {
-      toastMessageError("Campo obligatorio")
+      toastMessageError("Campo obligatorio");
     }
   };
 
   const handleUsernameVerificationInput = (username: string) => {
     if (username.length < 0) {
-      toastMessageError("Por favor ingrese un nombre de usuario")
+      toastMessageError("Por favor ingrese un nombre de usuario");
     }
   };
 
   const handleVerification = (
     email: string,
     password: string,
-    password2: string
+    password2: string,
   ) => {
     if (!/\S+@\S+\.\S+/.test(email)) {
-      toastMessageWarning("Ingrese un email valido")
+      toastMessageWarning("Ingrese un email valido");
       return;
     }
 
-    if (email.length<0) {
-      toastMessageError("Ingrese un Email")
+    if (email.length < 0) {
+      toastMessageError("Ingrese un Email");
     }
 
     if (password !== password2) {
-      toastMessageWarning("Las contraseñas no coinciden")
+      toastMessageWarning("Las contraseñas no coinciden");
       return;
     }
   };
@@ -89,7 +89,7 @@ const Register = () => {
         form.email,
         form.password,
         form.password2,
-        form.username
+        form.username,
       );
       handleVerification(form.email, form.password, form.password2);
       handleUsernameVerificationInput(form.username);
@@ -109,7 +109,7 @@ const Register = () => {
 
       const data = await response.json();
       login(data);
-      toast.success("Cuenta creada",  {
+      toast.success("Cuenta creada", {
         position: "top-center",
         autoClose: 1500,
         hideProgressBar: false,

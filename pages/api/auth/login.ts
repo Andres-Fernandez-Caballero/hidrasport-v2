@@ -4,7 +4,7 @@ import { Data } from "../interfaz";
 import { SERVER_URL } from "@config/index";
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Data>,
 ) {
   if (req.method === "POST") {
     fetch(`${SERVER_URL}/api/accounts/login/`, {

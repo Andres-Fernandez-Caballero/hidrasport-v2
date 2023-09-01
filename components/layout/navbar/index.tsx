@@ -11,14 +11,17 @@ interface LinkItem {
   colorText?: string;
 }
 
-export const links: LinkItem[] =[
-  {url: "/productos", text: "Productos"},
-  {url: "/productos/Mujer", text: "Mujeres"},
-  {url: "/productos/Hombre", text: "Hombres"},
-  {url: "/productos/Deportes", text: "Deportes"},
-  {url: "/productos/guardavidas", text: "Guardavidas +", colorText: "text-red-500"},
-]
-
+export const links: LinkItem[] = [
+  { url: "/productos", text: "Productos" },
+  { url: "/productos/Mujer", text: "Mujeres" },
+  { url: "/productos/Hombre", text: "Hombres" },
+  { url: "/productos/Deportes", text: "Deportes" },
+  {
+    url: "/productos/guardavidas",
+    text: "Guardavidas +",
+    colorText: "text-red-500",
+  },
+];
 
 interface NavbarProps {
   links: LinkItem[];
@@ -28,15 +31,12 @@ export interface MobileNavbarProps extends NavbarProps {
   isOpen: boolean;
   toggleMobileMenuClose: () => void;
 }
-export interface DescktopNavbarProps extends NavbarProps {
-}
-
-
+export interface DescktopNavbarProps extends NavbarProps {}
 
 const Navbar = () => {
-  const {openModal} = useAuthModalStore()
+  const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  
+
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -94,14 +94,15 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
-        <DescktopNavbar  links={links} openModal={openModal}/>        
+        <DescktopNavbar links={links} openModal={openModal} />
       </nav>
       {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
-      <MobileNavbar 
-        links={links} 
-        openModal={openModal} 
-        isOpen={isOpen} 
-        toggleMobileMenuClose={toggleMobileMenuClose} />      
+      <MobileNavbar
+        links={links}
+        openModal={openModal}
+        isOpen={isOpen}
+        toggleMobileMenuClose={toggleMobileMenuClose}
+      />
     </header>
   );
 };
