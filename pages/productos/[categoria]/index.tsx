@@ -7,6 +7,7 @@ export interface CategoriaProductProps {
   products: Product[];
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export async function getServerSideProps(context) {
   let products = [] as Product[];

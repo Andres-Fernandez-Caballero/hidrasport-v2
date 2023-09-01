@@ -1,10 +1,9 @@
 import { useAuthModalStore } from "@store/authModal.store";
-import Link from "next/link";
 import Login from "./login";
 import Register from "./register";
 
 const AuthModal = () => {
-  const { isOpen, closeModal, tab } = useAuthModalStore();
+  const { closeModal, tab } = useAuthModalStore();
 
   return (
     <menu

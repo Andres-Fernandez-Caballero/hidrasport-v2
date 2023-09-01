@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { DescktopNavbarProps, links } from ".";
 import { useAuthStore } from "@store/auth.store";
 import { GoPerson } from "react-icons/go";

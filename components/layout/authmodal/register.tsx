@@ -1,5 +1,4 @@
 import { useAuthModalStore } from "@store/authModal.store";
-import Link from "next/link";
 import InputAuthForm from "./inputAuthForm";
 import { useState } from "react";
 import { RegisterDto } from "@interfaces/IAuth";

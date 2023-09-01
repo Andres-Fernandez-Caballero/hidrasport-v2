@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react"; 
 import { useAuthStore } from "@store/auth.store";
 import useCartStore from '@store/useCartStore'; 
@@ -21,6 +22,7 @@ const CartsManagement = () => {
 
   useEffect(() => {
     fetchCart();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const checkCartNameAvailability = async (cartName: string) => {
@@ -116,6 +118,7 @@ const CartsManagement = () => {
         window.location.reload();
       }
     } catch (error) {
+      console.error("Error creating cart:", error);
     }
 
     closeModal();
@@ -232,6 +235,7 @@ const CartsManagement = () => {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             {cartData ? (
               Object.keys(cartData).map((key) => {
+                
                 // @ts-ignore
                 const item = cartData[key];
                 return <CartItemCard key={key} item={item} />;

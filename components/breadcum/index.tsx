@@ -1,3 +1,4 @@
+/* componente no implementado */
 const  Breadcum = () => {
     return (
         <nav aria-label="Breadcrumb">
@@ -53,3 +54,5 @@ const  Breadcum = () => {
             </nav>
     )
 }
+
+export default Breadcum

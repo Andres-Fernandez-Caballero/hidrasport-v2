@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@config/index'
-import { Product, Variant } from '@interfaces/IProduct'
+import { Variant } from '@interfaces/IProduct'
 import Image from 'next/image'
 import CarouselImage from './carousseImage'
 

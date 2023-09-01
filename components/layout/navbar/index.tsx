@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
 import DescktopNavbar from "./descktopNavbar";
-import { url } from "inspector";
 
 interface LinkItem {
   url: string;

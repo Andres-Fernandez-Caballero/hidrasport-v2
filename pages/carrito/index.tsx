@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { useEffect } from "react";
+import Image from "next/image"
 import { SERVER_URL } from "@config/index";
 import useCartStore from "@store/useCartStore";
 import { useRouter } from "next/router";

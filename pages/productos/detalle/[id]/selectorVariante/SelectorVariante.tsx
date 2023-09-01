@@ -1,8 +1,6 @@
 import { ProductDetail, Variant } from "@interfaces/IProduct"
 import { useState } from "react"
 import RadioButtonInput from "@components/RadioButtonInput"
-import { apiCall } from "tools/apiCall"
-import { ResponseCartApi } from "@pages/api/interfaz"
 import { toast } from "react-toastify"
 import useCartStore from "@store/useCartStore"
 
@@ -16,7 +14,7 @@ interface SelectorVarienteProps {
 const SelectorVariante = ({product,variants, currentVariant, setCurrentVariant}: SelectorVarienteProps)=> {
     const [size, setSize] = useState<string>('')
     const [color, setColor] = useState<string>(currentVariant.color)
-    const {addToCart, cartIsLoading} = useCartStore()
+    const {addToCart} = useCartStore()
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setColor(event.target.value)
       const variant = variants.find(v => v.color === event.target.value)

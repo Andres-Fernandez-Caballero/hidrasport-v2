@@ -1,11 +1,9 @@
-import { use, useEffect } from 'react'
+import { useEffect } from 'react'
 import Layout from '../components/layout'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { apiCall } from 'tools/apiCall'
 import useCartStore from '@store/useCartStore'
 import { toast } from 'react-toastify'
-import { get } from 'http'
 
 const MyApp = ({ Component, pageProps }: AppProps) =>{
   const {fetchCart, cartData} = useCartStore()
@@ -17,6 +15,7 @@ const MyApp = ({ Component, pageProps }: AppProps) =>{
       toast.error((error as Error).message )
       console.log('error', error);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return(  
     <Layout>
