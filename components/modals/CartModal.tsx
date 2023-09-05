@@ -1,7 +1,6 @@
 import React from "react";
 import { ICreateCartModalProps } from "@interfaces/IModal";
 
-
 const Modal: React.FC<ICreateCartModalProps> = ({ children }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">

@@ -32,7 +32,7 @@ interface DetalleProps {
 const Detalle = ({ product }: DetalleProps) => {
   const variants = getVariantsFromProduct(product);
   const [currentVariant, setCurrentVariant] = useState<Variant>(variants[0]);
-  
+
   return (
     <div className="bg-white">
       {product && (
@@ -50,7 +50,7 @@ const Detalle = ({ product }: DetalleProps) => {
               <p className="text-3xl tracking-tight text-gray-900">
                 ${product.price}
               </p>
-              <SelectorVariante 
+              <SelectorVariante
                 product={product}
                 variants={variants}
                 currentVariant={currentVariant}

@@ -11,7 +11,7 @@ const MobileNavbar = ({
   links,
   openModal,
 }: MobileNavbarProps) => {
-  const { login, logout, userSession, isLogedIn } = useAuthStore();
+  const { logout, isLogedIn } = useAuthStore();
 
   return (
     <nav

@@ -1,23 +1,23 @@
 export interface iCartProduct {
-    title: string;
-    size_id: number;
-    name: string;
-    color: string;
-    quantity: number;
-    price: number;
-    image: string;
-    size: string;
-    subproduct: number;
-    weight: number;
+  title: string;
+  size_id: number;
+  name: string;
+  color: string;
+  quantity: number;
+  price: number;
+  image: string;
+  size: string;
+  subproduct: number;
+  weight: number;
 }
 
 export interface iCartRequest {
-    subProductId: string;
-    size: string;
+  subProductId: string;
+  size: string;
 }
 
 export interface iCartProductList {
-  [key: string]: iCartProduct
+  [key: string]: iCartProduct;
 }
 
 export interface INewCartData {

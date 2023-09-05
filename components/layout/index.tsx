@@ -36,12 +36,11 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
         <ToastContainer />
       </main>
-      <WhatsappFloatingButton/>
+      <WhatsappFloatingButton />
 
-      <Footer/>
+      <Footer />
     </HydrationZustand>
   );
 };
-
 
 export default Layout;
