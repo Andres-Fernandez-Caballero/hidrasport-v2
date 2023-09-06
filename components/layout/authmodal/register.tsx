@@ -4,6 +4,19 @@ import { useState } from "react";
 import { RegisterDto } from "@interfaces/IAuth";
 import { useAuthStore } from "@store/auth.store";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
+
+const validationSchemaRegister = Yup.object()
+  .shape({
+    username: Yup.string().required("El nombre de usuario es obligatorio"),
+    email: Yup.string()
+      .email("Ingrese un email válido")
+      .required("El email es obligatorio"),
+    password: Yup.string().required("La contraseña es obligatoria"),
+    password2: Yup.string()
+      .oneOf([Yup.ref("password")], "Las contraseñas deben coincidir")
+      .required("Confirme la contraseña"),
+  })
 
 const Register = () => {
   const { closeModal, goTab } = useAuthModalStore();
@@ -24,15 +37,6 @@ const Register = () => {
     });
   };
 
-  const toastMessageWarning = (message: string) => {
-    toast.warning(message, {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      theme: "dark",
-    });
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
@@ -40,59 +44,10 @@ const Register = () => {
     });
   };
 
-  const handleNullTextInputs = (
-    email: string,
-    password: string,
-    password2: string,
-    user: string,
-  ) => {
-    if (!email || !password || !password2 || !user) {
-      toastMessageError("Todos los campos son obligatorios");
-      return;
-    }
-
-    if (!form.username) {
-      toastMessageError("Campo obligatorio");
-    }
-  };
-
-  const handleUsernameVerificationInput = (username: string) => {
-    if (username.length < 0) {
-      toastMessageError("Por favor ingrese un nombre de usuario");
-    }
-  };
-
-  const handleVerification = (
-    email: string,
-    password: string,
-    password2: string,
-  ) => {
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      toastMessageWarning("Ingrese un email valido");
-      return;
-    }
-
-    if (email.length < 0) {
-      toastMessageError("Ingrese un Email");
-    }
-
-    if (password !== password2) {
-      toastMessageWarning("Las contraseñas no coinciden");
-      return;
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      handleNullTextInputs(
-        form.email,
-        form.password,
-        form.password2,
-        form.username,
-      );
-      handleVerification(form.email, form.password, form.password2);
-      handleUsernameVerificationInput(form.username);
+      await validationSchemaRegister.validate(form, { abortEarly: false });
 
       const response = await fetch("/api/auth/register", {
         method: "POST",
@@ -117,7 +72,19 @@ const Register = () => {
       });
       closeModal();
     } catch (error) {
-      toast.error((error as Error).message);
+      if (error instanceof Yup.ValidationError) {
+        const emptyFieldsMessage = "Complete todos los campos";
+        const errorMessages = error.errors.filter(message => message !== emptyFieldsMessage);
+        if (!form.username && !form.password && !form.password2 && !form.email) {
+          toastMessageError(emptyFieldsMessage);
+        } else if (errorMessages.length >0) {
+          error.errors.forEach(messageError => {
+            toastMessageError(messageError);
+          });
+        }
+      } else {
+        toast.error((error as Error).message);
+      }
     }
   };
 

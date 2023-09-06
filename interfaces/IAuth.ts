@@ -1,5 +1,4 @@
 import * as yup from "yup";
-
 export interface IUser {
   email: string;
   username: string;
@@ -14,8 +13,9 @@ export interface IAuthSuccessfulResponse extends IUser, IResponse {}
 export interface IAuthFailedResponse extends IResponse {}
 
 export interface LoginDto {
-  username: string; // email or username
-  password: string;
+    username: string; // email or username
+    password: string;
+    
 }
 
 export interface RegisterDto {
