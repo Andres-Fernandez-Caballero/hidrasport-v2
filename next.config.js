@@ -14,7 +14,7 @@ const nextConfig = {
 };
 
 if (process.env.NODE_ENV === "production") {
-  (nextConfig.loader = "akamai"), (nextConfig.path = "");
+  // (nextConfig.loader = "akamai"), (nextConfig.path = "");
 }
 
 module.exports = nextConfig;

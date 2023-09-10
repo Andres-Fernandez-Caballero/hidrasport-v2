@@ -46,7 +46,7 @@ const CategoriaProduct = ({ products, categoria }: CategoriaProductProps) => {
         {products.length === 0 ? (
           <section>
             {/* caso en que no se encuentren productos */}
-            <p>No hay productos cargados 😵‍💫</p>
+            <h2>No hay productos cargados 😵‍💫</h2>
           </section>
         ) : (
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">

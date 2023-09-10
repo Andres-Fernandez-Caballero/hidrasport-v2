@@ -6,14 +6,14 @@ export interface ProductImageProps {
 
 const ProductImage = ({ product }: ProductImageProps) => {
   function getFrontImage() {
-    let image = "/images/remera_frente.png";
+    let image = "/images/remera_frente.png"; // default image
     if (
       product.images &&
       product.images.length > 0 &&
       product.images[0].image !== undefined
     )
       image = product.images[0].image;
-    image = image.replace("http://localhost:8000", "https://hidrasport.com.ar");
+    image = `https://hidrasport.com.ar${image}`;
     return image;
   }
   console.log("product", product);

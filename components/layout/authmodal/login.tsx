@@ -7,14 +7,14 @@ import { useState } from "react";
 import { SERVER_URL } from "@config/index";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import * as Yup from 'yup'
-import { fa6 } from "@fortawesome/free-solid-svg-icons";
+import * as Yup from "yup";
 
 const validationSchemaLogin = Yup.object().shape({
   username: Yup.string().required("Ingrese un nombre de usuario"),
-  password: Yup.string().required().min(8, "La contraseña tiene que tener 8 caracteres"),
-
-})
+  password: Yup.string()
+    .required()
+    .min(8, "La contraseña tiene que tener 8 caracteres"),
+});
 
 const Login = () => {
   const { closeModal, goTab } = useAuthModalStore();
@@ -40,15 +40,11 @@ const Login = () => {
     });
   };
 
-
-
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-
-
     try {
-      await validationSchemaLogin.validate(loginData, { abortEarly: false })
+      await validationSchemaLogin.validate(loginData, { abortEarly: false });
       const response = await fetch(`${SERVER_URL}/api/auth/login`, {
         method: "POST",
         headers: {
@@ -66,15 +62,16 @@ const Login = () => {
       login(data);
       toast.success("Login exitoso");
       closeModal();
-
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const emptyFieldsMessage = "Ingrese su usuario y contraseña";
-        const errorMessages = error.errors.filter(message => message !== emptyFieldsMessage);
+        const errorMessages = error.errors.filter(
+          (message) => message !== emptyFieldsMessage,
+        );
         if (!loginData.username && !loginData.password) {
           toastMessageError(emptyFieldsMessage);
-        } else if (errorMessages.length >0) {
-          error.errors.forEach(messageError => {
+        } else if (errorMessages.length > 0) {
+          error.errors.forEach((messageError) => {
             toastMessageError(messageError);
           });
         }
