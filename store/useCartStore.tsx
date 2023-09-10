@@ -4,9 +4,6 @@ import {
   iCartProductList,
   iCartRequest,
 } from "./../interfaces/ICart";
-import { apiCall } from "tools/apiCall";
-import { ResponseApi } from "@pages/api/interfaz";
-import { SERVER_URL } from "@config/index";
 
 type CartStore = {
   cartData: iCartProduct[];
@@ -25,10 +22,7 @@ const useCartStore = create<CartStore>((set) => ({
       const response = await fetch(url, {
         credentials: "include",
       });
-      const cookie = response.headers.get("set-cookie");
-
       const data = await response.json();
-      console.log("data", data);
 
       const cartItems: iCartProduct[] = Object.values(data as iCartProductList);
       set({ cartData: cartItems });
@@ -41,12 +35,8 @@ const useCartStore = create<CartStore>((set) => ({
   addToCart: async (product: iCartRequest) => {
     set({ cartIsLoading: true });
     try {
-      const urlAdd = `https://hidrasport.com.ar/api/sessions/cart/modify/2534/M/add/1/`;
-      const responseAdd = await fetch(urlAdd, {
-        credentials: "include",
-      });
-      const dataAdd = await responseAdd.json();
-      console.log("dataAdd", dataAdd);
+      const urlAdd = `https://hidrasport.com.ar/api/sessions/cart/modify/${product.subProductId}/${product.size}/add/1/`;
+      await fetch(urlAdd, { credentials: "include" });
 
       // const cookieAdd = responseAdd.headers.get("set-cookie");
       const urlList = `https://hidrasport.com.ar/api/sessions/cart/`;
@@ -56,7 +46,6 @@ const useCartStore = create<CartStore>((set) => ({
       // const cookie = response.headers.get("set-cookie");
 
       const data = await response.json();
-      console.log("data reload", data);
 
       const cartItems: iCartProduct[] = Object.values(data as iCartProductList);
       set({ cartData: cartItems });
