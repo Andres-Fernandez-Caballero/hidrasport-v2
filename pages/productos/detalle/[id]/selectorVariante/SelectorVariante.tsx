@@ -34,11 +34,12 @@ const SelectorVariante = ({
 
   function handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     const toastMessage = toast.loading("Agregando al carrito ⌛");
     try {
+      if (size === "") throw new Error("Debe seleccionar un talle");
+
       addToCart({
-        size: "M",
+        size,
         subProductId: currentVariant.subProductId,
       });
       toast.update(toastMessage, {
