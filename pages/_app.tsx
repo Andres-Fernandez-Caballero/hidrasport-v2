@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import useCartStore from "@store/useCartStore";
 import { toast } from "react-toastify";
+import "react-multi-carousel/lib/styles.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart, cartData } = useCartStore();
