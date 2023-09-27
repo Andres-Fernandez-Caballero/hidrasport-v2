@@ -18,7 +18,10 @@ const CarouselHome  = () => {
     <Carousel responsive={responsive} showDots={true}
               infinite={true}
               autoPlay={true}
-              autoPlaySpeed={2000}>  
+              autoPlaySpeed={5000}
+              arrows={false}
+              >  
+
               <figure className=" relative opacity-90 ">
               <Image
                 src="/images/banners/mujer.jpeg"
