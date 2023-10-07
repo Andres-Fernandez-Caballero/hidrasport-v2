@@ -1,7 +1,7 @@
-import { WHATSAPP_BUSSINESS_NUMBER } from "@config/index";
+import { WHATSAPP_BUSINESS_NUMBER } from "@config/index";
 import { FaWhatsapp } from "react-icons/fa";
 const WhatsappFloatingButton = () => {
-  const whatsappLink = `https://wa.me/${WHATSAPP_BUSSINESS_NUMBER}`
+  const whatsappLink = `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}`
 
   return (
     <div className="fixed bottom-8 right-8">

@@ -7,7 +7,7 @@ const nextConfig = {
   swcMinify: true,
   env: {
     SERVER_URL: process.env.SERVER_URL,
-    WHATSAPP_BUSSINESS_NUMBER: process.env.WHATSAPP_BUSSINESS_NUMBER,
+    WHATSAPP_BUSINESS_NUMBER: process.env.WHATSAPP_BUSINESS_NUMBER,
     AFIP_QR: process.env.AFIP_QR,
     AFFIP_DATA_WEB: process.env.AFFIP_DATA_WEB,
   },
