@@ -47,11 +47,11 @@ const RedesSociales = () => {
       <ul className="mb-4">
         <li className="flex items-center mb-2">
           <FaFacebook width={50} className="mr-2" />
-          <a href="#">Facebook</a>
+          <a href="http://facebook.com">Facebook</a>
         </li>
         <li className="flex items-center mb-2">
           <FaInstagram width={50} className="mr-2" />
-          <a href="#">Instagram</a>
+          <a href="http://instagram.com">Instagram</a>
         </li>
       </ul>
     </section>
