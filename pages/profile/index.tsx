@@ -1,3 +1,4 @@
+import CardData from "@components/cardProfile";
 import { useAuthStore } from "@store/auth.store";
 import { IoPencil } from "react-icons/io5";
 
@@ -20,11 +21,8 @@ const Profile = () => {
           </button>
         </aside>
       </aside>
-      <article className="block rounded-lg bg-white container max-w-screen-lg m-auto border border-gray-700 border-top-2 border-dark-200">
-        <h2 className="border-b-2 border-dark-200 px-6 py-3 text-xl font-medium leading-tight bg-zinc-950 text-center text-white">
-          Mis Datos
-        </h2>
-        <button className="float-right inline-flex items-center px-4 py-2 bg-cyan-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-wide hover:bg-cyan-600 focus:ring ring-gray-300 disabled:opacity-25 transition mr-2">
+      <CardData title={"Mis Datos"}>
+      <button className="float-right inline-flex items-center px-4 py-2 bg-cyan-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-wide hover:bg-cyan-600 focus:ring ring-gray-300 disabled:opacity-25 transition mr-2">
           Editar datos <IoPencil />
         </button>
         <section className="p-4 mt-2 grid grid-rows-2">
@@ -37,7 +35,11 @@ const Profile = () => {
             <span className="font-normal italic">{userSession.email}</span>
           </p>
         </section>
-      </article>
+      </CardData>
+      <section className="py-3">
+      <CardData title={"Mis Pedidos"}> {"esta en Prueba"}     </CardData>
+        
+      </section>
     </section>
   );
 };
