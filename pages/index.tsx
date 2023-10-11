@@ -1,7 +1,26 @@
+import MessageBar from "@components/layout/messagesBar";
 import type { NextPage } from "next";
 import Image from "next/image";
 import React from "react";
 import Carousel from "react-multi-carousel";
+import useSWR from "swr";
+
+interface resultsProps {
+  id: number;
+  banner: string;
+}
+
+interface dataProps {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: resultsProps[];
+}
+
+// FUTURA CARACTERISTICA
+// const imageLoader = ({ src, width, quality }) => {
+//   return `https://example.com/${src}?w=${width}&q=${quality || 75}`
+// }
 
 const items: ImageGridLinkItem[] = [
   {
@@ -55,14 +74,15 @@ const CarouselHome: React.FC<ImageGridProps> = (props) => {
       autoPlay={true}
       autoPlaySpeed={3000}
       arrows={false}
+      className="w-full h-fit"
     >
       {props.items.map((item, index: number) => (
-        <figure className=" relative opacity-90 " key={index + item.label}>
+        <figure className=" relative opacity-90 h-fit" key={index + item.label}>
           <Image
             src={item.image}
             alt={item.label}
-            width={800}
-            height={800}
+            width={400}
+            height={400}
             className="rounded-sm"
           />
           <h2 className="absolute top-0 p-4  flex justify-center items-center text-lg text-red-100">
@@ -76,14 +96,14 @@ const CarouselHome: React.FC<ImageGridProps> = (props) => {
 
 const BannerHome: React.FC<ImageGridProps> = (props) => {
   return (
-    <menu className="grid gap-1 grid-rows-1 grid-cols-4 m-2">
+    <menu className="grid gap-1 grid-rows-1 grid-cols-4 m-2 h-fit">
       {props.items.map((item, index: number) => (
-        <figure className=" relative opacity-90" key={index + item.label}>
+        <figure className="relative opacity-90 h-fit" key={index + item.label}>
           <Image
             src={item.image}
             alt={item.label}
-            width={600}
-            height={600}
+            width={300}
+            height={300}
             className="rounded-sm"
           />
           <h2 className="absolute top-0 left-0 p-4  text-lg text-red-100">
@@ -95,16 +115,136 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Home: NextPage = () => {
+  const { data, error, isLoading } = useSWR(
+    "https://hidrasport.com.ar/api/store/site-configuration/",
+    fetcher,
+  );
+  if (isLoading) return <div>Loading...</div>;
+  if (error) {
+    // guardar el error en un log
+    console.log(error);
+  }
+
+  // google maps apikey = AIzaSyA2zNPw8yP3Yv6Ex7ATfk_hXGteboNeOlk
   return (
-    <>
-      <div className="sm:hidden">
-        <CarouselHome items={items} />
-      </div>
-      <div className="hidden sm:flex justify-center h-screen">
-        <BannerHome items={items} />
-      </div>
-    </>
+    <main>
+      <section>
+        {(data as dataProps).results.map((item) => (
+          <div
+            key={item.id}
+            className="banner flex items-center justify-center h-96"
+          >
+            <Image
+              className="object-cover w-full h-full"
+              src={item.banner.replace(
+                "http://localhost:8000",
+                "https://hidrasport.com.ar",
+              )}
+              height={800}
+              width={800}
+              alt="banner"
+            />
+          </div>
+        ))}
+      </section>
+
+      <section className="flex">
+        <h2 className="sr-only">CATEGORIAS POPULARES</h2>
+        <div className="sm:hidden">
+          <CarouselHome items={items} />
+        </div>
+        <div className="hidden sm:flex justify-center mx-auto h-fit">
+          <BannerHome items={items} />
+        </div>
+      </section>
+      <MessageBar
+        messages={[
+          "Envios en toda capital Gratis",
+          "Devoluciones sin cargo",
+          "Cuotas sin interes 💳",
+          "Mas de 1000 productos 🛒 ",
+        ]}
+        delay={3000}
+      />
+      <section className="grid grid-cols-3 justify-center my-4">
+        <article className="flex justify-center gap-2 items-center">
+          <i className="fa-solid fa-truck-fast"></i>
+          <h3 className="text-sm text-gray-500">Costos y tiempos de envio</h3>
+        </article>
+        <article className="flex justify-center gap-2 items-center">
+          <i className="fa-regular fa-credit-card "></i>
+          <h3>Cuotas y Formas de pago</h3>
+        </article>
+        <article className="flex justify-center gap-2 items-center">
+          <i className="fa-solid fa-percent"></i>
+          <h3>Cambios y devoluciones</h3>
+        </article>
+      </section>
+      <section className="">
+        <h2 className="ml-2 text-2xl">Productos Destacados 🥇</h2>
+        <div className="grid grid-cols-4 gap-4 m-4">
+          <article className="border rounded-md">
+            <h3 className="sr-only">ENVIOS</h3>
+            <figure>
+              <p>Envios a todo el pais</p>
+              <Image
+                src="/images/banners/envios.png"
+                alt="Envios a todo el pais"
+                width={800}
+                height={400}
+                className="rounded-sm"
+              />
+            </figure>
+          </article>
+
+          <article className="border rounded-md">
+            <h3 className="sr-only">ENVIOS</h3>
+            <figure>
+              <p>Envios a todo el pais</p>
+              <Image
+                src="/images/banners/envios.png"
+                alt="Envios a todo el pais"
+                width={800}
+                height={400}
+                className="rounded-sm"
+              />
+            </figure>
+          </article>
+
+          <article className="border rounded-md">
+            <h3 className="sr-only">ENVIOS</h3>
+            <figure>
+              <p>Envios a todo el pais</p>
+              <Image
+                src="/images/banners/envios.png"
+                alt="Envios a todo el pais"
+                width={800}
+                height={400}
+                className="rounded-sm"
+              />
+            </figure>
+          </article>
+
+          <article className="border rounded-md bg-blue-300 text-white">
+            <h3 className="sr-only">ENVIOS</h3>
+            <figure>
+              <h3>Envios a todo el pais</h3>
+              {/* <Image
+              src="/images/banners/envios.png"
+              alt="Envios a todo el pais"
+              width={800}
+              height={400}
+              className="rounded-sm"
+            /> */}
+            </figure>
+          </article>
+        </div>
+      </section>
+    </main>
   );
 };
 
