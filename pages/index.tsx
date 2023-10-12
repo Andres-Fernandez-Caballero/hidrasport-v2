@@ -129,7 +129,6 @@ const Home: NextPage = () => {
     console.log(error);
   }
 
-  // google maps apikey = AIzaSyA2zNPw8yP3Yv6Ex7ATfk_hXGteboNeOlk
   return (
     <main>
       <section>
