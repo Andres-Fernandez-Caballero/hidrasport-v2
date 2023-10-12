@@ -1,9 +1,18 @@
 import CardData from "@components/cardProfile";
 import { useAuthStore } from "@store/auth.store";
+import usePedidos from "@store/pedidos";
+import { useEffect } from "react";
 import { IoPencil } from "react-icons/io5";
 
 const Profile = () => {
   const { userSession, logout } = useAuthStore();
+  const { pedidos, fetchPedidos } = usePedidos();
+
+  useEffect(() => {
+    fetchPedidos()
+  }, [])
+
+
   return (
     <section className="container p-4 m-auto">
       <aside className="flex items-center justify-between">
@@ -37,7 +46,11 @@ const Profile = () => {
         </section>
       </CardData>
       <section className="py-3">
-      <CardData title={"Mis Pedidos"}> {"esta en Prueba"}     </CardData>
+      <CardData title={"Mis Pedidos"}>   <ul>
+      {pedidos.map((order) => (
+        <><li key={order.id}>{order.id}</li><li key={order.status}> {order.status} </li></>
+      ))}
+    </ul> </CardData>
         
       </section>
     </section>
