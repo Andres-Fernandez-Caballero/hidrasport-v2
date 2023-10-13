@@ -12,6 +12,8 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
       <Image
         src={`${SERVER_URL}/static${item.image}`}
         alt={item.title}
+        height={200}
+        width={200}
         className="mb-4 w-full h-auto"
       />
       <p className="text-lg font-semibold mb-2">{item.title}</p>
