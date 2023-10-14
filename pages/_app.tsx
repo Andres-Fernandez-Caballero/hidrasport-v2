@@ -7,14 +7,10 @@ import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const { fetchCart, cartData } = useCartStore();
+  const { fetchCart } = useCartStore();
   useEffect(() => {
     try {
       fetchCart();
-      toast.success(
-        "Carrito cargado correctamente items cargados: " + cartData.length,
-        { autoClose: 2000 },
-      );
     } catch (error) {
       toast.error((error as Error).message);
       console.log("error", error);

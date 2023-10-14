@@ -48,7 +48,10 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
               href="/profile"
               className="text-2xl font-semibold leading-6 text-gray-900"
             >
-              <GoPerson />
+              <div className="flex flex-row hover:scale-x-110">
+                <GoPerson />
+                <span className="text-sm">{userSession.username}</span>
+              </div>
             </Link>
             <button
               onClick={logout}

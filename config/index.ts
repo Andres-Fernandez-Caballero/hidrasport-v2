@@ -1,5 +1,5 @@
-export const WHATSAPP_BUSSINESS_NUMBER =
-  process.env.WHATSAPP_BUSSINESS_NUMBER || "";
-export const AFIP_QR = process.env.AFIP_QR || "";
-export const AFFIP_DATA_WEB = process.env.AFFIP_DATA_WEB || "";
+export const WHATSAPP_BUSINESS_NUMBER =
+  process.env.NEXT_PUBLIC_WHATSAPP_BUSINESS_NUMBER || "";
+export const AFIP_QR = (process.env.NEXT_PUBLIC_AFIP_QR as string) || "";
+export const AFIP_QR_IMAGE = process.env.NEXT_PUBLIC_AFIP_QR_IMAGE || "";
 export const SERVER_URL = process.env.SERVER_URL || "";

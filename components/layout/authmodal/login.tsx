@@ -4,7 +4,6 @@ import InputAuthForm from "./inputAuthForm";
 import { useAuthStore } from "@store/auth.store";
 import { LoginDto } from "@interfaces/IAuth";
 import { useState } from "react";
-import { SERVER_URL } from "@config/index";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
@@ -40,12 +39,10 @@ const Login = () => {
     });
   };
 
-  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const actionLogin = async () => {
     try {
       await validationSchemaLogin.validate(loginData, { abortEarly: false });
-      const response = await fetch(`${SERVER_URL}/api/auth/login`, {
+      const response = await fetch(`/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,6 +76,12 @@ const Login = () => {
         toastMessageError((error as Error).message);
       }
     }
+  };
+
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    actionLogin().then();
+    // alert('Login exitoso')
   };
 
   return (
