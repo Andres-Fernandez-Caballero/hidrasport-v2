@@ -19,7 +19,9 @@ const FlatList = <T,>({
   return (
     <ul
       className={`flex ${
-        direction.includes("horizontal") ? "flex-col" : "flex-row"
+        direction.includes("horizontal")
+          ? "flex-col grid grid-cols-1 gap-4"
+          : "flex-row grid grid-cols-2  gap-2"
       }`}
     >
       {data.map((item) => (
