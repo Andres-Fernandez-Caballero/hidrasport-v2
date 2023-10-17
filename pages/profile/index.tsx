@@ -28,7 +28,7 @@ const Profile = () => {
       </header>
       <section className="columns-2 mb-6">
         <div className="w-full">
-          <CardData title={"Infomracion de la cuenta"}>
+          <CardData title={"Informacion de la cuenta"}>
             <article>
               <blockquote>
                 <p className="text-zinc-950 text-md leading-6 font-bold">
