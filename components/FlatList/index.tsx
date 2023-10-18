@@ -21,7 +21,7 @@ const FlatList = <T,>({
       className={`flex ${
         direction.includes("horizontal")
           ? "flex-col grid grid-cols-1 gap-4"
-          : "flex-row grid grid-cols-2  gap-2"
+          : "flex-row grid grid-cols-2 gap-2"
       }`}
     >
       {data.map((item) => (

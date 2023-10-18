@@ -26,65 +26,67 @@ const Profile = () => {
           Perfil de usuario
         </h1>
       </header>
-      <section className="columns-2 mb-6">
-        <div className="w-full">
-          <CardData title={"Informacion de la cuenta"}>
-            <article>
-              <blockquote>
-                <p className="text-zinc-950 text-md leading-6 font-bold">
-                  Usuario:{" "}
-                  <span className="font-normal italic">
-                    {userSession.username}
-                  </span>
-                </p>
-                <p className="text-zinc-950 text-md leading-6 font-bold">
-                  Email:{" "}
-                  <span className="font-normal italic">
-                    {userSession.email}
-                  </span>
-                </p>
-              </blockquote>
-              <menu className="grid mt-4">
-                <button
-                  className="flex  justify-center bg-blue-900 text-white border border-black rounded-md p-2"
-                  onClick={() => alert("caracteristica en desarrollo 🚧")}
-                >
-                  <span className="flex gap-4 items-center">
-                    Editar datos <IoPencil />
-                  </span>
-                </button>
-              </menu>
-            </article>
-          </CardData>
-        </div>
-
-        <div className="w-full">
-          <CardData title={"Mis Pedidos"}>
-            <article className="">
-              <FlatList
-                data={pedidos}
-                keyExtractor={(item) => item}
-                renderItem={(item) => <p>{item}</p>}
-                renderEmptyList={() => <p>Aun no hay pedidos 🫢</p>}
-              />
-            </article>
-          </CardData>
-        </div>
-
-        <div className="w-full">
-          {cartIsLoading ? (
-            <p>Cargando...</p>
-          ) : (
-            <CardData title={"Carrito"}>
-              <FlatList
-                data={cartData}
-                keyExtractor={(item) => item.size_id.toString()}
-                renderItem={(item) => <CartItemCard item={item} />}
-                renderEmptyList={() => <p>No hay productos en el carrito</p>}
-              />
+      <section className="grid grid-cols-2 grid-rows-2 gap-4">
+        <article className="row-span-2">
+          <div className="w-full">
+            <CardData title={"Informacion de la cuenta"}>
+              <article>
+                <blockquote>
+                  <p className="text-zinc-950 text-md leading-6 font-bold">
+                    Usuario:{" "}
+                    <span className="font-normal italic">
+                      {userSession.username}
+                    </span>
+                  </p>
+                  <p className="text-zinc-950 text-md leading-6 font-bold">
+                    Email:{" "}
+                    <span className="font-normal italic">
+                      {userSession.email}
+                    </span>
+                  </p>
+                </blockquote>
+                <menu className="grid mt-4">
+                  <button
+                    className="flex  justify-center bg-blue-900 text-white border border-black rounded-md p-2"
+                    onClick={() => alert("caracteristica en desarrollo 🚧")}
+                  >
+                    <span className="flex gap-4 items-center">
+                      Editar datos <IoPencil />
+                    </span>
+                  </button>
+                </menu>
+              </article>
             </CardData>
-          )}
-        </div>
+          </div>
+          <div className="w-full">
+            <CardData title={"Mis Pedidos"}>
+              <article className="">
+                <FlatList
+                  data={pedidos}
+                  keyExtractor={(item) => item}
+                  renderItem={(item) => <p>{item}</p>}
+                  renderEmptyList={() => <p>Aun no hay pedidos 🫢</p>}
+                />
+              </article>
+            </CardData>
+          </div>
+        </article>
+        <article className="row-span-2">
+          <div className="w-full">
+            {cartIsLoading ? (
+              <p>Cargando...</p>
+            ) : (
+              <CardData title={"Carrito"}>
+                <FlatList
+                  data={cartData}
+                  keyExtractor={(item) => item.size_id.toString()}
+                  renderItem={(item) => <CartItemCard item={item} />}
+                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
+                />
+              </CardData>
+            )}
+          </div>
+        </article>
       </section>
     </main>
   );
