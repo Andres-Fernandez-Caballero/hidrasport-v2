@@ -1,9 +1,11 @@
 import MessageBar from "@components/layout/messagesBar";
 import type { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import Carousel from "react-multi-carousel";
 import useSWR from "swr";
+import { SERVER_URL } from "@config/index";
 
 interface resultsProps {
   id: number;
@@ -26,22 +28,22 @@ const items: ImageGridLinkItem[] = [
   {
     image: "/images/banners/mujer.jpeg",
     label: "Mujeres",
-    link: "/mujeres",
+    link: "/productos/Mujer",
   },
   {
     image: "/images/banners/hombre.jpeg",
     label: "Hombres",
-    link: "/hombres",
+    link: "/productos/Hombre",
   },
   {
     image: "/images/banners/guardavida.jpeg",
     label: "Guardavidas",
-    link: "/guardavidas",
+    link: "/productos/guardavidas",
   },
   {
     image: "/images/banners/invierno.png",
     label: "Invierno",
-    link: "/invierno",
+    link: "/productos/Invierno",
   },
 ];
 
@@ -98,7 +100,11 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
   return (
     <menu className="grid gap-1 grid-rows-1 grid-cols-4 m-2 h-fit">
       {props.items.map((item, index: number) => (
-        <figure className="relative opacity-90 h-fit" key={index + item.label}>
+        <Link
+          href={item.link}
+          className="relative opacity-90 h-fit"
+          key={index + item.label}
+        >
           <Image
             src={item.image}
             alt={item.label}
@@ -109,7 +115,7 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
           <h2 className="absolute top-0 left-0 p-4  text-lg text-red-100">
             {item.label}
           </h2>
-        </figure>
+        </Link>
       ))}
     </menu>
   );
@@ -120,7 +126,7 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Home: NextPage = () => {
   const { data, error, isLoading } = useSWR(
-    "https://hidrasport.com.ar/api/store/site-configuration/",
+    `${SERVER_URL}/api/store/site-configuration/`,
     fetcher,
   );
   if (isLoading) return <div>Loading...</div>;
@@ -191,7 +197,7 @@ const Home: NextPage = () => {
             <figure>
               <p>Envios a todo el pais</p>
               <Image
-                src="/images/banners/envios.png"
+                src="https://picsum.photos/200/300"
                 alt="Envios a todo el pais"
                 width={800}
                 height={400}
@@ -205,7 +211,7 @@ const Home: NextPage = () => {
             <figure>
               <p>Envios a todo el pais</p>
               <Image
-                src="/images/banners/envios.png"
+                src="https://picsum.photos/200/300"
                 alt="Envios a todo el pais"
                 width={800}
                 height={400}
@@ -219,7 +225,7 @@ const Home: NextPage = () => {
             <figure>
               <p>Envios a todo el pais</p>
               <Image
-                src="/images/banners/envios.png"
+                src="https://picsum.photos/200/300"
                 alt="Envios a todo el pais"
                 width={800}
                 height={400}
