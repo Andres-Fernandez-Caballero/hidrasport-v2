@@ -14,7 +14,6 @@ export interface CategoriaProductProps {
 // @ts-ignore
 export async function getServerSideProps(context) {
   let products = [] as Product[];
-  console.log("query", context.query);
   let prev = null;
   let next = 2;
   let current = 1;
