@@ -20,13 +20,13 @@ const Profile = () => {
   }, []);
 
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto p-2">
       <header>
-        <h1 className="text-gray-700 font-bold text-4xl leading-10 text-justify px-12 py-6">
+        <h1 className="text-gray-700 font-bold text-4xl leading-10 sm:text-justify text-center px-12 py-6">
           Perfil de usuario
         </h1>
       </header>
-      <section className="grid grid-cols-2 grid-rows-2 gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-4">
         <article className="row-span-2">
           <div className="w-full">
             <CardData title={"Informacion de la cuenta"}>
