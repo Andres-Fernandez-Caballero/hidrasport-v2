@@ -1,6 +1,7 @@
 import FlatList from "@components/FlatList";
 import CardData from "@components/cardProfile";
 import CartItemCard from "@components/cart/CartItemCard";
+import { SERVER_URL } from "@config/index";
 import { useAuthStore } from "@store/auth.store";
 import useCartStore from "@store/useCartStore";
 import { useEffect, useState } from "react";
@@ -10,9 +11,33 @@ const Profile = () => {
   const { userSession } = useAuthStore();
   const [pedidos, setPedidos] = useState([]);
   const { cartIsLoading, cartData } = useCartStore();
+  const API_GET_CARRITO = "https://hidrasport.com.ar/api/orders/orders/";
 
-  function actualizarPedidos() {
-    setPedidos([]);
+  async function actualizarPedidos() {
+    const token = userSession.token;
+    try {
+      const res = await fetch(API_GET_CARRITO, {
+        method: "GET",
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+        credentials: "include",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        console.debug("Datos de pedidos obtenidos:", data);
+        setPedidos(data);
+      } else {
+        const errorMessage = await res.text();
+        console.error(
+          "Error al obtener datos del servidor",
+          res.status,
+          errorMessage,
+        );
+      }
+    } catch (error) {
+      console.error("Error de red o error en la solicitud:", error);
+    }
   }
 
   useEffect(() => {
@@ -26,7 +51,7 @@ const Profile = () => {
           Perfil de usuario
         </h1>
       </header>
-      <section className="grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-4">
         <article className="row-span-2">
           <div className="w-full">
             <CardData title={"Informacion de la cuenta"}>
