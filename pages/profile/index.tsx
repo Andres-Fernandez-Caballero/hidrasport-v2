@@ -1,7 +1,6 @@
 import FlatList from "@components/FlatList";
 import CardData from "@components/cardProfile";
 import CartItemCard from "@components/cart/CartItemCard";
-import { SERVER_URL } from "@config/index";
 import { useAuthStore } from "@store/auth.store";
 import useCartStore from "@store/useCartStore";
 import { useEffect, useState } from "react";
