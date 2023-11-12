@@ -1,9 +1,10 @@
 import { useAuthModalStore } from "@store/authModal.store";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobileNavbar from "./mobileNavbar";
 import DescktopNavbar from "./descktopNavbar";
+import { useRouter } from "next/router";
 
 interface LinkItem {
   url: string;
@@ -36,6 +37,8 @@ export interface DescktopNavbarProps extends NavbarProps {}
 const Navbar = () => {
   const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const router = useRouter();
+  const [className, setClassName] = useState<string>("bg-white text-gray-700");
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -44,8 +47,19 @@ const Navbar = () => {
   const toggleMobileMenuClose = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const currentRoute = router.asPath;
+    console.log("Current Route:", currentRoute);
+    setClassName(
+      currentRoute === "/productos/guardavidas"
+        ? "bg-red-500 text-white"
+        : "bg-white text-gray-700",
+    );
+  }, [router.asPath]);
+
   return (
-    <header className="bg-white">
+    <header className={className}>
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
