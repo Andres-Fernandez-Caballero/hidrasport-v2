@@ -6,7 +6,6 @@ import { Product } from "@interfaces/IProduct";
 import Link from "next/link";
 import React from "react";
 
-// Definir la interfaz para las props
 export interface HidraLifeProps {
   products: Product[];
   categoria: string;
@@ -50,7 +49,6 @@ export async function getServerSideProps(context) {
   return { props: { products, next, prev, current } };
 }
 
-// Componente principal de la página HidraLife
 const HidraLifePage: React.FC<HidraLifeProps> = ({
   products,
   prev,

@@ -1,7 +1,7 @@
 import { useAuthModalStore } from "@store/authModal.store";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
 import DescktopNavbar from "./descktopNavbar";
 import { useRouter } from "next/router";
@@ -17,15 +17,10 @@ export const links: LinkItem[] = [
   { url: "/productos/Mujer", text: "Mujeres" },
   { url: "/productos/Hombre", text: "Hombres" },
   { url: "/productos/Deportes", text: "Deportes" },
-  // {
-  //   url: "/productos/guardavidas",
-  //   text: "Guardavidas +",
-  //   colorText: "text-red-500",
-  // },
   {
     url: "/productos/hidraLife",
-    text: "Hidralife",
-    colorText: "text-cyan-700",
+    text: "Guardavidas +",
+    colorText: "text-red-500",
   },
 ];
 
@@ -43,7 +38,6 @@ const Navbar = () => {
   const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const router = useRouter();
-  const [className, setClassName] = useState<string>("bg-white text-gray-700");
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -53,18 +47,10 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    const currentRoute = router.asPath;
-    console.log("Current Route:", currentRoute);
-    setClassName(
-      currentRoute === "/productos/hidraLife"
-        ? "bg-red-500 text-white"
-        : "bg-white text-gray-700",
-    );
-  }, [router.asPath]);
+  const isHidraLifePage = router.pathname === "/productos/hidraLife";
 
   return (
-    <header className={className}>
+    <header className={isHidraLifePage ? "bg-neutral-200" : "bg-white"}>
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -73,20 +59,41 @@ const Navbar = () => {
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Hidra</span>
             <figure className="flex items-center">
-              <Image
-                height={600}
-                width={600}
-                className="h-12 w-auto"
-                src="/images/tortuga_logo.png"
-                alt=""
-              />
-              <Image
-                height={600}
-                width={600}
-                className="h-10 w-auto"
-                src="/images/hidraLogo.png"
-                alt=""
-              />
+              {isHidraLifePage ? (
+                <>
+                  <Image
+                    height={600}
+                    width={600}
+                    className="h-12 w-auto"
+                    src="/images/tortuga_logo.png"
+                    alt=""
+                  />
+                  <Image
+                    height={600}
+                    width={600}
+                    className="h-12 w-auto"
+                    src="/images/hidraLogoLifeGuard.png"
+                    alt="logo-lifeguard"
+                  />
+                </>
+              ) : (
+                <>
+                  <Image
+                    height={600}
+                    width={600}
+                    className="h-12 w-auto"
+                    src="/images/tortuga_logo.png"
+                    alt=""
+                  />
+                  <Image
+                    height={600}
+                    width={600}
+                    className="h-10 w-auto"
+                    src="/images/hidraLogo.png"
+                    alt=""
+                  />
+                </>
+              )}
             </figure>
           </Link>
         </div>

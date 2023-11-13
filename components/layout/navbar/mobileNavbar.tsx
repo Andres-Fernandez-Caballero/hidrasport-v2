@@ -4,6 +4,7 @@ import { MobileNavbarProps } from ".";
 import { useAuthStore } from "@store/auth.store";
 import { GoPerson } from "react-icons/go";
 import { FaCartShopping } from "react-icons/fa6";
+import { useRouter } from "next/router";
 
 const MobileNavbar = ({
   isOpen,
@@ -12,6 +13,8 @@ const MobileNavbar = ({
   openModal,
 }: MobileNavbarProps) => {
   const { logout, isLogedIn } = useAuthStore();
+  const router = useRouter();
+  const isHidraLifePage = router.pathname === "/productos/hidraLife";
 
   return (
     <nav
@@ -20,7 +23,11 @@ const MobileNavbar = ({
       aria-modal="true"
     >
       <div className="fixed inset-0 z-10"></div>
-      <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+      <div
+        className={`fixed inset-y-0 right-0 z-10 w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 ${
+          isHidraLifePage ? "bg-neutral-200" : "bg-white"
+        }`}
+      >
         <div className="flex items-center justify-between">
           <Link href="/carrito">
             <FaCartShopping className="text-blue-500 text-2xl" />
@@ -67,7 +74,11 @@ const MobileNavbar = ({
                   href={link.url}
                   className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
                     link.colorText ?? "text-gray-900"
-                  } hover:bg-gray-50`}
+                  } ${
+                    router.pathname === "/productos/guardavidas"
+                      ? "text-gray-800 hover:bg-neutral-300"
+                      : "hover:bg-gray-50"
+                  }`}
                 >
                   {link.text}
                 </Link>
@@ -84,7 +95,7 @@ const MobileNavbar = ({
                   </Link>
                   <button
                     onClick={logout}
-                    className="text-sm font-semibold leading-6 text-gray-500 hover:text-rose-400"
+                    className="text-sm font-semibold leading-6 text-gray-500 hover:text-rose-600"
                   >
                     Logout{" "}
                     <i className="fa-solid fa-arrow-right-from-bracket"></i>
