@@ -17,10 +17,15 @@ export const links: LinkItem[] = [
   { url: "/productos/Mujer", text: "Mujeres" },
   { url: "/productos/Hombre", text: "Hombres" },
   { url: "/productos/Deportes", text: "Deportes" },
+  // {
+  //   url: "/productos/guardavidas",
+  //   text: "Guardavidas +",
+  //   colorText: "text-red-500",
+  // },
   {
-    url: "/productos/guardavidas",
-    text: "Guardavidas +",
-    colorText: "text-red-500",
+    url: "/productos/hidraLife",
+    text: "Hidralife",
+    colorText: "text-cyan-700",
   },
 ];
 
@@ -52,7 +57,7 @@ const Navbar = () => {
     const currentRoute = router.asPath;
     console.log("Current Route:", currentRoute);
     setClassName(
-      currentRoute === "/productos/guardavidas"
+      currentRoute === "/productos/hidraLife"
         ? "bg-red-500 text-white"
         : "bg-white text-gray-700",
     );
