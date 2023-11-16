@@ -50,7 +50,7 @@ const Navbar = () => {
   const isHidraLifePage = router.pathname === "/productos/hidraLife";
 
   return (
-    <header className={isHidraLifePage ? "bg-neutral-200" : "bg-white"}>
+    <header className={isHidraLifePage ? "bg-sky-950" : "bg-white"}>
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -64,15 +64,15 @@ const Navbar = () => {
                   <Image
                     height={600}
                     width={600}
-                    className="h-12 w-auto"
-                    src="/images/tortuga_logo.png"
+                    className="h-11 w-auto mr-1"
+                    src="/images/tortuga_logo_blanco.png"
                     alt=""
                   />
                   <Image
                     height={600}
                     width={600}
-                    className="h-12 w-auto"
-                    src="/images/hidraLogoLifeGuard.png"
+                    className="h-10 w-auto"
+                    src="/images/hidraLogoLifeguard+.png"
                     alt="logo-lifeguard"
                   />
                 </>

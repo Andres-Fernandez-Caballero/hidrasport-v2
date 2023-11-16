@@ -10,7 +10,7 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { isLogedIn, logout, userSession } = useAuthStore();
   const { cartData } = useCartStore();
   const router = useRouter();
-  const isHidraLifePage = router.asPath === "/productos/guardavidas";
+  const isHidraLifePage = router.pathname.startsWith("/productos/hidraLife");
   return (
     <>
       <div className="hidden lg:flex lg:gap-x-12">
@@ -20,7 +20,7 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
             href={link.url}
             className={`text-sm font-semibold leading-6 ${
               link.colorText ??
-              (isHidraLifePage ? "text-gray-800" : "text-gray-900")
+              (isHidraLifePage ? "text-white" : "text-gray-900")
             }`}
           >
             {link.text}
@@ -53,8 +53,18 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
               className="text-2xl font-semibold leading-6 text-gray-900"
             >
               <div className="flex flex-row hover:scale-x-110">
-                <GoPerson />
-                <span className="text-sm">{userSession.username}</span>
+                <GoPerson
+                  className={` ${
+                    isHidraLifePage ? "text-white" : "text-black"
+                  }`}
+                />
+                <span
+                  className={`text-sm ${
+                    isHidraLifePage ? "text-white" : "text-black"
+                  }`}
+                >
+                  {userSession.username}
+                </span>
               </div>
             </Link>
             <button

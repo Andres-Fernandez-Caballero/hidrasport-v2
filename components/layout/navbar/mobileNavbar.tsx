@@ -14,7 +14,7 @@ const MobileNavbar = ({
 }: MobileNavbarProps) => {
   const { logout, isLogedIn } = useAuthStore();
   const router = useRouter();
-  const isHidraLifePage = router.pathname === "/productos/hidraLife";
+  const isHidraLifePage = router.pathname.startsWith("/productos/hidraLife");
 
   return (
     <nav
@@ -25,7 +25,7 @@ const MobileNavbar = ({
       <div className="fixed inset-0 z-10"></div>
       <div
         className={`fixed inset-y-0 right-0 z-10 w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 ${
-          isHidraLifePage ? "bg-neutral-200" : "bg-white"
+          isHidraLifePage ? "bg-sky-950" : "bg-white"
         }`}
       >
         <div className="flex items-center justify-between">
@@ -75,8 +75,8 @@ const MobileNavbar = ({
                   className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
                     link.colorText ?? "text-gray-900"
                   } ${
-                    router.pathname === "/productos/guardavidas"
-                      ? "text-gray-800 hover:bg-neutral-300"
+                    router.pathname === "/productos/hidraLife"
+                      ? "text-white hover:bg-sky-800"
                       : "hover:bg-gray-50"
                   }`}
                 >
@@ -91,7 +91,11 @@ const MobileNavbar = ({
                     href="/profile"
                     className="text-2xl font-semibold leading-6 text-gray-900"
                   >
-                    <GoPerson />
+                    <GoPerson
+                      className={`lg:hidden ${
+                        isHidraLifePage ? "text-white" : "text-black"
+                      }`}
+                    />
                   </Link>
                   <button
                     onClick={logout}
