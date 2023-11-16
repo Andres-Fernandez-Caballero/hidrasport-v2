@@ -19,7 +19,9 @@ const FlatList = <T,>({
   return (
     <ul
       className={`flex ${
-        direction.includes("horizontal") ? "flex-col" : "flex-row"
+        direction.includes("horizontal")
+          ? "flex-col grid gap-4"
+          : "flex-row grid sm:grid-cols-2 gap-2"
       }`}
     >
       {data.map((item) => (
@@ -30,30 +32,3 @@ const FlatList = <T,>({
 };
 
 export default FlatList;
-
-// how i use FlatList?
-// import FlatList from 'components/FlatList'
-//
-// const data = [
-//     { id: '1', name: 'foo' },
-//     { id: '2', name: 'bar' },
-//     { id: '3', name: 'baz' },
-// ]
-//
-// const renderItem = (item: typeof data[0]) => {
-//     return <div>{item.name}</div>
-// }
-//
-// const keyExtractor = (item: typeof data[0]) => {
-//     return item.id
-// }
-//
-// const Example = () => {
-//     return (
-//         <FlatList
-//             data={data}
-//             renderItem={renderItem}
-//             keyExtractor={keyExtractor}
-//         />
-
-//     )
