@@ -57,6 +57,21 @@ interface ImageGridProps {
   items: ImageGridLinkItem[];
 }
 
+// interface LandingSection {
+//     title: string;
+//     description: string;
+//     products: string[]; // id de los productos
+// }
+
+// interface Landing {
+//   messagesBox: {
+//     messages: string[];
+//     delay: number;
+//   }
+
+//   secttions: LandingSection[]
+// }
+
 const CarouselHome: React.FC<ImageGridProps> = (props) => {
   const responsive = {
     tablet: {
@@ -138,23 +153,25 @@ const Home: NextPage = () => {
   return (
     <main>
       <section>
-        {(data as dataProps).results.map((item) => (
-          <div
-            key={item.id}
-            className="banner flex items-center justify-center h-96"
-          >
-            <Image
-              className="object-cover w-full h-full"
-              src={item.banner.replace(
-                "http://localhost:8000",
-                "https://hidrasport.com.ar",
-              )}
-              height={800}
-              width={800}
-              alt="banner"
-            />
-          </div>
-        ))}
+        {data &&
+          (data as dataProps).results &&
+          (data as dataProps).results.map((item) => (
+            <div
+              key={item.id}
+              className="banner flex items-center justify-center h-96"
+            >
+              <Image
+                className="object-cover w-full h-full"
+                src={item.banner.replace(
+                  "http://localhost:8000",
+                  "https://hidrasport.com.ar",
+                )}
+                height={800}
+                width={800}
+                alt="banner"
+              />
+            </div>
+          ))}
       </section>
 
       <section className="flex">
