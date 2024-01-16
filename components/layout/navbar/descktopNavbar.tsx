@@ -4,10 +4,13 @@ import { useAuthStore } from "@store/auth.store";
 import { GoPerson } from "react-icons/go";
 import { FaCartShopping } from "react-icons/fa6";
 import useCartStore from "@store/useCartStore";
+import { useRouter } from "next/router";
 
 const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { isLogedIn, logout, userSession } = useAuthStore();
   const { cartData } = useCartStore();
+  const router = useRouter();
+  const isHidraLifePage = router.pathname.startsWith("/productos/hidraLife");
   return (
     <>
       <div className="hidden lg:flex lg:gap-x-12">
@@ -16,7 +19,8 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
             key={link.url}
             href={link.url}
             className={`text-sm font-semibold leading-6 ${
-              link.colorText ?? "text-gray-900"
+              link.colorText ??
+              (isHidraLifePage ? "text-white" : "text-gray-900")
             }`}
           >
             {link.text}
@@ -49,8 +53,18 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
               className="text-2xl font-semibold leading-6 text-gray-900"
             >
               <div className="flex flex-row hover:scale-x-110">
-                <GoPerson />
-                <span className="text-sm">{userSession.username}</span>
+                <GoPerson
+                  className={` ${
+                    isHidraLifePage ? "text-white" : "text-black"
+                  }`}
+                />
+                <span
+                  className={`text-sm ${
+                    isHidraLifePage ? "text-white" : "text-black"
+                  }`}
+                >
+                  {userSession.username}
+                </span>
               </div>
             </Link>
             <button
