@@ -27,7 +27,8 @@ const useCartStore = create<CartStore>((set) => ({
       const cartItems: iCartProduct[] = Object.values(data as iCartProductList);
       set({ cartData: cartItems });
     } catch (error) {
-      throw new Error("Error al cargar el carrito");
+      //throw new Error("Error al cargar el carrito");
+      console.error("Error al cargar el carrito: " + (error as Error).message);
     } finally {
       set({ cartIsLoading: false });
     }

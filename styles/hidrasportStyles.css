@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.form-input {
+  @apply px-2 py-1 rounded border-2 border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-blue-100;
+}

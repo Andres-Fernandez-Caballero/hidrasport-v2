@@ -108,8 +108,8 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
           <Image
             src={item.image}
             alt={item.label}
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             className="rounded-sm"
           />
           <h2 className="absolute top-0 left-0 p-4  text-lg text-red-100">
@@ -121,40 +121,48 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string): Promise<dataProps> =>
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) throw Error("Error al cargar los datos");
+      return res.json() as Promise<dataProps>;
+    })
+    .catch((e) => {
+      throw e;
+    });
+
 const Home: NextPage = () => {
-  const { data, error, isLoading } = useSWR(
+  const { data, error } = useSWR(
     `${SERVER_URL}/api/store/site-configuration/`,
     fetcher,
   );
-  if (isLoading) return <div>Loading...</div>;
+  if (!data && !error) return <div>Loading...</div>;
   if (error) {
     // guardar el error en un log
-    console.log(error);
+    console.error(error);
   }
 
   return (
     <main>
       <section>
-        {(data as dataProps).results.map((item) => (
-          <div
-            key={item.id}
-            className="banner flex items-center justify-center h-96"
-          >
-            <Image
-              className="object-cover w-full h-full"
-              src={item.banner.replace(
-                "http://localhost:8000",
-                "https://hidrasport.com.ar",
-              )}
-              height={800}
-              width={800}
-              alt="banner"
-            />
-          </div>
-        ))}
+        {data &&
+          data.results.map((item) => (
+            <div
+              key={item.id}
+              className="banner flex items-center justify-center h-96"
+            >
+              <Image
+                className="object-cover w-full h-full"
+                src={item.banner.replace(
+                  "http://localhost:8000",
+                  "https://hidrasport.com.ar",
+                )}
+                height={800}
+                width={800}
+                alt="banner"
+              />
+            </div>
+          ))}
       </section>
 
       <section className="flex">
@@ -197,7 +205,21 @@ const Home: NextPage = () => {
             <figure>
               <p>Envios a todo el pais</p>
               <Image
-                src="https://picsum.photos/200/300"
+                src="/images/envio-azul.jpg"
+                alt="Envios a todo el pais"
+                width={400}
+                height={400}
+                className="rounded-sm"
+              />
+            </figure>
+          </article>
+
+          <article className="border rounded-md">
+            <h3 className="sr-only">ENVIOS</h3>
+            <figure>
+              <p>Política de devoluciones </p>
+              <Image
+                src="/images/devolucion.jpg"
                 alt="Envios a todo el pais"
                 width={800}
                 height={400}
@@ -209,9 +231,9 @@ const Home: NextPage = () => {
           <article className="border rounded-md">
             <h3 className="sr-only">ENVIOS</h3>
             <figure>
-              <p>Envios a todo el pais</p>
+              <p>Asistencia online</p>
               <Image
-                src="https://picsum.photos/200/300"
+                src="/images/soporte.jpg"
                 alt="Envios a todo el pais"
                 width={800}
                 height={400}
@@ -223,28 +245,14 @@ const Home: NextPage = () => {
           <article className="border rounded-md">
             <h3 className="sr-only">ENVIOS</h3>
             <figure>
-              <p>Envios a todo el pais</p>
+              <h3>Conoce Hidralife</h3>
               <Image
-                src="https://picsum.photos/200/300"
+                src="/images/guarda3.jpg"
                 alt="Envios a todo el pais"
                 width={800}
                 height={400}
                 className="rounded-sm"
               />
-            </figure>
-          </article>
-
-          <article className="border rounded-md bg-blue-300 text-white">
-            <h3 className="sr-only">ENVIOS</h3>
-            <figure>
-              <h3>Envios a todo el pais</h3>
-              {/* <Image
-              src="/images/banners/envios.png"
-              alt="Envios a todo el pais"
-              width={800}
-              height={400}
-              className="rounded-sm"
-            /> */}
             </figure>
           </article>
         </div>
@@ -253,4 +261,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Home; //Foto de <a href="https://unsplash.com/es/@shutter_speed_?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Bastian Riccardi</a> en <a href="https://unsplash.com/es/fotos/un-carrito-de-compras-de-juguete-BQ9usyzHx_w?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
