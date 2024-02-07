@@ -18,6 +18,7 @@ const config = {
     "^@/interfaces/(.*)$": "<rootDir>/interfaces/$1",
     "^@/config/(.*)$": "<rootDir>/config/$1",
     "^@/store/(.*)$": "<rootDir>/store/$1",
+    "^@/fetchers/(.*)$": "<rootDir>/utils/fetchers$1",
   },
   testEnvironment: "jest-environment-jsdom",
 };

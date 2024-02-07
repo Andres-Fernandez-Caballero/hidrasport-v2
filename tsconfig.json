@@ -25,7 +25,8 @@
       "@interceptors/*": ["interceptors/*"],
       "@store/*": ["store/*"],
       "@api/*": ["api/*"],
-      "@modal/*": ["modal/*"]
+      "@modal/*": ["modal/*"],
+      "@fetchers/*": ["utils/fetchers/*"]
     }
   },
   "include": [
