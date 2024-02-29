@@ -2,6 +2,7 @@ const productFilterFetcher = async (
   url: string,
   page: string = "1",
   category = "all",
+  method = "GET",
 ) => {
   if (isNaN(Number(page))) {
     throw new Error("Invalid page number");
@@ -14,7 +15,7 @@ const productFilterFetcher = async (
   const query = new URLSearchParams();
   query.append("page", page);
   const res = await fetch(`${url}?${query.toString()}`, {
-    method: "POST",
+    method,
     headers: {
       "Content-Type": "application/json",
     },
@@ -28,6 +29,7 @@ const productFilterFetcher = async (
   if (!res.ok) {
     throw new Error("Error al obtener los productos");
   }
+  console.log("json: ", res.json());
 
   return await res.json();
 };

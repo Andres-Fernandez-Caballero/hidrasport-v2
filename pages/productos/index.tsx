@@ -2,110 +2,49 @@
 
 import ContentMain from "@components/layout/contentMain";
 import EmptyProduct from "@components/product/emptyProduct";
-// import ProductGridList from "@components/product/productGridList";
-// import { Product } from "@interfaces/IProduct";
-import { useSearchParams } from "next/navigation";
-// import Link from "next/link";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import React from "react";
 import { SERVER_URL } from "@config/index";
 import useSWR from "swr";
-import productFilterFetcher from "@fetchers/productsFilter.fetchet";
-// import { url } from "inspector";
-
-// export async function getServerSideProps(context) {
-//   let products = [] as Product[];
-//   let prev = null;
-//   let next = 2;
-//   let current = 1;
-//   if (context.query.page && !isNaN(Number(context.query.page))) {
-//     const page = Number(context.query.page);
-//     if (page > 1) {
-//       prev = page - 1;
-//       next = page + 1;
-//       current = page;
-//     }
-//   }
-//   const API_PRODUCTS_FILTER = `${SERVER_URL}/api/store/products/filter/?page=${current}`;
-
-//   const res = await fetch(API_PRODUCTS_FILTER, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       // filtros
-//     }),
-//   });
-//   console.log(res.status);
-
-//   const data = await res.json();
-//   products = data.results as Product[];
-
-//   if(Array.isArray(products)){
-//     products = products.filter((product) => product);
-//     return { props: { products, next, prev, current } };
-//   }
-
-//   return {props: {products: [], next: null, prev: null, current: 1}
-// }
-
-// export interface ProductListPageProps {
-//   products: Product[];
-//   next: number;
-//   prev: number;
-//   current: number;
-// }
-
-// const ProductListPage: React.FC<ProductListPageProps> = ({
-//   products,
-//   current,
-//   next,
-//   prev,
-// }) => {
-//   return (
-//     <ContentMain title="Nuestros Productos">
-//       {products.length === 0 ? (
-//         <EmptyProduct />
-//       ) : (
-//         <ProductGridList products={products} />
-//       )}
-
-//       <nav className="container columns-3  flex justify-center gap-3 font-bold mt-3">
-//         <Link
-//           className={`${prev === null && "invisible"} text-blue-400`}
-//           href={`/productos/?page=${prev}`}
-//         >
-//           <span>
-//             <i className="fa-solid fa-backward"></i> Prev
-//           </span>
-//         </Link>
-//         <p>{current}</p>
-//         <Link
-//           className={`${next === null && "invisible"}  text-blue-400`}
-//           href={`/productos/?page=${next}`}
-//         >
-//           <span>
-//             Next <i className="fa-solid fa-forward"></i>
-//           </span>
-//         </Link>
-//       </nav>
-//     </ContentMain>
-//   );
-// };
+import ProductGridList from "@components/product/productGridList";
+import Loader from "@components/Loader";
 
 const ProductListPage: React.FC = () => {
-  const searchParamss = useSearchParams();
-  const page = searchParamss.get("page") || "1";
-  const { data, error, isValidating, mutate } = useSWR(
-    [`${SERVER_URL}/api/store/products/filter/`, page],
-    ([url, page]) => productFilterFetcher(url, page),
-  );
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") || "2";
 
-  console.log(data, error, isValidating, mutate);
+  const nextPage = (searchParams: ReadonlyURLSearchParams) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", String(Number(page) + 1));
+    console.log("page2");
+  };
+
+  const urlApi = `${SERVER_URL}/api/store/products/?page=${page}`;
+
+  const fetcher = async (url: string, page = "1") => {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(page);
+
+    if (!response.ok) throw new Error("error fetching");
+
+    return data;
+  };
+  const { data, error, isLoading } = useSWR([urlApi, page], ([url, page]) =>
+    fetcher(url, page),
+  );
 
   return (
     <ContentMain title="Nuestros Productos">
-      <EmptyProduct />
+      {error && <EmptyProduct />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div>
+          <ProductGridList products={data.results} />
+          <button onClick={() => nextPage(searchParams)}>Next</button>
+        </div>
+      )}
     </ContentMain>
   );
 };
