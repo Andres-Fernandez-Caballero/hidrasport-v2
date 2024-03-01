@@ -19,7 +19,7 @@ const ProductListPage: React.FC = () => {
     console.log("page2");
   };
 
-  const urlApi = `${SERVER_URL}/api/store/products/?page=${page}`;
+  const urlApi = `/api/products/?page=${page}`;
 
   const fetcher = async (url: string, page = "1") => {
     const response = await fetch(url);
