@@ -4,7 +4,6 @@ import ContentMain from "@components/layout/contentMain";
 import EmptyProduct from "@components/product/emptyProduct";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import React from "react";
-import { SERVER_URL } from "@config/index";
 import useSWR from "swr";
 import ProductGridList from "@components/product/productGridList";
 import Loader from "@components/Loader";
