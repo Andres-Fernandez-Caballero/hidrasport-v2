@@ -10,12 +10,12 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { cartData } = useCartStore();
   return (
     <>
-      <div className="hidden lg:flex lg:gap-x-12">
+      <div className="hidden lg:flex lg:gap-x-8">
         {links.map((link) => (
           <Link
             key={link.url}
             href={link.url}
-            className={`text-sm font-semibold leading-6 ${
+            className={`text-lg font-semibold leading-6 hover:underline  ${
               link.colorText ?? "text-gray-900"
             }`}
           >
@@ -25,7 +25,7 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
         {userSession.admin ? (
           <Link
             href="/tools"
-            className={`text-sm font-semibold leading-6 "text-gray-900"`}
+            className={`text-sm font-semibold leading-6 "text-gray-900 "`}
           >
             Herramientas
           </Link>
@@ -42,20 +42,21 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
             )}
           </span>
         </Link>
+        <div className="ml-6">
         {isLogedIn() ? (
           <div className="flex items-center justify-end gap-x-4">
             <Link
               href="/profile"
-              className="text-2xl font-semibold leading-6 text-gray-900"
+              className="text-2xl leading-6"
             >
-              <div className="flex flex-row hover:scale-x-110">
+              <div className="flex flex-row hover:scale-125 ease-in-out duration-150">
                 <GoPerson />
-                <span className="text-sm">{userSession.username}</span>
+                <span className="text-lg mr-4">{userSession.username}</span>
               </div>
             </Link>
             <button
               onClick={logout}
-              className="text-sm font-semibold leading-6 text-gray-500 hover:text-rose-400"
+              className="text-lg leading-6 hover:scale-125 ease-in-out duration-150"
             >
               Logout <i className="fa-solid fa-arrow-right-from-bracket"></i>
             </button>
@@ -63,11 +64,12 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
         ) : (
           <button
             onClick={openModal}
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-lg leading-6 hover:scale-125 ease-in-out duration-150 ml-8"
           >
             Login / Registro
           </button>
         )}
+        </div>
       </div>
     </>
   );
