@@ -185,7 +185,7 @@ const Home: NextPage = () => {
           <BannerHome items={items} />
         </div>
       </section>
-      {/* <MessageBar
+      <MessageBar
         messages={[
           "Envios en toda capital GRATIS",
           "Devoluciones sin cargo",
@@ -193,7 +193,7 @@ const Home: NextPage = () => {
           "Más de 1000 productos 🛒 ",
         ]}
         delay={5000}
-      /> */}
+      />
       <section className="grid grid-cols-1 md:grid-cols-3 justify-center items-center my-20 space-x-4 m-10">
         
         <article className="flex justify-center gap-2 items-center shadow-2xl bg-gray-400 rounded-xl p-6 animate-pulse">        
