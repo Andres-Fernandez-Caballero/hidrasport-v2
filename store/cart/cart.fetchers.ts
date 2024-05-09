@@ -28,7 +28,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
     
 
     if(token !== ''){
-      url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}/`;
+      url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}`;
 
       const response = await fetch(url, {
         headers: {
@@ -37,7 +37,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
       });
       return response.ok
     }else {
-      url += `/modify/${productData.subProductId}/${productData.size}/add/${quantity}/`
+      url += `/modify/${productData.subProductId}/${productData.size}/add/${quantity}`
       
       const response = await fetch(url, {
         headers: {
