@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["hidrasport.com.ar", "127.0.0.1"],
+    domains: [
+      "hidrasport.com.ar", 
+      "127.0.0.1"
+    ],
     remotePatterns: [
       {
         protocol: "https",

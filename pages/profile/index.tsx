@@ -2,7 +2,7 @@ import FlatList from "@components/FlatList";
 import CardData from "@components/cardProfile";
 import CartItemCard from "@components/cart/CartItemCard";
 import { useAuthStore } from "@store/auth.store";
-import useCartStore from "@store/useCartStore";
+import useCartStore from "@store/cart/useCartStore";
 import { useEffect, useState } from "react";
 import { IoPencil } from "react-icons/io5";
 
