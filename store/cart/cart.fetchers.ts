@@ -32,7 +32,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
 
       const response = await fetch(url, {
         headers: {
-          'Authorization': `token b14d02120ab68ee82beb2ce468265aa8fc094349`
+          'Authorization': 'token ' + token
         }
       });
       return response.ok
@@ -41,7 +41,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
       
       const response = await fetch(url, {
         headers: {
-          'Authorization': `token b14d02120ab68ee82beb2ce468265aa8fc094349`
+          'Authorization': 'token ' + token
         },
         credentials: "include",
       });

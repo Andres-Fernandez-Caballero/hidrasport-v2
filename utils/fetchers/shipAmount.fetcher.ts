@@ -9,7 +9,7 @@ const shipAmountFetcher = async (
     const res = await fetch(`https://api.shipnow.com.ar/shipping_options?weight=${weigth}&to_zip_code=${zipCode}&types=${shipType}`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer nhU5Ur8EdedmI__2y5m7yvNtijNci_RkJHKiCn0NidpLcSlTYA"
+            "Authorization": "Bearer " // + api_key
         }   
     })
     if(!res.ok) throw new Error('Error al consultar con el modulo de envios')
