@@ -3,7 +3,7 @@ import { DescktopNavbarProps, links } from ".";
 import { useAuthStore } from "@store/auth.store";
 import { GoPerson } from "react-icons/go";
 import { FaCartShopping } from "react-icons/fa6";
-import useCartStore from "@store/useCartStore";
+import useCartStore from "@store/cart/useCartStore";
 
 const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { isLogedIn, logout, userSession } = useAuthStore();

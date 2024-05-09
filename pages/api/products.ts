@@ -1,9 +1,12 @@
 import { SERVER_URL } from "@config/index";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "GET") {
-    get(req, res);
+export default function handler(
+  req: NextApiRequest, 
+  res: NextApiResponse) 
+  {
+    if (req.method === "GET") {
+      get(req, res);
   }
 }
 

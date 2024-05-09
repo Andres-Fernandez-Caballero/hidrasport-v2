@@ -1,5 +1,5 @@
 import RadioButtonInput from "@components/RadioButtonInput";
-import useCartStore from "@store/useCartStore";
+import useCartStore from "@store/cart/useCartStore";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";

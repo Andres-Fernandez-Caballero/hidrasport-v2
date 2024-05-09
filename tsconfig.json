@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,25 +20,55 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"],
-      "@config/*": ["config/*"],
-      "@interfaces/*": ["interfaces/*"],
-      "@styles/*": ["styles/*"],
-      "@services/*": ["services/*"],
-      "@interceptors/*": ["interceptors/*"],
-      "@store/*": ["store/*"],
-      "@api/*": ["api/*"],
-      "@modal/*": ["modal/*"],
-      "@fetchers/*": ["utils/fetchers/*"]
-    }
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@interfaces/*": [
+        "interfaces/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@services/*": [
+        "services/*"
+      ],
+      "@interceptors/*": [
+        "interceptors/*"
+      ],
+      "@store/*": [
+        "store/*"
+      ],
+      "@api/*": [
+        "api/*"
+      ],
+      "@modal/*": [
+        "modal/*"
+      ],
+      "@fetchers/*": [
+        "utils/fetchers/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "tailwind.config.js",
-    "postcss.config.js"
+    "postcss.config.js",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

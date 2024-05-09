@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useEffect, useState } from "react";
 import { useAuthStore } from "@store/auth.store";
-import useCartStore from "@store/useCartStore";
+import useCartStore from "@store/cart/useCartStore";
 import CartItemCard from "@components/cart/CartItemCard";
 import { postCartToBackend } from "@api/cartAPI";
 import { INewCartData, ICartSelector } from "@interfaces/ICart";
