@@ -1,7 +1,6 @@
-import { SERVER_URL } from "@config/index";
-import { LoginDto, RegisterDto } from "@interfaces/IAuth";
+import {  RegisterDto } from "@interfaces/IAuth";
 import { create } from "zustand";
-import { devtools, persist, createJSONStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 export interface AuthData {
   token: string;
@@ -33,9 +32,12 @@ export const useAuthStore = create<AuthStore>()(
         set({
           userSession: authData,
         });
+        console.log('state', useAuthStore.getState());
       },
       logout: () => {
         set({ userSession: initialState });
+        console.log('state', useAuthStore.getState());
+        
       },
       register: async (registerDto: RegisterDto) => {
         await new Promise((resolve) => setTimeout(resolve, 1000));

@@ -2,7 +2,7 @@ import { ProductDetail, Variant } from "@interfaces/IProduct";
 import { useState } from "react";
 import RadioButtonInput from "@components/RadioButtonInput";
 import { toast } from "react-toastify";
-import useCartStore from "@store/useCartStore";
+import useCartStore from "@store/cart/useCartStore";
 
 interface SelectorVarienteProps {
   product: ProductDetail;

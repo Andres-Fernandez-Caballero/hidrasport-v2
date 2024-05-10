@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import Layout from "../components/layout";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import useCartStore from "@store/useCartStore";
+import useCartStore from "@store/cart/useCartStore";
 import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
+import CardData from "@components/cardProfile";
+
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
@@ -16,7 +18,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       console.log("error", error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [CardData]);
   return (
     <Layout>
       <Component {...pageProps} />
