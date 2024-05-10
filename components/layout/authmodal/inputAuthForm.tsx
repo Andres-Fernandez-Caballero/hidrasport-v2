@@ -11,21 +11,17 @@ export interface AuthFormInputProps {
 }
 
 const InputAuthForm = (props: AuthFormInputProps) => (
-  <div className="flex flex-col mb-2">
-    <label className="text-sm">{props.label}</label>
-    <div className="">
-      <span className="border rounded-l-lg p-2 text-gray-100 my-1 bg-blue-300">
-        <i className={props.icon}></i>
-      </span>
+  <div>
+    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{props.label}</label>
       <input
-        className="border rounded-r-lg p-2 hover:border-blue-400 focus:bg-blue-100"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+        required
         type={props.type}
         name={props.name}
         placeholder={props.placeholder}
         value={props?.value}
         onChange={props.onChange}
       />
-    </div>
   </div>
 );
 

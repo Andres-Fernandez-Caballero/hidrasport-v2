@@ -13,7 +13,32 @@ type CartStore = {
 };
 
 const useCartStore = create<CartStore>((set) => ({
-  cartData: [],
+  cartData: [
+    {
+      title: "remera",
+      size_id: 1,
+      name: "remera",
+      color: "rojo",
+      quantity: 1,
+      price: 2800,
+      image: "img",
+      size: "xl",
+      subproduct: 2,
+      weight: 10,
+    },
+    {
+      title: "pantalon",
+      size_id: 2,
+      name: "pantalon",
+      color: "azul",
+      quantity: 2,
+      price: 3000,
+      image: "img",
+      size: "l",
+      subproduct: 2,
+      weight: 10,
+    }
+  ],
   cartIsLoading: false,
   fetchCart: async () => {
     set({ cartIsLoading: true });

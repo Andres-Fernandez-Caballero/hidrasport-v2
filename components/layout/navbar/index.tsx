@@ -5,6 +5,7 @@ import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
 import DescktopNavbar from "./descktopNavbar";
 
+
 interface LinkItem {
   url: string;
   text: string;

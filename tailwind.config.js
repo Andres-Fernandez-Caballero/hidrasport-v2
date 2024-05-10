@@ -4,6 +4,7 @@ module.exports = {
     "./app/**/*.{ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
     "./pages/**/*.{ts,jsx,tsx,mdx}",
     "./components/**/*.{ts,jsx,tsx,mdx}",
+    "./node_modules/flowbite/**/*.js",
 
     // Or if using `src` directory:
     "./src/**/*.{,ts,jsx,tsx,mdx}",
@@ -11,5 +12,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 };

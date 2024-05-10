@@ -1,18 +1,17 @@
 import FlatList from "@components/FlatList";
-import CardData from "@components/cardProfile";
 import CartItemCard from "@components/cart/CartItemCard";
 import { useAuthStore } from "@store/auth.store";
 import useCartStore from "@store/useCartStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { IoPencil } from "react-icons/io5";
+
 
 const Profile = () => {
   const { userSession } = useAuthStore();
-  const [pedidos, setPedidos] = useState([]);
-  const { cartIsLoading, cartData } = useCartStore();
+  const {  cartData } = useCartStore();
 
   function actualizarPedidos() {
-    setPedidos([]);
+    // setPedidos([]);
   }
 
   useEffect(() => {
@@ -26,64 +25,73 @@ const Profile = () => {
           Perfil de usuario
         </h1>
       </header>
-      <section className="columns-2 mb-6">
-        <div className="w-full">
-          <CardData title={"Infomracion de la cuenta"}>
-            <article>
-              <blockquote>
-                <p className="text-zinc-950 text-md leading-6 font-bold">
-                  Usuario:{" "}
-                  <span className="font-normal italic">
-                    {userSession.username}
-                  </span>
-                </p>
-                <p className="text-zinc-950 text-md leading-6 font-bold">
-                  Email:{" "}
-                  <span className="font-normal italic">
-                    {userSession.email}
-                  </span>
-                </p>
-              </blockquote>
-              <menu className="grid mt-4">
-                <button
-                  className="flex  justify-center bg-blue-900 text-white border border-black rounded-md p-2"
-                  onClick={() => alert("caracteristica en desarrollo 🚧")}
-                >
-                  <span className="flex gap-4 items-center">
-                    Editar datos <IoPencil />
-                  </span>
-                </button>
-              </menu>
-            </article>
-          </CardData>
-        </div>
-
-        <div className="w-full">
-          <CardData title={"Mis Pedidos"}>
-            <article className="">
-              <FlatList
-                data={pedidos}
-                keyExtractor={(item) => item}
-                renderItem={(item) => <p>{item}</p>}
-                renderEmptyList={() => <p>Aun no hay pedidos 🫢</p>}
-              />
-            </article>
-          </CardData>
-        </div>
-
-        <div className="w-full">
-          {cartIsLoading ? (
-            <p>Cargando...</p>
-          ) : (
-            <CardData title={"Carrito"}>
-              <FlatList
-                data={cartData}
-                keyExtractor={(item) => item.size_id.toString()}
-                renderItem={(item) => <CartItemCard item={item} />}
-                renderEmptyList={() => <p>No hay productos en el carrito</p>}
-              />
+      <section>
+        <div className="flex justify-center space-x-4 m-5">
+          <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <div className="flex flex-col items-center p-10">
+                  <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Avatar del usuario logueado"/>
+                  <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userSession.username}</h5>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">{userSession.email}</span>
+                  <div className="flex mt-4 md:mt-6">
+                  <button
+                    className="flex  justify-center bg-blue-900 text-white border border-black rounded-md p-2"
+                    onClick={() => alert("caracteristica en desarrollo 🚧")}
+                  >
+                    <span className="flex gap-4 items-center">
+                      Editar datos <IoPencil />
+                    </span>
+                  </button>
+                  </div>
+              </div>
+          </div>
+        {/*
+          <div>
+            <CardData title={"Mis Pedidos"}>
+              <article>
+                <FlatList
+                  data={pedidos}
+                  keyExtractor={(item) => item}
+                  renderItem={(item) => <p>{item}</p>}
+                  renderEmptyList={() => <p>Aun no hay pedidos 🫢</p>}
+                />
+              </article>
             </CardData>
-          )}
+          </div>
+        */}
+          
+          <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <div className="flex items-center justify-between mb-4">
+        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Carrito</h5>
+      </div>
+      <div className="flow-root">
+        <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+          <FlatList
+                  data={cartData}
+                  keyExtractor={(item) => item.size_id.toString()}
+                  renderItem={(item) => <CartItemCard item={item} />}
+                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
+                />
+        </ul>
+      </div>
+          </div>
+        {/*
+
+          <div> 
+            {cartIsLoading ? (
+              <p>Cargando...</p>
+            ) : (
+              <CardData title={"Carrito"}>
+                <FlatList
+                  data={cartData}
+                  keyExtractor={(item) => item.size_id.toString()}
+                  renderItem={(item) => <CartItemCard item={item} />}
+                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
+                />
+              </CardData>
+            )}
+          </div>
+           */}
+
         </div>
       </section>
     </main>

@@ -72,12 +72,8 @@ const CarouselHome: React.FC<ImageGridProps> = (props) => {
       breakpoint: { max: 464, min: 0 },
       items: 1,
     },
-  };
-
+  };  
   
-
-
-
   return (
     <Carousel
       responsive={responsive}
@@ -112,7 +108,7 @@ const BannerHome: React.FC<ImageGridProps> = (props) => {
   {props.items.map((item, index: number) => (
     <Link
       href={item.link}
-      className="relative opacity-90 h-fit m-2 border-2 border-slate-400"
+      className="relative opacity-90 h-fit m-2 border-2"
       key={index + item.label}
       style={{ position: 'relative' }}
     >
@@ -196,7 +192,7 @@ const Home: NextPage = () => {
       />
       <section className="grid grid-cols-1 md:grid-cols-3 justify-center items-center my-20 space-x-4 m-10">
         
-        <article className="flex justify-center gap-2 items-center shadow-2xl bg-gray-400 rounded-xl p-6 animate-pulse">        
+        <article className="flex justify-center gap-2 items-center shadow-2xl bg-slate-200 rounded-xl p-6">        
           <i className="fa-solid fa-truck-fast text-4xl"></i>
           <h3 className="text-2xl font-bold mt-3 ml-3 ">Costos y tiempos de envío</h3>
           <span className="relative flex h-3 w-3">
@@ -205,7 +201,7 @@ const Home: NextPage = () => {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
           </span>
         </article>
-        <article className="flex justify-center gap-2 items-center shadow-2xl bg-gray-400 rounded-xl p-6 animate-pulse">
+        <article className="flex justify-center gap-2 items-center shadow-2xl bg-slate-200 rounded-xl p-6">
           <i className="fa-solid fa-credit-card text-4xl"></i>
           <h3 className="text-2xl font-bold mt-3 ml-3">Cuotas y formas de pago</h3>
           <span className="relative flex h-3 w-3">
@@ -214,7 +210,7 @@ const Home: NextPage = () => {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
           </span>
         </article>
-        <article className="flex justify-center gap-2 items-center shadow-2xl bg-gray-400 rounded-xl p-6 animate-pulse">
+        <article className="flex justify-center gap-2 items-center shadow-2xl bg-slate-200 rounded-xl p-6">
           <i className="fa-solid fa-percent text-4xl"></i>
           <h3 className="text-2xl font-bold mt-3 ml-3">Cambios y devoluciones</h3>
           <span className="relative flex h-3 w-3">
@@ -227,7 +223,7 @@ const Home: NextPage = () => {
       <section className="productos_dest">
         <h2 className="text-2xl text-center font-extrabold">Productos Destacados 🥇</h2>
 
-     
+    
 
 
         
@@ -304,6 +300,7 @@ const Home: NextPage = () => {
         </div>
       </section>
     </main>
+    
   );
 };
 
