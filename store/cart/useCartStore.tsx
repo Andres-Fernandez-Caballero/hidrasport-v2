@@ -17,7 +17,6 @@ const useCartStore = create<CartStore>((set) => ({
     set({ cartIsLoading: true });
     try {
       const data = await fetchCartDetails(useAuthStore.getState().userSession.token);
-
       const cartItems: iCartProduct[] = data.cart.items;
       console.log('store cart -> cart items: ', cartItems);
       set({ cartData: cartItems });

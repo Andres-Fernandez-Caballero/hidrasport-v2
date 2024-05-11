@@ -5,15 +5,22 @@ const BASE_API_CART_URL = `https://hidrasport.com.ar/api/cart`
 
 export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> => {
     console.log('token ingresado = ' + token);
-    
-    let cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${BASE_API_CART_URL}/${cart_mode}/`
-    const response = await fetch(url, {
-      headers: {
-        'Authorization': 'token ' + token,
-      },
-      credentials: "include",
-    });
+   
+    let url = `${BASE_API_CART_URL}`
+    let response;
+    if(token !== ''){ 
+      response = await fetch(`${url}/cart/`, {
+        headers: {
+          'Authorization': 'token ' + token,
+        },
+        credentials: "include",
+      });
+    }else {
+      response = await fetch(`${url}/session-cart/`, {
+        credentials: "include",
+      });
+    }
+   
     if(!response.ok) throw new Error(response.statusText)
     
     const data = await response.json();
@@ -28,7 +35,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
     
 
     if(token !== ''){
-      url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}`;
+      url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}/`;
 
       const response = await fetch(url, {
         headers: {
@@ -37,12 +44,9 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
       });
       return response.ok
     }else {
-      url += `/modify/${productData.subProductId}/${productData.size}/add/${quantity}`
+      url += `/modify/${productData.subProductId}/${productData.size}/add/${quantity}/`
       
       const response = await fetch(url, {
-        headers: {
-          'Authorization': 'token ' + token
-        },
         credentials: "include",
       });
       return response.ok
