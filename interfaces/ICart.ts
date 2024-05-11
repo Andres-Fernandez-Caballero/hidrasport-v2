@@ -5,7 +5,8 @@ export interface iCartProduct {
   color: string;
   quantity: number;
   price: number;
-  image: string;
+  image: string; // @deprecated
+  img: string;
   size: string;
   subproduct: number;
   weight: number;

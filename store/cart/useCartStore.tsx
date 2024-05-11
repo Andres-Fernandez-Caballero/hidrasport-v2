@@ -18,7 +18,7 @@ const useCartStore = create<CartStore>((set) => ({
     try {
       const data = await fetchCartDetails(useAuthStore.getState().userSession.token);
       const cartItems: iCartProduct[] = data.cart.items;
-      console.log('store cart -> cart items: ', cartItems);
+     
       set({ cartData: cartItems });
     } catch (error) {
       console.error("Error al cargar el carrito: " + (error as Error).message);

@@ -23,7 +23,7 @@ const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
                 <Image
                   width={600}
                   height={600}
-                  src={SERVER_URL + item.image}
+                  src={SERVER_URL + item.img}
                   alt={item.name}
                   className="h-full w-full object-cover object-center"
                 />
