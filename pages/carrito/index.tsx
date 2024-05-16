@@ -8,6 +8,8 @@ export interface CartProps {
 
 const Cart = () => {
   const { cartData } = useCartStore();
+  console.log('cart data -> ', cartData);
+  
   return (
     <div>
       {cartData.length === 0 ? (

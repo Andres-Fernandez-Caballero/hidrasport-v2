@@ -1,4 +1,5 @@
 export interface iCartProduct {
+  id?: number;
   title: string;
   size_id: number;
   name: string;

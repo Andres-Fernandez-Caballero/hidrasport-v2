@@ -1,3 +1,8 @@
+import Image from "next/image";
+import { SERVER_URL } from "@config/index";
+
+
+
 type Direction = "horizontal" | "vertical";
 interface FlatListProps<T> {
   data: T[];
@@ -22,11 +27,17 @@ const FlatList = <T,>({
       }`}
     >
       {data.map((item) => (
-  
+
         <li key={item.id} className="py-3 sm:py-4">
                 <div className="flex items-center">
                     <div className="flex-shrink-0">
-                        <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image"/>
+                    <Image
+                      width={50}
+                      height={50}
+                      src={SERVER_URL + item.img}
+                      alt={item.name}
+                      className="h-full w-full object-cover object-center"
+                    />
                     </div>
                     <div className="flex-1 min-w-0 ms-4">
                         <p className="text-sm font-medium text-gray-900 truncate dark:text-white">

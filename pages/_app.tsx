@@ -6,7 +6,9 @@ import useCartStore from "@store/cart/useCartStore";
 import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
 import CardData from "@components/cardProfile";
-
+import { PrimeReactProvider} from 'primereact/api';
+import 'primereact/resources/themes/lara-light-cyan/theme.css';
+        
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
@@ -21,7 +23,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [CardData]);
   return (
     <Layout>
-      <Component {...pageProps} />
+      <PrimeReactProvider>
+        <Component {...pageProps} />
+      </PrimeReactProvider>
     </Layout>
   );
 };
