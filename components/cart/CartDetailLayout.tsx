@@ -1,7 +1,8 @@
 import FormCheckout from "@components/formCheckout";
 import { iCartProduct } from "@interfaces/ICart";
-// import { DataScroller } from 'primereact/datascroller';
-
+import { DataScroller } from 'primereact/datascroller';
+import Image from "next/image";
+import { SERVER_URL } from "@config/index";
 
 interface CartDetailLayoutProps {
   cartData: iCartProduct[];
@@ -16,12 +17,13 @@ const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
       {/* contenido */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <section className="divide-y divide-gray-200 dark:divide-gray-700">
+        <DataScroller value={cartData} itemTemplate={(item) => (<p>{item.name}</p>)} rows={5} inline scrollHeight="500px" header="Deslizá hacia abajo para ver tus productos." />
+
           <ul className="max-h-24">
            {cartData.map((item,index) => (
            <li key={index} className="py-3 sm:py-4">
            <div className="flex items-center">
                <div className="flex-shrink-0">
-                {/* 
                <Image
                  width={100}
                  height={100}
@@ -29,7 +31,6 @@ const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
                  alt={item.name}
                  className="h-full w-full object-cover object-center"
                />
-               */}
                </div>
                <div className="flex-1 min-w-0 ms-4">
                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
