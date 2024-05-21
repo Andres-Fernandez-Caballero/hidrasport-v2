@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
 
-type Tab = "login" | "register";
+export type Tab = "login" | "register";
 export interface AuthModalStore {
   isOpen: boolean;
   tab: Tab;

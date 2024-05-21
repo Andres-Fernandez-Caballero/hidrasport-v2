@@ -1,16 +1,13 @@
 import React, { useRef } from "react";
-import { Stepper } from 'primereact/stepper';
+import { Stepper, StepperRefAttributes } from 'primereact/stepper';
 import { StepperPanel } from 'primereact/stepperpanel';
 import { Button } from 'primereact/button';
         
 
 const Checkout = () => {
-  const stepperRef = useRef(null);
+  const stepperRef = useRef<StepperRefAttributes>(null);
   return (
-    <section className="card border shadow p-4">
-
-    
-      
+    <section className="card border shadow p-4">    
         <Stepper ref={stepperRef}>
             <StepperPanel header="Datos de envio">
                 <div className="flex flex-column h-12rem">
@@ -52,7 +49,11 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="flex pt-4 justify-content-end">
-                    <Button label="Next" icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                    <Button 
+                      label="Next" 
+                      icon="pi pi-arrow-right" 
+                      iconPos="right" 
+                      onClick={() => stepperRef.current?.nextCallback()} />
                 </div>
             </StepperPanel>
             <StepperPanel header="Datos de tarjeta">
@@ -95,8 +96,17 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className="flex pt-4 justify-content-between">
-                    <Button label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} />
-                    <Button label="Next" icon="pi pi-arrow-right" iconPos="right" onClick={() => stepperRef.current.nextCallback()} />
+                    <Button 
+                      label="Back" 
+                      severity="secondary" 
+                      icon="pi pi-arrow-left" 
+                      onClick={() => stepperRef.current?.prevCallback()} />
+
+                    <Button 
+                      label="Next" 
+                      icon="pi pi-arrow-right" 
+                      iconPos="right" 
+                      onClick={() => stepperRef.current?.nextCallback()} />
                 </div>
             </StepperPanel>
             <StepperPanel header="Resumen de compra">
@@ -140,7 +150,11 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className="flex pt-4 justify-content-start">
-                    <Button label="Back" severity="secondary" icon="pi pi-arrow-left" onClick={() => stepperRef.current.prevCallback()} />
+                    <Button 
+                      label="Back" 
+                      severity="secondary" 
+                      icon="pi pi-arrow-left" 
+                      onClick={() => stepperRef.current?.prevCallback()} />
                 </div>
             </StepperPanel>
         </Stepper>

@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { IoPencil } from "react-icons/io5";
 
 
-
 const Profile = () => {
   const { userSession } = useAuthStore();
   const {  cartData } = useCartStore();
@@ -45,20 +44,6 @@ const Profile = () => {
                   </div>
               </div>
           </div>
-        {/*
-          <div>
-            <CardData title={"Mis Pedidos"}>
-              <article>
-                <FlatList
-                  data={pedidos}
-                  keyExtractor={(item) => item}
-                  renderItem={(item) => <p>{item}</p>}
-                  renderEmptyList={() => <p>Aun no hay pedidos 🫢</p>}
-                />
-              </article>
-            </CardData>
-          </div>
-        */}
           
           <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
       <div className="flex items-center justify-between mb-4">
@@ -68,7 +53,8 @@ const Profile = () => {
         <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
           <FlatList
                   data={cartData}
-                  keyExtractor={(item) => item.size_id.toString()}
+                  direction="vertical"
+                  keyExtractor={(item) => item.name}
                   renderItem={(item) => <CartItemCard item={item} />}
                   renderEmptyList={() => <p>No hay productos en el carrito</p>}
                 />
