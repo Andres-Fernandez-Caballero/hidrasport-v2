@@ -70,14 +70,17 @@ const AFIPColum = () => {
 };
 
 const Footer = () => (
-  <footer className="bg-zinc-950 text-white">
-    <div className="container mx-auto flex flex-wrap py-8 ml-auto ">
-      <About />
-      <AtencionCliente />
-      <RedesSociales />
-    </div>
+<footer className="relative bg-cover bg-center text-white bg-[url('/images/arena.jpg')]">
+  <div className="absolute inset-0 backdrop-blur-sm"></div>
+  <div className="relative container mx-auto flex flex-wrap py-8">
+    <About />
+    <AtencionCliente />
+    <RedesSociales />
     <AFIPColum />
-  </footer>
+
+  </div>
+</footer>
+
 );
 
 export default Footer;
