@@ -44,41 +44,24 @@ const Profile = () => {
                   </div>
               </div>
           </div>
-          
           <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <div className="flex items-center justify-between mb-4">
-        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Carrito</h5>
-      </div>
-      <div className="flow-root">
-        <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-          <FlatList
-                  data={cartData}
-                  direction="vertical"
-                  keyExtractor={(item) => item.name}
-                  renderItem={(item) => <CartItemCard item={item} />}
-                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
-                />
-        </ul>
-      </div>
+            <div className="flex items-center justify-between mb-4">
+              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Carrito</h5>
+            </div>
+            <div className="flow-root overflow-x-auto">
+              <div className="h-52 overflow-x-auto w-full max-w-xl">
+                <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <FlatList
+                    data={cartData}
+                    direction="vertical"
+                    keyExtractor={(item) => item.name}
+                    renderItem={(item) => <CartItemCard item={item} />}
+                    renderEmptyList={() => <p>No hay productos en el carrito</p>}
+                  />
+                </ul>
+              </div>
           </div>
-        {/*
-
-          <div> 
-            {cartIsLoading ? (
-              <p>Cargando...</p>
-            ) : (
-              <CardData title={"Carrito"}>
-                <FlatList
-                  data={cartData}
-                  keyExtractor={(item) => item.size_id.toString()}
-                  renderItem={(item) => <CartItemCard item={item} />}
-                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
-                />
-              </CardData>
-            )}
-          </div>
-           */}
-
+        </div>
         </div>
       </section>
     </main>
