@@ -26,9 +26,9 @@ const FlatList = <T,>({
         direction.includes("horizontal") ? "flex-col" : "flex-row"
       }`}
     >
-      {data.map((item) => (
+      {data.map((item, index) => (
 
-        <li key={item.id} className="py-3 sm:py-4">
+        <li key={index} className="py-3 sm:py-4">
                 <div className="flex items-center">
                     <div className="flex-shrink-0">
                     <Image
