@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DescktopNavbarProps, links } from ".";
+import { DescktopNavbarProps, hidraLifeLink, links } from ".";
 import { useAuthStore } from "@store/auth.store";
 import { GoPerson } from "react-icons/go";
 import { FaCartShopping } from "react-icons/fa6";
@@ -10,18 +10,22 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { cartData } = useCartStore();
   return (
     <>
-      <div className="hidden lg:flex lg:gap-x-8">
-        {links.map((link) => (
+      <div className="hidden lg:flex lg:gap-x-8 justify-center items-center ">
+        { links.map((link) => (
           <Link
             key={link.url}
-            href={link.url}
-            className={`text-lg font-semibold leading-6 hover:underline  ${
-              link.colorText ?? "text-gray-900"
-            }`}
+            href={link.url} 
+            className="text-lg font-semibold leading-6 hover:underline text-gray-900"
           >
             {link.text}
           </Link>
-        ))}
+        )) }
+          <Link
+            href={hidraLifeLink.url }
+            className="bg-red-500 rounded-full p-2 px-3 text-lg font-semibold leading-6 hover:underline text-white"
+          >
+            { hidraLifeLink.text}
+          </Link>
         {userSession.admin ? (
           <Link
             href="/tools"
@@ -31,7 +35,7 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
           </Link>
         ) : null}
       </div>
-      <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-4">
+      <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-2">
         <Link href="/carrito">
           <span className="relative inline-block">
             <FaCartShopping className="text-blue-500 text-2xl" />
@@ -44,19 +48,19 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
         </Link>
         <div className="ml-6">
         {isLogedIn() ? (
-          <div className="flex items-center justify-end gap-x-4">
+          <div className="flex items-center justify-end gap-x-2">
             <Link
               href="/profile"
               className="text-2xl leading-6"
             >
               <div className="flex flex-row hover:scale-125 ease-in-out duration-150">
                 <GoPerson />
-                <span className="text-lg mr-4">{userSession.username}</span>
+                <span className="text-sm font-bold mr-4">{userSession.username}</span>
               </div>
             </Link>
             <button
               onClick={logout}
-              className="text-lg leading-6 hover:scale-125 ease-in-out duration-150"
+              className="text-xs font-bold leading-6 hover:scale-125 ease-in-out duration-150"
             >
               Cerrar sesión <i className="fa-solid fa-arrow-right-from-bracket"></i>
             </button>
@@ -64,7 +68,7 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
         ) : (
           <button
             onClick={openModal}
-            className="text-lg leading-6 hover:scale-125 ease-in-out duration-150 ml-8"
+            className="text-xs leading-6 hover:scale-125 ease-in-out duration-150 ml-8"
           >
             Login / Registro
           </button>

@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
 import DescktopNavbar from "./descktopNavbar";
+import { useRouter } from "next/router";
 
 
 interface LinkItem {
   url: string;
-  text: string;
-  colorText?: string;
+  text: string
 }
 
 export const links: LinkItem[] = [
@@ -17,12 +17,11 @@ export const links: LinkItem[] = [
   { url: "/productos/Mujer", text: "Mujeres" },
   { url: "/productos/Hombre", text: "Hombres" },
   { url: "/productos/Deportes", text: "Deportes" },
-  {
-    url: "/productos/guardavidas",
-    text: "Guardavidas +",
-    colorText: "text-red-500",
-  },
 ];
+
+export const hidraLifeLink: LinkItem ={
+  url: "/productos/hidralife", text: "Hidralife"
+}
 
 interface NavbarProps {
   links: LinkItem[];
@@ -32,7 +31,9 @@ export interface MobileNavbarProps extends NavbarProps {
   isOpen: boolean;
   toggleMobileMenuClose: () => void;
 }
-export interface DescktopNavbarProps extends NavbarProps {}
+export interface DescktopNavbarProps extends NavbarProps {
+  className?: string;
+}
 
 const Navbar = () => {
   const { openModal } = useAuthModalStore();
@@ -45,12 +46,19 @@ const Navbar = () => {
   const toggleMobileMenuClose = () => {
     setIsOpen(false);
   };
+
+  const {asPath} = useRouter();
+  
+  console.log('url: ', asPath);
+  
+
   return (
-    <header className="bg-white">
+    <header className={`${asPath === hidraLifeLink.url? 'bg-gradient-to-l from-rose-500': 'bg-white'}`}>
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
+        className={ `mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        aria-label="Global`}
       >
+        {/* Brand */}
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Hidra</span>
@@ -67,11 +75,13 @@ const Navbar = () => {
                 width={600}
                 className="h-10 w-auto"
                 src="/images/hidraLogo.png"
-                alt=""
+                alt="tortuga trival"
               />
             </figure>
           </Link>
         </div>
+
+       {/* burguer button */}
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -95,15 +105,17 @@ const Navbar = () => {
             </svg>
           </button>
         </div>
+        
+        {/* show on md and biggest on */}
         <DescktopNavbar links={links} openModal={openModal} />
+        {/* show only un smalls screens */}
+        <MobileNavbar
+          links={links}
+          openModal={openModal}
+          isOpen={isOpen}
+          toggleMobileMenuClose={toggleMobileMenuClose}
+        />
       </nav>
-      {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
-      <MobileNavbar
-        links={links}
-        openModal={openModal}
-        isOpen={isOpen}
-        toggleMobileMenuClose={toggleMobileMenuClose}
-      />
     </header>
   );
 };

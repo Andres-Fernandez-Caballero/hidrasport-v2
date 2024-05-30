@@ -6,7 +6,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import useSWR from "swr";
 import { SERVER_URL } from "@config/index";
-
+import Loader from "@components/Loader";
 
 
 interface resultsProps {
@@ -20,9 +20,6 @@ interface dataProps {
   previous: string | null;
   results: resultsProps[];
 }
-
-
-
 
 // FUTURA CARACTERISTICA
 // const imageLoader = ({ src, width, quality }) => {
@@ -143,7 +140,7 @@ const Home: NextPage = () => {
     `${SERVER_URL}/api/store/site-configuration/`,
     fetcher,
   );
-  if (!data && !error) return <div>Loading...</div>;
+  if (!data && !error) return <Loader/>;
   if (error) {
     // guardar el error en un log
     console.error(error);
@@ -223,10 +220,6 @@ const Home: NextPage = () => {
       <section className="productos_dest">
         <h2 className="text-2xl text-center font-extrabold">Productos Destacados 🥇</h2>
 
-    
-
-
-        
         {/* SECCION CARDS */}
         <div className="flex items-center justify-center m-10  container mx-auto ">
           {/* GRID */}
@@ -299,8 +292,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </section>
-    </main>
-    
+    </main>    
   );
 };
 
