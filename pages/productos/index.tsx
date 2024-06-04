@@ -46,7 +46,7 @@ const ProductListPage: React.FC = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div>
+        <div className="">
           <ProductGridList products={data.results} />
           <button onClick={() => nextPage()}>Next</button>
         </div>

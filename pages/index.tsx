@@ -148,15 +148,16 @@ const Home: NextPage = () => {
 
   return (
     <main>
+      {/* 
       <section>
         {data &&
           data.results.map((item) => (
             <div
               key={item.id}
-              className="banner flex items-center justify-center h-96"
+              className="banner flex items-center justify-center"
             >
               <Image
-                className="object-cover w-full h-full"
+                className="object-cover w-full "
                 src={item.banner.replace(
                   "http://localhost:8000",
                   "https://hidrasport.com.ar",
@@ -167,6 +168,25 @@ const Home: NextPage = () => {
               />
             </div>
           ))}
+      </section>
+
+     */}
+      <section
+        style={{
+        backgroundImage: data && `url(${data.results[0].banner.replace(
+          "http://localhost:8000",
+          "https://hidrasport.com.ar",
+        )})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+         // ajusta el alto según tus necesidades
+        }}
+        className="h-screen flex items-center justify-center"
+      >
+        {/* Aquí puedes agregar contenido encima de la imagen */}
+        <div className="w-96 p-4 text-center  backdrop-blur-md bg-opacity-30  rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+
+            </div>      
       </section>
 
       <section className="flex">

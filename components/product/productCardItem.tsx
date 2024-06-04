@@ -32,12 +32,12 @@ const ProductCardItem = ({ product }: ProductCadItemProps) => {
     return (
 
         <article
-            className="group relative"
+            className="group relative bg-white p-4 rounded-lg"
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
         >
             <figure
-                className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 transition duration-500 ease-in-out"
+                className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80 transition duration-500 ease-in-out"
             >
                 <div className="relative h-full w-full">
                     <Image

@@ -60,21 +60,21 @@ const Navbar = () => {
       >
         {/* Brand */}
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5 hover:scale-110 ease-in-out duration-150">
             <span className="sr-only">Hidra</span>
             <figure className="flex items-center">
               <Image
-                height={600}
-                width={600}
-                className="h-12 w-auto"
-                src="/images/tortuga_logo.png"
+                height={800}
+                width={800}
+                className="h-16 w-auto m-1"
+                src="/images/TORTUGATRAZONEGRO.png"
                 alt=""
               />
               <Image
-                height={600}
-                width={600}
-                className="h-10 w-auto"
-                src="/images/hidraLogo.png"
+                height={800}
+                width={800}
+                className="h-10 w-auto m-1"
+                src={asPath===hidraLifeLink.url?"/images/hidralife.png":"/images/hidraLogo.png"}
                 alt="tortuga trival"
               />
             </figure>

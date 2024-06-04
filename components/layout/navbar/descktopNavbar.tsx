@@ -15,14 +15,14 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
           <Link
             key={link.url}
             href={link.url} 
-            className="text-lg font-semibold leading-6 hover:underline text-gray-900"
+            className="text-lg font-semibold leading-6 hover:scale-110 ease-in-out duration-150 text-gray-900"
           >
             {link.text}
           </Link>
         )) }
           <Link
             href={hidraLifeLink.url }
-            className="bg-red-500 rounded-full p-2 px-3 text-lg font-semibold leading-6 hover:underline text-white"
+            className="bg-red-500 rounded-full p-2 px-3 text-lg font-semibold leading-6 hover:scale-110 ease-in-out duration-150 text-white"
           >
             { hidraLifeLink.text}
           </Link>
