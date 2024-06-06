@@ -14,9 +14,9 @@ interface LinkItem {
 
 export const links: LinkItem[] = [
   { url: "/productos", text: "Productos" },
-  { url: "/productos/Mujer", text: "Mujeres" },
-  { url: "/productos/Hombre", text: "Hombres" },
-  { url: "/productos/Deportes", text: "Deportes" },
+  { url: "/productos/categoria/Mujer", text: "Mujeres" },
+  { url: "/productos/categoria/Hombre", text: "Hombres" },
+  { url: "/productos/categoria/Deportes", text: "Deportes" },
 ];
 
 export const hidraLifeLink: LinkItem ={
