@@ -6,6 +6,7 @@ import { ApiProductsResponse } from "@interfaces/hidraApi/products";
 import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import useSWR from "swr";
+import PaginationMenu from "./paginationButtons";
 
 interface PaginatedViewProps {
     title: string;
@@ -57,11 +58,15 @@ const PaginatedView = (props: PaginatedViewProps) => {
             ) : (
                 <div>
                     <ProductGridList products={data?.results ?? []} />
-                    <menu>
-                        {data?.previous &&  <button onClick={ prevPage } >PREV</button> }
-                        <p>{page}</p>
-                        {data?.next &&  <button onClick={ nextPage } >NEXT</button> }
-                    </menu>
+                    <div className="flex justify-center my-4">
+                        <PaginationMenu
+                            hasPrevious={data?.previous}
+                            hasNext={data?.next}
+                            onPrevius={prevPage}
+                            onNext={nextPage}
+                            currentPage={page}
+                            />
+                    </div>
                 </div>
             )}
         </ContentMain>
