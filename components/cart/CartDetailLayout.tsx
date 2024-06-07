@@ -16,7 +16,7 @@ const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
       </h2>
       {/* contenido */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <section className="divide-y divide-gray-200 dark:divide-gray-700">
+        <section className="divide-y divide-gray-200 dark:divide-gray-700 flow-root overflow-x-auto p-6">
         <DataScroller value={cartData} itemTemplate={(item:iCartProduct) => (<p>{item.name}</p>)} rows={5} inline scrollHeight="500px" header="Deslizá hacia abajo para ver tus productos." />
 
           <ul className="max-h-24">

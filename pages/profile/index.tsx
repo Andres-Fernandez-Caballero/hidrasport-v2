@@ -2,6 +2,7 @@ import FlatList from "@components/FlatList";
 import CartItemCard from "@components/cart/CartItemCard";
 import { useAuthStore } from "@store/auth.store";
 import useCartStore from "@store/cart/useCartStore";
+import Image from "next/image";
 import { useEffect } from "react";
 import { IoPencil } from "react-icons/io5";
 
@@ -29,7 +30,7 @@ const Profile = () => {
         <div className="flex justify-center space-x-4 m-5">
           <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <div className="flex flex-col items-center p-10">
-                  <img className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/images/avatar.jpg" alt="Avatar del usuario logueado"/>
+                  <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/images/avatar.jpg" alt="Avatar del usuario logueado"/>
                   <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userSession.username}</h5>
                   <span className="text-sm text-gray-500 dark:text-gray-400">{userSession.email}</span>
                   <div className="flex mt-4 md:mt-6">
@@ -44,41 +45,24 @@ const Profile = () => {
                   </div>
               </div>
           </div>
-          
           <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-      <div className="flex items-center justify-between mb-4">
-        <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Carrito</h5>
-      </div>
-      <div className="flow-root">
-        <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-          <FlatList
-                  data={cartData}
-                  direction="vertical"
-                  keyExtractor={(item) => item.name}
-                  renderItem={(item) => <CartItemCard item={item} />}
-                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
-                />
-        </ul>
-      </div>
+            <div className="flex items-center justify-between mb-4">
+              <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Carrito</h5>
+            </div>
+            <div className="flow-root overflow-x-auto">
+              <div className="h-52 overflow-x-auto w-full max-w-xl">
+                <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <FlatList
+                    data={cartData}
+                    direction="vertical"
+                    keyExtractor={(item) => item.name}
+                    renderItem={(item) => <CartItemCard item={item} />}
+                    renderEmptyList={() => <p>No hay productos en el carrito</p>}
+                  />
+                </ul>
+              </div>
           </div>
-        {/*
-
-          <div> 
-            {cartIsLoading ? (
-              <p>Cargando...</p>
-            ) : (
-              <CardData title={"Carrito"}>
-                <FlatList
-                  data={cartData}
-                  keyExtractor={(item) => item.size_id.toString()}
-                  renderItem={(item) => <CartItemCard item={item} />}
-                  renderEmptyList={() => <p>No hay productos en el carrito</p>}
-                />
-              </CardData>
-            )}
-          </div>
-           */}
-
+        </div>
         </div>
       </section>
     </main>

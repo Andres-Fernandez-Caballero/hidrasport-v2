@@ -37,15 +37,11 @@ const Detalle = ({ product }: DetalleProps) => {
     <div className="bg-white">
       {product && (
         <div className="pt-6">
-          <ImageContainer variant={currentVariant} />
-          <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-            <header className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                {product.title}
-              </h1>
-            </header>
-
-            <section className="mt-4 lg:row-span-3 lg:mt-0">
+          <div className="md:flex p-4">
+            <div className="md:flex-col">
+              <ImageContainer variant={currentVariant} />
+            </div>
+            <div className="md:flex-col mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <p className="text-3xl tracking-tight text-gray-900">
                 ${product.price}
@@ -56,13 +52,20 @@ const Detalle = ({ product }: DetalleProps) => {
                 currentVariant={currentVariant}
                 setCurrentVariant={setCurrentVariant}
               />
-            </section>
+            </div>
+          </div>
+        
+          <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+            <header className="lg:col-span-2  lg:pr-8">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                {product.title}
+              </h1>
+            </header>
 
-            <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+            <div className="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* <!-- Description and details --> */}
               <article>
                 <h3 className="sr-only">Description</h3>
-
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
                     The Basic Tee 6-Pack allows you to fully express your

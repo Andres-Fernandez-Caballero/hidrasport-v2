@@ -6,7 +6,7 @@ interface ContentMainProps {
 }
 
 const ContentMain: React.FC<ContentMainProps> = ({ children, title }) => (
-  <main className="bg-white">
+  <main className="bg-gray-200">
     <div className="mx-auto max-w-2xl px-2 py-12 sm:px-4 sm:py-12 lg:max-w-7xl lg:px-6">
       <header>
         <h2

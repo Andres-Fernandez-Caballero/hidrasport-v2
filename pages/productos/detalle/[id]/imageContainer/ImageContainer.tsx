@@ -30,6 +30,7 @@ const ImageContainer = ({ variant }: ImageContainerProps) => {
       <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg lg:hidden">
         <CarouselImage images={images} />
       </div>
+      
     </div>
   );
 };
