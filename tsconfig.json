@@ -38,6 +38,9 @@
       "@services/*": [
         "services/*"
       ],
+      "@repositories/*": [
+        "repositories/*"
+      ],
       "@interceptors/*": [
         "interceptors/*"
       ],
@@ -49,6 +52,9 @@
       ],
       "@modal/*": [
         "modal/*"
+      ],
+      "@test/*": [
+        "test/*"
       ],
       "@fetchers/*": [
         "utils/fetchers/*"

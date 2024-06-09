@@ -7,7 +7,7 @@ export interface CartProps {
   cart: unknown;
 }
 
-const Cart = () => {
+const CartPage = () => {
   const { cartData } = useCartStore();
   console.log('cart data -> ', cartData);
   
@@ -22,4 +22,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartPage;

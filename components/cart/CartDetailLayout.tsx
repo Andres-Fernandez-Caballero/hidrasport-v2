@@ -1,4 +1,4 @@
-import FormCheckout from "@components/formCheckout";
+import FormCheckout from "./FormCheckout";
 import { iCartProduct } from "@interfaces/ICart";
 import { DataScroller } from 'primereact/datascroller';
 import Image from "next/image";

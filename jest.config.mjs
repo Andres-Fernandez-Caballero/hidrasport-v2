@@ -12,10 +12,12 @@ const config = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     "^@/pages/(.*)$": "<rootDir>/pages/$1",
+    "^@/test/(.*)$": "<rootDir>/test/$1",
     "^@/components/(.*)$": "<rootDir>/components/$1",
     "^@/services/(.*)$": "<rootDir>/services/$1",
+    "^@/repositories/(.*)$": "<rootDir>/services/$1",
     "^@/interceptors/(.*)$": "<rootDir>/interceptors/$1",
-    "^@/interfaces/(.*)$": "<rootDir>/interfaces/$1",
+    "^@/interfaces/(  .*)$": "<rootDir>/interfaces/$1",
     "^@/config/(.*)$": "<rootDir>/config/$1",
     "^@/store/(.*)$": "<rootDir>/store/$1",
     "^@/fetchers/(.*)$": "<rootDir>/utils/fetchers$1",
