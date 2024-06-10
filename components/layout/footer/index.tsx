@@ -10,7 +10,7 @@ import AFIP from "../AFIP";
 
 const About = () => {
   return (
-    <section className="w-full md:w-4/12 px-4">
+    <section className="w-full md:w-4/12 px-4 text-black text-center">
       <h4 className="mb-4">Sobre nosotros</h4>
       <ul className="mb-4">
         <li className="flex items-center mb-2">
@@ -28,7 +28,7 @@ const About = () => {
 
 const AtencionCliente = () => {
   return (
-    <section className="w-full md:w-4/12 px-4">
+    <section className="w-full md:w-4/12 px-4 text-black text-center">
       <h4 className="mb-4">Atención al Cliente</h4>
       <ul className="mb-4">
         <li className="flex items-center mb-2">
@@ -42,7 +42,7 @@ const AtencionCliente = () => {
 
 const RedesSociales = () => {
   return (
-    <section className="w-full md:w-4/12 px-4">
+    <section className="w-full md:w-4/12 px-4 text-black text-center">
       <h4 className="mb-4">Redes Sociales</h4>
       <ul className="mb-4">
         <li className="flex items-center mb-2">
@@ -60,7 +60,7 @@ const RedesSociales = () => {
 
 const AFIPColum = () => {
   return (
-    <section className="w-full md:w-4/12 px-4 flex justify-center mx-auto">
+    <section className="w-full md:w-4/12 px-4 flex justify-center mx-auto text-black">
       <div className="flex flex-col items-center justify-center text-center">
         <AFIP />
         <span className="flex items-center flex-col">Hidrasport ®2023</span>
@@ -70,7 +70,7 @@ const AFIPColum = () => {
 };
 
 const Footer = () => (
-  <footer className="relative bg-cover bg-center text-white bg-[url('/images/arena.jpg')] flex justify-center">
+  <footer className="relative bg-cover bg-center text-white bg-gray-100 flex justify-center">
     <div className="absolute inset-0 backdrop-blur-sm"></div>
     <div className="relative container mx-auto flex flex-wrap py-8">
       <About />
@@ -82,3 +82,7 @@ const Footer = () => (
   );
 
 export default Footer;
+
+
+
+{/* bg-[url('/images/arena.jpg')]*/}
