@@ -1,4 +1,8 @@
 export interface ILink {
-  name: string;
+  text: string;
   url: string;
+}
+
+export interface LinkImage extends ILink {
+  image: string;
 }

@@ -6,7 +6,7 @@ import {
   FaInstagram,
   FaFacebook,
 } from "react-icons/fa6";
-import AFIP from "../AFIP";
+import AFIP from "./Afip";
 
 const About = () => {
   return (

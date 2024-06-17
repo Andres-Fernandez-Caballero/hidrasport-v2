@@ -5,12 +5,10 @@ import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
 import DescktopNavbar from "./descktopNavbar";
 import { useRouter } from "next/router";
+import { ILink } from "@interfaces/ILink";
 
 
-interface LinkItem {
-  url: string;
-  text: string
-}
+interface LinkItem  extends ILink {}
 
 export const links: LinkItem[] = [
   { url: "/productos", text: "Productos" },
