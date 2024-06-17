@@ -3,7 +3,7 @@ export interface DataProfile {
   title: string;
 }
 
-const CardData: React.FC<DataProfile> = ({ children, title }: DataProfile) => {
+const CardProfile: React.FC<DataProfile> = ({ children, title }: DataProfile) => {
   return (
     <div className=" bg-white border border-slate-500 rounded-md">
       <header className="bg-blue-900 p-3 text-lg font-bold text-white text-center">
@@ -13,4 +13,4 @@ const CardData: React.FC<DataProfile> = ({ children, title }: DataProfile) => {
     </div>
   );
 };
-export default CardData;
+export default CardProfile;

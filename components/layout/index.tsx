@@ -1,12 +1,12 @@
 import Head from "next/head";
 import React from "react";
-import Navbar from "./navbar";
+import Navbar from "./contentMain/navbar";
 import AuthModal from "./authmodal";
 import { useAuthModalStore } from "@store/authModal.store";
 import HydrationZustand from "./hydrationZustand";
 import { useAuthStore } from "@store/auth.store";
 import WhatsappFloatingButton from "./WhatsappFloatingButton";
-import Footer from "./footer";
+import Footer from "./contentMain/footer";
 import { ToastContainer } from "react-toastify";
 
 type LayoutProps = {

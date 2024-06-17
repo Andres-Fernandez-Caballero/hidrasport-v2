@@ -20,8 +20,8 @@ const MessageBar: React.FC<MessageBarProps> = ({
   }, [messageSelected]);
 
   return (
-    <nav className="bg-black flex p-2 text-white justify-center text-xl font-bold">
-      <p className=" animate-pulse duration-1000  bg-gradient-to-r from-blue-500 via-rose-400 to-white bg-clip-text text-transparent">
+    <nav className="w-full flex p-2 text-white justify-center text-xl font-bold m-4">
+      <p className="text-xl animate-pulse duration-1000 bg-clip-text text-red-400">
         {messages[messageSelected]}
       </p>
     </nav>

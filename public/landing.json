@@ -1,0 +1,173 @@
+{
+  "heroSection": {
+    "title": "Hidra Sport 🏊",
+    "subtitle": "¡Descubre el estilo perfecto para cada ola! Nuestra colección de ropa playera combina comodidad y moda para que disfrutes del verano con confianza y frescura. Diseños vibrantes y telas ligeras te acompañarán en cada aventura bajo el sol.",
+    "accentImage": "https://images.unsplash.com/photo-1622979857654-9363bb0a1243?q=80&w=1948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "backgroundImage": "https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?q=80&w=2050&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "messages":[
+      "Envios en toda capital GRATIS",
+      "Devoluciones sin cargo",
+      "Cuotas sin interés 💳",
+      "Más de 1000 productos 🛒 "
+    ]
+  },
+
+    "productosDestacados": [
+      {
+        "title_id": 171,
+        "title": "Rompevientos Guardavidas Ocean",
+        "price": 46899.0,
+        "b2b_price": 25911.697500000002,
+        "images": [
+          {
+            "image": "/static/media/products/ROJA_FRENTE_lAs0yjQ.png"
+          },
+          {
+            "image": "/static/media/products/ROJA_ESPALDA_2024.png"
+          }
+        ]
+      },
+      {
+        "title_id": 80,
+        "title": "Primera Piel Protect UV Guardavidas",
+        "price": 32990.0,
+        "b2b_price": 18226.975,
+        "images": [
+          {
+            "image": "/static/media/products/PRIMERA_PIEL_BLANCA_FRENTE_LOGO_ROJO_WEB.png"
+          },
+          {
+            "image": "/static/media/products/PRIMERA_PIEL_BLANCA_ESPALDA_2024.png"
+          }
+        ]
+      },
+      {
+        "title_id": 80,
+        "title": "Primera Piel Protect UV Guardavidas",
+        "price": 32990.0,
+        "b2b_price": 18226.975,
+        "images": [
+          {
+            "image": "/static/media/products/BLANCA_ROJA_FRENTE.png"
+          },
+          {
+            "image": "/static/media/products/BLANCA_ROJA_ESPALDA.png"
+          }
+        ]
+      },
+      {
+        "title_id": 172,
+        "title": "Sungon Geo Slim",
+        "price": 30199.0,
+        "b2b_price": 16684.947500000002,
+        "images": [
+          {
+            "image": "/static/media/products/TRIANGULOS_AZUL_FRENTE.png"
+          },
+          {
+            "image": "/static/media/products/TRIANGULOS_AZUL_ESPALDA.png"
+          }
+        ]
+      },
+      {
+        "title_id": 168,
+        "title": "Manual de Soporte Vital Básico en Ahogamiento",
+        "price": 7299.0,
+        "b2b_price": 4032.6975,
+        "images": [
+          {
+            "image": "/static/media/products/MANUAL_PNG_WEB_zFMl3QJ.png"
+          }
+        ]
+      },
+      {
+        "title_id": 164,
+        "title": "Short de Baño Clasico Unisex Con suspensor",
+        "price": 26399.0,
+        "b2b_price": 14585.447500000002,
+        "images": [
+          {
+            "image": "/static/media/products/AZUL_FRENTE2_Spvfj9i.png"
+          },
+          {
+            "image": "/static/media/products/AZUL_ESPALDA_2_nsf6a4l.png"
+          }
+        ]
+      },
+      {
+        "title_id": 163,
+        "title": "Sungon Classic Guardavidas",
+        "price": 30199.0,
+        "b2b_price": 16684.947500000002,
+        "images": [
+          {
+            "image": "/static/media/products/ROJO_FRENTE_HWfquPT.png"
+          },
+          {
+            "image": "/static/media/products/ROJO_ESPALDA_NHPAiLF.png"
+          }
+        ]
+      },
+      {
+        "title_id": 114,
+        "title": "Campera Clásica HS Unisex Guardavidas",
+        "price": 45299.0,
+        "b2b_price": 25027.697500000002,
+        "images": [
+          {
+            "image": "/static/media/products/CLASICA_GUARD_2024.png"
+          },
+          {
+            "image": "/static/media/products/CLASICA_GUARD_2024_ESPALDA.png"
+          }
+        ]
+      }
+    ],
+
+    "gridLinks" : [
+      {
+        "image": "/images/banners/mujer.jpeg",
+        "text": "Mujeres",
+        "url": "/productos/Mujer"
+      },
+      {
+        "image": "/images/banners/hombre.jpeg",
+        "text": "Hombres",
+        "url": "/productos/Hombre"
+      },
+      {
+        "image": "/images/banners/guardavida.jpeg",
+        "text": "Guardavidas",
+        "url": "/productos/guardavidas"
+      },
+      {
+        "image": "/images/banners/invierno.png",
+        "text": "Invierno",
+        "url": "/productos/Invierno"
+      }
+    ],
+
+    "infoCards": [
+      {
+        "title": "Envios.",
+        "text": "Nuestro sitio web ofrece envíos rápidos y seguros a tu puerta. ¡Compra ahora y recibe tus productos en la comodidad de tu hogar!",
+        "image": "/images/envio-azul.jpg"
+      },
+      {
+        "title": "Politicas de devolucion",
+        "text": "Si por alguna razón no estás satisfecho con tu compra, contáctanos y estaremos encantados de ayudarte con el proceso de devolución.",
+        "image": "/images/devolucion.jpg"
+      },
+      {
+        "tilte": "Asistencia Online",
+        "text": "Ofrecemos asistena en linea para resolver cualquier problema. ¡Estamos para ayudarte!.",
+        "image": "/images/soporte.jpg"
+      },
+      {
+        "title": "Conoce HidraLife",
+        "text": "Descubre Hidralife: una sección exclusiva de nuestra marca¡Revitaliza tu rutina de cuidado personal con Hidralife!",
+        "image": "/images/guarda3.jpg"
+      }
+    ]
+  }
+  

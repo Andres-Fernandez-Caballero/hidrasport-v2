@@ -5,8 +5,8 @@ export interface ICategory {
 
 export interface Product {
   title_id: number;
-  price: number;
   title: string;
+  price: number;
   images: Image[];
   b2b_price: number;
 }
