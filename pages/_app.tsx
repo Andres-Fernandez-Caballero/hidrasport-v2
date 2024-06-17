@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import useCartStore from "@store/cart/useCartStore";
 import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
-import CardData from "@components/cardProfile";
+import CardProile from "@components/cards/cardProfile";
 import { PrimeReactProvider} from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
         
@@ -20,7 +20,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       console.log("error", error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [CardData]);
+  }, [CardProile]);
   return (
     <Layout>
       <PrimeReactProvider>
