@@ -6,6 +6,11 @@ interface ApiCall {
   token?: string;
 }
 
+/**
+ * @deprecated Use clasic fetch instead
+ * @param param0 
+ * @returns 
+ */
 export async function apiCall<T>({
   url,
   method = "GET",

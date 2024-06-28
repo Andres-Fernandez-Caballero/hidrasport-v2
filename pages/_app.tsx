@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import Layout from "../components/layout";
+import Layout from "@components/layout";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import useCartStore from "@store/cart/useCartStore";
 import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
-import CardProile from "@components/cards/cardProfile";
+import CardProile from "@components/common/cards/cardProfile";
 import { PrimeReactProvider} from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
         

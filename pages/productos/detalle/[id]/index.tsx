@@ -11,6 +11,7 @@ export const getServerSideProps: GetServerSideProps<{
   const { query } = context;
   const result = await fetch(`${SERVER_URL}/api/store/products/${query.id}/ `);
   let product;
+
   if (result.status === 200) {
     product = await result.json();
     return { props: { product } };

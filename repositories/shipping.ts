@@ -18,9 +18,9 @@ export const SHIPPING_SAS = 'ship_sas';
 export const SHIPPING_PAS = 'ship_pas';
 
 
-export type ShippingType = typeof SHIPPING_PAP | typeof SHIPPING_PAS | typeof SHIPPING_SAS; 
+export type ShippingMode = typeof SHIPPING_PAP | typeof SHIPPING_PAS | typeof SHIPPING_SAS; 
 
-export const getShippingAmount = async (zipCode: string, shippingType: ShippingType=SHIPPING_PAP ) => {
+export const getShippingAmount = async (zipCode: string, shippingType: ShippingMode=SHIPPING_PAP ) => {
   console.log('envio-token', SHIPPING_TOKEN);
   
   const response = await fetch(`${API_BASE_URL}/shipping_options?&to_zip_code=${zipCode}&types=${shippingType}`, {

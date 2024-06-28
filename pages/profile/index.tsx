@@ -1,6 +1,6 @@
-import FlatList from "@components/FlatList";
+import FlatList from "@components/common/FlatList";
 import CartItemCard from "@components/cart/CartItemCard";
-import { useAuthStore } from "@store/auth.store";
+import { useAuthStore } from "@store/auth/auth.store";
 import useCartStore from "@store/cart/useCartStore";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -30,7 +30,7 @@ const Profile = () => {
         <div className="flex justify-center space-x-4 m-5">
           <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <div className="flex flex-col items-center p-10">
-                  <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/images/avatar.jpg" alt="Avatar del usuario logueado"/>
+                  <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/images/avatar.jpg" alt="Avatar del usuario logueado" width={400} height={400}/>
                   <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userSession.username}</h5>
                   <span className="text-sm text-gray-500 dark:text-gray-400">{userSession.email}</span>
                   <div className="flex mt-4 md:mt-6">
@@ -55,7 +55,6 @@ const Profile = () => {
                   <FlatList
                     data={cartData}
                     direction="vertical"
-                    keyExtractor={(item) => item.name}
                     renderItem={(item) => <CartItemCard item={item} />}
                     renderEmptyList={() => <p>No hay productos en el carrito</p>}
                   />

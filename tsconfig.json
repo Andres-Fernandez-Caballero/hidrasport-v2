@@ -24,10 +24,10 @@
         "pages/*"
       ],
       "@components/*": [
-        "components/*"
+        "app/components/*"
       ],
       "@config/*": [
-        "config/*"
+        "app/config/*"
       ],
       "@interfaces/*": [
         "interfaces/*"
@@ -57,7 +57,7 @@
         "test/*"
       ],
       "@fetchers/*": [
-        "utils/fetchers/*"
+        "utils/helpers/fetchers/*"
       ]
     },
     "plugins": [

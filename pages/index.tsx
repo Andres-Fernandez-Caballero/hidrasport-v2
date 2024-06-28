@@ -3,9 +3,9 @@ import React from "react";
 import "react-multi-carousel/lib/styles.css"; // Import styles for the carousel
 import useSWR from "swr";
 import { landingPageUrl } from "@config/index";
-import Loader from "@components/Loader";
+import Loader from "@components/common/Loader";
 import HeroSection from "@components/layout/landing/heroSection";
-import CarouselProducts from "@components/carouselProducts";
+import CarouselProducts from "@components/layout/carouselProducts";
 import BannerHome from "@components/layout/landing/bannerHome";
 import InfoCardsHome from "@components/layout/landing/infocardsHome";
 import { ILandigPage } from "@interfaces/hidraApi/landingPage";

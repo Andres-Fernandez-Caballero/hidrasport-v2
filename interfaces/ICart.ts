@@ -1,16 +1,16 @@
 export interface iCartProduct {
-  id?: number;
   title: string;
   size_id: number;
-  name: string;
   color: string;
   quantity: number;
-  price: number;
   image: string; // @deprecated
   img: string;
+  price: number;
   size: string;
-  subproduct: number;
+  subproduct: number | string;
+  subproduct_id: string ;
   weight: number;
+  id?: number;
 }
 
 export interface iCartRequest {
