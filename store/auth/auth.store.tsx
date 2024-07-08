@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 import useCartStore from "../cart/useCartStore";
 import { AuthData, AuthStore } from "./contracts";
 import initialState from "./initalState";
+import { CREDIT_CARD_PAYMENT } from "@interfaces/IpaymentMethods";
 
 
 export const useAuthStore = create<AuthStore>()(
@@ -30,6 +31,7 @@ export const useAuthStore = create<AuthStore>()(
             email: registerDto.email,
             username: registerDto.username,
             admin: false,
+            paymentMethods: [CREDIT_CARD_PAYMENT],
           },
         });
       },

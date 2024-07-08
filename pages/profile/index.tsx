@@ -1,5 +1,5 @@
 import FlatList from "@components/common/FlatList";
-import CartItemCard from "@components/cart/CartItemCard";
+import CartItemCard from "@components/layout/cart/CartItemCard";
 import { useAuthStore } from "@store/auth/auth.store";
 import useCartStore from "@store/cart/useCartStore";
 import Image from "next/image";

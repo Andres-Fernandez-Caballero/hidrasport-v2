@@ -1,6 +1,6 @@
 import useCartStore from "@store/cart/useCartStore";
-import CartDetailLayout from "@components/cart/CartDetailLayout";
-import CartEmptyLayout from "@components/cart/CartEmptyLayout";
+import CartDetailLayout from "@components/layout/cart/CartDetailLayout";
+import CartEmptyLayout from "@components/layout/cart/CartEmptyLayout";
 
 
 export interface CartProps {
