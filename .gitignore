@@ -38,3 +38,6 @@ next-env.d.ts
 
 # next.js
 /.next/
+
+env.local
+package-lock.json
