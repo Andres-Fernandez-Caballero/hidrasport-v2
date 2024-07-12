@@ -3,7 +3,8 @@ const nextConfig = {
   images: {
     domains: [
       "hidrasport.com.ar", 
-      "127.0.0.1"
+      "127.0.0.1",
+      "localhost"
     ],
     remotePatterns: [
       {
