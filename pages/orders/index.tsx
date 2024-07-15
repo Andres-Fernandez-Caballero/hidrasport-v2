@@ -6,12 +6,22 @@ import OrderCard from '@components/common/cards/orderCard/index';
 import { IOrder, IOrderFilter } from '@interfaces/IOrder';
 import useFetch from '../../app/hooks/useFetch';
 import Pagination from '@components/common/Pagination/Pagination';
+import usePermissionLevel from 'app/hooks/usePermissionlevel';
+import { useRouter } from 'next/router';
 
 const OrdersPage: NextPage = () => {
   const { response, loading, error, fetchData } = useFetch<IOrderFilter>();
+  const { authResponse, authLoading, authError } = usePermissionLevel();
   const [orders, setOrders] = useState<IOrder[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [filters, setFilters] = useState<{ status: string; startDate: string; endDate: string } | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
+      router.push('/');
+    }
+  }, [authLoading, authResponse, authError, router]);
 
   useEffect(() => {
     if (response) {
@@ -19,7 +29,6 @@ const OrdersPage: NextPage = () => {
       setTotalPages(response.total_pages);
     }
   }, [response]);
-
 
   const handleFilterSubmit = async (filters: { status: string; startDate: string; endDate: string }, page: number = 1) => {
     setFilters(filters);
@@ -36,6 +45,10 @@ const OrdersPage: NextPage = () => {
       await handleFilterSubmit(filters, page);
     }
   };
+
+  if (authLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen p-4">
