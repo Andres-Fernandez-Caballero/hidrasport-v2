@@ -41,7 +41,8 @@ export interface IOrderFilter {
   count: number;
   next: string | null;
   previous: string | null;
-  orders: IOrder[];
+  results: IOrder[];
+  total_pages: number;
 }
 
 export enum OrderStatus {

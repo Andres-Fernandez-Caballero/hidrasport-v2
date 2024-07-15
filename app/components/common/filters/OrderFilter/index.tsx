@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { OrderStatus } from '../../../../../interfaces/IOrder';
 
 interface OrderFilterProps {
-  onSubmit: (filters: { status: string; startDate: string; endDate: string }) => void;
+  onSubmit: ( filters: { status: string; startDate: string; endDate: string }) => void;
 }
 
 const OrderFilter: React.FC<OrderFilterProps> = ({ onSubmit }) => {
@@ -16,8 +16,8 @@ const OrderFilter: React.FC<OrderFilterProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className='flex justify-center items-top'>
-      <form onSubmit={handleSubmit} className='flex'>
+    <div className='flex justify-center'>
+      <form onSubmit={handleSubmit} className='flex justify-around w-3/5 shadow p-2'>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value as OrderStatus)}

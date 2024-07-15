@@ -1,48 +1,50 @@
 import { NextPage } from 'next';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import urls from '../../app/config/urls';
 import OrderFilter from '@components/common/filters/OrderFilter';
-import { IOrder } from '@interfaces/IOrder';
 import OrderCard from '@components/common/cards/orderCard/index';
-import { useAuthStore } from "@store/auth/auth.store";
-
+import { IOrder, IOrderFilter } from '@interfaces/IOrder';
+import useFetch from '../../app/hooks/useFetch';
+import Pagination from '@components/common/Pagination/Pagination';
 
 const OrdersPage: NextPage = () => {
+  const { response, loading, error, fetchData } = useFetch<IOrderFilter>();
   const [orders, setOrders] = useState<IOrder[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const { userSession } = useAuthStore();
-  const token = userSession?.token;
+  const [totalPages, setTotalPages] = useState<number>(0);
+  const [filters, setFilters] = useState<{ status: string; startDate: string; endDate: string } | null>(null);
 
-  const handleFilterSubmit = async (filters: { status: string; startDate: string; endDate: string }) => {
-    setLoading(true);
+  useEffect(() => {
+    if (response) {
+      setOrders(response.results);
+      setTotalPages(response.total_pages);
+    }
+  }, [response]);
 
-    try {
-      const response = await fetch(urls.orders, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`
-        },
-        body: JSON.stringify(filters),
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch orders');
-      }
-      const data = await response.json();
-      setOrders(data.results);
-    } catch (error) {
-      console.error('Error fetching orders:', error);
-    } finally {
-      setLoading(false);
+  const handleFilterSubmit = async (filters: { status: string; startDate: string; endDate: string }, page: number = 1) => {
+    setFilters(filters);
+    const body = {
+      status: filters.status,
+      startDate: filters.startDate,
+      endDate: filters.endDate,
+    };
+    await fetchData(urls.orders + `?page=${page}`, body);
+  };
+
+  const handlePageChange = async (page: number) => {
+    if (filters) {
+      await handleFilterSubmit(filters, page);
     }
   };
 
   return (
-    <div className="h-screen p-4">
+    <div className="min-h-screen p-4">
       <OrderFilter onSubmit={handleFilterSubmit} />
+      <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
       {loading ? (
-        <div>Loading...</div>
+        <div className='flex justify-center p-5'>
+          <div>Esperando...</div>
+        </div>
       ) : (
         <div className="mt-4">
           {orders && orders.length > 0 ? (
@@ -52,10 +54,13 @@ const OrdersPage: NextPage = () => {
               ))}
             </ul>
           ) : (
-            <p>No orders found</p>
+            <div className='flex justify-center p-5'>
+              <p>No hay ordenes</p>
+            </div>
           )}
         </div>
       )}
+      {error && <div>Error: {error.message}</div>}
     </div>
   );
 };
