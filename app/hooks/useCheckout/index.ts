@@ -1,56 +1,58 @@
-import { useCallback, useEffect, useState } from "react"
-import { BRANCH_DELIVERY, HOME_DELIVERY, PICKUP_POINT, ShippingType,  } from "@interfaces/IShipping";
+import { useCallback, useEffect, useState } from "react";
+import { BRANCH_DELIVERY, HOME_DELIVERY, PICKUP_POINT, ShippingType } from "@interfaces/IShipping";
 import { CREDIT_CARD_PAYMENT, PaymentMethod } from "@interfaces/IpaymentMethods";
-import { useAuthStore } from "@store/auth/auth.store";
 import { fetchShippingAmount } from "@services/shipping";
+import IUseCheckout from "./interface";
 
 export const ShippingTypes = [
   HOME_DELIVERY,
   PICKUP_POINT,
   BRANCH_DELIVERY,
- ];
+];
 
-const useCheckout = () => {
+const useCheckout = ():IUseCheckout => {
 
-const {userSession } = useAuthStore();
-
- const [zipCode, setZipCode] = useState<string>(localStorage.getItem("zipCode") ?? "");
- const [shippingAmount, setShippingAmount] = useState<number>();
- const [ paymentMethod, setPaymentMethod] = useState<PaymentMethod>(CREDIT_CARD_PAYMENT);
- const [shippingType, setShippingType] = useState<ShippingType>(localStorage.getItem('shipingType')? localStorage.getItem('shippingType') as ShippingType:  HOME_DELIVERY);
- 
-
- useEffect( () => {
-  if(!zipCode) setShippingAmount (undefined);
-    if(zipCode && isValidPostalCode(zipCode) && shippingType !== PICKUP_POINT){
-    
-        fetchShippingAmount(zipCode)
-        .then(amount => setShippingAmount(amount))
-     .catch((error => console.log(error))) ;
+  const [zipCode, setZipCode] = useState<string>(localStorage.getItem("zipCode") ?? "");
+  const [shippingAmount, setShippingAmount] = useState<number>();
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(CREDIT_CARD_PAYMENT);
+  
+  // Verifica si el valor en localStorage es válido
+  const getInitialShippingType = (): ShippingType => {
+    const storedShippingType = localStorage.getItem('shippingType') as ShippingType;
+    if (ShippingTypes.includes(storedShippingType)) {
+      return storedShippingType;
     }
- }, [zipCode, shippingType]) 
-
- function updateZipCode(zipCode: string){
-   setZipCode(zipCode)
-   localStorage.setItem('zipCode', zipCode);
-    
- }
- 
- function clearZipCode(){
-    setZipCode('');
-    localStorage.removeItem('zipCode');
- }
-
- const handleOnShippingTypeChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setShippingType(event.target.value as ShippingType);
-    localStorage.setItem('shippingType', event.target.value as ShippingType);
+    return HOME_DELIVERY;
   };
 
-  const handleOnPaymentMethodChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const [shippingType, setShippingType] = useState<ShippingType>(getInitialShippingType());
+
+  useEffect(() => {
+    if (!zipCode) setShippingAmount(undefined);
+    if (zipCode && isValidPostalCode(zipCode) && shippingType !== PICKUP_POINT) {
+      fetchShippingAmount(zipCode)
+        .then(amount => setShippingAmount(amount))
+        .catch(error => console.log(error));
+    }
+  }, [zipCode, shippingType]);
+
+  function updateZipCode(zipCode: string) {
+    setZipCode(zipCode);
+    localStorage.setItem('zipCode', zipCode);
+  }
+
+  function clearZipCode() {
+    setZipCode('');
+    localStorage.removeItem('zipCode');
+  }
+
+  const handleOnShippingTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newShippingType = event.target.value as ShippingType;
+    setShippingType(newShippingType);
+    localStorage.setItem('shippingType', newShippingType);
+  };
+
+  const handleOnPaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPaymentMethod(event.target.value as PaymentMethod);
   };
 
@@ -61,9 +63,8 @@ const {userSession } = useAuthStore();
   }
 
   const haveZipCode = useCallback(() => {
-    return (shippingType === HOME_DELIVERY || shippingType === BRANCH_DELIVERY);
+    return shippingType === HOME_DELIVERY || shippingType === BRANCH_DELIVERY;
   }, [shippingType]);
-
 
   return {
     shippingType,
@@ -75,8 +76,7 @@ const {userSession } = useAuthStore();
     updateZipCode,
     shippingAmount,
     paymentMethod,
-    userSession,
-  }
+  };
 }
 
 export default useCheckout;
