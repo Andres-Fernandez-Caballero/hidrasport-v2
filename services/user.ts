@@ -15,7 +15,6 @@ export const fetchLogin = async(loginData: LoginDto) => {
             "message": "Ingreso exítoso.",
             "username": "andres",
             "email": "andres.fernandezcaballero@davinci.edu.ar",
-            "token": "b14d02120ab68ee82beb2ce468265aa8fc094349",
             "admin": false
         }
 
