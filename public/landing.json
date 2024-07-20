@@ -1,12 +1,9 @@
 {
   "heroSection": {
-    "title": "Hidra Sport 🏊",
-    "subtitle": "¡Descubre el estilo perfecto para cada ola! Nuestra colección de ropa playera combina comodidad y moda para que disfrutes del verano con confianza y frescura. Diseños vibrantes y telas ligeras te acompañarán en cada aventura bajo el sol.",
-    "accentImage": "https://images.unsplash.com/photo-1622979857654-9363bb0a1243?q=80&w=1948&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "backgroundImage": "https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?q=80&w=2050&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "slogan": "Fluí con nosotros",
+    "backgroundImage": "https://i.ibb.co/qYZzKBL/Mesa-de-trabajo-28.png",
     "messages":[
       "Envios en toda capital GRATIS",
-      "Devoluciones sin cargo",
       "Cuotas sin interés 💳",
       "Más de 1000 productos 🛒 "
     ]

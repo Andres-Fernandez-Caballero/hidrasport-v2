@@ -1,66 +1,64 @@
-import Image from "next/image";
-import MessageBar from "./messageBar";
-import { HeroSection } from "@interfaces/hidraApi/landingPage";
+import { HeroSection as HeroSectionProps } from "@interfaces/hidraApi/landingPage";
+import styles from "./styles.module.css";
+import { Divider } from "primereact/divider";
+import { Button } from 'primereact/button';
+
+const HeroSection = (props: HeroSectionProps) => (
+    <section style={{ height: '100vh' }}>
+        <div className="flex justify-end">
+            <BackgroundImage backgroundImage={props.backgroundImage} />
+            <RightSide />
+        </div>
+        <Messages />
+        <HeroFooter />
+    </section>
+);
 
 
-interface LeftSideProps {
-    title: string;
-    messages: string[];
-    subtitle: string;
-}
-
-interface RightSideProps {
-    accentImage: string;
-}
-
+//========================= Interfaces ============================
 interface BackgroundImageProps {
     backgroundImage: string;
 }
 
+//========================= Components ============================
+
+
 const BackgroundImage = (props: BackgroundImageProps) => (
-    <div 
-        className="absolute bg-cover inset-0 bg-center  blur-sm" 
-        style={{
-            backgroundImage: `url(${props.backgroundImage})`
-        }}>
+    <div className="relative w-full h-full">
+        <img 
+            src={props.backgroundImage} 
+            alt="Background Natacion" 
+            className="w-full h-full object-cover" 
+            style={{ height: '70vh' }}
+        />
     </div>
+);
 
-)
-
-const LetfSide = (props: LeftSideProps) => (
-    <div className="flex flex-col justify-center items-center">
-        {/* Contenido de la columna izquierda (información) */}
-        <header className="rounded-md text-center p-2 m-2  bg-opacity-75">
-            <h2 className="text-4xl font-bold text-white m-4">{props.title}</h2>
-            <p className="text-center m-4 text-xl text-white">{props.subtitle}</p>
-            <MessageBar
-                messages={props.messages}
-                delay={5000}
-            />
-            <button type="button" className="text-white bg-black hover:bg-gradient-to-br focus:ring-4 focus:outline-none hover:scale-105 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">¡Nuestros productos!</button>
-        </header>
+const RightSide = () => (
+    <div className={styles.heroTextContainer}>
+        <h2 className={styles.heroText}>
+            <span>FLUÍ </span><br/>
+            CON <br />
+            NOSOTROS
+        </h2>
     </div>
-)
+);
 
-const RightSide = (props: RightSideProps) => (
-    <figure className="z-10 p-6 m-6 opacity-75">
-        <Image src={props.accentImage} alt="accent image" className="mb-4" width={500} height={500} />
-    </figure>
-)
+const Messages = () => (
+    <div className={styles.messagesContainer}>
+        <h3>3 Cuotas sin interés</h3>
+        <Divider layout="vertical" />
+        <h3>Envíos Gratis apartir de $40.000 </h3>
+        <Divider layout="vertical" />
+        <h3>Devoluciones sin cargo</h3>
+    </div>
+);
 
-const HeroSection = (props: HeroSection) => (
-    <section
-        className="relative h-screen flex items-center gap-2 justify-center overflow-hidden"
-    >
-        <BackgroundImage {...props} />
+const HeroFooter = () => (
+    <div className={styles.heroFooterContainer}>
+        <Button icon="pi pi-arrow-right" className={styles.heroFooterButton} label="Productos"></Button>
+    </div>
+);
 
-        <div className="z-10 w-full ml-8">
-            <LetfSide {...props} />
-        </div>
-        <div className="z-10 w-1/2 mr-8">
-            <RightSide {...props} />
-        </div>
-    </section >
-)
 
 export default HeroSection;

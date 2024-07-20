@@ -2,3 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 @import "./hidrasportStyles.css";
+@import 'primeicons/primeicons.css';

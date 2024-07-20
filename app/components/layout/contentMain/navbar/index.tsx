@@ -51,39 +51,17 @@ const Navbar = () => {
   
 
   return (
-    <header className={`${asPath === hidraLifeLink.url? 'bg-gradient-to-l from-rose-500': 'bg-white'}`}>
+    <header className={'fixed z-10 w-svw bg-stone-950'}>
       <nav
-        className={ `mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className={ `mx-auto flex max-w-7xl items-center justify-between py-1 px-3 lg:px-8"
         aria-label="Global`}
       >
-        {/* Brand */}
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5 hover:scale-110 ease-in-out duration-150">
-            <span className="sr-only">Hidra</span>
-            <figure className="flex items-center">
-              <Image
-                height={800}
-                width={800}
-                className="h-16 w-auto m-1"
-                src="/images/TORTUGATRAZONEGRO.png"
-                alt=""
-              />
-              <Image
-                height={800}
-                width={800}
-                className="h-10 w-auto m-1"
-                src={asPath===hidraLifeLink.url?"/images/hidralife.png":"/images/hidraLogo.png"}
-                alt="tortuga trival"
-              />
-            </figure>
-          </Link>
-        </div>
-
+        
        {/* burguer button */}
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-between rounded-md p-2.5 text-gray-700"
             onClick={toggleMobileMenu}
           >
             <span className="sr-only">Open main menu</span>
@@ -92,7 +70,7 @@ const Navbar = () => {
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
-              stroke="currentColor"
+              stroke="white"
               aria-hidden="true"
             >
               <path
@@ -104,6 +82,43 @@ const Navbar = () => {
           </button>
         </div>
         
+
+        {/* Brand */}
+        <div className="flex lg:flex-1">
+          <Link href="/" className="-m-1.5 p-1.5 hover:scale-110 ease-in-out duration-150">
+            <span className="sr-only">Hidra</span>
+            <figure className="flex items-center">
+              <Image
+              //Cambiar logo
+                height={800}
+                width={800}
+                className="h-10 w-auto m-1"
+                src={asPath===hidraLifeLink.url?"/images/hidralife.png":"/images/hidraLogo.png"}
+                alt="Logo Hidra Sport"
+              />
+            </figure>
+          </Link>
+        </div>
+
+        {/* Profile and Cart */}
+        <div className="inline-flex">
+        <button
+            type="button"
+            className="inline-flex items-center justify-between rounded-md p-1.5 text-white"
+            onClick={toggleMobileMenu}
+          >
+            <span className="pi pi-user"/>
+          </button>
+          <button
+            type="button"
+            className="-flex items-center justify-between rounded-md p-1.5 text-white"
+            onClick={toggleMobileMenu}
+          >
+            <span className="pi pi-shopping-cart"/>
+          </button>
+        </div>
+
+
         {/* show on md and biggest on */}
         <DescktopNavbar links={links} openModal={openModal} />
         {/* show only un smalls screens */}

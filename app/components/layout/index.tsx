@@ -5,7 +5,6 @@ import AuthModal from "./authmodal";
 import { useAuthModalStore } from "@store/authModal.store";
 import HydrationZustand from "./hydrationZustand";
 import { useAuthStore } from "@store/auth/auth.store";
-import WhatsappFloatingButton from "../common/WhatsappFloatingButton";
 import Footer from "./contentMain/footer";
 import { ToastContainer } from "react-toastify";
 
@@ -19,7 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <HydrationZustand>
       <Head>
-        <title>HidraSport 🏊</title>
+        <title>HidraSport - Indumentaria Deportiva</title>
         <meta name="description" content="Hidrasport ropa deportiva" />
         <link rel="icon" href="/tortuga_logo.png" />
         <link
@@ -36,7 +35,6 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
         <ToastContainer />
       </main>
-      <WhatsappFloatingButton />
 
       <Footer />
     </HydrationZustand>
