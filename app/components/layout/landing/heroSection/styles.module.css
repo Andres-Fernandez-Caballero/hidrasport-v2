@@ -1,0 +1,53 @@
+.heroTextContainer{
+  position: absolute;
+  padding: 1rem;
+  width: 50%;
+  margin: 50vh 0 0 0;
+  color: white;
+
+}
+.heroText {
+  text-align: end;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 90%;
+}
+.heroText span{
+  text-align: end;
+  font-weight: 600;
+  font-size: 3.5rem;
+  line-height: 70%;
+}
+
+.messagesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15vh;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  }
+
+.heroFooterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15vh;
+  width: 100%;
+  background-color: black;
+}
+.heroFooterButton{
+  height: 3rem;
+  width: 10rem;
+  border:  1px solid whitesmoke;
+  border-radius: 0.3rem 1rem 0.3rem 1rem;
+  color: whitesmoke;
+}
+
+.heroFooterButton span:nth-of-type(1){
+  padding-left: 1rem;
+  margin: 0;
+  font-weight: 900;
+}

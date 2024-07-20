@@ -11,7 +11,6 @@ export interface InfoCardData {
 export interface HeroSection {
     title: string;
     subtitle: string;
-    accentImage: string;
     backgroundImage: string;
     messages: string[];
 }
