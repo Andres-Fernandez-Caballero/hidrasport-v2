@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const withTM = require('next-transpile-modules')(['@mercadopago/sdk-react']);
+
 const nextConfig = {
   images: {
     domains: [
@@ -38,4 +40,4 @@ if (process.env.NODE_ENV === "production") {
   // (nextConfig.loader = "akamai"), (nextConfig.path = "");
 }
 
-module.exports = nextConfig;
+module.exports = withTM(nextConfig);

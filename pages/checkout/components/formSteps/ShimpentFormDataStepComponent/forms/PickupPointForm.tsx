@@ -1,8 +1,9 @@
-import ShipmentFormProps from "./interface";
+import { CheckoutFormDataProps } from "@pages/checkout/components/contracts";
 
-const PickupPointForm = (props: ShipmentFormProps) => (
+
+const PickupPointForm = (props: CheckoutFormDataProps) => (
     <>
-        <h2 className="sr-only">{props.checkoutData.shippingType}</h2>
+        <h2 className="sr-only">{props.checkoutData.shipment.shippingType}</h2>
     </>
 )
 

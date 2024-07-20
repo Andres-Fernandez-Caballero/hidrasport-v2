@@ -1,5 +1,5 @@
 import { RegisterDto } from "@interfaces/IAuth";
-import { PaymentMethod } from "@interfaces/IpaymentMethods";
+import { PaymentMethod } from "@interfaces/Ipayment";
 
 export interface AuthData {
     token: string;

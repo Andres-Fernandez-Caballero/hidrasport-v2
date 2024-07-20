@@ -1,32 +1,29 @@
 import RadioButtonInput from "@components/common/RadioButtonInput";
 import { HOME_DELIVERY, PICKUP_POINT, BRANCH_DELIVERY, ShippingType } from "@interfaces/IShipping";
-import useCheckout, { ShippingTypes } from "app/hooks/useCheckout";
+import { ShippingTypes } from "app/hooks/useCheckout";
 import { useEffect, useMemo, useState } from "react";
-import ShipmentFormProps from "./forms/interface";
+import {CheckoutFormDataProps} from "../../contracts";
 import HomeDeliveryForm from "./forms/HomeDeliveryForm";
 import PickupPointForm from "./forms/PickupPointForm";
 import BranchDeliveryForm from "./forms/BranchDeliveryForm";
 
 
+const ShipmentFormDataStepComponent = (props: CheckoutFormDataProps) => {
+    
+
+    const optionComponent: Record<ShippingType, React.ReactElement<CheckoutFormDataProps>> = useMemo(() => ({
+        [HOME_DELIVERY]: <HomeDeliveryForm {...props} />,
+        [PICKUP_POINT]: <PickupPointForm {...props} />,
+        [BRANCH_DELIVERY]: <BranchDeliveryForm {...props} />,
+    }), [props]);
 
 
-
-const ShipmentFormDataStepComponent = () => {
-        const checkoutData = useCheckout(); // Asumiendo que useCheckout es un hook personalizado para obtener el estado de checkout
-
-        const optionComponent: Record<ShippingType, React.ReactElement<ShipmentFormProps>> = useMemo(() => ({
-            [HOME_DELIVERY]: <HomeDeliveryForm checkoutData={checkoutData} />,
-            [PICKUP_POINT]: <PickupPointForm checkoutData={checkoutData}/>,
-            [BRANCH_DELIVERY]: <BranchDeliveryForm checkoutData={checkoutData}/>,
-        }), [checkoutData]);
-
-
-    const [componentForm, setComponentForm] = useState<JSX.Element | null>(optionComponent[checkoutData.shippingType]); // Inicializa con null o un JSX.Element según prefieras
+    const [componentForm, setComponentForm] = useState<JSX.Element | null>(optionComponent[props.checkoutData.shipment.shippingType]); // Inicializa con null o un JSX.Element según prefieras
 
     useEffect(() => {
-        setComponentForm(optionComponent[checkoutData.shippingType])
-    }, [checkoutData.shippingType, optionComponent]);
-    
+        setComponentForm(optionComponent[props.checkoutData.shipment.shippingType])
+    }, [props.checkoutData.shipment.shippingType, optionComponent]);
+
     return (
         <div>
             <RadioButtonInput
@@ -34,8 +31,8 @@ const ShipmentFormDataStepComponent = () => {
                 name="type-shipping"
                 totalItemsList={ShippingTypes}
                 itemsAvailables={ShippingTypes}
-                currentState={checkoutData.shippingType}
-                onChange={checkoutData.handleOnShippingTypeChange}
+                currentState={props.checkoutData.shipment.shippingType}
+                onChange={props.checkoutData.shipment.handleOnShippingTypeChange}
             />
 
             {componentForm}

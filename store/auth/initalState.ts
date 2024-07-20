@@ -1,4 +1,4 @@
-import { CREDIT_CARD } from "@interfaces/IpaymentMethods";
+import { CREDIT_CARD_PAYMENT } from "@interfaces/Ipayment";
 import { AuthData } from "./contracts";
 
 const initialState: AuthData = {
@@ -6,7 +6,7 @@ const initialState: AuthData = {
     email: "",
     username: "",
     admin: false,
-    paymentMethods: [CREDIT_CARD],
+    paymentMethods: [CREDIT_CARD_PAYMENT],
   };
 
   export default initialState;

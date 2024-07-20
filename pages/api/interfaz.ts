@@ -1,4 +1,4 @@
-import { AuthData } from "@store/auth/auth.store";
+import { AuthData } from "@store/auth/contracts";
 
 export interface ErrorResponse {
   message: string;

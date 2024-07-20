@@ -1,73 +1,34 @@
-import React, { useRef, useState } from "react";
+'use client'
+
+import React, {  useRef } from "react";
 import { Stepper, StepperRefAttributes } from 'primereact/stepper';
 import { StepperPanel } from 'primereact/stepperpanel';
 import { Button } from 'primereact/button';
-import CreditCardForm, { useCreditCard } from "@components/common/forms/inputCreditCard.component";
 import useCartStore from "@store/cart/useCartStore";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import UserDataFormStepComponent from "./components/formSteps/UserFormDataStepComponent";
 import { useAuthStore } from "@store/auth/auth.store";
 import ShipmentFormDataStepComponent from "./components/formSteps/ShimpentFormDataStepComponent";
+import useCheckout from "app/hooks/useCheckout";
+import MpFormDataStepComponent from "./components/formSteps/PaymentFormDataStepComponent/MpFormDataStepComponentt";
 
-
-interface ShipmentFormData {
-  name: string;
-  lastname: string;
-  street: string;
-  city: string;
-  state: string;
-  zipcode: string;
-  number: string;
-  depto: string;
-  neighborhood: string;
-}
-
-const useShipmentFormData = () => {
-
-  const initState: ShipmentFormData = {
-    name: "",
-    lastname: "",
-    number: "",
-    street: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    depto: "",
-    neighborhood: ""
-  }
-
-  const [shipmentFormData, setShipmentFormData] = useState<ShipmentFormData>(initState)
-
-  const handleOnChage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setShipmentFormData({
-      ...shipmentFormData,
-      [event.target.name]: event.target.value,
-    });
-  }
-
-  return {
-    shipmentFormData,
-    handleOnChage,
-  }
-}
-
-const Checkout = () => {
+export default function CheckoutPage() {
   const router = useRouter()
-  const {isLogedIn, userSession} = useAuthStore()
-  
-  const shipmentFormData = useShipmentFormData();
-  const paymentFormData = useCreditCard()
-
+  const {isLogedIn, userSession} = useAuthStore();
+  const checkoutData = useCheckout();
+  const cart = useCartStore()
   const stepperRef = useRef<StepperRefAttributes>(null);
+
+//  const [total, setTotoal] =useState<number>(cart.totalAmount + (checkoutData.shipment.shippingAmount ?? 0)); 
 
   const PrevButton = () => (
     <Button label="prev" icon="pi pi-arrow-left" onClick={() => stepperRef.current?.prevCallback()} />
   )
-
-  interface NextButtonProps {
-    rule?: boolean;
-  }
+  
+    interface NextButtonProps {
+      rule?: boolean;
+    }
   const NextButton = (props: NextButtonProps) => (
     <Button label="next" icon="pi pi-arrow-right" onClick={() => {
       if(props.rule === undefined || props.rule)
@@ -78,10 +39,9 @@ const Checkout = () => {
     }} />
   )
 
-  const useCart = useCartStore()
-
   return (
     <section className="card border shadow p-4">
+
       <Stepper ref={stepperRef}>
         <StepperPanel header="Datos de Usuario">
           <div className="flex items-center">
@@ -95,17 +55,18 @@ const Checkout = () => {
 
 
         <StepperPanel header="Datos de envio">
-          <ShipmentFormDataStepComponent />
+          <ShipmentFormDataStepComponent 
+            checkoutData = {checkoutData}
+          />  
           <menu className="flex justify-center items-center gap-4">
             <PrevButton />
             <NextButton />
           </menu>
         </StepperPanel>
         <StepperPanel header="Datos de pago">
-
-          <CreditCardForm
-            {...paymentFormData}
-          />
+          <MpFormDataStepComponent />      
+          {/* <PaymentFormDataStepComponent checkoutData={checkoutData}/> */}
+          
           <menu className="flex justify-center items-center gap-4">
             <PrevButton />
             <NextButton />
@@ -121,13 +82,13 @@ const Checkout = () => {
             </article>
             <article className="my-4">
               <h4 className="text-lg font-bold border-b-2">Datos de envio</h4>
-              <p>{shipmentFormData.shipmentFormData.street}</p>
-              <p>{shipmentFormData.shipmentFormData.number}</p>
-              <p>{shipmentFormData.shipmentFormData.depto}</p>
-              <p>{shipmentFormData.shipmentFormData.neighborhood}</p>
-              <p>{shipmentFormData.shipmentFormData.zipcode}</p>
-              <p>{shipmentFormData.shipmentFormData.city}</p>
-              <p>{shipmentFormData.shipmentFormData.state}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.street}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.number}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.depto}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.neighborhood}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.zipcode}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.city}</p>
+              <p>{checkoutData.shipmentForm.shipmentFormData.state}</p>
             </article>
 
             <article>
@@ -135,8 +96,8 @@ const Checkout = () => {
                 Detalle
               </h4>
               <p>Gastos de envio: {100}</p>
-              <p>Productos en el carrito {useCart.totalAmount}</p>
-              <h5>total {useCart.totalAmount + 100} </h5>
+              <p>Productos en el carrito {cart.totalAmount}</p>
+              <h5>total {cart.totalAmount + 100} </h5>
             </article>
 
 
@@ -155,6 +116,4 @@ const Checkout = () => {
 
     </section>
   );
-};
-
-export default Checkout;
+}
