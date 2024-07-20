@@ -1,9 +1,10 @@
-import CheckoutFormDataProps from "../../../contracts";
+import { CheckoutFormDataProps } from "@pages/checkout/components/contracts";
+
 
 const BranchDeliveryForm = (props: CheckoutFormDataProps) =>
 (
     <>
-        <h2 className="sr-only">{props.checkoutData.shippingType}</h2>
+        <h2 className="sr-only">{props.checkoutData.shipment.shippingType}</h2>
     </>
 )
 

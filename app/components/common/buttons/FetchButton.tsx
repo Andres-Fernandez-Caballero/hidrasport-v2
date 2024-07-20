@@ -1,5 +1,5 @@
+import { FetchButtonProps } from "@interfaces/IButton";
 import React from "react";
-import { FetchButtonProps } from "./../../interfaces/IButton";
 
 const FetchButton: React.FC<FetchButtonProps> = ({ text, color, onClick }) => {
   return (

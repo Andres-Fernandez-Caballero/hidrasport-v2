@@ -1,5 +1,4 @@
-import IUseCheckout from "app/hooks/useCheckout/interface";
-
+import IUseCheckout from "app/hooks/useCheckout/contracts";
 
 export interface CheckoutFormDataProps {
     checkoutData: IUseCheckout;
