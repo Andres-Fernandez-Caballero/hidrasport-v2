@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
+const withTM = require('next-transpile-modules')(['@mercadopago/sdk-react']);
+
 const nextConfig = {
   images: {
     domains: [
       "hidrasport.com.ar", 
-      "127.0.0.1"
+      "127.0.0.1",
+      "localhost"
     ],
     remotePatterns: [
       {
@@ -37,4 +40,4 @@ if (process.env.NODE_ENV === "production") {
   // (nextConfig.loader = "akamai"), (nextConfig.path = "");
 }
 
-module.exports = nextConfig;
+module.exports = withTM(nextConfig);

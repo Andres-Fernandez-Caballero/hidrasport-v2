@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 import useCartStore from "../cart/useCartStore";
 import { AuthData, AuthStore } from "./contracts";
 import initialState from "./initalState";
-import { CREDIT_CARD_PAYMENT } from "@interfaces/IpaymentMethods";
+import { CREDIT_CARD_PAYMENT } from "@interfaces/Ipayment";
 
 
 export const useAuthStore = create<AuthStore>()(

@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import LoginMaterial from "./loginMaterial";
 import { fetchLogin } from "@services/user";
+import { AuthData } from "@store/auth/contracts";
 
 const   validationSchemaLogin = Yup.object().shape({
   username: Yup.string().required("Ingrese un nombre de usuario"),
@@ -42,7 +43,7 @@ const Login = () => {
   const actionLogin = async () => {
     try {
       const valitateObject = await validationSchemaLogin.validate(loginData, { abortEarly: false });
-      const data = await fetchLogin(valitateObject);
+      const data = await fetchLogin(valitateObject) as AuthData;
       
       login(data);
       toast.success("Login exitoso");

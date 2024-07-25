@@ -7,7 +7,6 @@ import Loader from "@components/common/Loader";
 import HeroSection from "@components/layout/landing/heroSection";
 import CategoriesSection from "@components/layout/landing/categoriesSection";
 import CarouselProducts from "@components/layout/carouselProducts";
-import BannerHome from "@components/layout/landing/bannerHome";
 import InfoCardsHome from "@components/layout/landing/infocardsHome";
 import { ILandigPage } from "@interfaces/hidraApi/landingPage";
 

@@ -4,12 +4,6 @@ export const BRANCH_DELIVERY = "Envio a Sucursal mas Cercana";
 
 export type ShippingType = typeof HOME_DELIVERY | typeof PICKUP_POINT | typeof BRANCH_DELIVERY;
 
-
-
-
-// Options for the payment method menu
-
-// Options for the shipping method menu
 export const shippingTypes: ShippingType[] = [
   HOME_DELIVERY,
   PICKUP_POINT,

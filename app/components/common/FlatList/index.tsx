@@ -1,31 +1,23 @@
 import Image from "next/image";
 import { SERVER_URL } from "@config/index";
+import { iCartProduct } from "@interfaces/ICart";
 
 type Direction = "horizontal" | "vertical";
 
-interface Item {
-  img: string;
-  name: string;
-  title: string;
-  color: string;
-  size: string;
-  price: number;
-}
-
-interface FlatListProps<T> {
-  data: T[];
-  renderItem: (item: T) => React.ReactNode;
+interface FlatListProps {
+  data: iCartProduct[];
+  renderItem: (item: iCartProduct) => React.ReactNode;
   renderEmptyList?: () => React.ReactNode;
-  keyExtractor?: (item: T) => string;
+  keyExtractor?: (item: iCartProduct) => string;
   direction?: Direction;
 }
 
-const FlatList = <T extends Item>({
+const FlatList = ({
   data,
   renderEmptyList,
   keyExtractor,
   direction = "horizontal",
-}: FlatListProps<T>) => {
+}: FlatListProps) => {
   if (renderEmptyList && data.length === 0) return renderEmptyList();
 
   return (
@@ -42,7 +34,7 @@ const FlatList = <T extends Item>({
                 width={50}
                 height={50}
                 src={`${SERVER_URL}${item.img}`}
-                alt={item.name}
+                alt={item.title}
                 className="h-full w-full object-cover object-center"
               />
             </div>

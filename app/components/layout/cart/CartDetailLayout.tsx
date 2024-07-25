@@ -38,7 +38,7 @@ const CartItem = (props: CartItemProps) => {
           className=""
           onClick={() => {
             const toastMessage = toast.loading("Agregando al carrito ⌛");
-              addItemToCart(props.item).then(()=> {
+              addItemToCart(props.item, 1).then(()=> {
                 toast.update(toastMessage, {
                   render: "Agregado al carrito",
                   type: "success",

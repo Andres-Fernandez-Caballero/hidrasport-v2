@@ -1,5 +1,6 @@
-import { iCartProduct } from "../../interfaces/ICart";
+
 import { SERVER_URL } from "@config/index";
+import { iCartProduct } from "@interfaces/ICart";
 import Image from "next/image";
 
 type CartItemCardProps = {
@@ -22,7 +23,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
       />
       <p className="text-lg font-semibold mb-2">{item.title}</p>
       <p>Size: {item.size}</p>
-      <p>Name: {item.name}</p>
+      <p>Name: {item.title}</p>
       <p>Color: {item.color}</p>
       <p>Quantity: {item.quantity}</p>
     </div>

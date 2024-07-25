@@ -38,4 +38,6 @@ next-env.d.ts
 
 # next.js
 /.next/
+
+package-lock.json
 pnpm-lock.yaml

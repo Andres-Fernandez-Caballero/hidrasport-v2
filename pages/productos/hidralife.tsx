@@ -1,4 +1,4 @@
-import PaginatedView from "@components/PaginatedView";
+import PaginatedView from "@components/layout/PaginatedView";
 import { SERVER_URL } from "@config/index";
 
 const HidraLifePage: React.FC = () => (

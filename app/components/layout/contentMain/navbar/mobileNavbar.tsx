@@ -65,9 +65,7 @@ const MobileNavbar = ({
                   key={index}
                   onClick={toggleMobileMenuClose}
                   href={link.url}
-                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
-                    link.colorText ?? "text-gray-900"
-                  } hover:bg-gray-50`}
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50`}
                 >
                   {link.text}
                 </Link>

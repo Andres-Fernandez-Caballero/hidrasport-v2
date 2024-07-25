@@ -1,7 +1,8 @@
 import RadioButtonInput from "@components/common/RadioButtonInput";
+import { shippingTypes } from "@interfaces/IShipping";
 import { useAuthStore } from "@store/auth/auth.store";
 import useCartStore from "@store/cart/useCartStore";
-import useCheckout, { ShippingTypes } from "app/hooks/useCheckout";
+import useCheckout from "app/hooks/useCheckout";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -12,6 +13,8 @@ const FormCheckout = () => {
   const [buttonCheckoutIsDisabled, setButtonCheckoutIsDisabled] = useState<boolean>(true);
   
   const router = useRouter();
+  const checkout = useCheckout();
+  
   const {
     shippingType,
     zipCode, 
@@ -22,7 +25,7 @@ const FormCheckout = () => {
     handleOnPaymentMethodChange,
     paymentMethod,
 
-  } = useCheckout()
+  } = checkout.shipment
 
 
   useEffect(
@@ -51,11 +54,12 @@ const FormCheckout = () => {
     <div className="card shadow p-6 border rounded-md">
       <form onSubmit={handleOnSubmit}>
         <h2 className="font-bold">Datos de envio</h2>
+        
         <RadioButtonInput
           className="my-4"
           name="type-shipping"
-          totalItemsList={ShippingTypes}
-          itemsAvailables={ShippingTypes}
+          totalItemsList={shippingTypes}
+          itemsAvailables={shippingTypes}
           currentState={shippingType}
           onChange={handleOnShippingTypeChange}
         />
