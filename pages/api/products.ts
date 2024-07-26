@@ -11,9 +11,16 @@ export default function handler(
 }
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
-  const page = req.query.page ?? 1;
-  const productsApuUrl = `${SERVER_URL}/api/store/products/?page=${page}`;
-  const response = await fetch(productsApuUrl);
-  const data = await response.json();
-  return res.json(data);
+  try{
+    const page = req.query.page ?? 1;
+    const productsApuUrl = `${SERVER_URL}/api/store/products/?page=${page}`;
+    const response = await fetch(productsApuUrl);
+    const data = await response.json();
+    return res.status(200).json(data);
+
+  }catch(err){
+    return res.status(407).json({
+      message:'error cargado productos'
+    })
+  }
 }
