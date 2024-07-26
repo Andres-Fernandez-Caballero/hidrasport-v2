@@ -29,7 +29,7 @@ const PaginatedView = (props: PaginatedViewProps) => {
     const page = parseInt(router.query.page as string) || 1;
     const [currentPage, setCurrentPage] = useState(page);
 
-    const urlApi = `${props.apiEndpoint}?   page=${currentPage}`;
+    const urlApi = `${props.apiEndpoint}?page=${currentPage}`;
     const { data, error, isLoading } = useSWR(urlApi, fetcher);
 
     const nextPage = useCallback(() => {
