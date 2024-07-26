@@ -2,6 +2,7 @@ import { Product } from "@interfaces/IProduct"
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import styles from "./styles.module.css";
 
 interface ProductCadItemProps {
     product: Product
@@ -32,7 +33,7 @@ const ProductCardItem = ({ product }: ProductCadItemProps) => {
     return (
 
         <article
-            className="group relative bg-white p-4 rounded-lg"
+            className={styles.itemCard}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
         >
@@ -49,16 +50,18 @@ const ProductCardItem = ({ product }: ProductCadItemProps) => {
                     />
                 </div>
             </figure>
-            <div className="mt-4 flex justify-between">
-                <div>
-                    <h3 className="text-sm text-gray-700">
+            <div className={styles.productDescriptionContainer}>
+                <div className={styles.productDescription}>
+                    <h3 className={styles.productName}>
                         <Link href={`/productos/detalle/${product.title_id}`}>
                             <span aria-hidden="true" className="absolute inset-0"></span>
                             {product.title}
+                            <br/>
+                            <span className={styles.productPromotion}>3 Cuotas sin interes</span>
                         </Link>
                     </h3>
+                <span className={styles.productPrice}>${product.price}</span>
                 </div>
-                <p className="text-sm font-medium text-gray-900">${product.price}</p>
             </div>
         </article>
     )
