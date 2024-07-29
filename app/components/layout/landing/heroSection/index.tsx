@@ -2,6 +2,8 @@ import { HeroSection as HeroSectionProps } from "@interfaces/hidraApi/landingPag
 import styles from "./styles.module.css";
 import { Divider } from "primereact/divider";
 import { Button } from 'primereact/button';
+import Link from "next/link";
+import Image from "next/image";
 
 const HeroSection = (props: HeroSectionProps) => (
     <section style={{ height: '100vh' }}>
@@ -25,9 +27,12 @@ interface BackgroundImageProps {
 
 const BackgroundImage = (props: BackgroundImageProps) => (
     <div className="relative w-full h-full">
-        <img 
+        <Image
+            alt="HidrasportHero"
+            width={800}
+            height={500}
+            quality={80}
             src={props.backgroundImage} 
-            alt="Background Natacion" 
             className="w-full h-full object-cover" 
             style={{ height: '70vh' }}
         />
@@ -56,7 +61,9 @@ const Messages = () => (
 
 const HeroFooter = () => (
     <div className={styles.heroFooterContainer}>
-        <Button icon="pi pi-arrow-right" className={styles.heroFooterButton} label="Productos"></Button>
+        <Link href={'/productos'}>
+            <Button icon="pi pi-arrow-right" className={styles.heroFooterButton} label="Productos" />
+        </Link>
     </div>
 );
 
