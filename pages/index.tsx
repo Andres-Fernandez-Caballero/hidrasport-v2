@@ -2,13 +2,13 @@ import type { NextPage } from "next";
 import React from "react";
 import "react-multi-carousel/lib/styles.css"; // Import styles for the carousel
 import useSWR from "swr";
-import { landingPageUrl } from "@config/index";
 import Loader from "@components/common/Loader";
 import HeroSection from "@components/layout/landing/heroSection";
 import CategoriesSection from "@components/layout/landing/categoriesSection";
 import CarouselProducts from "@components/layout/carouselProducts";
 import InfoCardsHome from "@components/layout/landing/infocardsHome";
 import { ILandigPage } from "@interfaces/hidraApi/landingPage";
+import urls from "@config/urls";
 
 
 const fetcher = (url: string): Promise<ILandigPage> =>
@@ -21,7 +21,7 @@ const fetcher = (url: string): Promise<ILandigPage> =>
 const Home: NextPage = () => {
   const { data, error } = useSWR(
     //`${SERVER_URL}/api/store/site-configuration/`,
-    landingPageUrl,
+    urls.landingPage,
     fetcher,
   );
 

@@ -1,26 +1,23 @@
-import { SERVER_URL } from "@config/index";
+import urls from "@config/urls";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default function handler(
+export default async function getProducts(
   req: NextApiRequest, 
   res: NextApiResponse) 
   {
-    if (req.method === "GET") {
-      get(req, res);
-  }
-}
+    if (req.method !== "GET")
+      return res.status(405).json({ error: 'Method not allowed' });
 
-async function get(req: NextApiRequest, res: NextApiResponse) {
-  try{
-    const page = req.query.page ?? 1;
-    const productsApuUrl = `${SERVER_URL}/api/store/products/?page=${page}`;
-    const response = await fetch(productsApuUrl);
-    const data = await response.json();
-    return res.status(200).json(data);
-
-  }catch(err){
-    return res.status(407).json({
-      message:'error cargado productos'
-    })
-  }
+    try{
+      const page = req.query.page ?? 1;
+      const productsApuUrl = urls.products;
+      const response = await fetch(`${productsApuUrl}?page=${page}`);
+      const data = await response.json();
+      return res.status(200).json(data);
+  
+    }catch(err){
+      return res.status(407).json({
+        message:'error cargado productos'
+      })
+    }
 }
