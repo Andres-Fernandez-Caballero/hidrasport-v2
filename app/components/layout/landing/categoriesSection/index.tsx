@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 
 const categoriesSection = () => (
-    <section className="h-svh gap-1 mt-20">
+    <section className="h-svh gap-1 mt-6">
         <div className={styles.sectionName}>
             <h2>Categorias</h2>
         </div>
