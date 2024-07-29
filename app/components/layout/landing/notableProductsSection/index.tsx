@@ -8,7 +8,7 @@ interface NotableProductsProps {
 
 const NotablesProductsSection = (props: NotableProductsProps) => {
     return (
-    <section className="h-svh gap-1 mt-20">
+    <section className="h-svh gap-1 mt-6">
         <div className={styles.sectionName}>
             <h2>Imperdibles</h2>
         </div>

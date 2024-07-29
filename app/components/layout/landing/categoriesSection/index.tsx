@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 const categoriesSection = () => (
-    <section className="h-svh gap-1 mt-20">
+    <section className="h-svh gap-1 mt-6">
         <div className={styles.sectionName}>
             <h2>Categorias</h2>
         </div>
