@@ -3,8 +3,21 @@
   margin: 0;
   overflow: hidden;
   background-color: white;
-  border-radius: 0.5rem 2rem;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.productCardContainer {
+  position: relative;
+  min-height: 12rem;
+    background-color: white;
+    border-radius: 0.5rem 2rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  width: 100%;
+  max-width: 400px;
+  /* Ajusta según sea necesario */
+  margin: 0 auto;
+  /* Centrar el contenedor */
+  overflow: hidden;
+  /* Evitar overflow */
 }
 
 .productDescriptionContainer{
