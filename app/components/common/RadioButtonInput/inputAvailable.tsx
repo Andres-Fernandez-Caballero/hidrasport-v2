@@ -1,5 +1,8 @@
+import Image from "next/image";
+
 interface InputAvailableProps {
   item: string;
+  image?: string;
   name: string;
   currentState: string;
   onchange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -7,6 +10,7 @@ interface InputAvailableProps {
 
 const InputAvailable = ({
   item,
+  image,
   name,
   currentState,
   onchange,
@@ -24,21 +28,28 @@ const InputAvailable = ({
       className="sr-only"
       aria-labelledby={`${item}-label`}
     />
-    <span id={`${item}-label`}>{item}</span>
-    {/* <!--
-                    Active: "border", Not Active: "border-2"
-                    Checked: "border-indigo-500", Not Checked: "border-transparent"
-                    --> */}
+    <div className="flex items-center">
+      {image ?
+        <Image
+          src={image}
+          alt={item}
+          height={200}
+          width={200}
+          className="w-12 h-12 object-cover rounded-full mr-3"
+        />
+        :
+        <span id={`${item}-label`} className="flex-1">{item}</span>
+      }
+    </div>
     <span
       className={`
                             pointer-events-none 
                             absolute -inset-px 
                             rounded-md 
-                            ${
-                              item === currentState
-                                ? "border-2 border-indigo-500"
-                                : "border"
-                            }
+                            ${item === currentState
+          ? "border-2 border-indigo-500"
+          : "border"
+        }
                             `}
       aria-hidden="true"
     ></span>

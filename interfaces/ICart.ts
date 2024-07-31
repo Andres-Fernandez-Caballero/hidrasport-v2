@@ -13,7 +13,7 @@ export interface iCartProduct {
   id?: number;
 }
 
-export interface iCartRequest {
+export interface ICartAddProduct  {
   subProductId: string;
   size: string;
 }

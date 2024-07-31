@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import {
   iCartProduct,
-  iCartRequest,
+  ICartAddProduct,
 } from "../../interfaces/ICart";
 import { CartStore } from "./cart.contracts";
 import { fetchCartAdd, fetchCartDetails, fetchCartRemove, fetchTotalAmount } from "./cart.fetchers";
@@ -30,7 +30,7 @@ const useCartStore = create<CartStore>((set, get) => ({
       set({ cartIsLoading: false });
     }
   },
-  addToCart: async (product: iCartRequest, quantity: number = 1) => {
+  addToCart: async (product: ICartAddProduct, quantity: number = 1) => {
     set({ cartIsLoading: true });
     try {
       const token = useAuthStore.getState().userSession.token;
@@ -54,7 +54,7 @@ const useCartStore = create<CartStore>((set, get) => ({
   },
 
   removeFromCart: async (product: iCartProduct): Promise<void> => {
-    const productRequest: iCartRequest = {
+    const productRequest: ICartAddProduct = {
       size: product.size,
       subProductId: product.subproduct_id
     }
@@ -68,7 +68,7 @@ const useCartStore = create<CartStore>((set, get) => ({
   },
 
   addItemToCart: async (product: iCartProduct, quantity = 1) => {
-    const productRequest: iCartRequest = {
+    const productRequest: ICartAddProduct = {
       size: product.size,
       subProductId: product.subproduct_id
     }

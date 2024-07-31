@@ -18,12 +18,10 @@ const SelectorVariante = ({
   setCurrentVariant,
 }: SelectorVarienteProps) => {
   const [size, setSize] = useState<string>("");
-  const [color, setColor] = useState<string>(currentVariant.color);
   const { addToCart } = useCartStore();
-  
-  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(event.target.value);
-    const variant = variants.find((v) => v.color === event.target.value);
+
+  const handleOnVariantChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const variant = variants.find((v) => v.subProductId === event.target.value);
     if (variant) setCurrentVariant(variant);
   };
 
@@ -31,13 +29,13 @@ const SelectorVariante = ({
     setSize(event.target.value);
   }
 
-  function handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleOnSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const toastMessage = toast.loading("Agregando al carrito ⌛");
+    
     try {
       if (size === "") throw new Error("Debe seleccionar un talle");
-
-      addToCart({
+      await addToCart({
         size,
         subProductId: currentVariant.subProductId,
       });
@@ -65,10 +63,10 @@ const SelectorVariante = ({
         {/* selector color aca */}
         <RadioButtonInput
           name="color-choice"
-          totalItemsList={product.available_colors}
-          itemsAvailables={product.available_colors}
-          currentState={color}
-          onChange={handleColorChange}
+          totalItemsList={variants.map(variant => ({ item: variant.subProductId, image: variant.images.front }))}
+          itemsAvailables={variants.map(variant => ({ item: variant.subProductId, image: variant.images.front }))}
+          currentState={currentVariant.subProductId}
+          onChange={handleOnVariantChange}
         />
       </div>
 
@@ -95,7 +93,8 @@ const SelectorVariante = ({
           />
         </fieldset>
       </div>
-      <button className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+      <button 
+        className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
         Agregar al carrito
       </button>
     </form>

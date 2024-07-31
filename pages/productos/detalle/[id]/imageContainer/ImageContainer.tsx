@@ -1,4 +1,3 @@
-import { SERVER_URL } from "@config/index";
 import { Variant } from "@interfaces/IProduct";
 import Image from "next/image";
 import CarouselImage from "./carousseImage";
@@ -7,9 +6,8 @@ export interface ImageContainerProps {
   variant: Variant;
 }
 const ImageContainer = ({ variant }: ImageContainerProps) => {
-  const images = Object.values(variant.images).map(
-    (image) => `${SERVER_URL}${image}`,
-  );
+  
+  const images = Object.values(variant.images)
   return (
     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
       {images.map((image) => (
