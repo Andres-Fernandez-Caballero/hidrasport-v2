@@ -31,40 +31,41 @@ const ProductCardItem = ({ product }: ProductCadItemProps) => {
     }
 
     return (
-
-        <Link href={`/productos/detalle/${product.title_id}`}>
-            <article
-                className={styles.itemCard}
-                onMouseEnter={handleOnMouseEnter}
-                onMouseLeave={handleOnMouseLeave}
-            >
-                <figure
-                    className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80 transition duration-500 ease-in-out"
+        <div className={styles.productCardContainer}>
+            <Link href={`/productos/detalle/${product.title_id}`}>
+                <article
+                    className={styles.itemCard}
+                    onMouseEnter={handleOnMouseEnter}
+                    onMouseLeave={handleOnMouseLeave}
                 >
-                    <div className="relative h-full w-full">
-                        <Image
-                            height={600}
-                            width={600}
-                            src={imageSrc}
-                            alt={product.title}
-                            className="h-full w-full object-cover object-center transition-opacity duration-500 ease-in-out"
-                        />
+                    <figure
+                        className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-80 transition duration-500 ease-in-out"
+                    >
+                        <div className="relative h-full w-full">
+                            <Image
+                                height={600}
+                                width={600}
+                                src={imageSrc}
+                                alt={product.title}
+                                className="h-full w-full object-cover object-center transition-opacity duration-500 ease-in-out"
+                            />
+                        </div>
+                    </figure>
+                    <div className={styles.productDescriptionContainer}>
+                        <div className={styles.productDescription}>
+                            <h3 className={styles.productName}>
+                                <span aria-hidden="true" className="absolute inset-0"></span>
+                                {product.title}
+                                <br />
+                                <span className={styles.productPromotion}>3 Cuotas sin interes</span>
+                            </h3>
+                            <span className={styles.productPrice}>${product.price}</span>
+                        </div>
                     </div>
-                </figure>
-                <div className={styles.productDescriptionContainer}>
-                    <div className={styles.productDescription}>
-                        <h3 className={styles.productName}>
-                            <span aria-hidden="true" className="absolute inset-0"></span>
-                            {product.title}
-                            <br/>
-                            <span className={styles.productPromotion}>3 Cuotas sin interes</span>
-                        </h3>
-                    <span className={styles.productPrice}>${product.price}</span>
-                    </div>
-                </div>
-            </article>
-        </Link>
-    )
+                </article>
+            </Link>
+        </div>
+    );
 }
 
-export default ProductCardItem; 
+export default ProductCardItem;
