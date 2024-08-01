@@ -8,7 +8,6 @@ import CategoriesSection from "@components/layout/landing/categoriesSection";
 import CarouselProducts from "@components/layout/carouselProducts";
 import InfoCardsHome from "@components/layout/landing/infocardsHome";
 import { ILandigPage } from "@interfaces/hidraApi/landingPage";
-import urls from "@config/urls";
 
 
 const fetcher = (url: string): Promise<ILandigPage> =>
@@ -21,7 +20,7 @@ const fetcher = (url: string): Promise<ILandigPage> =>
 const Home: NextPage = () => {
   const { data, error } = useSWR(
     //`${SERVER_URL}/api/store/site-configuration/`,
-    urls.landingPage,
+    '/api/landing',
     fetcher,
   );
 
