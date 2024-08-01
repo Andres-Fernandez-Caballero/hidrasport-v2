@@ -1,34 +1,37 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Data } from "../interfaz";
-import { SERVER_URL } from "@config/index";
+import { RegisterDto } from "@interfaces/IAuth";
+import urls from "@config/urls";
 
-export default function handler(
+interface Data {
+  message?: string;
+  // Agrega otros campos que esperas en la respuesta
+}
+
+export default async function RegisterPost(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<Data>
 ) {
-  if (req.method === "POST") {
-    fetch(`${SERVER_URL}/api/accounts/register/`, {
-      method: "POST",
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+
+  const registerData: RegisterDto = req.body;
+
+  try {
+    const response = await fetch(`${urls.register}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(req.body),
-    })
-      .then((response) => {
-        if (response.ok) {
-          response.json().then((data) => {
-            delete data.response;
-            res.status(200).json(data);
-          });
-        } else {
-          throw new Error("Error al iniciar sesión " + response.statusText);
-        }
-      })
-      .catch((error) => {
-        res.status(500).json({ message: (error as Error).message });
-      });
-  } else {
-    res.status(405).json({ message: "Method not allowed" });
+      body: JSON.stringify(registerData),
+    });
+      const data = await response.json();
+      if(!response.ok){
+        throw new Error(`Error ${Object.values(data)}`);
+      }
+      
+      return res.status(200).json(data);
+    }catch (err) {
+    return res.status(400).json({ message: (err as Error).message });
   }
 }

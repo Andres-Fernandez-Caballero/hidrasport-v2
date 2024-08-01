@@ -12,12 +12,12 @@ const ProductCardItem = ({ product }: ProductCadItemProps) => {
 
     function getFrontImage() {
         const image = product?.images?.[0]?.image || "/images/remera_frente.png";
-        return `https://hidrasport.com.ar${image}`;
+        return `${image}`;
     }
 
     function getBackImage() {
         const image = product?.images?.[1]?.image || "/images/remera_frente.png";
-        return `https://hidrasport.com.ar${image}`;
+        return `${image}`;
     }
 
     const [imageSrc, setImageSrc] = useState(getFrontImage());

@@ -1,4 +1,4 @@
-import { iCartProduct, iCartRequest } from "@interfaces/ICart";
+import { iCartProduct, ICartAddProduct } from "@interfaces/ICart";
 
 export type CartStore = {
     cartData: iCartProduct[];
@@ -18,11 +18,10 @@ export type CartStore = {
     fetchCart: () => void;
     
     /**
-     * @deprecated   Use addItemToCart(product) instead
      * @param iCartProduct product to add to cart 
      * @returns 
      */
-    addToCart: (product: iCartRequest) => void;
+    addToCart: (product: ICartAddProduct) => Promise<void>;
 
     /**
      * remove item from cart

@@ -6,6 +6,7 @@ import { useAuthStore } from "@store/auth/auth.store";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
+// Validation Rules
 const validationSchemaRegister = Yup.object()
   .shape({
     username: Yup.string().required("El nombre de usuario es obligatorio"),
@@ -20,7 +21,7 @@ const validationSchemaRegister = Yup.object()
 
 const Register = () => {
   const { closeModal, goTab } = useAuthModalStore();
-  const { login } = useAuthStore();
+  const { register } = useAuthStore();
   const [form, setForm] = useState<RegisterDto>({
     username: "",
     email: "",
@@ -44,49 +45,36 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await validationSchemaRegister.validate(form, { abortEarly: false });
+    actionRegister().then();
+  }
 
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      const actionRegister = async () => {
+        try {
+          const registerDataValidated = await validationSchemaRegister.validate(form, { abortEarly: false });
+          await register(registerDataValidated);
 
-      if (!response.ok) {
-        const message = await response.text();
-        throw new Error(message);
-      }
-
-      const data = await response.json();
-      login(data);
-      toast.success("Cuenta creada", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        theme: "dark",
-      });
-      closeModal();
-    } catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        const emptyFieldsMessage = "Complete todos los campos";
-        const errorMessages = error.errors.filter(message => message !== emptyFieldsMessage);
-        if (!form.username && !form.password && !form.password2 && !form.email) {
-          toastMessageError(emptyFieldsMessage);
-        } else if (errorMessages.length >0) {
-          error.errors.forEach(messageError => {
-            toastMessageError(messageError);
-          });
+          toast.success("Registro existo");
+          closeModal();
+        }catch(error) {
+          if(error instanceof Yup.ValidationError){
+            const emptyFieldsMessage = "Complete todos los campos";
+            const errorMessages = error.errors.filter(message => message!== emptyFieldsMessage);
+            
+            if (!form.username &&!form.password &&!form.password2 &&!form.email) {
+              toastMessageError(emptyFieldsMessage);
+            } else if (errorMessages.length > 0) {
+              error.errors.forEach(messageError => {
+                toastMessageError(messageError);
+              });
+            }
+          }else {
+            toastMessageError((error as Error).message)
+          }
         }
-      } else {
-        toast.error((error as Error).message);
       }
-    }
-  };
+
 
   return (
     <section className="container mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">

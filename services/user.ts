@@ -1,23 +1,23 @@
-import { LoginDto } from "@interfaces/IAuth"
+import { LoginDto, RegisterDto } from "@interfaces/IAuth"
 import { CREDIT_CARD_PAYMENT } from "@interfaces/Ipayment";
-import { Login } from "@repositories/user/user.repository"
+import { Login, Register } from "@repositories/user/user.repository"
 import { AuthData } from "@store/auth/contracts";
+import { Payment } from "mercadopago";
 
-export const fetchLogin = async(loginData: LoginDto) => {
+export const fetchLogin = async(loginData: LoginDto): Promise<AuthData> => {
     try{
         const data = await Login(loginData);
-        console.log('LOGIN DATA', loginData);
-        
         return {...data, paymentMethods:[CREDIT_CARD_PAYMENT] };
-        
     }catch(err) {
-        return  {
-            "message": "Ingreso exítoso.",
-            "username": "andres",
-            "email": "andres.fernandezcaballero@davinci.edu.ar",
-            "admin": false
-        }
+        throw new Error("Credenciales incorrectas");
+    }
+}
 
-        //throw new Error("Credenciales incorrectas");
+export const fetchRegister = async(registerData: RegisterDto): Promise<AuthData> => {
+    try {
+        const data = await Register(registerData);
+        return { ... data, paymentMethods: [CREDIT_CARD_PAYMENT], admin:false }
+    }catch (err) {
+        throw new Error( (err as Error).message);
     }
 }
