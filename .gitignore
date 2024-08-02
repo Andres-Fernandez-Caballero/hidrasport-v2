@@ -40,5 +40,3 @@ next-env.d.ts
 /.next/
 
 env.local
-package-lock.json
-pnpm-lock.yaml
