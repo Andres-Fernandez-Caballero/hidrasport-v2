@@ -1,17 +1,19 @@
-import { RegisterDto } from "@interfaces/IAuth";
+import { LoginDto, RegisterDto } from "@interfaces/IAuth";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import useCartStore from "../cart/useCartStore";
-import { AuthData, AuthStore } from "./contracts";
+import { AuthStore } from "./contracts";
 import initialState from "./initalState";
 import { CREDIT_CARD_PAYMENT } from "@interfaces/Ipayment";
+import { fetchLogin, fetchRegister } from "@services/user";
 
 
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set, get) => ({
       userSession: initialState,
-      login: (authData: AuthData) => {
+      login: async(loginData: LoginDto) => {
+        const authData = await fetchLogin(loginData)
         set({
           userSession: authData,
         });
@@ -24,16 +26,11 @@ export const useAuthStore = create<AuthStore>()(
 
       },
       register: async (registerDto: RegisterDto) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const authData = await fetchRegister(registerDto);
         set({
-          userSession: {
-            token: "123",
-            email: registerDto.email,
-            username: registerDto.username,
-            admin: false,
-            paymentMethods: [CREDIT_CARD_PAYMENT],
-          },
-        });
+          userSession: authData
+        })
+        useCartStore.getState().fetchCart()
       },
       isLogedIn: () => {
         return get().userSession.token !== "";

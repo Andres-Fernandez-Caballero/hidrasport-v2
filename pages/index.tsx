@@ -2,12 +2,10 @@ import type { NextPage } from "next";
 import React from "react";
 import "react-multi-carousel/lib/styles.css"; // Import styles for the carousel
 import useSWR from "swr";
-import { landingPageUrl } from "@config/index";
 import Loader from "@components/common/Loader";
 import HeroSection from "@components/layout/landing/heroSection";
 import CategoriesSection from "@components/layout/landing/categoriesSection";
-import CarouselProducts from "@components/layout/carouselProducts";
-import InfoCardsHome from "@components/layout/landing/infocardsHome";
+import ProductsSection from "@components/layout/landing/notableProductsSection";
 import { ILandigPage } from "@interfaces/hidraApi/landingPage";
 
 
@@ -21,7 +19,7 @@ const fetcher = (url: string): Promise<ILandigPage> =>
 const Home: NextPage = () => {
   const { data, error } = useSWR(
     //`${SERVER_URL}/api/store/site-configuration/`,
-    landingPageUrl,
+    '/api/landing',
     fetcher,
   );
 
@@ -36,21 +34,8 @@ const Home: NextPage = () => {
         title={data?.heroSection.title ?? ''}
         messages={data?.heroSection.messages ?? []}
       />
-      <CategoriesSection/>
-
-      <section className="productos_dest">
-        <h2 className="text-2xl text-center font-extrabold">Productos Destacados 🥇</h2>
-        <CarouselProducts products={data?.productosDestacados ?? []} />
-      </section>
-
-      {/* Info cards */}
-      <section>
-        <div className="flex items-center justify-center m-10  container mx-auto ">
-          <InfoCardsHome
-            items={data?.infoCards ?? []}
-          />
-        </div>
-      </section>
+      <CategoriesSection />
+      <ProductsSection products={data?.productosDestacados ?? []} />
     </main>
   );
 };

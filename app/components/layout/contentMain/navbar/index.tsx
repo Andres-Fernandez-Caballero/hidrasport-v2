@@ -3,9 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
-import DescktopNavbar from "./descktopNavbar";
 import { useRouter } from "next/router";
 import { ILink } from "@interfaces/ILink";
+import useCartStore from "@store/cart/useCartStore";
+import { useAuthStore } from "@store/auth/auth.store";
 
 
 interface LinkItem  extends ILink {}
@@ -36,6 +37,8 @@ export interface DescktopNavbarProps extends NavbarProps {
 const Navbar = () => {
   const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { isLogedIn, logout } = useAuthStore();
+  const { cartData } = useCartStore();
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -101,26 +104,52 @@ const Navbar = () => {
         </div>
 
         {/* Profile and Cart */}
-        <div className="inline-flex">
-        <button
-            type="button"
-            className="inline-flex items-center justify-between rounded-md p-1.5 text-white"
-            onClick={toggleMobileMenu}
-          >
-            <span className="pi pi-user"/>
-          </button>
+        <div className="inline-flex gap-1">
+          <Link href="/carrito">
+          <span className="relative inline-block">
+            <span className="pi pi-shopping-cart text-white text-xl"/>
+            {cartData.length >= 0 && (
+              <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                {cartData.length}
+              </span>
+            )}
+          </span>
+          </Link>
+          
+
+          {isLogedIn() ? (
+          <div className="flex items-center justify-end gap-x-2">
+            <Link
+              href="/profile"
+              className="text-2xl leading-6"
+            >
+              <div className="flex flex-row hover:scale-125 ease-in-out duration-150">
+               <span className="pi pi-user text-white text-xl"/>
+              </div>
+            </Link>
+            <button
+              onClick={logout}
+              className="text-xs font-bold leading-6 hover:scale-125 ease-in-out duration-150"
+            >
+              Cerrar sesión <i className="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
+        ) : (
           <button
-            type="button"
-            className="-flex items-center justify-between rounded-md p-1.5 text-white"
-            onClick={toggleMobileMenu}
+            onClick={openModal}
+            className="text-xs leading-6 hover:scale-125 ease-in-out duration-150 ml-8"
           >
-            <span className="pi pi-shopping-cart"/>
+            <span className="pi pi-user text-white text-xl"/>
           </button>
+        )}
+         
+         
+          
+          
         </div>
 
 
         {/* show on md and biggest on */}
-        <DescktopNavbar links={links} openModal={openModal} />
         {/* show only un smalls screens */}
         <MobileNavbar
           links={links}

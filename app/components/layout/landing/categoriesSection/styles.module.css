@@ -1,4 +1,4 @@
-.sectionName{
+.sectionName {
   display: flex;
   height: 3rem;
   padding: 0 1rem;
@@ -6,28 +6,31 @@
   margin: 1rem 0;
   align-items: center;
 }
-.sectionName  h2{
+
+.sectionName h2 {
   color: white;
   font-size: 1.5rem;
   font-weight: 800;
 }
-.categoriesContainer{
-  display:grid;
+
+.categoriesContainer {
+  display: grid;
   height: calc(100vh - 10rem);
-  width: 100%; 
+  width: 100%;
   padding: 0 1rem;
   grid-template-columns: 1fr 1fr;
   column-gap: 1rem;
   row-gap: 1rem;
 }
-.categoriesContainer > div{
+
+.categoriesContainer>div {
   position: relative;
   overflow: hidden;
   border: 3px solid #0e0e0e;
   border-radius: 0.5rem 2rem 0.5rem 2rem;
 }
 
-.categoriesContainer > div > div {
+.categoriesContainer>div>a>div {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -37,7 +40,8 @@
   border-left: 3px solid #0e0e0e;
   border-radius: 1rem 0 0 0;
 }
-.categoriesContainer>div>div>span {
+
+.categoriesContainer>div>a>div>span {
   font-weight: 700;
   font-size: 1.1rem;
 }

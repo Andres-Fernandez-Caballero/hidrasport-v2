@@ -1,4 +1,4 @@
-import { RegisterDto } from "@interfaces/IAuth";
+import { LoginDto, RegisterDto } from "@interfaces/IAuth";
 import { PaymentMethod } from "@interfaces/Ipayment";
 
 export interface AuthData {
@@ -11,7 +11,7 @@ export interface AuthData {
 
   export interface AuthStore {
     userSession: AuthData;
-    login: (authData: AuthData) => void;
+    login: (loginData: LoginDto) => Promise<void>;
     logout: () => void;
     register: (registerDto: RegisterDto) => Promise<void>;
     isLogedIn: () => boolean;

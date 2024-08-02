@@ -6,10 +6,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Yup from "yup";
 import LoginMaterial from "./loginMaterial";
-import { fetchLogin } from "@services/user";
-import { AuthData } from "@store/auth/contracts";
 
-const   validationSchemaLogin = Yup.object().shape({
+const validationSchemaLogin = Yup.object().shape({
   username: Yup.string().required("Ingrese un nombre de usuario"),
   password: Yup.string()
     .required()
@@ -42,12 +40,12 @@ const Login = () => {
 
   const actionLogin = async () => {
     try {
-      const valitateObject = await validationSchemaLogin.validate(loginData, { abortEarly: false });
-      const data = await fetchLogin(valitateObject) as AuthData;
-      
-      login(data);
+      const loginDataValidated = await validationSchemaLogin.validate(loginData, { abortEarly: false });
+      await login(loginDataValidated)
+
       toast.success("Login exitoso");
       closeModal();
+
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const emptyFieldsMessage = "Ingrese su usuario y contraseña";
@@ -65,12 +63,11 @@ const Login = () => {
         toastMessageError((error as Error).message);
       }
     }
-  };
+  }
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     actionLogin().then();
-    // alert('Login exitoso')
   };
 
   return (
@@ -82,8 +79,8 @@ const Login = () => {
       >
         Iniciar sesión
       </h2>
-      
-      <LoginMaterial  onSubmit={handleOnSubmit} onChange={handleOnChange} goTab={goTab} ></LoginMaterial>
+
+      <LoginMaterial onSubmit={handleOnSubmit} onChange={handleOnChange} goTab={goTab} ></LoginMaterial>
     </section>
   );
 };
