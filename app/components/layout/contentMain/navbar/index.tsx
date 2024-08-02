@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import MobileNavbar from "./mobileNavbar";
-import DescktopNavbar from "./descktopNavbar";
 import { useRouter } from "next/router";
 import { ILink } from "@interfaces/ILink";
 import useCartStore from "@store/cart/useCartStore";
@@ -38,7 +37,7 @@ export interface DescktopNavbarProps extends NavbarProps {
 const Navbar = () => {
   const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { isLogedIn, logout, userSession } = useAuthStore();
+  const { isLogedIn, logout } = useAuthStore();
   const { cartData } = useCartStore();
 
   const toggleMobileMenu = () => {
