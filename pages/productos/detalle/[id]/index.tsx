@@ -62,7 +62,7 @@ const Detalle = ({ product }: DetalleProps) => {
             {currentVariant && (
               <SelectorVariante
                 product={product}
-                variants={variants}
+                variants={variants.sort( (a,b) => product.available_colors.indexOf(a.color) - product.available_colors.indexOf(b.color) ) }
                 currentVariant={currentVariant}
                 setCurrentVariant={setCurrentVariant}
               />
