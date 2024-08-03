@@ -55,7 +55,7 @@ const CartItem = (props: CartItemProps) => {
             const toastMessage = toast.loading("retirando producto del carrito ⌛");
               removeFromCart(props.item).then(()=> {
                 toast.update(toastMessage, {
-                  render: "rRemovido del carrito",
+                  render: "Removido del carrito",
                   type: "success",
                   isLoading: false,
                   autoClose: 2000,
