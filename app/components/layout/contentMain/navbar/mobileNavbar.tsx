@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MobileNavbarProps } from ".";
 import { useAuthStore } from "@store/auth/auth.store";
 import { GoPerson } from "react-icons/go";
-import { FaCartShopping } from "react-icons/fa6";
+import styles from "./styles.module.css"
 
 const MobileNavbar = ({
   isOpen,
@@ -15,23 +15,20 @@ const MobileNavbar = ({
 
   return (
     <nav
-      className={`lg:hidden ${isOpen ? "block" : "hidden"}`}
+      className={`${isOpen ? "block" : "hidden"}`}
       role="dialog"
       aria-modal="true"
     >
       <div className="fixed inset-0 z-10"></div>
-      <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+      <div className={styles.mobileNavbarContainer}>
         <div className="flex items-center justify-between">
-          <Link href="/carrito">
-            <FaCartShopping className="text-blue-500 text-2xl" />
-          </Link>
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">HidraSport</span>
             <Image
               width={100}
               height={100}
               className="h-8 w-auto"
-              src="/images/hidraLogo.png"
+              src="/images/hidraLogo.svg"
               alt="tortuga tribal"
             />
           </Link>
@@ -46,7 +43,7 @@ const MobileNavbar = ({
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
-              stroke="currentColor"
+              stroke="white"
               aria-hidden="true"
             >
               <path
@@ -65,21 +62,22 @@ const MobileNavbar = ({
                   key={index}
                   onClick={toggleMobileMenuClose}
                   href={link.url}
-                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50`}
+                  className={`-mx-3 block rounded-lg px-3 text-base font-semibold leading-7 hover:bg-gray-700`}
                 >
                   {link.text}
                 </Link>
               ))}
             </nav>
-            <nav className="py-6">
+            <nav className="py-2">
               {isLogedIn() ? (
-                <div className="flex flex-row gap-4">
+                <div className="flex w-100 justify-between">
                   <Link
                     href="/profile"
                     className="text-2xl font-semibold leading-6 text-gray-900"
                   >
                     <GoPerson />
                   </Link>
+                  <hr />
                   <button
                     onClick={logout}
                     className="text-sm font-semibold leading-6 text-gray-500 hover:text-rose-400"
@@ -89,15 +87,46 @@ const MobileNavbar = ({
                   </button>
                 </div>
               ) : (
-                <div>
+                <div className="flex w-100 justify-center">
+                  <hr />
                   <button
                     onClick={openModal}
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 border-gray-50 text-gray-300 hover:text-gray-900 hover:bg-gray-50"
                   >
                     Login
                   </button>
                 </div>
+                
               )}
+            </nav>
+            <nav className="absolute bottom-6 w-100 align-center">
+              <div className="flex flex-col w-100 justify-center text-center ">
+                
+                <Link
+                    href="https://www.instagram.com/hidrasportok/"
+                    className="font-semibold leading-6 text-gray-50"
+                  >
+                    <i className="pi pi-instagram mr-1.5"/>
+                     Instagram
+                  </Link>
+                  <br />
+                  <Link
+                    href="/profile"
+                    className="font-semibold leading-6 text-gray-50"
+                  > 
+                    <i className="pi pi-facebook mr-1.5"/>
+                    Facebook
+                  </Link>
+                  <br />
+
+                  <Link
+                    href="/profile"
+                    className="font-semibold leading-6 text-gray-50"
+                  >
+                    <i className="pi pi-whatsapp mr-1.5"/>
+                    WhatsApp
+                  </Link>
+              </div>
             </nav>
           </div>
         </div>

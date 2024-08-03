@@ -56,18 +56,16 @@ const Navbar = () => {
   return (
     <header className={'fixed z-10 w-svw bg-stone-950'}>
       <nav
-        className={ `mx-auto flex max-w-7xl items-center justify-between py-1 px-3 lg:px-8"
+        className={ `flex  items-center justify-between py-1 px-6 lg:px-8 "
         aria-label="Global`}
       >
         
        {/* burguer button */}
-        <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-between rounded-md p-2.5 text-gray-700"
+            className="  rounded-md p-2.5 "
             onClick={toggleMobileMenu}
           >
-            <span className="sr-only">Open main menu</span>
             <svg
               className="h-6 w-6"
               fill="none"
@@ -83,11 +81,10 @@ const Navbar = () => {
               />
             </svg>
           </button>
-        </div>
         
 
         {/* Brand */}
-        <div className="flex lg:flex-1">
+        <div className="flex">
           <Link href="/" className="-m-1.5 p-1.5 hover:scale-110 ease-in-out duration-150">
             <span className="sr-only">Hidra</span>
             <figure className="flex items-center">
@@ -96,7 +93,7 @@ const Navbar = () => {
                 height={800}
                 width={800}
                 className="h-10 w-auto m-1"
-                src={asPath===hidraLifeLink.url?"/images/hidralife.png":"/images/hidraLogo.png"}
+                src={asPath===hidraLifeLink.url?"/images/hidralife.png":"/images/hidraLogo.svg"}
                 alt="Logo Hidra Sport"
               />
             </figure>
@@ -151,13 +148,13 @@ const Navbar = () => {
 
         {/* show on md and biggest on */}
         {/* show only un smalls screens */}
+      </nav>
         <MobileNavbar
           links={links}
           openModal={openModal}
           isOpen={isOpen}
           toggleMobileMenuClose={toggleMobileMenuClose}
         />
-      </nav>
     </header>
   );
 };
