@@ -25,6 +25,7 @@ const CartItem = (props: CartItemProps) => {
         <Image
           width={100}
           height={100}
+          quality={30}
           src={SERVER_URL + props.item.img}
           alt={props.item.title}
           className="object-cover object-center"
@@ -54,7 +55,7 @@ const CartItem = (props: CartItemProps) => {
             const toastMessage = toast.loading("retirando producto del carrito ⌛");
               removeFromCart(props.item).then(()=> {
                 toast.update(toastMessage, {
-                  render: "removido del carrito",
+                  render: "rRemovido del carrito",
                   type: "success",
                   isLoading: false,
                   autoClose: 2000,
@@ -128,11 +129,11 @@ const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
             value={cartData}
             itemTemplate={(item) => (<CartItem item={item} />)} rows={5}
             inline
-            scrollHeight="60svh"/>
+            scrollHeight="100%"/>
         </section>
-        <aside className="rounded-sm px-4 py-6 sm:px-6 m-4">
+        <section className={styles.enviosContainer}>
           <FormCheckout />
-        </aside>
+        </section>
       </div>
     </main>
   </div>

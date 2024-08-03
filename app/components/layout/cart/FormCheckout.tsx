@@ -4,6 +4,7 @@ import { useAuthStore } from "@store/auth/auth.store";
 import useCartStore from "@store/cart/useCartStore";
 import useCheckout from "app/hooks/useCheckout";
 import { useRouter } from "next/router";
+import styles from "./styles.module.css"
 import React, { useEffect, useState } from "react";
 
 
@@ -51,12 +52,12 @@ const FormCheckout = () => {
   }
 
   return (
-    <div className="card shadow p-6 border rounded-md">
-      <form onSubmit={handleOnSubmit}>
-        <h2 className="font-bold">Datos de envio</h2>
+    <div >
+      <form onSubmit={handleOnSubmit} className={styles.envioForm}>
+        <h3 className="font-bold">Datos de envio</h3>
         
         <RadioButtonInput
-          className="my-4"
+          className={styles.envioButtons}
           name="type-shipping"
           totalItemsList={shippingTypes}
           itemsAvailables={shippingTypes}
@@ -78,17 +79,17 @@ const FormCheckout = () => {
           </>
         )}
 
-        <h2 className="mt-6 font-bold">Método de pago</h2>
+        <h2 className="font-bold">Método de pago</h2>
         <RadioButtonInput
-          className="my-4"
           name="type-payment"
+          className={styles.envioButtons}
           totalItemsList={userSession.paymentMethods}
           itemsAvailables={userSession.paymentMethods }
           currentState={paymentMethod}
           onChange={handleOnPaymentMethodChange}
         />
         {haveZipCode() &&  
-        <div className=" mt-10 flex justify-between font-semibold text-gray-700">
+        <div className="flex justify-between font-semibold text-gray-700">
           <h2>Envio</h2>
           <p>{shippingAmount ?? <span className="text-red-500">Sin Codigo Postal</span>}</p>
         </div>}
@@ -97,33 +98,20 @@ const FormCheckout = () => {
           <p>{totalAmount}</p>
         </div>
         <hr />
-        <header className="my-4 flex justify-between font-bold text-lg text-gray-900">
+        <header className="flex justify-between font-bold text-lg text-gray-900">
           <h3>Total</h3>
           <p>${totalAmount + (shippingAmount ?? 0)}</p>
         </header>
         <button
           type="submit"
           disabled={buttonCheckoutIsDisabled}
-           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:border-gray-300"
+           className={styles.comprarButton}
         >
           Comprar
         </button>
       </form>
-      <nav className="mt-6 flex justify-center text-center text-sm text-gray-500">
-        <p>
-          o&nbsp;
-          <button
-            onClick={() => {
-              router.push("/");
-            }}
-            className="font-medium text-indigo-600 hover:text-indigo-500"
-          >
-            Continua Comprando 🏊
-            <span aria-hidden="true"> &rarr;</span>
-          </button>
-        </p>
-      </nav>
     </div>
+      
   );
 }
 
