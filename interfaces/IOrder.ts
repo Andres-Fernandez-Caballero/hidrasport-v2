@@ -1,3 +1,5 @@
+import { Product } from "./IProduct"
+
 export interface IOrderProduct {
   id: number
   cantidad: number
@@ -52,4 +54,11 @@ export enum OrderStatus {
   RECEIVED = "Recibido",
   CLOSED = "Cerrado",
   CANCELED = "Cancelado"
+}
+
+export interface IOrderItem {
+  id: number;
+  timestamp: string;
+  payment_date: string;
+  products: Product[];
 }

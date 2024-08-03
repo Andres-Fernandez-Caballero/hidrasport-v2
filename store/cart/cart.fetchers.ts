@@ -1,5 +1,6 @@
 import { ResponseCartDetails, fetcherAddParams } from "./cart.contracts";
 
+//TODO: remplace url for ENVIRONMENT VAR
 const BASE_API_CART_URL = `https://hidrasport.com.ar/api/cart`
 
 
