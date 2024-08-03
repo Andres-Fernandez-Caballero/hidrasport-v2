@@ -37,7 +37,6 @@ const RadioButtonInput = ({
       .map((item) => ({ 
         item, 
         isAvailable: itemsAvailables.includes(item) }))
-      .sort((a, b) => a.item.localeCompare(b.item));
   }else {
     itemList = (totalItemsList as unknown as  ItemWithImage[])
      .map((element) => ({ 
@@ -46,7 +45,6 @@ const RadioButtonInput = ({
       isAvailable: (itemsAvailables as ItemWithImage[])
         .some(availableItem => availableItem.item === element.item) 
       }))
-     .sort((a, b) => a.item.localeCompare(b.item));
   }
 
 
