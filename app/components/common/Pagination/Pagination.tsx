@@ -14,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, onPageChange }) => 
   };
 
   const renderPageNumbers = () => {
-    const pageNumbers = [];
+    const pageNumbers: JSX.Element[] = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
         <button

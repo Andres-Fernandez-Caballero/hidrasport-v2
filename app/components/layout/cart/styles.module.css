@@ -1,0 +1,127 @@
+.sectionName {
+  display: flex;
+  height: 3rem;
+  padding: 0 1rem;
+  background: #0e0e0e;
+  margin: 1rem 0;
+  align-items: center;
+}
+
+.sectionName h2 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.productsContainer{
+  display: grid;
+  overflow: hidden;
+  height: 70svh;
+  width: calc(100% - 2rem );
+  margin: 0 1rem;
+  grid-template-columns: 1fr;
+  column-gap: 1rem;
+  row-gap: 0.4rem;
+  border-radius: 1rem;
+  border: 2px solid black;
+}
+
+.itemContainer {
+  display: grid;
+  height: calc(5rem);
+  width: 100%;
+  margin: 0.5rem 0;
+  grid-template-columns: 3fr 6fr 2fr;
+  column-gap: 1rem;
+  border: 2px solid black;
+  border-radius: 0.5rem 1.5rem;
+  overflow: hidden;
+}
+
+.imageContainer{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+.detailContainer{
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rightSide{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: space-between;
+}
+.cantContainer{
+  width: 5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: #0e0e0e;
+  color: white;
+  display: flex;
+  gap: 0.5rem;
+  border-radius: 0 0  0 0.5rem;
+  justify-content: space-between;
+}
+.itemContainer button {
+  background-color: #0e0e0e;
+}
+
+.enviosContainer{
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 70svh;
+  width: calc(100% - 2rem );
+  padding: 0rem;
+  margin: 0 1rem;
+  grid-template-columns: 1fr;
+  column-gap: 1rem;
+  row-gap: 0.4rem;
+  border-radius: 1rem;
+  border: 2px solid black;
+}
+.envioForm{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: calc(70svh - 4rem);
+  padding: 1rem;
+  justify-content: space-between;
+}
+
+.envioButtons {
+  display: flex;
+  justify-content: space-between;
+  font-size: small;
+}
+.envioButtons label{
+ min-height: 2rem;
+ padding: 0.5rem;
+}
+
+.envioButtons label .checked{
+  border: 6px solid red;
+}
+
+.comprarButton{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  background-color: #0e0e0e;
+  color: white;
+}
+
+
