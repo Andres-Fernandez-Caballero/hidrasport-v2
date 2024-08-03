@@ -5,5 +5,6 @@ export interface InputFormComponentProps {
     value?: string
     label: string
     name: string
+    className?: string
     onChange?:(event:  React.ChangeEvent<HTMLInputElement>) => void
 }

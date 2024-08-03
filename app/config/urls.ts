@@ -6,6 +6,7 @@ const urls = {
   permission: backendUrl + "/api/accounts/users/get-permission-level/",
   landingPage: backendUrl + "/api/store/site-test/get-test-info/",
   products: backendUrl + "/api/store/products/",
+  ordersBase: backendUrl + "/api/orders",
 };
 
 export default urls;

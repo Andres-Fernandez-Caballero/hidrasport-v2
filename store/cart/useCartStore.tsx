@@ -74,21 +74,12 @@ const useCartStore = create<CartStore>((set, get) => ({
     }
 
     const token = useAuthStore.getState().userSession.token;
-    try{
-      const isAdded = await fetchCartAdd(token, productRequest, quantity)
+      await fetchCartAdd(token, productRequest, quantity)
       get().fetchCart()
-    }catch(err){
-      throw err;
-    }
-    //if (!isAdded) throw new Error('could not add product to cart ')
-
-    // const data = await fetchCartDetails(token);
-    // const cartItems: iCartProduct[] = data.cart.items;
-
-    // set({ cartData: cartItems });
   },
 
   substractItemFromCart: async (product) => {
+    console.log(product);
     // TODO: pending feature, need backend implementation
   },
 

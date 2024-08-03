@@ -86,8 +86,8 @@ const SelectorVariante = ({
           <legend className="sr-only">Choose a size</legend>
           <RadioButtonInput
             name="size-choice"
-            totalItemsList={product.available_sizes}
-            itemsAvailables={currentVariant.sizes}
+            totalItemsList={ orderSizes(product.available_sizes)}
+            itemsAvailables={ orderSizes(currentVariant.sizes) }
             currentState={size}
             onChange={handleSizeChange}
           />
@@ -100,5 +100,8 @@ const SelectorVariante = ({
     </form>
   );
 };
+
+const orderSizes = (sizes: string[]) => sizes.sort((a, b) => order.indexOf(a.toUpperCase()) - order.indexOf(b.toUpperCase())) 
+const order = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 
 export default SelectorVariante;

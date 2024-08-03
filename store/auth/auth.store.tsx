@@ -4,8 +4,8 @@ import { persist } from "zustand/middleware";
 import useCartStore from "../cart/useCartStore";
 import { AuthStore } from "./contracts";
 import initialState from "./initalState";
-import { CREDIT_CARD_PAYMENT } from "@interfaces/Ipayment";
 import { fetchLogin, fetchRegister } from "@services/user";
+import useOrderStore from "@store/order/useOrderStore";
 
 
 export const useAuthStore = create<AuthStore>()(
@@ -18,6 +18,7 @@ export const useAuthStore = create<AuthStore>()(
           userSession: authData,
         });
         useCartStore.getState().fetchCart()
+        useOrderStore.getState().fetchOrders()
       },
 
       logout: () => {
@@ -31,6 +32,7 @@ export const useAuthStore = create<AuthStore>()(
           userSession: authData
         })
         useCartStore.getState().fetchCart()
+        useOrderStore.getState().fetchOrders()
       },
       isLogedIn: () => {
         return get().userSession.token !== "";

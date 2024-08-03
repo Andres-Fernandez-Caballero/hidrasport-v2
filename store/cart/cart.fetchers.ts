@@ -1,10 +1,11 @@
 import { ResponseCartDetails, fetcherAddParams } from "./cart.contracts";
 
+//TODO: remplace url for ENVIRONMENT VAR
 const BASE_API_CART_URL = `https://hidrasport.com.ar/api/cart`
 
 
 export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> => {
-    let url = `${BASE_API_CART_URL}`
+    const url = `${BASE_API_CART_URL}`
     let response;
     if(token !== ''){ 
       response = await fetch(`${url}/cart/`, {
@@ -26,7 +27,7 @@ export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> =>
 }
 
 export const fetchCartAdd = async(token='', productData: fetcherAddParams, quantity:number=1):Promise<boolean> => {
-    let cart_mode = token !== ''? 'cart' : 'session-cart';
+    const cart_mode = token !== ''? 'cart' : 'session-cart';
     let url = `${BASE_API_CART_URL}/${cart_mode}`
     
     if(token !== ''){
@@ -51,7 +52,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
 
 export const fetchTotalAmount = async (token=''):Promise<number> => {
 
-  let cart_mode = token !== ''? 'cart' : 'session-cart';
+  const cart_mode = token !== ''? 'cart' : 'session-cart';
     let url = `${BASE_API_CART_URL}/${cart_mode}`
     
     if(token !== ''){
@@ -85,7 +86,7 @@ export const fetchTotalAmount = async (token=''):Promise<number> => {
 }
 
 export const fetchCartRemove = async(token='', productData: fetcherAddParams):Promise<boolean> => {
-  let cart_mode = token !== ''? 'cart' : 'session-cart';
+  const cart_mode = token !== ''? 'cart' : 'session-cart';
     let url = `${BASE_API_CART_URL}/${cart_mode}`
     
     if(token !== ''){
@@ -98,6 +99,7 @@ export const fetchCartRemove = async(token='', productData: fetcherAddParams):Pr
         }
       });
       return response.ok
+      
     }else {
       url += `/remove/${productData.subProductId}/${productData.size}/`
       

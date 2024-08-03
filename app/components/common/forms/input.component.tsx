@@ -3,7 +3,7 @@ import { InputFormComponentProps } from "./contracts"
 
 
 const InputFormComponent = (props:  InputFormComponentProps) => (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${props.className}`}>
         <label htmlFor={props.name}>{props.label}</label>
         <InputText id={props.name}   {...props} className="rounded-lg"/>
     </div>
