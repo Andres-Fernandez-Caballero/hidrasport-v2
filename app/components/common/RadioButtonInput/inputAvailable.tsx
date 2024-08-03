@@ -47,7 +47,7 @@ const InputAvailable = ({
                             absolute -inset-px 
                             rounded-md 
                             ${item === currentState
-          ? "border-2 border-indigo-500"
+          ? "border-2 border-black"
           : "border"
         }
                             `}
