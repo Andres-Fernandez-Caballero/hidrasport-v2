@@ -91,16 +91,16 @@ const FormCheckout = () => {
         {haveZipCode() &&  
         <div className="flex justify-between font-semibold text-gray-700">
           <h2>Envio</h2>
-          <p>{shippingAmount ?? <span className="text-red-500">Sin Codigo Postal</span>}</p>
+          <p>$ {shippingAmount ?? <span className="text-gray-300 font-light">Agrega el codigo postal</span>}</p>
         </div>}
         <div className="flex justify-between font-semibold text-gray-700">
           <h2>Productos en el carrito</h2>
-          <p>{totalAmount}</p>
+          <p>$ {totalAmount}</p>
         </div>
         <hr />
         <header className="flex justify-between font-bold text-lg text-gray-900">
           <h3>Total</h3>
-          <p>${totalAmount + (shippingAmount ?? 0)}</p>
+          <p>$ {totalAmount + (shippingAmount ?? 0)}</p>
         </header>
         <button
           type="submit"

@@ -94,9 +94,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  height: calc(70svh - 4rem);
+  min-height: calc(70svh - 4rem);
   padding: 1rem;
-  overflow-y: scroll;
   justify-content: space-between;
 }
 
