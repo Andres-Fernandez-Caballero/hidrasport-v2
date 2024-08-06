@@ -21,11 +21,11 @@ const categoriesSection = () => (
             <CategoryItem
                 backgroundImage={"https://hidrasport.com.ar/staticfiles/media/images/GUARDAVIDAS_2_BRqxsdh.png"}
                 categoryName={'Invierno'}
-                categoryLink="/productos/categoria/Invierno"
+                categoryLink="/productos/categoria/invierno"
             />
             <CategoryItem
                 backgroundImage={"https://hidrasport.com.ar/staticfiles/media/images/INVIERNO_QkNo6mi.png"}
-                categoryLink="/productos/categoria/hidralife"
+                categoryLink="/productos/categoria/Guardavidas"
                 categoryName={'Guardavidas'}
             />
         </div>
