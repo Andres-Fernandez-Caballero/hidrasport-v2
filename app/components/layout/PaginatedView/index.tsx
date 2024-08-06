@@ -4,7 +4,7 @@ import EmptyProduct from "@components/layout/product/emptyProduct";
 import ProductGridList from "@components/layout/product/productGridList";
 import { ApiProductsResponse } from "@interfaces/hidraApi/products";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSWR from "swr";
 import PaginationMenu from "./paginationButtons";
 
@@ -13,40 +13,49 @@ interface PaginatedViewProps {
     apiEndpoint: string;
 }
 
-
 const fetcher = async (url: string): Promise<ApiProductsResponse> => {
     const response = await fetch(url);
     const data = await response.json();
 
-    if(!response.ok) throw new Error("Error al cargar productos");
+    if (!response.ok) throw new Error("Error al cargar productos");
     return data;
 }
 
 const PaginatedView = (props: PaginatedViewProps) => {
-    console.log('endpoint', props.apiEndpoint);
-    
     const router = useRouter();
     const page = parseInt(router.query.page as string) || 1;
     const [currentPage, setCurrentPage] = useState(page);
+
+    useEffect(() => {
+        if (page !== currentPage) {
+            setCurrentPage(page);
+        }
+    }, [page]);
 
     const urlApi = `${props.apiEndpoint}?page=${currentPage}`;
     const { data, error, isLoading } = useSWR(urlApi, fetcher);
 
     const nextPage = useCallback(() => {
-        if(data?.next ){
+        if (data?.next) {
             const urlObj = new URL(data.next);
             const nextPage = parseInt(urlObj.searchParams.get('page') || "1");
             setCurrentPage(nextPage);
-            router.push(`?page=${nextPage}`, undefined, {shallow: true});
+            router.push({
+                pathname: router.pathname,
+                query: { ...router.query, page: nextPage },
+            }, undefined, { shallow: true });
         }
     }, [data, router]);
 
     const prevPage = useCallback(() => {
-        if(data?.previous ){
+        if (data?.previous) {
             const urlObj = new URL(data.previous);
             const prevPage = parseInt(urlObj.searchParams.get('page') || "1");
             setCurrentPage(prevPage);
-            router.push(`?page=${prevPage}`, undefined, {shallow: true});
+            router.push({
+                pathname: router.pathname,
+                query: { ...router.query, page: prevPage },
+            }, undefined, { shallow: true });
         }
     }, [data, router]);
 
@@ -60,12 +69,12 @@ const PaginatedView = (props: PaginatedViewProps) => {
                     <ProductGridList products={data?.results ?? []} />
                     <div className="flex justify-center my-4">
                         <PaginationMenu
-                            hasPrevious={data?.previous}
-                            hasNext={data?.next}
+                            hasPrevious={!!data?.previous}
+                            hasNext={!!data?.next}
                             onPrevius={prevPage}
                             onNext={nextPage}
-                            currentPage={page}
-                            />
+                            currentPage={currentPage}
+                        />
                     </div>
                 </div>
             )}
