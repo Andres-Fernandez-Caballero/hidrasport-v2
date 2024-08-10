@@ -5,6 +5,7 @@ const urls = {
   orders: backendUrl + "/api/orders/orders/filter/",
   permission: backendUrl + "/api/accounts/users/get-permission-level/",
   landingPage: backendUrl + "/api/store/site-test/get-test-info/",
+  configSite: backendUrl + "/api/store/site-configuration/",
   products: backendUrl + "/api/store/products/",
   ordersBase: backendUrl + "/api/orders",
 };

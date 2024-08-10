@@ -7,11 +7,13 @@ import HydrationZustand from "./hydrationZustand";
 import { useAuthStore } from "@store/auth/auth.store";
 import Footer from "./contentMain/footer";
 import { ToastContainer } from "react-toastify";
+import Loader from "@components/common/Loader";
 
 type LayoutProps = {
+  loading: boolean
   children: React.ReactNode;
 };
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, loading }: LayoutProps) => {
   const { isOpen } = useAuthModalStore();
   const { isLogedIn } = useAuthStore();
 
@@ -31,8 +33,14 @@ const Layout = ({ children }: LayoutProps) => {
       </Head>
       <Navbar />
       <main>
-        {isOpen && !isLogedIn() && <AuthModal />}
-        {children}
+        {loading? 
+        <Loader/>
+        :
+        <>
+          {isOpen && !isLogedIn() && <AuthModal />}
+          {children}
+        </>
+}
         <ToastContainer />
       </main>
 
