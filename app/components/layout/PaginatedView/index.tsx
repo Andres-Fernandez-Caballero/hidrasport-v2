@@ -30,7 +30,7 @@ const PaginatedView = (props: PaginatedViewProps) => {
         if (page !== currentPage) {
             setCurrentPage(page);
         }
-    }, [page]);
+    }, [currentPage, page]);
 
     const urlApi = `${props.apiEndpoint}?page=${currentPage}`;
     const { data, error, isLoading } = useSWR(urlApi, fetcher);

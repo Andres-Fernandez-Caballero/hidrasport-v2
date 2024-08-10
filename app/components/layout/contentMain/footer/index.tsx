@@ -72,7 +72,7 @@ const AFIPColum = () => {
     <section className="w-full md:w-4/12 px-4 flex justify-center mx-autok">
       <div className="flex flex-col items-center justify-center text-center">
         <AFIP />
-        <span className="flex items-center flex-col">Hidrasport ®2023</span>
+        <span className="flex items-center flex-col">Hidrasport ®{(new Date()).getFullYear()}</span>
       </div>
     </section>
   );
