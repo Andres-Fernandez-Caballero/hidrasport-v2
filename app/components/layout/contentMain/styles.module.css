@@ -1,0 +1,21 @@
+.sectionName {
+  display: flex;
+  height: 3rem;
+  padding: 0 1rem;
+  background: #0e0e0e;
+  margin: 1rem 0;
+  align-items: center;
+}
+
+.sectionName h2 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.childrenContainer{
+  display: block;
+  height: 70svh;
+  overflow-y: scroll;
+  
+}

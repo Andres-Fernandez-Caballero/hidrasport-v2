@@ -60,9 +60,9 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
             </Link>
             <button
               onClick={logout}
-              className="text-xs font-bold leading-6 hover:scale-125 ease-in-out duration-150"
+              className="text-xs font-bold leading-6 hover:scale-125 ease-in-out duration-150 text-red"
             >
-              Cerrar sesión <i className="fa-solid fa-arrow-right-from-bracket"></i>
+              Cerrar sesión <i className="fa-solid fa-arrow-right-from-bracket white"></i>
             </button>
           </div>
         ) : (
