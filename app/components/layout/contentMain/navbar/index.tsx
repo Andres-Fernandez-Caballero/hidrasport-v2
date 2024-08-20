@@ -101,7 +101,7 @@ const Navbar = () => {
         </div>
 
         {/* Profile and Cart */}
-        <div className="inline-flex gap-1">
+        <div className="inline-flex gap-x-2">
           <Link href="/carrito">
           <span className="relative inline-block">
             <span className="pi pi-shopping-cart text-white text-xl"/>
@@ -126,9 +126,9 @@ const Navbar = () => {
             </Link>
             <button
               onClick={logout}
-              className="text-xs font-bold leading-6 hover:scale-125 ease-in-out duration-150"
+              className="text-xs  font-bold leading-6 hover:scale-125 ease-in-out duration-150 text-white "
             >
-              Cerrar sesión <i className="fa-solid fa-arrow-right-from-bracket"></i>
+               <i className="fa-solid fa-arrow-right-from-bracket text-xl"></i>
             </button>
           </div>
         ) : (
