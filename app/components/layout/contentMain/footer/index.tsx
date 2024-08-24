@@ -38,8 +38,8 @@ Me gustaría obtener más información sobre un producto o servicio.
 const RedesSociales = () => {
   const {siteConfig} = useSiteConfigStore();
   return (
-    <section className="w-full md:w-4/12 px-4  text-center">
-      <ul className="mb-4">
+    <section className="w-full  md:w-4/12 px-4  text-center ">
+      <ul className="mb-4 grid grid-cols-2">
        
         <li className="flex items-center justify-center mb-2">
           <FaInstagram width={50} className="mr-2" />
