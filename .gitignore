@@ -41,3 +41,29 @@ next-env.d.ts
 
 package-lock.json
 pnpm-lock.yaml
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Docker images and containers
+*.log
+*.pid
+*.seed
+*.db
+*.sqlite
+
+# Docker build cache
+.docker/
+docker-compose.override.yml
+docker-compose.prod.yml
+
+# Ignore Docker-related temporary files
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Docker volumes (used by Docker Compose)
+volumes/
+
+# yarn
+yarn.lock
