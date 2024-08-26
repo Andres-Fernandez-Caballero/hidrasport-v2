@@ -38,9 +38,9 @@ const Profile = () => {
   }
 
   return (
-    <main className="p-4 w-full lg:min-h-[90vh] flex items-center">
+    <main className="p-4 w-full lg:min-h-[90vh] flex items-center py-16"> 
       <section className="grid gap-4 grid-cols-1 lg:grid-cols-4 w-full">
-        <div className="col-span-1 lg:row-span-2 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+        <div className="col-span-1 lg:row-span-2 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col ">
           <div className="flex flex-col items-center p-5 h-full">
             <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/images/avatar.jpg" alt="Avatar del usuario logueado" width={400} height={400} />
             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userSession.username}</h5>
@@ -83,6 +83,9 @@ const Profile = () => {
         <div className="col-span-3 lg:col-span-1 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
           <header className="flex justify-between items-center p-4 bg-gray-100">
             <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Ordenes</h5>
+            <div>
+            {/* <Link href="/carrito" className="text-blue-500 hover:text-blue-700">Ir a carrito <span className="pi pi-shopping-cart" /></Link> */}
+            </div>
           </header>
           <div className="flex-grow overflow-x-auto">
             <div className="h-52 overflow-x-auto w-full max-w-xl">
