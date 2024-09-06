@@ -11,13 +11,8 @@ export default async function getProductDetail(
 
   try {
     const productsApiUrl = urls.products;
-    console.log(req.query.id);
-
     const response = await fetch(`${productsApiUrl}${req.query.id}`);
     const data = await response.json();
-
-    console.log('back ' + SERVER_URL);
-    
 
     // Agrega el prefijo SERVER_URL a las URLs de las imágenes
     Object.keys(data.subcodigo_color_dict).forEach(key => {

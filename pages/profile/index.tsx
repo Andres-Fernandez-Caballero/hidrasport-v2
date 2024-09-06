@@ -12,14 +12,10 @@ import { useEffect } from "react";
 import styles from "./styles.module.css"
 
 const Profile = () => {
-  const { userSession, logout, isLogedIn } = useAuthStore();
+  const { userSession, logout } = useAuthStore();
   const { cartData } = useCartStore();
   const { orders } = useOrderStore();
   const router = useRouter();
-
-  console.log(isLogedIn());
-  console.log(userSession);
-
 
   useEffect(() => {
     actualizarPedidos();

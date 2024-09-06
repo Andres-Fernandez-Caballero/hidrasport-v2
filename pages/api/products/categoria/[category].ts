@@ -13,8 +13,6 @@ const getProductByCategory = async (req: NextApiRequest, res: NextApiResponse) =
         }
 
         const url = `${urls.products}filter/`;
-        console.log(url);
-        
         const response = await fetch(`${url}?page=${page}`, {
             method: 'POST',
             headers: {

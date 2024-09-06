@@ -8,10 +8,6 @@ type CartItemCardProps = {
 };
 
 const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
-
-  console.log('producto del carrito ', item);
-  
-
   return (
     <div className="flex flex-col p-4 border border-gray-300 shadow-md rounded-md">
       <Image

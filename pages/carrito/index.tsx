@@ -9,7 +9,6 @@ export interface CartProps {
 
 const CartPage = () => {
   const { cartData } = useCartStore();
-  console.log('cart data -> ', cartData);
   
   return (
     <div>

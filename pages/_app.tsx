@@ -21,9 +21,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         fetchCart();
         setLoading(false);
       })
-      .catch(error => {
+      .catch(() => {
         toast.error("Error al cargar la información del sitio");
-        console.log("error", error);
       });
 
 
