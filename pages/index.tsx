@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const { landing} = useLandingStore();
   
   return (
-    <main>
+    <>
       <HeroSection
         backgroundImage={landing.heroSection.backgroundImage}
         subtitle={landing.heroSection.subtitle}
@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       />
       <CategoriesSection />
       <ProductsSection products={landing.productosDestacados} />
-    </main>
+    </>
   );
 };
 
