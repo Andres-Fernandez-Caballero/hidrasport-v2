@@ -50,9 +50,6 @@ const Navbar = () => {
 
   const {asPath} = useRouter();
   
-  console.log('url: ', asPath);
-  
-
   return (
     <header className={'fixed z-10 w-svw bg-stone-950'}>
       <nav

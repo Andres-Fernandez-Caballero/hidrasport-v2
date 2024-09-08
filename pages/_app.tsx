@@ -8,29 +8,27 @@ import "react-multi-carousel/lib/styles.css";
 import { PrimeReactProvider} from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
 import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
+import useLandingStore from "@store/landing/useLandingStore";
         
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
   const {fetchSiteConfig} = useSiteConfigStore();
+  const { fetchLanding} = useLandingStore();
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
-    try {
-      fetchSiteConfig()
-      .then(()=> {
-        fetchCart();
-        setLoading(false);
-      })
-      .catch(error => {
+    const loadData = async () => {
+      try {
+        await Promise.all([fetchSiteConfig(), fetchCart(), fetchLanding()]);
+      } catch (error) {
         toast.error("Error al cargar la información del sitio");
-        console.log("error", error);
-      });
-
-
-    } catch (error) {
-      toast.error((error as Error).message);
-      console.log("error", error);
-    }
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   

@@ -26,17 +26,16 @@ interface BackgroundImageProps {
 
 
 const BackgroundImage = (props: BackgroundImageProps) => (
-    <div className="relative w-full h-full">
-        <Image
-            alt="HidrasportHero"
-            width={800}
-            height={500}
-            quality={80}
-            src={props.backgroundImage} 
-            className="w-full h-full object-cover" 
-            style={{ height: '70vh' }}
-        />
-    </div>
+    <div className="relative w-full h-full" style={{ height: '70vh' }}>
+    <Image
+      alt="HidrasportHero"
+      src={props.backgroundImage}
+      layout="fill"  // Usa fill para que la imagen cubra todo el contenedor
+      objectFit="cover"  // Reemplaza `object-cover` por `objectFit` de Next.js
+      quality={80}
+      priority={true}  // Marca la imagen como prioritaria para mejorar LCP
+    />
+  </div>
 );
 
 const RightSide = () => (

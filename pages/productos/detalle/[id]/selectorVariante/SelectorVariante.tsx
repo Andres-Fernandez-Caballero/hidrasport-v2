@@ -29,6 +29,7 @@ const SelectorVariante = ({
   };
 
   return (
+    // @ts-expect-error { handleOnSubmit should not be asynchronous }
     <form className="mt-10" onSubmit={handleOnSubmit}>
       <div>
         <h3 className="text-sm font-medium text-gray-900">Color</h3>

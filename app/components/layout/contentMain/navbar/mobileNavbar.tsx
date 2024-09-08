@@ -4,6 +4,7 @@ import { MobileNavbarProps } from ".";
 import { useAuthStore } from "@store/auth/auth.store";
 import { GoPerson } from "react-icons/go";
 import styles from "./styles.module.css"
+import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
 
 const MobileNavbar = ({
   isOpen,
@@ -12,7 +13,7 @@ const MobileNavbar = ({
   openModal,
 }: MobileNavbarProps) => {
   const { logout, isLogedIn } = useAuthStore();
-
+  const { siteConfig } = useSiteConfigStore()
   return (
     <nav
       className={`${isOpen ? "block" : "hidden"}`}
@@ -103,7 +104,7 @@ const MobileNavbar = ({
               <div className="flex flex-col w-100 justify-center text-center ">
                 
                 <Link
-                    href="https://www.instagram.com/hidrasportok/"
+                    href={ siteConfig.instagram }
                     className="font-semibold leading-6 text-gray-50"
                   >
                     <i className="pi pi-instagram mr-1.5"/>
@@ -111,7 +112,7 @@ const MobileNavbar = ({
                   </Link>
                   <br />
                   <Link
-                    href="/profile"
+                    href={ siteConfig.facebook }
                     className="font-semibold leading-6 text-gray-50"
                   > 
                     <i className="pi pi-facebook mr-1.5"/>
@@ -120,7 +121,7 @@ const MobileNavbar = ({
                   <br />
 
                   <Link
-                    href="/profile"
+                    href={siteConfig.phone}
                     className="font-semibold leading-6 text-gray-50"
                   >
                     <i className="pi pi-whatsapp mr-1.5"/>

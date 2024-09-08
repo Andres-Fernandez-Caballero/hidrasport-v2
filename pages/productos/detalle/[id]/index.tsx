@@ -55,6 +55,7 @@ const Detalle = ({ product }: DetalleProps) => {
   const handleAddToCart = () => {
     if (currentVariant) {
       handleOnSubmit(
+        // @ts-expect-error { unknown Event type}
         new Event('submit') as React.FormEvent<HTMLFormElement>, // Generar un evento de formulario ficticio
         size,
         currentVariant.subProductId,
@@ -149,7 +150,7 @@ const Detalle = ({ product }: DetalleProps) => {
         <span>
           ${product.price}
         </span>
-        <button className={styles.buttonAdd} label="Añadir al carrito" onClick={handleAddToCart}>
+        <button className={styles.buttonAdd} onClick={handleAddToCart}>
           Añadir al carrito
         </button>
       </div>

@@ -4,22 +4,23 @@ import "react-multi-carousel/lib/styles.css"; // Import styles for the carousel
 import HeroSection from "@components/layout/landing/heroSection";
 import CategoriesSection from "@components/layout/landing/categoriesSection";
 import ProductsSection from "@components/layout/landing/notableProductsSection";
-import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
+import useLandingStore from "@store/landing/useLandingStore";
 
 
 const Home: NextPage = () => {
-  const {siteConfig} = useSiteConfigStore();
+  const { landing} = useLandingStore();
+  
   return (
-    <main>
+    <>
       <HeroSection
-        backgroundImage={siteConfig.heroSection.backgroundImage}
-        subtitle={siteConfig.heroSection.subtitle}
-        title={siteConfig.heroSection.title }
-        messages={siteConfig.heroSection.messages}
+        backgroundImage={landing.heroSection.backgroundImage}
+        subtitle={landing.heroSection.subtitle}
+        title={landing.heroSection.title }
+        messages={landing.heroSection.messages}
       />
       <CategoriesSection />
-      <ProductsSection products={siteConfig.productosDestacados} />
-    </main>
+      <ProductsSection products={landing.productosDestacados} />
+    </>
   );
 };
 

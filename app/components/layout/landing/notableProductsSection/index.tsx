@@ -13,8 +13,8 @@ const NotablesProductsSection = (props: NotableProductsProps) => {
             <h2>Imperdibles</h2>
         </div>
         <div className={styles.productsContainer}>
-            {props.products.map((product,) => (
-            <div key={product.title_id}>
+            {props.products.map((product, index) => (
+            <div key={index}>
                 <ProductCardItem
                   product={product} />
             </div>

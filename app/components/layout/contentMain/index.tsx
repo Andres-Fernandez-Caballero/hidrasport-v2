@@ -7,9 +7,8 @@ interface ContentMainProps {
 }
 
 const ContentMain: React.FC<ContentMainProps> = ({ children, title }) => (
-  <main className="py-14  w-100">
-    <div >
-      <header className={styles.sectionName}>
+  <div className="py-14  w-100">
+      <header className={ styles.sectionName}>
         <h2
         >
           {title ? title : ""}
@@ -17,10 +16,8 @@ const ContentMain: React.FC<ContentMainProps> = ({ children, title }) => (
       </header>
       <div className={styles.childrenContainer}>
       <>{children}</>
-
       </div>
-    </div>
-  </main>
+  </div>
 );
 
 export default ContentMain;

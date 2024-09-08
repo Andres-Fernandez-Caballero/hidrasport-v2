@@ -91,7 +91,6 @@ export const fetchCartRemove = async(token='', productData: fetcherAddParams):Pr
     
     if(token !== ''){
       url += `/remove-product/${productData.subProductId}/${productData.size}/`;
-      console.log('api', url);
       
       const response = await fetch(url, {
         headers: {

@@ -49,6 +49,7 @@ const CategoryItem = (props: CategoryItemProps) => (
             className="text-2xl leading-6"
         >
             <Image
+                quality={80}
                 src={props.backgroundImage} 
                 width={500}
                 height={500}
