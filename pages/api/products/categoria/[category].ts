@@ -1,6 +1,4 @@
-import { SERVER_URL } from "@config/index";
 import urls from "@config/urls";
-import { Image, Product } from "@interfaces/IProduct";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const getProductByCategory = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -33,15 +31,6 @@ const getProductByCategory = async (req: NextApiRequest, res: NextApiResponse) =
 
 
         const data = await response.json();
-
-        data.results = data.results.map((product: Product) => {
-            product.images = product.images.map((img: Image) => ({
-                ...img,
-                image: `${SERVER_URL}${img.image}`
-            }));
-            return product;
-        });
-
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ error: `Internal Server Error: ${error.message}` });
