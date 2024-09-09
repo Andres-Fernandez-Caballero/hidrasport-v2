@@ -10,7 +10,7 @@ import { ToastContainer } from "react-toastify";
 import Loader from "@components/common/Loader";
 
 type LayoutProps = {
-  loading: boolean
+  loading: boolean;
   children: React.ReactNode;
 };
 const Layout = ({ children, loading }: LayoutProps) => {
@@ -23,24 +23,17 @@ const Layout = ({ children, loading }: LayoutProps) => {
         <title>HidraSport - Indumentaria Deportiva</title>
         <meta name="description" content="Hidrasport ropa deportiva" />
         <link rel="icon" href="/tortuga_logo.png" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
       </Head>
       <Navbar />
       <main>
-        {loading? 
-        <Loader/>
-        :
-        <>
-          {isOpen && !isLogedIn() && <AuthModal />}
-          {children}
-        </>
-}
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {isOpen && !isLogedIn() && <AuthModal />}
+            {children}
+          </>
+        )}
         <ToastContainer />
       </main>
 

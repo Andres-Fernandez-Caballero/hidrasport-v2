@@ -17,7 +17,6 @@ export default async function getProducts(
         // Enviar la respuesta con las URLs actualizadas
         const dataLanding = await getLandingPageData();
         const dataSiteConfig = await getSiteConfiguration();        
-        
         return res.status(200).json({...dataLanding, ...dataSiteConfig});
     } catch (err) {
         return res.status(407).json({
@@ -89,7 +88,6 @@ interface IConfigSite {
 const getSiteConfiguration = async() => {
     const response = await fetch(urls.configSite);
         const responseServer = await response.json();
-        
         const data = responseServer.results[0] as IConfigSite
         delete data.id
         return  {

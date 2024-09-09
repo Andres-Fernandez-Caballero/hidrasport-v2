@@ -6,7 +6,6 @@ import CategoriesSection from "@components/layout/landing/categoriesSection";
 import ProductsSection from "@components/layout/landing/notableProductsSection";
 import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
 
-
 const Home: NextPage = () => {
   const {siteConfig} = useSiteConfigStore();
   return (

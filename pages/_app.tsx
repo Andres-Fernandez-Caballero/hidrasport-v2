@@ -7,8 +7,7 @@ import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
 import { PrimeReactProvider} from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
-import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
-        
+import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";       
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
@@ -33,7 +32,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
   return (
     <> 
         <Layout loading={loading}>

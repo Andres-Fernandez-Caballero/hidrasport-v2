@@ -49,10 +49,7 @@ const Navbar = () => {
   };
 
   const {asPath} = useRouter();
-  
-  console.log('url: ', asPath);
-  
-
+ 
   return (
     <header className={'fixed z-10 w-svw bg-stone-950'}>
       <nav
@@ -95,6 +92,7 @@ const Navbar = () => {
                 className="h-10 w-auto m-1"
                 src={asPath===hidraLifeLink.url?"/images/hidralife.png":"/images/hidraLogo.svg"}
                 alt="Logo Hidra Sport"
+                priority
               />
             </figure>
           </Link>

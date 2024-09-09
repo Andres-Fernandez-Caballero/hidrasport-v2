@@ -35,6 +35,7 @@ const BackgroundImage = (props: BackgroundImageProps) => (
             src={props.backgroundImage} 
             className="w-full h-full object-cover" 
             style={{ height: '70vh' }}
+            priority 
         />
     </div>
 );

@@ -5,6 +5,5 @@ export interface SiteConfig extends ISiteConfig, ILandigPage {}
 
 export type SiteConfigStore = {
     siteConfig: SiteConfig;
-
     fetchSiteConfig: () => Promise<SiteConfig> 
 }
