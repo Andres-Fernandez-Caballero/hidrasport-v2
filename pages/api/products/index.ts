@@ -1,4 +1,3 @@
-import { SERVER_URL } from "@config/index";
 import urls from "@config/urls";
 import { Product } from "@interfaces/IProduct";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -20,9 +19,6 @@ export default async function getProducts(
       // Mapear las imágenes para agregar el prefijo SERVER_URL
       const updatedResults = data.results.map((product: Product) => ({
         ...product,
-        images: product.images.map((img: { image: string }) => ({
-          image: `${SERVER_URL}${img.image}`,
-        })),
       }));
 
       // Enviar la respuesta con las URLs actualizadas

@@ -16,6 +16,7 @@ const InfoCard = (props: InfoCardProps) => (
             <div className="rounded-xl overflow-hidden">
                 <Image
                     src={props.image}
+                    quality={80}
                     alt={props.imageAlt?? props.title}
                     width={props.imageWidth ?? 400}
                     height={props.imageHeight ?? 400}

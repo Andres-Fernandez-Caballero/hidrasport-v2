@@ -29,7 +29,6 @@ const productFilterFetcher = async (
   if (!res.ok) {
     throw new Error("Error al obtener los productos");
   }
-  console.log("json: ", res.json());
 
   return await res.json();
 };

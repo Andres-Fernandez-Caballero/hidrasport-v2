@@ -10,8 +10,6 @@ export default function MpFormDataStepComponent() {
     const { userSession } = useAuthStore();
     const router = useRouter();
     initMercadoPago(MP_PUBLIC_KEY);
-    console.log('cliente mp ', MP_PUBLIC_KEY);
-
 
     return (
         <>

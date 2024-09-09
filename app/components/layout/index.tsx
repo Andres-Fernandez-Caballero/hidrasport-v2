@@ -19,25 +19,23 @@ const Layout = ({ children, loading }: LayoutProps) => {
 
   return (
     <HydrationZustand>
-      <Head>
-        <title>HidraSport - Indumentaria Deportiva</title>
-        <meta name="description" content="Hidrasport ropa deportiva" />
-        <link rel="icon" href="/tortuga_logo.png" />
-      </Head>
-      <Navbar />
-      <main>
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            {isOpen && !isLogedIn() && <AuthModal />}
-            {children}
-          </>
-        )}
-        <ToastContainer />
-      </main>
+        <Head>
+          <title>HidraSport - Indumentaria Deportiva</title>
+        </Head>
+        <Navbar />
+        <main>
+          {loading ?
+            <Loader />
+            :
+            <>
+              {isOpen && !isLogedIn() && <AuthModal />}
+              {children}
+            </>
+          }
+          <ToastContainer />
+        </main>
 
-      <Footer />
+        <Footer />
     </HydrationZustand>
   );
 };
