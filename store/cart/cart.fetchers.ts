@@ -1,21 +1,19 @@
 import { ResponseCartDetails, fetcherAddParams } from "./cart.contracts";
-
-//TODO: remplace url for ENVIRONMENT VAR
-const BASE_API_CART_URL = `https://hidrasport.com.ar/api/cart`
+import urls from "@config/urls";
 
 
 export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> => {
-    const url = `${BASE_API_CART_URL}`
     let response;
+    console.log("--------------------------------")
     if(token !== ''){ 
-      response = await fetch(`${url}/cart/`, {
+      response = await fetch(`${urls.cart}cart/`, {
         headers: {
           'Authorization': 'token ' + token,
         },
         credentials: "include",
       });
     }else {
-      response = await fetch(`${url}/session-cart/`, {
+      response = await fetch(`${urls.cart}session-cart/`, {
         credentials: "include",
       });
     }
@@ -28,7 +26,7 @@ export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> =>
 
 export const fetchCartAdd = async(token='', productData: fetcherAddParams, quantity:number=1):Promise<boolean> => {
     const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${BASE_API_CART_URL}/${cart_mode}`
+    let url = `${urls.cart}/${cart_mode}`
     
     if(token !== ''){
       url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}/`;
@@ -53,7 +51,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
 export const fetchTotalAmount = async (token=''):Promise<number> => {
 
   const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${BASE_API_CART_URL}/${cart_mode}`
+    let url = `${urls.cart}/${cart_mode}`
     
     if(token !== ''){
       url += `/products-value/`;
@@ -87,7 +85,7 @@ export const fetchTotalAmount = async (token=''):Promise<number> => {
 
 export const fetchCartRemove = async(token='', productData: fetcherAddParams):Promise<boolean> => {
   const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${BASE_API_CART_URL}/${cart_mode}`
+    let url = `${urls.cart}/${cart_mode}`
     
     if(token !== ''){
       url += `/remove-product/${productData.subProductId}/${productData.size}/`;

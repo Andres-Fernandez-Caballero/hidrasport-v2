@@ -8,6 +8,8 @@ const urls = {
   configSite: backendUrl + "/api/store/site-configuration/",
   products: backendUrl + "/api/store/products/",
   ordersBase: backendUrl + "/api/orders",
+  cart: backendUrl + "/api/cart/",
+  publicCarts: backendUrl + "/api/cart/public-carts/",
 };
 
 export default urls;

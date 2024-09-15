@@ -3,12 +3,13 @@ import { LoginDto } from "@interfaces/IAuth";
 import { LoginResponse, RegisterResponse } from "./contracts";
 
 export const Login = async (loginData: LoginDto): Promise<LoginResponse> => {
-    const response = await fetch(`/api/auth/login`, {
+    const response = await fetch(urls.login, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(loginData)
+        body: JSON.stringify(loginData),
+        credentials: 'include'
     });
     
     if (!response.ok) { 
@@ -20,7 +21,7 @@ export const Login = async (loginData: LoginDto): Promise<LoginResponse> => {
 };
 
 export const Register = async(loginData: LoginDto): Promise<RegisterResponse> => {
-    const response = await fetch(`/api/auth/register`, {
+    const response = await fetch(urls.register, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

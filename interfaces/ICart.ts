@@ -1,16 +1,30 @@
-export interface iCartProduct {
-  title: string;
-  size_id: number;
-  color: string;
-  quantity: number;
-  image: string; // @deprecated
+import { IPagination } from "./IPagination";
+
+export interface ICartBase{
+  id?: number;
   img: string;
+  color: string;
+  title: string;
   price: number;
   size: string;
+  quantity: number;
+}
+
+export interface IPublicCartList extends IPagination{
+  results: IPublicCart[];
+}
+
+export interface IPublicCart{
+  name: string;
+  items: ICartBase[];
+}
+
+export interface iCartProduct  extends ICartBase{
+  size_id: number;
+  image: string; // @deprecated
   subproduct: number | string;
   subproduct_id: string ;
   weight: number;
-  id?: number;
 }
 
 export interface ICartAddProduct  {

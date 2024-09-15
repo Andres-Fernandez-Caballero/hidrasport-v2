@@ -9,12 +9,23 @@ import { PrimeReactProvider} from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
 import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
 import useLandingStore from "@store/landing/useLandingStore";
-        
+import usePermissionLevel from "app/hooks/usePermissionlevel";
+import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
   const {fetchSiteConfig} = useSiteConfigStore();
   const { fetchLanding} = useLandingStore();
+  const { authResponse, authLoading, authError } = usePermissionLevel();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authResponse && !authResponse.admin) {
+      router.push('https://hidrasport.com.ar/');
+    }
+  }, [authLoading, authResponse, authError, router]);
+
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     const loadData = async () => {
