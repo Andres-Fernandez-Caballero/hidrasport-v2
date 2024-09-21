@@ -4,6 +4,5 @@ export interface SiteConfig extends ISiteConfig {}
 
 export type SiteConfigStore = {
     siteConfig: SiteConfig;
-
     fetchSiteConfig: () => Promise<SiteConfig> 
 }
