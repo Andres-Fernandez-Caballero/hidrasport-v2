@@ -6,7 +6,6 @@ import CategoriesSection from "@components/layout/landing/categoriesSection";
 import ProductsSection from "@components/layout/landing/notableProductsSection";
 import useLandingStore from "@store/landing/useLandingStore";
 
-
 const Home: NextPage = () => {
   const { landing} = useLandingStore();
   

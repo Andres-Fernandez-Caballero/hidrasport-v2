@@ -7,17 +7,27 @@ const withPWA = require('next-pwa')({
 
 const nextConfig = {
   images: {
-    domains: [
-      'hidrasport.com.ar',
-      '127.0.0.1',
-      'localhost',
-    ],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.afip.gob.ar',
-        port: '',
-        pathname: '/images/**',
+        hostname: 'hidrasport.com.ar',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '/**',
+      },
+      {
+        protocol: "https",
+        hostname: "www.afip.gob.ar",
+        port: "",
+        pathname: "/images/**",
       },
       {
         protocol: 'https',
