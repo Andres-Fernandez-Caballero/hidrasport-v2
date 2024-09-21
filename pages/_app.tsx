@@ -11,8 +11,6 @@ import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
 import useLandingStore from "@store/landing/useLandingStore";
 import usePermissionLevel from "app/hooks/usePermissionlevel";
 import { useRouter } from "next/router";
-import usePermissionLevel from "app/hooks/usePermissionlevel";
-import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
