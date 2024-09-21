@@ -1,5 +1,5 @@
 import { Product } from "./IProduct"
-
+import { IPagination } from "./IPagination"
 export interface IOrderProduct {
   id: number
   cantidad: number
@@ -39,12 +39,8 @@ export interface IOrder {
     coupon_value: number
 }
 
-export interface IOrderFilter {
-  count: number;
-  next: string | null;
-  previous: string | null;
+export interface IOrderFilter extends IPagination{
   results: IOrder[];
-  total_pages: number;
 }
 
 export enum OrderStatus {

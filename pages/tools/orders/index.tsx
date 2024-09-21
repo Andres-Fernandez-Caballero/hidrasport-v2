@@ -1,27 +1,18 @@
 import { NextPage } from 'next';
 import { useState, useEffect } from 'react';
-import urls from '../../app/config/urls';
+import urls from '../../../app/config/urls';
 import OrderFilter from '@components/common/filters/OrderFilter';
 import OrderCard from '@components/common/cards/orderCard/index';
 import { IOrder, IOrderFilter } from '@interfaces/IOrder';
-import useFetch from '../../app/hooks/useFetch';
+import useFetch from '../../../app/hooks/useFetch';
 import Pagination from '@components/common/Pagination/Pagination';
-import usePermissionLevel from 'app/hooks/usePermissionlevel';
-import { useRouter } from 'next/router';
+import withAdmin from '@components/common/hoc/withAdmin/withAdmin';
 
 const OrdersPage: NextPage = () => {
   const { response, loading, error, fetchData } = useFetch<IOrderFilter>();
-  const { authResponse, authLoading, authError } = usePermissionLevel();
   const [orders, setOrders] = useState<IOrder[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [filters, setFilters] = useState<{ status: string; startDate: string; endDate: string } | null>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
-      router.push('/');
-    }
-  }, [authLoading, authResponse, authError, router]);
 
   useEffect(() => {
     if (response) {
@@ -37,7 +28,7 @@ const OrdersPage: NextPage = () => {
       startDate: filters.startDate,
       endDate: filters.endDate,
     };
-    await fetchData(urls.orders + `?page=${page}`, body);
+    await fetchData(urls.orders + `?page=${page}`, 'POST', body);
   };
 
   const handlePageChange = async (page: number) => {
@@ -46,12 +37,8 @@ const OrdersPage: NextPage = () => {
     }
   };
 
-  if (authLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div className="min-h-screen p-4">
+    <div className="min-h-screen pt-20 p-4">
       <OrderFilter onSubmit={handleFilterSubmit} />
       <Pagination totalPages={totalPages} onPageChange={handlePageChange} />
       {loading ? (
@@ -78,4 +65,4 @@ const OrdersPage: NextPage = () => {
   );
 };
 
-export default OrdersPage;
+export default withAdmin(OrdersPage);

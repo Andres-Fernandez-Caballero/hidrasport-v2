@@ -1,4 +1,7 @@
-export interface ICategory {
+import { IPagination } from "./IPagination";
+export interface IProductListResponse extends IPagination {
+  results: Product[];
+}export interface ICategory {
   id: number;
   name: string;
 }
@@ -41,13 +44,6 @@ export interface ISubproducto {
   subcodigo: string;
   color: string;
   producto: number;
-}
-
-export interface IProductListResponse {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Product[];
 }
 
 export interface ProductDetail {

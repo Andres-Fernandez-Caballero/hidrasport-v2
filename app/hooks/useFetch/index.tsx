@@ -7,34 +7,40 @@ interface FetchState<T> {
   error: Error | null;
 }
 
-const useFetch = <T, B = Record<string, unknown>>(): FetchState<T> & { fetchData: (url: string, body: B) => Promise<void> } => {
+const useFetch = <T, B = Record<string, unknown>>(): FetchState<T> & { fetchData: (url: string, method: 'GET' | 'POST', body?: B) => Promise<void> } => {
   const [response, setResponse] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
   const { userSession } = useAuthStore();
   const token = userSession?.token;
 
-  const fetchData = useCallback(async (url: string, body: B) => {
+  const fetchData = useCallback(async (url: string, method: 'GET' | 'POST', body?: B) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(url, {
-        method: 'POST',
+      const options: RequestInit = {
+        method,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`
+          'Authorization': `Token ${token}`,
         },
-        body: JSON.stringify(body),
-      });
+      };
+
+      if (method === 'POST' && body) {
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(url, options);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch orders');
+        throw new Error('Failed to fetch data');
       }
+
       const responseData = await response.json();
       setResponse(responseData);
     } catch (error) {
       setError(error as Error);
-      console.error('Error fetching orders:', error);
+      console.error('Error fetching data:', error);
     } finally {
       setLoading(false);
     }
