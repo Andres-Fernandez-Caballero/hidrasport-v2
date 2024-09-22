@@ -12,14 +12,12 @@ export default function MpFormDataStepComponent() {
     initMercadoPago(MP_PUBLIC_KEY);
 
     return (
-        <>
-            <p>Compra protegida con Mercado Pago 💸</p>
+        <div>
             <CardPayment
                 initialization={{
                     amount: 1000,
                     payer: {
                         email: userSession.email,
-
                     }
                 }}
                 onSubmit={async (param) => {
@@ -49,6 +47,6 @@ export default function MpFormDataStepComponent() {
                 }}
             />
 
-        </>
+        </div>
     )
 }

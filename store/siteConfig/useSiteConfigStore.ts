@@ -12,6 +12,7 @@ const useSiteConfigStore = create<SiteConfigStore>() (persist (
         fetchSiteConfig: async () => {
             const fetchedSiteConfig = await fetchSiteConfig();
             set({ siteConfig: fetchedSiteConfig });
+            console.log(fetchedSiteConfig)
             return fetchedSiteConfig;
         }
     }),
