@@ -90,7 +90,7 @@ export const fetchCartRemove = async(token='', productData: fetcherAddParams):Pr
     let url = `${BASE_API_CART_URL}/${cart_mode}`
     
     if(token !== ''){
-      url += `/remove-product/${productData.subProductId}/${productData.size}/`;
+      url += `/modify-product/${productData.subProductId}/${productData.size}/substract/1/`;
       
       const response = await fetch(url, {
         headers: {
