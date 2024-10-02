@@ -73,7 +73,7 @@ const CartItem = (props: CartItemProps) => {
                 )
             }}
           >
-            <i className="fa-solid fa-trash text-red-500"></i>
+            <i className="fa-solid fa-minus text-red-500"></i>
           </button>
           <span>
             {props.item.quantity}
