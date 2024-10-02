@@ -88,8 +88,8 @@ export const fetchCartRemove = async(token='', productData: fetcherAddParams):Pr
     let url = `${urls.cart}/${cart_mode}`
     
     if(token !== ''){
-      url += `/remove-product/${productData.subProductId}/${productData.size}/`;
-      
+      url += `/modify-product/${productData.subProductId}/${productData.size}/substract/1/`;
+
       const response = await fetch(url, {
         headers: {
           'Authorization': 'token ' + token
@@ -98,7 +98,7 @@ export const fetchCartRemove = async(token='', productData: fetcherAddParams):Pr
       return response.ok
       
     }else {
-      url += `/remove/${productData.subProductId}/${productData.size}/`
+      url += `/modify/${productData.subProductId}/${productData.size}/substract/1/`;
       
       const response = await fetch(url, {
         credentials: "include",
