@@ -50,7 +50,7 @@ const RadioButtonInput = ({
 
   return (
     <div
-      className={`grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4 ${className}`}
+      className={`grid grid-cols-3 gap-4 sm:grid-cols-8 lg:grid-cols-4 ${className}`}
     >
       {
         itemList.map((element) =>

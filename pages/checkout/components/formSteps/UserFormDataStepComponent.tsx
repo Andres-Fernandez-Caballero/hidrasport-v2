@@ -1,22 +1,28 @@
 import { useAuthStore } from "@store/auth/auth.store";
 import { useAuthModalStore } from "@store/authModal.store";
+import styles from "../../styles.module.css"
 
 const UserDataFormStepComponent = () => {
   const { userSession, isLogedIn} = useAuthStore()
   const {openModal} = useAuthModalStore()
   if(isLogedIn()) 
   return (
-        <div>
-          <h2>{userSession.username}</h2>
-          </div>
+        <div className={styles.stepContainer}>
+          <p>Sesion iniciada correctamente.</p>
+          <span className={styles.divider} />
+          <span>Bienvenido</span>
+          <h3>{userSession.username}</h3>
+          <span>Puede continuar</span>
+        </div>
     )
 
   else
   return (
-        <div>
-          <h2>Por favor inicia sesión para continuar la compra</h2>
+        <div className={styles.stepContainer}>
+          <h3>Por favor inicia sesión para continuar la compra</h3>
+          <span className={styles.divider} />
           <nav>
-            <button className="bg-blue-500 p-4 text-white rounded-2xl" onClick={openModal}>Identificarse 🏄</button>
+            <button className="bg-black p-4 text-white rounded-2xl" onClick={openModal}>- Identificarse -</button>
           </nav>
         </div>
     )
