@@ -10,6 +10,7 @@ const urls = {
   ordersBase: backendUrl + "/api/orders",
   cart: backendUrl + "/api/cart/",
   publicCarts: backendUrl + "/api/cart/public-carts/",
+  titles: backendUrl + "/api/store/titles/",
 };
 
 export default urls;

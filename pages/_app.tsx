@@ -20,11 +20,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
-      router.push('https://hidrasport.com.ar/');
-    }
-  }, [authLoading, authResponse, authError, router]);
+  // useEffect(() => {
+  //   if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
+  //     router.push('https://hidrasport.com.ar/');
+  //   }
+  // }, [authLoading, authResponse, authError, router]);
 
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
@@ -43,7 +43,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <> 
+    <>
         <Layout loading={loading}>
         <PrimeReactProvider>
           <Component {...pageProps} />
