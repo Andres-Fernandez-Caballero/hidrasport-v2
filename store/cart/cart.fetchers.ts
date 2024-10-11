@@ -4,7 +4,6 @@ import urls from "@config/urls";
 
 export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> => {
     let response;
-    console.log("--------------------------------")
     if(token !== ''){ 
       response = await fetch(`${urls.cart}cart/`, {
         headers: {

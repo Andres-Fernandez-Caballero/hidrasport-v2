@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import useSWR from "swr";
 import PaginationMenu from "./paginationButtons";
-import SearchBar from "@components/common/searchbar";
 
 interface PaginatedViewProps {
     title: string;
@@ -17,7 +16,6 @@ interface PaginatedViewProps {
 const fetcher = async (url: string): Promise<ApiProductsResponse> => {
     const response = await fetch(url);
     const data = await response.json();
-
     if (!response.ok) throw new Error("Error al cargar productos");
     return data;
 }
@@ -67,7 +65,6 @@ const PaginatedView = (props: PaginatedViewProps) => {
                 <Loader />
             ) : (
                 <div>
-                    <SearchBar />
                     <ProductGridList products={data?.results ?? []} />
                     <div className="flex justify-center my-4">
                         <PaginationMenu

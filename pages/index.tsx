@@ -5,7 +5,7 @@ import HeroSection from "@components/layout/landing/heroSection";
 import CategoriesSection from "@components/layout/landing/categoriesSection";
 import ProductsSection from "@components/layout/landing/notableProductsSection";
 import useLandingStore from "@store/landing/useLandingStore";
-
+import SearchBar from "@components/common/searchbar";
 const Home: NextPage = () => {
   const { landing} = useLandingStore();
   
@@ -17,6 +17,7 @@ const Home: NextPage = () => {
         title={landing.heroSection.title }
         messages={landing.heroSection.messages}
       />
+      <SearchBar />
       <CategoriesSection />
       <ProductsSection products={landing.productosDestacados} />
     </>
