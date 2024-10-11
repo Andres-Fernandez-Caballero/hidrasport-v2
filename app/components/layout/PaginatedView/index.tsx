@@ -16,7 +16,6 @@ interface PaginatedViewProps {
 const fetcher = async (url: string): Promise<ApiProductsResponse> => {
     const response = await fetch(url);
     const data = await response.json();
-
     if (!response.ok) throw new Error("Error al cargar productos");
     return data;
 }
