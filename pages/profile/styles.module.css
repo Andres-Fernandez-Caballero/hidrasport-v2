@@ -29,3 +29,12 @@
   color: #0e0e0e;
   background: white;
 }
+
+.primaryButton{
+  height: 3rem;
+  width: 100%;
+  border:  1px solid #0e0e0e;
+  background-color: #0e0e0e;
+  border-radius: 0.3rem 1rem 0.3rem 1rem;
+  color: whitesmoke;
+}

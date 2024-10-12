@@ -26,7 +26,7 @@ export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> =>
 
 export const fetchCartAdd = async(token='', productData: fetcherAddParams, quantity:number=1):Promise<boolean> => {
     const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${urls.cart}/${cart_mode}`
+    let url = `${urls.cart}${cart_mode}`
     
     if(token !== ''){
       url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}/`;

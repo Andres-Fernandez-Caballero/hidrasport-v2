@@ -1,6 +1,5 @@
 import urls from "@config/urls";
 import { NextApiRequest, NextApiResponse } from "next";
-import { SERVER_URL } from "@config/index"; // Asegúrate de que la ruta de importación sea correcta
 
 export default async function getProductDetail(
   req: NextApiRequest, 
@@ -13,13 +12,6 @@ export default async function getProductDetail(
     const productsApiUrl = urls.products;
     const response = await fetch(`${productsApiUrl}${req.query.id}`);
     const data = await response.json();
-
-    // Agrega el prefijo SERVER_URL a las URLs de las imágenes
-    Object.keys(data.subcodigo_color_dict).forEach(key => {
-      const variant = data.subcodigo_color_dict[key];
-      variant.images.front = `${SERVER_URL}${variant.images.front}`;
-      variant.images.back = `${SERVER_URL}${variant.images.back}`;
-    });
 
     return res.status(200).json(data);
 

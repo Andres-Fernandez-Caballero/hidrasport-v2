@@ -1,4 +1,4 @@
-import { iCartProduct, ICartAddProduct } from "@interfaces/ICart";
+import { ICartAddProduct, iCartProduct } from "@interfaces/ICart";
 
 export type CartStore = {
     cartData: iCartProduct[];
@@ -18,12 +18,6 @@ export type CartStore = {
     fetchCart: () => void;
     
     /**
-     * @param iCartProduct product to add to cart 
-     * @returns 
-     */
-    addToCart: (product: ICartAddProduct) => Promise<void>;
-
-    /**
      * remove item from cart
      * @param iCartProduct
      * @returns Promise<void>
@@ -36,7 +30,7 @@ export type CartStore = {
      * @params number of the quantity to increment
      * @returns Promise<void>
      */
-    addItemToCart: (product: iCartProduct, quantity: number) => Promise<void>;
+    addItemToCart: (product: iCartProduct | ICartAddProduct, quantity: number ) => Promise<void>;
 
     /**
      * subtract one unit from a product

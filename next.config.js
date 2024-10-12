@@ -15,6 +15,11 @@ const nextConfig = {
       },
       {
         protocol: 'http',
+        hostname: 'hidrasport.com.ar',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
         hostname: '127.0.0.1',
         pathname: '/**',
       },

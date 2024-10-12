@@ -21,9 +21,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
-      router.push('https://hidrasport.com.ar/');
-    }
+    // if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
+    //   router.push('https://hidrasport.com.ar/');
+    // }
   }, [authLoading, authResponse, authError, router]);
 
   const [loading, setLoading] = useState<boolean>(true);

@@ -1,7 +1,7 @@
 import InputAvailable from "./inputAvailable";
 import InputDesactivate from "./inputDesactivate";
 
-interface ItemWithImage {
+export interface ItemWithImage {
   item: string;
   image: string;
 }

@@ -44,7 +44,7 @@ const Profile = () => {
             <menu className={styles.doubleButton}>
               <button
                 className={styles.editButton}
-                onClick={() => alert("caracteristica en desarrollo 🚧")}
+                onClick={() => router.push('/profile/edit')}
               >
                 <span className="flex items-center">Editar datos</span>
               </button>
