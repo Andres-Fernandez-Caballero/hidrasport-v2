@@ -84,8 +84,10 @@ export const fetchTotalAmount = async (token=''):Promise<number> => {
 }
 
 export const fetchCartRemove = async(token='', productData: fetcherAddParams):Promise<boolean> => {
+  console.log('fetchCartRemove', token, productData);
+  
   const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${urls.cart}/${cart_mode}`
+    let url = `${urls.cart}${cart_mode}`
     
     if(token !== ''){
       url += `/modify-product/${productData.subProductId}/${productData.size}/substract/1/`;

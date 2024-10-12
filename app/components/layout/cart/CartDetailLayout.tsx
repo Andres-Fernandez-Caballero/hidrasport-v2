@@ -16,7 +16,8 @@ interface CartItemProps {
 }
 
 const CartItem = (props: CartItemProps) => {
-
+  console.log('item-carrito', props);
+  
   const { addItemToCart, removeFromCart } = useCartStore();
   return (
     <div className={styles.itemContainer}>

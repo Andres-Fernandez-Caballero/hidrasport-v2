@@ -19,12 +19,13 @@ export interface IPublicCart{
   items: ICartBase[];
 }
 
-export interface iCartProduct  extends ICartBase{
+// @deprecated
+export interface iCartProduct  extends ICartBase{ 
   size_id: number;
-  image: string; // @deprecated
-  subproduct: number | string;
   subproduct_id: string ;
   weight: number;
+  total_item_price: number;
+  title: string;
 }
 
 export interface ICartAddProduct  {
