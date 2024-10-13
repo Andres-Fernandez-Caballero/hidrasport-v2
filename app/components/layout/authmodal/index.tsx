@@ -1,6 +1,7 @@
-import { useAuthModalStore } from "@store/authModal.store";
+import { Tab, useAuthModalStore } from "@store/authModal.store";
 import Login from "./login";
 import Register from "./register";
+import ForgotPasswordTab from "./forgotPassword";
 
 const AuthModal = () => {
   const { closeModal, tab } = useAuthModalStore();
@@ -18,7 +19,7 @@ const AuthModal = () => {
         <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:w-full sm:max-w-lg">
           <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
             <div className="flex justify-between z-50">
-              {tab === "login" ? <Login /> : <Register />}
+              <TabContent tab={tab} />
               <nav>
                 <button
                   onClick={closeModal}
@@ -35,6 +36,20 @@ const AuthModal = () => {
   );
 };
 
+interface TabContentProps {
+  tab: Tab;
+}
+const TabContent = (props: TabContentProps) => {
+  switch(props.tab) {
+    case 'login':
+      return <Login />
+    case 'register':
+      return <Register />
+    case 'forgotPassword':
+      return <ForgotPasswordTab />   
+      default: 
+        return <Login />
+  }
+}
+
 export default AuthModal;
-
-

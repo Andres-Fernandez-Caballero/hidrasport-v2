@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 
 const FormCheckout = () => {
   const { totalAmount } = useCartStore();
-  const {userSession} = useAuthStore();
+  const { userSession } = useAuthStore();
   const [buttonCheckoutIsDisabled, setButtonCheckoutIsDisabled] = useState<boolean>(true);
   
   const router = useRouter();
@@ -29,16 +29,15 @@ const FormCheckout = () => {
   } = checkout.shipment
 
 
-  useEffect(
-    () => {
-      if(!haveZipCode()) 
-        setButtonCheckoutIsDisabled(false);
-      else if(haveZipCode() && shippingAmount) {
-        setButtonCheckoutIsDisabled(false);
-      } else 
+  useEffect(() => {
+    if (!haveZipCode()) {
+      setButtonCheckoutIsDisabled(false);
+    } else if (haveZipCode() && shippingAmount) {
+      setButtonCheckoutIsDisabled(false);
+    } else {
       setButtonCheckoutIsDisabled(true);
-    }, [zipCode, totalAmount, shippingType, shippingAmount, haveZipCode]
-  )
+    }
+  }, [zipCode, totalAmount, shippingType, shippingAmount, haveZipCode]);
 
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -100,7 +99,7 @@ const FormCheckout = () => {
         <hr />
         <header className="flex justify-between font-bold text-lg text-gray-900">
           <h3>Total</h3>
-          <p>$ {totalAmount + (shippingAmount ?? 0)}</p>
+          <p>$ {checkout.totalAmountWithShipping}</p>
         </header>
         <button
           type="submit"

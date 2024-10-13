@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type Tab = "login" | "register";
+export type Tab = "login" | "register"| "forgotPassword";
 export interface AuthModalStore {
   isOpen: boolean;
   tab: Tab;

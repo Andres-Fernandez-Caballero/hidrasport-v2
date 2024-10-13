@@ -4,7 +4,6 @@ import urls from "@config/urls";
 
 export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> => {
     let response;
-    console.log("--------------------------------")
     if(token !== ''){ 
       response = await fetch(`${urls.cart}cart/`, {
         headers: {
@@ -51,7 +50,7 @@ export const fetchCartAdd = async(token='', productData: fetcherAddParams, quant
 export const fetchTotalAmount = async (token=''):Promise<number> => {
 
   const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${urls.cart}/${cart_mode}`
+    let url = `${urls.cart}${cart_mode}`
     
     if(token !== ''){
       url += `/products-value/`;
@@ -84,8 +83,6 @@ export const fetchTotalAmount = async (token=''):Promise<number> => {
 }
 
 export const fetchCartRemove = async(token='', productData: fetcherAddParams):Promise<boolean> => {
-  console.log('fetchCartRemove', token, productData);
-  
   const cart_mode = token !== ''? 'cart' : 'session-cart';
     let url = `${urls.cart}${cart_mode}`
     
