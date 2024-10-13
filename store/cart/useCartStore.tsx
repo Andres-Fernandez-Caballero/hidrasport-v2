@@ -20,6 +20,7 @@ const useCartStore = create<CartStore>((set, get) => ({
     try {
       const data = await fetchCartDetails(useAuthStore.getState().userSession.token);
       
+      data.cart.items = (data.cart.items.sort((a, b) => Number(a.subproduct_id) - Number(b.subproduct_id)))
       const cartData: iCartProduct[] = data.cart.items;
       set({ cartData,});
       await get().getTotalAmount()
@@ -76,12 +77,6 @@ const useCartStore = create<CartStore>((set, get) => ({
     get().fetchCart();
   },
   
-
-  substractItemFromCart: async (product) => {
-    console.log(product);
-    // Deprecated
-  },
-
   getTotalAmount: async () => {
     const token = useAuthStore.getState().userSession.token;
     const totalAmount = (await fetchTotalAmount(token))
