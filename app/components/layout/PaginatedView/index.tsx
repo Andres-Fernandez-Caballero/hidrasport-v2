@@ -58,7 +58,8 @@ const PaginatedView = (props: PaginatedViewProps) => {
             }, undefined, { shallow: true });
         }
     }, [data, router]);
-
+    console.log('data', data);
+    
     return (
         <ContentMain title={props.title} >
             {error && <EmptyProduct />}

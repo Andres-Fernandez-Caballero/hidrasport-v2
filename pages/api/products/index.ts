@@ -17,9 +17,7 @@ export default async function getProducts(
       const data = await response.json();
 
       // Mapear las imágenes para agregar el prefijo SERVER_URL
-      const updatedResults = data.results.map((product: Product) => ({
-        ...product,
-      }));
+      const updatedResults = data.results.filter((product: Product) => (product !== null));
 
       // Enviar la respuesta con las URLs actualizadas
       return res.status(200).json({ ...data, results: updatedResults });
