@@ -35,6 +35,8 @@ const EditProfile = () => {
   const handleOnChangePassword = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
+      console.log(formPassword);
+      
         const response = await fetch('/api/auth/change_password', {
             method: 'POST',
             headers: {
@@ -43,7 +45,8 @@ const EditProfile = () => {
             },
             body: JSON.stringify(formPassword)
         });
-
+        console.log(response);
+        
         if (!response.ok) {
             toast.error("Error al cambiar la contraseña");
             return;
@@ -71,11 +74,13 @@ const EditProfile = () => {
                 <input 
                     type="text" 
                     placeholder="contraseña actual" 
+                    name="password"
                     onChange={handleOnChangeFormPassword}
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 mb-1"/>
                 
                 <input 
                     type="text" 
+                    name="passwordConfirmation"
                     placeholder="nueva contraseña" 
                     onChange={handleOnChangeFormPassword}
                     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />

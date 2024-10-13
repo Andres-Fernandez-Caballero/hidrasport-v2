@@ -8,10 +8,10 @@ export default async function changePassword (
     req: NextApiRequest,
     res: NextApiResponse<Data>
 ) {
-    if (req.method !== 'GET')
+    if (req.method !== 'POST')
         return res.status(405).json({message: 'Method not allowed'});
 
-    const {password, passwordConfirmation} = req.query;
+    const {password, passwordConfirmation} = req.body;
     if (!password || !passwordConfirmation)
         return res.status(400).json({message: 'Faltan datos'});
     
