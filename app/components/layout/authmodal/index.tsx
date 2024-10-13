@@ -53,5 +53,3 @@ const TabContent = (props: TabContentProps) => {
 }
 
 export default AuthModal;
-
-

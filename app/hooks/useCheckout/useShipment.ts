@@ -4,6 +4,7 @@ import { fetchShippingAmount } from "@services/shipping";
 import { useCallback, useEffect, useState } from "react";
 import { ShippingTypes } from ".";
 import { IUseShipment } from "./contracts";
+import useCartStore from "@store/cart/useCartStore";
 
    
 
@@ -30,6 +31,7 @@ const useShipment= (): IUseShipment => {
         .then(amount => setShippingAmount(amount))
         .catch(error => console.log(error));
     }
+    useCartStore.getState().getTotalAmount()
   }, [zipCode, shippingType]);
 
   function updateZipCode(zipCode: string) {
@@ -44,7 +46,7 @@ const useShipment= (): IUseShipment => {
 
   const handleOnShippingTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newShippingType = event.target.value as ShippingType;
-    setShippingType(newShippingType);
+      setShippingType(newShippingType);
     localStorage.setItem('shippingType', newShippingType);
   };
 
