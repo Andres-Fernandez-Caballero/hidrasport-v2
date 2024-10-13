@@ -32,7 +32,7 @@ const ProductCardItem = ({ product }: ProductCadItemProps) => {
 
     return (
         <div className={styles.productCardContainer}>
-            <Link href={`/productos/detalle/${product.title_id}`}>
+            <Link href={`/productos/detalle/${product.id}`}>
                 <article
                     className={styles.itemCard}
                     onMouseEnter={handleOnMouseEnter}
