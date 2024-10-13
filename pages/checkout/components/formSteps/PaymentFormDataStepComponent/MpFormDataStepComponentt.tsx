@@ -2,14 +2,14 @@
 import { MP_PUBLIC_KEY } from '@config/index';
 import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react'
 import { useAuthStore } from '@store/auth/auth.store';
-import useCartStore from '@store/cart/useCartStore';
+import useCheckout from 'app/hooks/useCheckout';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 
 export default function MpFormDataStepComponent() {
     const { userSession } = useAuthStore();
-    const { totalAmount } = useCartStore();
+    const {totalAmountWithShipping} = useCheckout()
     const router = useRouter();
     initMercadoPago(MP_PUBLIC_KEY);
 
@@ -17,7 +17,7 @@ export default function MpFormDataStepComponent() {
         <div>
             <CardPayment
                 initialization={{
-                    amount: totalAmount,
+                    amount: totalAmountWithShipping,
                     payer: {
                         email: userSession.email,
                     }

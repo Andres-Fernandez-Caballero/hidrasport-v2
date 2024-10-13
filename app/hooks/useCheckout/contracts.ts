@@ -6,6 +6,7 @@ interface IUseCheckout {
     shipmentForm: IUseShipmentForm;
     creditCardForm: IUseCreditCardForm;
     shipment: IUseShipment;
+    totalAmountWithShipping: number;
 }
 
 export interface IUseShipment {

@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 
 const FormCheckout = () => {
   const { totalAmount } = useCartStore();
-  const {userSession} = useAuthStore();
+  const { userSession } = useAuthStore();
   const [buttonCheckoutIsDisabled, setButtonCheckoutIsDisabled] = useState<boolean>(true);
   
   const router = useRouter();
@@ -99,7 +99,7 @@ const FormCheckout = () => {
         <hr />
         <header className="flex justify-between font-bold text-lg text-gray-900">
           <h3>Total</h3>
-          <p>$ {totalAmount}</p>
+          <p>$ {checkout.totalAmountWithShipping}</p>
         </header>
         <button
           type="submit"

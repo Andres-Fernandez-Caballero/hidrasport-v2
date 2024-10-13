@@ -84,7 +84,7 @@ const useCartStore = create<CartStore>((set, get) => ({
 
   getTotalAmount: async () => {
     const token = useAuthStore.getState().userSession.token;
-    const totalAmount = await fetchTotalAmount(token)
+    const totalAmount = (await fetchTotalAmount(token))
     set({ totalAmount });
     return totalAmount;
   }
