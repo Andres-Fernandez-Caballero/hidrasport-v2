@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 export default function ForgotPasswordTab() {
     const {  goTab } = useAuthModalStore();
-    const [email, setEmail] = useState<string>();
+    const [email, setEmail] = useState<string>("");
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -21,7 +21,7 @@ export default function ForgotPasswordTab() {
             body: JSON.stringify({email})
         });
         if(!response.ok) {
-            toast.error("Error al enviar el email");
+            toast.error("El Email no esta registrado");
             return;
         }
 
@@ -52,6 +52,7 @@ export default function ForgotPasswordTab() {
                             className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                             placeholder="correo@ejemplo.com"
                             onChange={handleOnChange}
+                            value={email}
                         />
                     </div>
                 </div>
