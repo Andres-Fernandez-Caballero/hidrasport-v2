@@ -4,6 +4,7 @@ export const API_BASE_URL = 'https://api.shipnow.com.ar';
 
 /**
  * Door to Door shipments.
+ * @deprecated no se usa
  */
 export const SHIPPING_PAP = 'ship_pap';
 
@@ -21,7 +22,7 @@ export const SHIPPING_PAS = 'ship_pas';
 export type ShippingMode = typeof SHIPPING_PAP | typeof SHIPPING_PAS | typeof SHIPPING_SAS; 
 
 export const getShippingAmount = async (zipCode: string, shippingType: ShippingMode=SHIPPING_PAP ) => {
-  
+  console.log(`${API_BASE_URL}/shipping_options?&to_zip_code=${zipCode}&types=${shippingType}`)
   const response = await fetch(`${API_BASE_URL}/shipping_options?&to_zip_code=${zipCode}&types=${shippingType}`, {
     headers: {
       'content-type': 'application/json',

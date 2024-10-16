@@ -17,7 +17,7 @@ const getBestOfProducts = async (req: NextApiRequest, res: NextApiResponse) => {
         });
 
         if ( response.status !== 200) {
-            return res.status(response.status).json({ error: `Error fetching data: ${response.statusText}` });
+            return res.status(response.status).json({ message: `Error fetching data: ${response.statusText}` });
         }
 
         const data = await response.json();
