@@ -13,7 +13,7 @@ export default function BranchDeliveryForm(props: CheckoutFormDataProps) {
             fetchShippingPO(props.checkoutData.shipment.zipCode)
                 .then(data => {
                     // Mapea las oficinas postales para el dropdown
-                    const formattedPOs = data.map((po: any) => ({
+                    const formattedPOs = data.map((po: unknown) => ({
                         label: "$" +  po.price + " | " + po.ship_to.address.line,// Nombre visible de la oficina postal
                         value: po.ship_to.id           // Valor seleccionado
                     }));
