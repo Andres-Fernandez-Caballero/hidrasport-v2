@@ -20,7 +20,7 @@ export const SHIPPING_PAS = 'ship_pas';
 
 export type ShippingMode = typeof SHIPPING_PAP | typeof SHIPPING_PAS | typeof SHIPPING_SAS; 
 
-export const getShippingAmount = async (zipCode: string, shippingType: ShippingMode=SHIPPING_PAP ) => {
+export const getShippingAmount = async (zipCode: string, shippingType: ShippingMode, postOfficeId:number=0) => {
   
   const response = await fetch(`${API_BASE_URL}/shipping_options?&to_zip_code=${zipCode}&types=${shippingType}`, {
     headers: {
