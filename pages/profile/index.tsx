@@ -8,14 +8,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import { DataScroller } from "primereact/datascroller";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.css"
+import useUserData, { IUserProfile } from "app/hooks/useUserData";
 
 const Profile = () => {
   const { userSession, logout } = useAuthStore();
   const { cartData } = useCartStore();
   const { orders } = useOrderStore();
   const router = useRouter();
+  const {getUserData} = useUserData();
+
+  const [userData, setUserData] = useState<IUserProfile>();
 
   useEffect(() => {
     actualizarPedidos();
@@ -23,6 +27,8 @@ const Profile = () => {
     if (userSession.token === '') {
       router.replace("/");
     }
+    getUserData().then(data =>  setUserData(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSession.token, router]);
 
   if (!userSession) {
@@ -40,7 +46,11 @@ const Profile = () => {
           <div className="flex flex-col items-center p-5 h-full">
             <Image className="w-24 h-24 mb-3 rounded-full shadow-lg" src="/images/avatar.jpg" alt="Avatar del usuario logueado" width={400} height={400} />
             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{userSession.username}</h5>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Telefono: {userData?.first_name} {userData?.last_name}</span>
             <span className="text-sm text-gray-500 dark:text-gray-400">{userSession.email}</span>
+
+            <span className="text-sm text-gray-500 dark:text-gray-400">Telefono: {userData?.telephone}</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Dirección: {userData?.address} {userData? userData["street-number"] : ''}</span>
             <menu className={styles.doubleButton}>
               <button
                 className={styles.editButton}

@@ -28,6 +28,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
+   
     const loadData = async () => {
       try {
         await Promise.all([fetchSiteConfig(), fetchCart(), fetchLanding()]);

@@ -59,22 +59,25 @@ const useCartStore = create<CartStore>((set, get) => ({
   },
 
   addItemToCart: async (product: iCartProduct | ICartAddProduct, quantity = 1) => {
-    let productRequest: ICartAddProduct;
+      let productRequest: ICartAddProduct;
   
-    if ('size' in product && 'subproduct_id' in product) {
-      productRequest = {
-        size: product.size,
-        subProductId: product.subproduct_id
-      };
-    } else {
-      productRequest = { ...product };
-    }
+      if ('size' in product && 'subproduct_id' in product) {
+        productRequest = {
+          size: product.size,
+          subProductId: product.subproduct_id
+        };
+      } else {
+        productRequest = { ...product };
+      }
   
-    const token = useAuthStore.getState().userSession.token;
-    const isAdded = await fetchCartAdd(token, productRequest, quantity);
-    if (!isAdded) throw new Error("No hay Stock del producto.");
-    
-    get().fetchCart();
+      const token = useAuthStore.getState().userSession.token;
+      const isAdded = await fetchCartAdd(token, productRequest, quantity);
+  
+      if (!isAdded) {
+        throw new Error("No hay Stock del producto."); // Lanzar error si no se puede añadir
+      }
+  
+      get().fetchCart(); // Refresca el carrito después de añadir el producto
   },
   
   getTotalAmount: async () => {

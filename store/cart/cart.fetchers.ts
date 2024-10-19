@@ -22,29 +22,46 @@ export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> =>
     const data = await response.json();
     return data
 }
+export const fetchCartAdd = async(token = '', productData: fetcherAddParams, quantity: number = 1): Promise<boolean | string> => {
+  const cart_mode = token !== '' ? 'cart' : 'session-cart';
+  let url = `${urls.cart}${cart_mode}`;
 
-export const fetchCartAdd = async(token='', productData: fetcherAddParams, quantity:number=1):Promise<boolean> => {
-    const cart_mode = token !== ''? 'cart' : 'session-cart';
-    let url = `${urls.cart}${cart_mode}`
-    
-    if(token !== ''){
-      url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}/`;
+  try {
+      let response;
+      if (token !== '') {
+          url += `/modify-product/${productData.subProductId}/${productData.size}/add/${quantity}/`;
 
-      const response = await fetch(url, {
-        headers: {
-          'Authorization': 'token ' + token
-        }
-      });
-      return response.ok
-    }else {
-      url += `/modify/${productData.subProductId}/${productData.size}/add/${quantity}/`
-      
-      const response = await fetch(url, {
-        credentials: "include",
-      });
-      return response.ok
-    }    
-}
+          response = await fetch(url, {
+              headers: {
+                  'Authorization': 'token ' + token
+              }
+          });
+      } else {
+          url += `/modify/${productData.subProductId}/${productData.size}/add/${quantity}/`;
+
+          response = await fetch(url, {
+              credentials: "include",
+          });
+      }
+
+      if (!response.ok) {
+          if (response.status === 404) {
+              // Obtener el mensaje del cuerpo de la respuesta
+              const errorData = await response.json();
+              throw new Error(errorData.detail || 'Producto no encontrado');
+          } else {
+              const errorMessage = await response.text(); 
+              throw new Error(errorMessage || 'Error al modificar el carrito');
+          }
+      }
+
+      return true;
+  } catch (error) {
+      // Muestra o retorna el mensaje de error
+      console.error('Error al añadir producto al carrito:', error);
+      return `Error: ${error.message}`; // También puedes retornar el error como string
+  }
+};
 
 
 export const fetchTotalAmount = async (token=''):Promise<number> => {
