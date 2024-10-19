@@ -22,6 +22,7 @@ const SelectorVariante = ({
   const handleOnVariantChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const variant = variants.find((v) => v.id.toString() === event.target.value); // Encontrar el subproducto con el id pasado por parametro
     if (variant) setCurrentVariant(variant);
+
   };
 
   function getAvailableTalles(product: ProductDetail): string[] {
@@ -37,7 +38,7 @@ const SelectorVariante = ({
   
     return talles;
   }
-
+  
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSize(event.target.value);
   };
@@ -49,8 +50,8 @@ const SelectorVariante = ({
         <h3 className="text-sm font-medium text-gray-900">Color</h3>
         <RadioButtonInput
           name="color-choice"
-          totalItemsList={variants.map(variant => ({ item: variant.id, image: variant.images.length > 0 ? variant.images[0].image : '/images/remera_frente.png' } as unknown as ItemWithImage ))} // Mapear cada subproducto para obtener su id y su imagen
-          itemsAvailables={variants.map(variant => ({ item: variant.id, iimage: variant.images.length > 0 ? variant.images[0].image : '/images/remera_frente.png' } as unknown as ItemWithImage ))} // Mapear cada subproducto para obtener su id y su imagen
+          totalItemsList={variants.map(variant => ({ item: variant.id.toString(), image: variant.images.length > 0 ? variant.images[0].image : '/images/remera_frente.png' } as unknown as ItemWithImage ))} // Mapear cada subproducto para obtener su id y su imagen
+          itemsAvailables={variants.map(variant => ({ item: variant.id.toString(), image: variant.images.length > 0 ? variant.images[0].image : '/images/remera_frente.png' } as unknown as ItemWithImage ))} // Mapear cada subproducto para obtener su id y su imagen
           currentState={currentVariant.id.toString()}
           onChange={handleOnVariantChange}
         />
