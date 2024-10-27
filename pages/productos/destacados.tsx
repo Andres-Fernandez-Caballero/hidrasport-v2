@@ -4,7 +4,7 @@ export default function BestOfPage() {
     return (
         <PaginatedView
             title="Destacados"
-            apiEndpoint="/api/products/bestof"
+            initFilters={{ bestof:true }}
         />
     )
 }
