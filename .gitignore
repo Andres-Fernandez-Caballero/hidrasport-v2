@@ -67,3 +67,4 @@ volumes/
 
 # yarn
 yarn.lock
+public/sw.js*
