@@ -8,7 +8,7 @@ const HomeDeliveryForm = (props: CheckoutFormDataProps) => (
 
         {props.checkoutData.shipment.haveZipCode() && (
             <>
-                <span>Codigo Postal</span>
+                <span>Código Postal</span>
                 <input
                     type="text"
                     aria-describedby="helper-text-explanation"

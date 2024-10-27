@@ -5,21 +5,27 @@ import { useCallback, useEffect, useState } from "react";
 import { ShippingTypes } from ".";
 import { IUseShipment } from "./contracts";
 import useCartStore from "@store/cart/useCartStore";
+import { SHIPPING_PAP, SHIPPING_PAS, ShippingMode } from "@repositories/shipping";
+  
 
-   
+const shippingTypeMap: Record<ShippingType, ShippingMode> = {
+  "Envio a Domicilio": SHIPPING_PAP,
+  "Envio a Sucursal mas Cercana": SHIPPING_PAS,
+  "Retiro en deposito Hidra": PICKUP_POINT
+};
 
-const useShipment= (): IUseShipment => {
+const useShipment = (): IUseShipment => {
   const [zipCode, setZipCode] = useState<string>(localStorage.getItem("zipCode") ?? "");
   const [shippingAmount, setShippingAmount] = useState<number>();
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(CREDIT_CARD_PAYMENT);
-  
+
   // Verifica si el valor en localStorage es válido
   const getInitialShippingType = (): ShippingType => {
     const storedShippingType = localStorage.getItem('shippingType') as ShippingType;
     if (ShippingTypes.includes(storedShippingType)) {
       return storedShippingType;
     }
-    return HOME_DELIVERY;
+    return "Envio a Domicilio"; // Default readable shipping type
   };
 
   const [shippingType, setShippingType] = useState<ShippingType>(getInitialShippingType());
@@ -27,16 +33,21 @@ const useShipment= (): IUseShipment => {
   useEffect(() => {
     if (!zipCode) setShippingAmount(undefined);
     if (zipCode && isValidPostalCode(zipCode) && shippingType !== PICKUP_POINT) {
-      fetchShippingAmount(zipCode)
+      const mappedShippingType = shippingTypeMap[shippingType];
+      fetchShippingAmount(zipCode, mappedShippingType)
         .then(amount => setShippingAmount(amount))
         .catch(error => console.log(error));
     }
-    useCartStore.getState().getTotalAmount()
+    useCartStore.getState().getTotalAmount();
   }, [zipCode, shippingType]);
 
   function updateZipCode(zipCode: string) {
     setZipCode(zipCode);
     localStorage.setItem('zipCode', zipCode);
+  }
+
+  function updatePOPrice (priceShipping: number){
+      setShippingAmount(priceShipping)
   }
 
   function clearZipCode() {
@@ -72,6 +83,7 @@ const useShipment= (): IUseShipment => {
     haveZipCode,
     zipCode,
     updateZipCode,
+    updatePOPrice,
     shippingAmount,
     paymentMethod,
   };

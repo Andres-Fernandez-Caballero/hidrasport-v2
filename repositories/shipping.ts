@@ -21,14 +21,13 @@ export const SHIPPING_PAS = 'ship_pas';
 
 export type ShippingMode = typeof SHIPPING_PAP | typeof SHIPPING_PAS | typeof SHIPPING_SAS; 
 
-export const getShippingAmount = async (zipCode: string, shippingType: ShippingMode=SHIPPING_PAP ) => {
-  console.log(`${API_BASE_URL}/shipping_options?&to_zip_code=${zipCode}&types=${shippingType}`)
+export const getShippingAmount = async (zipCode: string, shippingType: ShippingMode) => {
   const response = await fetch(`${API_BASE_URL}/shipping_options?&to_zip_code=${zipCode}&types=${shippingType}`, {
-    headers: {
-      'content-type': 'application/json',
-      'Authorization': 'Bearer ' + SHIPPING_TOKEN
-    }
-  });
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + SHIPPING_TOKEN
+      }
+    });
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
