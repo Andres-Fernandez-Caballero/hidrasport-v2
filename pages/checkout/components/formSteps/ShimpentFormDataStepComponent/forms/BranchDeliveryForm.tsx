@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CheckoutFormDataProps } from "@pages/checkout/components/contracts";
 import { Dropdown } from "primereact/dropdown";
 import { useState, useEffect } from "react";
 import { fetchShippingPO } from "@services/shipping";
+import useShipment from "app/hooks/useCheckout/useShipment";
 
 export default function BranchDeliveryForm(props: CheckoutFormDataProps) {
+    const { updatePOPrice } = useShipment()
     const [selectedPO, setSelectedPO] = useState(null);
     const [postOffices, setPostOffices] = useState([]);
 
@@ -11,11 +14,11 @@ export default function BranchDeliveryForm(props: CheckoutFormDataProps) {
         // Solo fetch si hay código postal
         if (props.checkoutData.shipment.zipCode) {
             fetchShippingPO(props.checkoutData.shipment.zipCode)
-                .then(data => {
-                    // Mapea las oficinas postales para el dropdown
-                    const formattedPOs = data.map((po: unknown) => ({
-                        label: "$" +  po.price + " | " + po.ship_to.address.line,// Nombre visible de la oficina postal
-                        value: po.ship_to.id           // Valor seleccionado
+                .then((data: any) => {
+                     // Mapea las oficinas postales para el dropdown
+                    const formattedPOs = data.map((po: any) => ({
+                        label: "$" + po.price + " | " + po.ship_to.address.line,
+                        value: { id: po.ship_to.id, price: po.price },
                     }));
                     setPostOffices(formattedPOs);
                 })
@@ -50,7 +53,11 @@ export default function BranchDeliveryForm(props: CheckoutFormDataProps) {
                 <div className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <Dropdown 
                         value={selectedPO} 
-                        onChange={(e) => setSelectedPO(e.value)} 
+                        onChange={(e) => {
+                            setSelectedPO(e.value); 
+                            if(e.value.price)
+                                updatePOPrice(e.value.price); // Set shipping amount using price
+                        }} 
                         options={postOffices} 
                         optionLabel="label" 
                         placeholder="Seleccione una Sucursal" 

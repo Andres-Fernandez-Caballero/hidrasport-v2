@@ -15,7 +15,6 @@ export const fetchShippingPO = async(
   zipCode:string ): Promise<number>=> {
     try {
         const data = await getShippingAmount(zipCode, 'ship_pas');
-        // TODO: ask for tax_price attribute
         console.log(data.results)
           return data.results;
     }catch(error) {

@@ -46,6 +46,10 @@ const useShipment = (): IUseShipment => {
     localStorage.setItem('zipCode', zipCode);
   }
 
+  function updatePOPrice (priceShipping: number){
+      setShippingAmount(priceShipping)
+  }
+
   function clearZipCode() {
     setZipCode('');
     localStorage.removeItem('zipCode');
@@ -79,6 +83,7 @@ const useShipment = (): IUseShipment => {
     haveZipCode,
     zipCode,
     updateZipCode,
+    updatePOPrice,
     shippingAmount,
     paymentMethod,
   };

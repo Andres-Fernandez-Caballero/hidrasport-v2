@@ -18,6 +18,7 @@ export interface IUseShipment {
     haveZipCode: () => boolean;
     zipCode: string;
     updateZipCode: (zipCode: string) => void;
+    updatePOPrice: (priceShipping: number) => void;
     shippingAmount?: number;
 }
 
