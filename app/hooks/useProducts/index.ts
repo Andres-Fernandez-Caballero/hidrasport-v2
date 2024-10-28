@@ -3,35 +3,9 @@ import { ApiProductsResponse } from "@interfaces/hidraApi/products";
 import { Product } from "@interfaces/IProduct";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
+import { InitFiltersProps } from "./contracts";
+import fetcher from "./fetcher";
 
-export interface InitFiltersProps {
-    //[key: string]: string | string[] | number | number[] | boolean | boolean[];
-    [key:string] : unknown | undefined;
-}
-
-type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
-
-const fetcher = async (
-    url: string, 
-    method: Method = 'GET', 
-    body: InitFiltersProps | undefined = undefined
-): Promise<ApiProductsResponse> => {
-    console.log(body);
-    
-    const response = await fetch(url, {
-        method,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: body? JSON.stringify(body) : undefined,
-    });
-    console.log(response);
-    
-    const data = await response.json();
-
-    if (!response.ok) throw new Error("Error al cargar productos");
-    return data;
-}
 
 const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);    
@@ -41,10 +15,13 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => 
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState<InitFiltersProps | undefined>(initFilters);
 
+    /* Este useEffect podria eliminarse */
     useEffect(() => {
         setFilters(initFilters);
-        setCurrentPage(1); // Resetea a la primera página si cambian los filtros
-    }, [initFilters]);
+        setCurrentPage(1);
+         // Resetea a la primera página si cambian los filtros
+    },
+    []);
     
 
     useEffect(() => {

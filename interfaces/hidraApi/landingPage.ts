@@ -1,5 +1,4 @@
 import { LinkImage } from "@interfaces/ILink";
-import { Product } from "@interfaces/IProduct";
 
 
 export interface InfoCardData {
@@ -9,15 +8,14 @@ export interface InfoCardData {
 }
 
 export interface HeroSection {
-    title: string;
-    subtitle: string;
+    slogan: string;
+    subtitle?: string;
     backgroundImage: string;
     messages: string[];
 }
 
 export interface ILandigPage {
-    heroSection: HeroSection;   
-    productosDestacados: Product[]
+    heroSection: HeroSection;
     gridLinks: LinkImage[]
     infoCards: InfoCardData[];
 }
