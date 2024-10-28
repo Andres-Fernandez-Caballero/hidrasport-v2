@@ -3,7 +3,8 @@ import ContentMain from "@components/layout/contentMain";
 import EmptyProduct from "@components/layout/product/emptyProduct";
 import ProductGridList from "@components/layout/product/productGridList";
 import PaginationMenu from "./paginationButtons";
-import useProducts, { InitFiltersProps } from "app/hooks/useProducts";
+import useProducts from "app/hooks/useProducts";
+import { InitFiltersProps } from "app/hooks/useProducts/contracts";
 
 interface PaginatedViewProps {
     title: string;

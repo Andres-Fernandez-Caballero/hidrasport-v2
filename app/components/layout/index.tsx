@@ -10,10 +10,10 @@ import { ToastContainer } from "react-toastify";
 import Loader from "@components/common/Loader";
 
 type LayoutProps = {
-  loading: boolean;
+  loading?: boolean;
   children: React.ReactNode;
 };
-const Layout = ({ children, loading }: LayoutProps) => {
+const Layout = ({ children, loading=false }: LayoutProps) => {
   const { isOpen } = useAuthModalStore();
   const { isLogedIn } = useAuthStore();
 

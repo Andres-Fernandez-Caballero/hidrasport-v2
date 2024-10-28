@@ -1,21 +1,19 @@
-import { useEffect, useState } from "react";
-import Layout from "@components/layout";
+import { useEffect } from "react";
+import MainLayout from "@components/layout";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import useCartStore from "@store/cart/useCartStore";
 import { toast } from "react-toastify";
 import "react-multi-carousel/lib/styles.css";
-import { PrimeReactProvider} from 'primereact/api';
+import { PrimeReactProvider } from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
-import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";       
-import useLandingStore from "@store/landing/useLandingStore";
+import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
 import usePermissionLevel from "app/hooks/usePermissionlevel";
 import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
-  const {fetchSiteConfig} = useSiteConfigStore();
-  const { fetchLanding} = useLandingStore();
+  const { fetchSiteConfig } = useSiteConfigStore();
   const { authResponse, authLoading, authError } = usePermissionLevel();
 
   const router = useRouter();
@@ -26,32 +24,32 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     // }
   }, [authLoading, authResponse, authError, router]);
 
-  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
-   
     const loadData = async () => {
       try {
-        await Promise.all([fetchSiteConfig(), fetchCart(), fetchLanding()]);
+        await Promise.all([
+          fetchSiteConfig(),
+          fetchCart(),
+        ]
+        );
       } catch (error) {
         toast.error("Error al cargar la información del sitio");
         console.error("Error:", error);
-      } finally {
-        setLoading(false);
       }
     };
-  
+
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <> 
-        <Layout loading={loading}>
+    <>
+      <MainLayout>
         <PrimeReactProvider>
           <Component {...pageProps} />
         </PrimeReactProvider>
-      </Layout>
+      </MainLayout>
     </>
-  
+
   );
 };
 export default MyApp;
