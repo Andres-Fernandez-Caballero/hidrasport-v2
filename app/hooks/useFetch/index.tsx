@@ -1,5 +1,4 @@
 import { useState, useCallback } from 'react';
-import { useAuthStore } from "@store/auth/auth.store";
 
 interface FetchState<T> {
   response: T | null;
@@ -11,18 +10,23 @@ const useFetch = <T, B = Record<string, unknown>>(): FetchState<T> & { fetchData
   const [response, setResponse] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
-  const { userSession } = useAuthStore();
-  const token = userSession?.token;
+  const localStorageItem = localStorage.getItem('auth-storage');
+  let token: string | null = null;
 
   const fetchData = useCallback(async (url: string, method: 'GET' | 'POST', body?: B) => {
     setLoading(true);
     setError(null);
     try {
+      if (localStorageItem) {
+        const localStorageData = JSON.parse(localStorageItem);
+        token = localStorageData?.state?.userSession?.token || null;
+      }
+
       const options: RequestInit = {
         method,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`,
+          ...(token ? { 'Authorization': `Token ${token}` } : {}),
         },
       };
 

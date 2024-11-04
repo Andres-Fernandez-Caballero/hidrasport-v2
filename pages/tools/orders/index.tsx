@@ -29,6 +29,7 @@ const OrdersPage: NextPage = () => {
       endDate: filters.endDate,
     };
     await fetchData(urls.orders + `?page=${page}`, 'POST', body);
+    
   };
 
   const handlePageChange = async (page: number) => {

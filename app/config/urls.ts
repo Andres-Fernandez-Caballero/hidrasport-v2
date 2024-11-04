@@ -10,6 +10,7 @@ const urls = {
   ordersBase: backendUrl + "/api/orders",
   cart: backendUrl + "/api/cart/",
   publicCarts: backendUrl + "/api/cart/public-carts/",
+  savePublicCart: backendUrl + "/api/cart/public-carts/save-current-cart/",
   forgotPassword: backendUrl + "/api/accounts/users/send-recover-email/"
 };
 

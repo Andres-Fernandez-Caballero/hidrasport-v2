@@ -25,8 +25,8 @@ const PublicCartItemCard: React.FC<PublicCartItemCardProps> = ({ item, onIncreas
       <div className="item-details text-center">
         <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
         <p className="text-sm text-gray-500">Color: {item.color}</p>
-        <p className="text-sm text-gray-500">Size: {item.size}</p>
-        <p className="text-sm text-gray-500 mb-2">Price: ${item.price}</p>
+        <p className="text-sm text-gray-500">Talle: {item.size}</p>
+        <p className="text-sm text-gray-500 mb-2">Precio: ${item.price}</p>
         <div className="quantity flex items-center justify-center space-x-2">
           <button
             className="bg-gray-200 text-gray-600 p-1 rounded"
