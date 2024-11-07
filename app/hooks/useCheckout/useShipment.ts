@@ -8,10 +8,10 @@ import useCartStore from "@store/cart/useCartStore";
 import { SHIPPING_PAP, SHIPPING_PAS, ShippingMode } from "@repositories/shipping";
   
 
-const shippingTypeMap: Record<ShippingType, ShippingMode> = {
+const shippingTypeMap: Record<ShippingType, ShippingMode | undefined> = {
   "Envio a Domicilio": SHIPPING_PAP,
   "Envio a Sucursal mas Cercana": SHIPPING_PAS,
-  "Retiro en deposito Hidra": PICKUP_POINT
+  "Retiro en deposito Hidra": undefined
 };
 
 const useShipment = (): IUseShipment => {
@@ -32,6 +32,9 @@ const useShipment = (): IUseShipment => {
 
   useEffect(() => {
     if (!zipCode) setShippingAmount(undefined);
+    
+    if(shippingType === PICKUP_POINT) setShippingAmount(0);
+
     if (zipCode && isValidPostalCode(zipCode) && shippingType !== PICKUP_POINT) {
       const mappedShippingType = shippingTypeMap[shippingType];
       fetchShippingAmount(zipCode, mappedShippingType)

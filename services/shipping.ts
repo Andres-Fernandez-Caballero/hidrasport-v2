@@ -2,7 +2,8 @@ import { ShippingMode, getShippingAmount } from "@repositories/shipping";
 
 export const fetchShippingAmount = async(
   zipCode:string, 
-  shippingType:ShippingMode): Promise<number>=> {
+  shippingType:ShippingMode | undefined): Promise<number>=> {
+    if(!shippingType) return 0;
     try {
         const data = await getShippingAmount(zipCode, shippingType);
         // TODO: ask for tax_price attribute

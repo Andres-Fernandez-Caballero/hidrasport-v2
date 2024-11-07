@@ -6,17 +6,17 @@ import SelectorVariante from "./selectorVariante/SelectorVariante";
 import { handleOnSubmit } from "./selectorVariante/SelectorVariante";
 import ImageContainer from "./imageContainer/ImageContainer";
 import useCartStore from "@store/cart/useCartStore"; // Importa el hook de la tienda del carrito
+import urls from "@config/urls";
 
 export const getServerSideProps: GetServerSideProps<{
   product: Product | undefined | null;
 }> = async (context) => {
   try {
-    const { query, req } = context;
-    const protocol = req.headers['x-forwarded-proto'] || 'http';
-    const host = req.headers['host'];
-    const apiUrl = `${protocol}://${host}/api/products/${query.id}`;
+    const { query } = context;
+    const apiUrl = `${urls.products}${query.id}`;
 
     const result = await fetch(apiUrl);
+
     let product: Product;
 
     if (result.status === 200) {
@@ -36,6 +36,8 @@ interface DetalleProps {
 }
 
 const Detalle = ({ product }: DetalleProps) => {
+  console.log('product', product);
+  
   const subproducts = product ? product.subproducto : [];
   
   const [currentVariant, setCurrentVariant] = useState<ISubproducto>(subproducts[0]);

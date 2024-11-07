@@ -2,10 +2,6 @@ import { SHIPPING_TOKEN } from "@config/index";
 
 export const API_BASE_URL = 'https://api.shipnow.com.ar';
 
-/**
- * Door to Door shipments.
- * @deprecated no se usa
- */
 export const SHIPPING_PAP = 'ship_pap';
 
 /**
