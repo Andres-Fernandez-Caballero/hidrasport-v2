@@ -30,13 +30,15 @@ const InputAvailable = ({
     />
     <div className="flex items-center">
       {image ?
-        <Image
-          src={image}
-          alt={item}
-          height={200}
-          width={200}
-          className="w-12 h-12 object-cover rounded-full mr-3"
-        />
+        <span id={`${item}-label`} className="flex-1">
+          <Image
+            src={image}
+            alt={item}
+            height={200}
+            width={200}
+            className={`w-12 h-12 object-cover rounded-full mr-3`}
+          />
+        </span>
         :
         <span id={`${item}-label`} className="flex-1">{item}</span>
       }
@@ -46,7 +48,7 @@ const InputAvailable = ({
                             pointer-events-none 
                             absolute -inset-px 
                             rounded-md 
-                            ${item === currentState
+                            ${item == currentState
           ? "border-2 border-black"
           : "border"
         }

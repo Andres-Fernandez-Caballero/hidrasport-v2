@@ -1,4 +1,4 @@
-import { iCartProduct, ICartAddProduct } from "@interfaces/ICart";
+import { ICartAddProduct, iCartProduct } from "@interfaces/ICart";
 
 export type CartStore = {
     cartData: iCartProduct[];
@@ -9,19 +9,13 @@ export type CartStore = {
      * calculates the total amount of cart from the backend
      * @returns number total amount of cart
      */
-    getTotalAmount: () => Promise <number>;
+    getTotalAmount: () => Promise<number>;
 
     /**
      * update cart from the server
      * @returns 
      */
     fetchCart: () => void;
-    
-    /**
-     * @param iCartProduct product to add to cart 
-     * @returns 
-     */
-    addToCart: (product: ICartAddProduct) => Promise<void>;
 
     /**
      * remove item from cart
@@ -36,16 +30,9 @@ export type CartStore = {
      * @params number of the quantity to increment
      * @returns Promise<void>
      */
-    addItemToCart: (product: iCartProduct, quantity: number) => Promise<void>;
+    addItemToCart: (product: iCartProduct | ICartAddProduct, quantity: number) => Promise<void>;
 
-    /**
-     * subtract one unit from a product
-     * @todo this method should be included in the api call
-     * @param iCartProduct
-     * @returns Promise<void>
-     */
-    substractItemFromCart: (product: iCartProduct) => Promise<void>; // subtract one unit from a product
-  };
+};
 
 export type ResponseCartDetails = {
     cart: {

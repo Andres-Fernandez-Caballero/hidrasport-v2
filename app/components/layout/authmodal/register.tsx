@@ -87,9 +87,9 @@ const Register = () => {
       </h2>
       <form className="mt-2" onSubmit={handleSubmit}>
         <InputAuthForm
-          label="Nombre "
+          label="Usuario"
           icon="fa-solid fa-user"
-          placeholder="nombre de usuario"
+          placeholder="Nombre de usuario"
           name="username"
           onChange={handleChange}
           type="text"
@@ -106,7 +106,7 @@ const Register = () => {
         <InputAuthForm
           label="Contraseña"
           icon="fa-solid fa-key"
-          placeholder="contraseña"
+          placeholder="Contraseña"
           name="password"
           onChange={handleChange}
           type="password"
@@ -114,7 +114,7 @@ const Register = () => {
         <InputAuthForm
           label="Confirmar Contraseña"
           icon="fa-solid fa-key"
-          placeholder="confirmar contraseña"
+          placeholder="Confirmar contraseña"
           name="password2"
           onChange={handleChange}
           type="password"

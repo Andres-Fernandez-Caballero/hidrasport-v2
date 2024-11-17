@@ -13,6 +13,7 @@ const urls = {
   publicCarts: backendUrl + "/api/cart/public-carts/",
   titles: backendUrl + "/api/store/titles/",
   titlesFilter: backendUrl + "/api/store/titles/filter/",
+  forgotPassword: backendUrl + "/api/accounts/users/send-recover-email/"
 };
 
 export default urls;

@@ -2,24 +2,24 @@
 import { MP_PUBLIC_KEY } from '@config/index';
 import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react'
 import { useAuthStore } from '@store/auth/auth.store';
+import useCheckout from 'app/hooks/useCheckout';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 
 export default function MpFormDataStepComponent() {
     const { userSession } = useAuthStore();
+    const {totalAmountWithShipping} = useCheckout()
     const router = useRouter();
     initMercadoPago(MP_PUBLIC_KEY);
 
     return (
-        <>
-            <p>Compra protegida con Mercado Pago 💸</p>
+        <div>
             <CardPayment
                 initialization={{
-                    amount: 1000,
+                    amount: totalAmountWithShipping,
                     payer: {
                         email: userSession.email,
-
                     }
                 }}
                 onSubmit={async (param) => {
@@ -49,6 +49,6 @@ export default function MpFormDataStepComponent() {
                 }}
             />
 
-        </>
+        </div>
     )
 }

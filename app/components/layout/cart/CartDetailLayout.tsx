@@ -16,7 +16,8 @@ interface CartItemProps {
 }
 
 const CartItem = (props: CartItemProps) => {
-
+  console.log('item-carrito', props);
+  
   const { addItemToCart, removeFromCart } = useCartStore();
   return (
     <div className={styles.itemContainer}>
@@ -34,8 +35,8 @@ const CartItem = (props: CartItemProps) => {
 
       <div className={styles.detailContainer}>
         <span>
-          <strong>{props.item.title}</strong>
         </span>
+          <strong>{props.item.title.length > 28 ? props.item.title.slice(0, 25)+'...' : props.item.title}</strong>
         <div className="flex justify-between">
           <p className="text-sm text-gray-500 truncate dark:text-gray-400">
             <strong>{props.item.color}</strong>
@@ -61,17 +62,19 @@ const CartItem = (props: CartItemProps) => {
                   autoClose: 2000,
                 });
               })
-                .catch(e =>
+                .catch(e => {
+                  console.log(e)
                   toast.update(toastMessage, {
                     render: (e as Error).message,
                     type: "error",
                     isLoading: false,
                     autoClose: 2000,
                   })
+                }
                 )
             }}
           >
-            <i className="fa-solid fa-trash text-red-500"></i>
+            <i className="fa-solid fa-minus text-red-500"></i>
           </button>
           <span>
             {props.item.quantity}
@@ -123,9 +126,9 @@ const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
         <section className={styles.productsContainer}>
           <DataScroller
             value={cartData}
-            itemTemplate={(item) => (<CartItem item={item} />)} rows={5}
+            itemTemplate={(item) => (<CartItem item={item} />)} rows={cartData.length}
             inline
-            scrollHeight="100%" />
+            scrollHeight="68svh" />
         </section>
         <section className={styles.enviosContainer}>
           <FormCheckout />

@@ -1,6 +1,6 @@
-import { ISiteConfig } from "@interfaces/hidraApi/siteConfig";
+import { IConfigSite } from "@interfaces/hidraApi/siteConfig";
 
-export interface SiteConfig extends ISiteConfig {}
+export interface SiteConfig extends IConfigSite {}
 
 export type SiteConfigStore = {
     siteConfig: SiteConfig;

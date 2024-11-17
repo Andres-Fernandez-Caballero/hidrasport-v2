@@ -1,11 +1,11 @@
-import { ProductDetail, Variant } from "@interfaces/IProduct";
-import RadioButtonInput from "@components/common/RadioButtonInput";
+import { ISubproducto, ProductDetail } from "@interfaces/IProduct";
+import RadioButtonInput, { ItemWithImage } from "@components/common/RadioButtonInput";
 import { toast } from "react-toastify";
 interface SelectorVarianteProps {
   product: ProductDetail;
-  currentVariant: Variant;
-  variants: Variant[];
-  setCurrentVariant: (variant: Variant) => void;
+  currentVariant: ISubproducto;
+  variants: ISubproducto[];
+  setCurrentVariant: (variant: ISubproducto) => void;
   size: string; // Nuevo prop para el tamaño seleccionado
   setSize: (size: string) => void; // Nuevo prop para actualizar el tamaño
 }
@@ -20,10 +20,25 @@ const SelectorVariante = ({
 }: SelectorVarianteProps) => {
 
   const handleOnVariantChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const variant = variants.find((v) => v.subProductId === event.target.value);
+    const variant = variants.find((v) => v.id.toString() === event.target.value); // Encontrar el subproducto con el id pasado por parametro
     if (variant) setCurrentVariant(variant);
+
   };
 
+  function getAvailableTalles(product: ProductDetail): string[] {
+    const talles: string[] = [];
+  
+    product.subproducto.forEach(subproduct => {
+      subproduct.talles.forEach(talle => {
+        if (!talles.includes(talle.talle)) {
+          talles.push(talle.talle);
+        }
+      });
+    });
+  
+    return talles;
+  }
+  
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSize(event.target.value);
   };
@@ -35,9 +50,9 @@ const SelectorVariante = ({
         <h3 className="text-sm font-medium text-gray-900">Color</h3>
         <RadioButtonInput
           name="color-choice"
-          totalItemsList={variants.map(variant => ({ item: variant.subProductId, image: variant.images.front }))}
-          itemsAvailables={variants.map(variant => ({ item: variant.subProductId, image: variant.images.front }))}
-          currentState={currentVariant.subProductId}
+          totalItemsList={variants.map(variant => ({ item: variant.id.toString(), image: variant.images.length > 0 ? variant.images[0].image : '/images/remera_frente.png' } as unknown as ItemWithImage ))} // Mapear cada subproducto para obtener su id y su imagen
+          itemsAvailables={variants.map(variant => ({ item: variant.id.toString(), image: variant.images.length > 0 ? variant.images[0].image : '/images/remera_frente.png' } as unknown as ItemWithImage ))} // Mapear cada subproducto para obtener su id y su imagen
+          currentState={currentVariant.id.toString()}
           onChange={handleOnVariantChange}
         />
       </div>
@@ -56,8 +71,8 @@ const SelectorVariante = ({
         <fieldset className="mt-4">
           <RadioButtonInput
             name="size-choice"
-            totalItemsList={orderSizes(product.available_sizes)}
-            itemsAvailables={orderSizes(currentVariant.sizes)}
+            totalItemsList={orderSizes(getAvailableTalles(product))}
+            itemsAvailables={currentVariant.talles.map(t => t.talle)}
             currentState={size}
             onChange={handleSizeChange} // Maneja el cambio de tamaño
           />
@@ -71,17 +86,18 @@ export async function handleOnSubmit(
   event: React.FormEvent<HTMLFormElement>,
   size: string,
   subProductId: string,
-  addToCart: (args: { size: string; subProductId: string }) => Promise<void>
+  addItemToCart: ( variant: {size: string , subProductId: string}, quantity: number ) => Promise<void>
 ) {
   event.preventDefault();
   const toastMessage = toast.loading("Agregando al carrito ⌛");
 
   try {
     if (size === "") throw new Error("Debe seleccionar un talle");
-    await addToCart({
+    await addItemToCart({
       size,
       subProductId,
-    });
+    },1 // quantity of items to add
+  );
     toast.update(toastMessage, {
       render: "Agregado al carrito",
       type: "success",

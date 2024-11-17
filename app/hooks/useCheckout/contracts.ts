@@ -6,6 +6,7 @@ interface IUseCheckout {
     shipmentForm: IUseShipmentForm;
     creditCardForm: IUseCreditCardForm;
     shipment: IUseShipment;
+    totalAmountWithShipping: number;
 }
 
 export interface IUseShipment {
@@ -17,6 +18,7 @@ export interface IUseShipment {
     haveZipCode: () => boolean;
     zipCode: string;
     updateZipCode: (zipCode: string) => void;
+    updatePOPrice: (priceShipping: number) => void;
     shippingAmount?: number;
 }
 

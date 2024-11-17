@@ -6,6 +6,7 @@ import {CheckoutFormDataProps} from "../../contracts";
 import HomeDeliveryForm from "./forms/HomeDeliveryForm";
 import PickupPointForm from "./forms/PickupPointForm";
 import BranchDeliveryForm from "./forms/BranchDeliveryForm";
+import styles from "../../../styles.module.css"
 
 
 const ShipmentFormDataStepComponent = (props: CheckoutFormDataProps) => {
@@ -25,9 +26,9 @@ const ShipmentFormDataStepComponent = (props: CheckoutFormDataProps) => {
     }, [props.checkoutData.shipment.shippingType, optionComponent]);
 
     return (
-        <div>
+        <div className={styles.stepContainer}>
             <RadioButtonInput
-                className="my-4"
+                className="mb-4"
                 name="type-shipping"
                 totalItemsList={ShippingTypes}
                 itemsAvailables={ShippingTypes}

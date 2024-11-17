@@ -13,6 +13,7 @@ interface LinkItem  extends ILink {}
 
 export const links: LinkItem[] = [
   { url: "/productos", text: "Productos" },
+  { url: "/productos/destacados", text: "Destacados ⭐"},
   { url: "/productos/categoria/Mujer", text: "Mujeres" },
   { url: "/productos/categoria/Hombre", text: "Hombres" },
   { url: "/productos/categoria/Deportes", text: "Deportes" },

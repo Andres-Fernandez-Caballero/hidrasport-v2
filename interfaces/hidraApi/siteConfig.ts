@@ -1,4 +1,5 @@
-export interface ISiteConfig {
+export interface IConfigSite {
+    id?: number;
     banner: string;
     banner_md: string;
     banner_sm: string;

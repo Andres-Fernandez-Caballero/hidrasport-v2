@@ -1,3 +1,4 @@
+
 import InputAuthForm from "./inputAuthForm"
 import { LoginSlot } from "./interfaces"
 import styles from "./styles.module.css";
@@ -25,7 +26,7 @@ const LoginMaterial = (props: LoginSlot) => (
                                 type="password"
                             />
                             <div className="flex justify-center">
-                                <a href="#" onClick={() => alert("Característica en desarrollo 🚧")} className="text-sm text-blue-700 hover:underline dark:text-blue-500">¿Olvidaste tu contraseña?</a>
+                                <button type="button" onClick={() => props.goTab('forgotPassword') } className="text-sm text-blue-700 hover:underline dark:text-blue-500">¿Olvidaste tu contraseña?</button>
                             </div>
                             <button type="submit" className={styles.primaryButton}>Iniciar sesión</button>
                             <button

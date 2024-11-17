@@ -4,20 +4,20 @@ import { fetchLanding } from "./landing.fetchers";
 import { persist } from "zustand/middleware";
 import { initState } from "./landing.init-state";
 
-
-
-const useLandingStore = create<LandingStore>() (persist (
+const useLandingStore = create<LandingStore>()(
+  persist(
     (set) => ({
-        landing: initState,
-        fetchLanding: async () => {
-            const fetchedSiteConfig = await fetchLanding();
-            set({ landing: fetchedSiteConfig });
-            return fetchedSiteConfig;
-        }
+      landing: initState,
+      fetchLanding: async () => {
+        const fechedLandingData = await fetchLanding();
+        
+        set({landing: {...fechedLandingData}});
+
+        return fechedLandingData;
+      },
     }),
-    { name: "site-config", getStorage: () => localStorage }
-))
-
-
+    { name: "site-landing", getStorage: () => localStorage }
+  )
+);
 
 export default useLandingStore;

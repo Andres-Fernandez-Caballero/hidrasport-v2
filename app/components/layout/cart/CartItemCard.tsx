@@ -11,7 +11,7 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
   return (
     <div className="flex flex-col p-4 border border-gray-300 shadow-md rounded-md">
       <Image
-        src={`${SERVER_URL}/static${item.image}`}
+        src={`${SERVER_URL}/static${item.img}`}
         alt={item.title ?? 'no description'}
         height={200}
         width={200}

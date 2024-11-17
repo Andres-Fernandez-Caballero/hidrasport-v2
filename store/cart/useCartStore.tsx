@@ -20,6 +20,7 @@ const useCartStore = create<CartStore>((set, get) => ({
     try {
       const data = await fetchCartDetails(useAuthStore.getState().userSession.token);
       
+      data.cart.items = (data.cart.items.sort((a, b) => Number(a.subproduct_id) - Number(b.subproduct_id)))
       const cartData: iCartProduct[] = data.cart.items;
       set({ cartData,});
       await get().getTotalAmount()
@@ -31,24 +32,16 @@ const useCartStore = create<CartStore>((set, get) => ({
     }
   },
   addToCart: async (product: ICartAddProduct, quantity: number = 1) => {
-    set({ cartIsLoading: true });
-    try {
-      const token = useAuthStore.getState().userSession.token;
-      const isAdded = await fetchCartAdd(token, product, quantity)
-      if (!isAdded) throw new Error('could not add product to cart ')
+    const token = useAuthStore.getState().userSession.token;
+    const isAdded = await fetchCartAdd(token, product, quantity)
+    console.log(isAdded)
+    if (!isAdded) throw new Error('could not add product to cart ')
 
-      const data = await fetchCartDetails(token);
-      const cartItems: iCartProduct[] = data.cart.items;
+    const data = await fetchCartDetails(token);
+    const cartItems: iCartProduct[] = data.cart.items;
 
-      set({ cartData: cartItems });
-    } catch (error) {
-      throw new Error(
-
-        "Error al cargar el carrito: " + (error as Error).message,
-      );
-    } finally {
-      set({ cartIsLoading: false });
-    }
+    set({ cartData: cartItems });
+    //deprecado?
   },
 
   removeFromCart: async (product: iCartProduct): Promise<void> => {
@@ -59,31 +52,37 @@ const useCartStore = create<CartStore>((set, get) => ({
 
     const token = useAuthStore.getState().userSession.token;
     const isRemoved = await fetchCartRemove(token, productRequest)
-    if (!isRemoved) throw new Error('could not remove product from the cart')
+    if (!isRemoved) throw new Error('No se pudo remover el producto del carrito.')
     
     get().fetchCart()
     
   },
 
-  addItemToCart: async (product: iCartProduct, quantity = 1) => {
-    const productRequest: ICartAddProduct = {
-      size: product.size,
-      subProductId: product.subproduct_id
-    }
-
-    const token = useAuthStore.getState().userSession.token;
-      await fetchCartAdd(token, productRequest, quantity)
-      get().fetchCart()
+  addItemToCart: async (product: iCartProduct | ICartAddProduct, quantity = 1) => {
+      let productRequest: ICartAddProduct;
+  
+      if ('size' in product && 'subproduct_id' in product) {
+        productRequest = {
+          size: product.size,
+          subProductId: product.subproduct_id
+        };
+      } else {
+        productRequest = { ...product };
+      }
+  
+      const token = useAuthStore.getState().userSession.token;
+      const isAdded = await fetchCartAdd(token, productRequest, quantity);
+  
+      if (!isAdded) {
+        throw new Error("No hay Stock del producto."); // Lanzar error si no se puede añadir
+      }
+  
+      get().fetchCart(); // Refresca el carrito después de añadir el producto
   },
-
-  substractItemFromCart: async (product) => {
-    console.log(product);
-    // TODO: pending feature, need backend implementation
-  },
-
+  
   getTotalAmount: async () => {
     const token = useAuthStore.getState().userSession.token;
-    const totalAmount = await fetchTotalAmount(token)
+    const totalAmount = (await fetchTotalAmount(token))
     set({ totalAmount });
     return totalAmount;
   }

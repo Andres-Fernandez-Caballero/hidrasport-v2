@@ -7,6 +7,7 @@ export interface IProductListResponse extends IPagination {
 }
 
 export interface Product {
+  id: number;
   title_id: number;
   title: string;
   price: number;
@@ -15,7 +16,7 @@ export interface Product {
 }
 
 export interface Talle {
-  id?: number;
+  id: number;
   subcodigo: string;
   talle: string;
   largo: string | null;
@@ -23,11 +24,12 @@ export interface Talle {
   manga: string | null;
   siza: string | null;
   tiro?: unknown | null;
-  bajo_busto?: unknown;
-  cintura?: unknown;
+  bajo_busto?: string| null;
+  cintura?: string | null;
   ubicacion: string | null;
+  ubicacion2: string;
   caja: string | null;
-  tamaño_caja?: unknown;
+  tamaño_caja?: string | null;
   cantidad: number | null;
   cantidad2: number | null;
   subproducto: number | null;
@@ -46,32 +48,32 @@ export interface ISubproducto {
   producto: number;
 }
 
-export interface ProductDetail {
-  id: number;
-  title: string;
-  price: number;
-  precio_mayorista: number;
-  available_colors: string[];
-  available_sizes: string[];
-  subcodigo_color_dict: SubCodigoColorDictionary;
-}
-
 export interface ImageProducTetail {
   front: string;
   back: string;
 }
 
-interface SubCodigoColorDictionary {
-  [key: string]: {
-    color: string;
-    sizes: string[];
-    images: ImageProducTetail;
-  };
+// interfaces v2 de subproducto
+interface Title {
+  id: number;
+  titulo: string;
 }
 
-export interface Variant {
-  subProductId: string;
+interface Subproducto {
+  id: number;
+  images: Image[];
+  talles: Talle[];
+  subcodigo: string;
   color: string;
-  images: ImageProducTetail;
-  sizes: string[];
+  producto: number;
 }
+
+export interface ProductDetail {
+  id: number;
+  price: number;
+  precio_mayorista: number;
+  title: Title;
+  subproducto: Subproducto[];
+}
+
+
