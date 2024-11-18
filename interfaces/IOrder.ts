@@ -58,3 +58,9 @@ export interface IOrderItem {
   payment_date: string;
   products: Product[];
 }
+
+export interface IOrderFilterRequest {
+  status: string;
+  startDate: string;
+  endDate: string;
+}

@@ -1,74 +1,81 @@
+import { useState, useEffect, useCallback } from 'react';
+import useFetch from 'app/hooks/useFetch';
 import urls from '@config/urls';
-import { useState, useEffect } from 'react';
 import { ITitleListResponse, ITitles } from '@interfaces/ITitle';
 import { IProductListResponse } from '@interfaces/IProduct';
-import useFetch from 'app/hooks/useFetch';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<ITitles[]>([]);
-  const { response, loading, error, fetchData } = useFetch<ITitleListResponse>();
-  const { response: productResponse, loading: productLoading, error: productError, fetchData: fetchProducts } = useFetch<IProductListResponse>();
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+  const { request, loading, error } = useFetch<ITitleListResponse>();
+  const { request: productsRequest } = useFetch<Record<string, number>, IProductListResponse>();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
+  const [debouncedQuery, setDebouncedQuery] = useState('');
 
   useEffect(() => {
-    const fetchTitles = async () => {
-      if (searchQuery.length > 3) {
-        await fetchData(`${urls.titlesFilter}?q=${encodeURIComponent(searchQuery)}`, 'GET');
-      } else {
-        setResults([]);
-      }
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
     };
+  }, [searchQuery]);
 
-    const debounceFetch = setTimeout(fetchTitles, 300);
-
-    return () => clearTimeout(debounceFetch);
-  }, [searchQuery, fetchData]);
+  const handleSearch = useCallback(async () => {
+    const data = await request(
+      `${urls.titlesFilter}?q=${encodeURIComponent(debouncedQuery)}`,
+      'GET'
+    ) as ITitleListResponse;
+    setResults(data.results);
+  }, [debouncedQuery, request]);
 
   useEffect(() => {
-    if (response) {
-      setResults(response.results);
+    if (debouncedQuery.length >= 3) {
+      handleSearch();
+      setButtonDisabled(false);
+    } else {
+      setResults([]);
+      setButtonDisabled(true);
     }
-  }, [response]);
+  }, [debouncedQuery, handleSearch]);
 
   const handleTitleClick = async (id: number) => {
-    await fetchProducts(urls.productsFilter, 'POST', { "title__id": id });
-    console.log(productResponse, productLoading, productError)
-  };
-
-  const handleSearch = () => {
-    console.log('Search query:', searchQuery);
+    await productsRequest(urls.productsFilter, 'POST', { title__id: id });
   };
 
   return (
-    <div className="flex flex-col items-center justify-center mt-4">
-      <div className="flex">
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleInputChange}
-          placeholder="Buscar..."
-          className="px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <button
-          onClick={handleSearch}
-          className="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600"
-        >
-          Buscar
-        </button>
+    <div className="relative">
+      <div className="fixed top-0 left-0 right-0 bg-black p-2 w-full z-20">
+        <div className="flex w-full max-w-3xl bg-black p-2 rounded-lg mx-auto">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Buscar..."
+            className="flex-grow px-4 py-2 border-none rounded-l-lg focus:outline-none bg-gray-900 text-white"
+          />
+          <button
+            onClick={handleSearch}
+            className={`px-4 py-2 rounded-r-lg ${
+              buttonDisabled ? 'bg-gray-400 text-gray-200' : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={buttonDisabled}
+          >
+            Buscar
+          </button>
+        </div>
       </div>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error fetching data: {error.message}</p>}
+      {loading && <p className="text-white mt-20">Loading...</p>}
+      {error && <p className="text-red-500 mt-20">Error fetching data: {error.message}</p>}
       {results.length > 0 && (
-        <ul className="mt-2 w-full border rounded-lg bg-white shadow-lg">
+        <ul className="absolute mt-20 left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white shadow-lg z-10">
           {results.map((item) => (
             <li
               key={item.id}
               onClick={() => handleTitleClick(item.id)}
-              className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+              className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-black"
             >
               {item.name}
             </li>

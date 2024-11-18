@@ -6,7 +6,6 @@ import CategoriesSection from "@components/layout/landing/categoriesSection";
 import ProductsSection from "@components/layout/landing/notableProductsSection";
 import useProducts from "app/hooks/useProducts";
 import { useEffect } from "react";
-import SearchBar from "@components/common/searchbar";
 
 const Home: NextPage = () => {
  const { landing, fetchLanding} = useLandingStore();
@@ -21,7 +20,6 @@ const Home: NextPage = () => {
   
   return (
     <>
-      <SearchBar />
       <HeroSection
         backgroundImage={landing.heroSection.backgroundImage}
         slogan={landing.heroSection.slogan }

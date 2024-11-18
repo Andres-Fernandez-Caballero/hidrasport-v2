@@ -1,52 +1,51 @@
-import { useState, useCallback } from 'react';
-import { useAuthStore } from "@store/auth/auth.store";
+import { useState } from "react";
 
-interface FetchState<T> {
-  response: T | null;
-  loading: boolean;
-  error: Error | null;
-}
-
-const useFetch = <T, B = Record<string, unknown>>(): FetchState<T> & { fetchData: (url: string, method: 'GET' | 'POST', body?: B) => Promise<void> } => {
-  const [response, setResponse] = useState<T | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+const useFetch = <T = undefined, R = unknown>() => {
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const { userSession } = useAuthStore();
-  const token = userSession?.token;
 
-  const fetchData = useCallback(async (url: string, method: 'GET' | 'POST', body?: B) => {
+  const request = async (
+    url: string,
+    method: "GET" | "POST",
+    body?: T
+  ): Promise<R> => {
     setLoading(true);
     setError(null);
+
     try {
-      const options: RequestInit = {
+      let authToken = '';
+      const authTokenString = localStorage.getItem('auth-storage');
+      if (authTokenString) {
+        const authTokenObject = JSON.parse(authTokenString);
+        const token = authTokenObject.state.userSession.token;
+        authToken = token;
+      }
+
+      const response = await fetch(url, {
         method,
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`,
+          "Content-Type": "application/json",
+          ...(authToken ? { Authorization: `Token ${authToken}` } : {}),
         },
-      };
-
-      if (method === 'POST' && body) {
-        options.body = JSON.stringify(body);
-      }
-
-      const response = await fetch(url, options);
+        body: method === "POST" ? JSON.stringify(body) : undefined,
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch data');
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.detail || "An error occurred");
       }
 
-      const responseData = await response.json();
-      setResponse(responseData);
-    } catch (error) {
-      setError(error as Error);
-      console.error('Error fetching data:', error);
+      const data = await response.json();
+      return data as R;
+    } catch (err) {
+      setError(err as Error);
+      throw err;
     } finally {
       setLoading(false);
     }
-  }, [token]);
+  };
 
-  return { response, loading, error, fetchData };
+  return { request, loading, error };
 };
 
 export default useFetch;

@@ -8,21 +8,11 @@ import "react-multi-carousel/lib/styles.css";
 import { PrimeReactProvider } from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
 import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
-import usePermissionLevel from "app/hooks/usePermissionlevel";
-import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
   const { fetchSiteConfig } = useSiteConfigStore();
-  const { authResponse, authLoading, authError } = usePermissionLevel();
 
-  const router = useRouter();
-
-  useEffect(() => {
-    // if (!authLoading && (authError || (authResponse && !authResponse.admin))) {
-    //   router.push('https://hidrasport.com.ar/');
-    // }
-  }, [authLoading, authResponse, authError, router]);
 
   useEffect(() => {
     const loadData = async () => {
