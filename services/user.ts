@@ -3,11 +3,13 @@ import { CREDIT_CARD_PAYMENT } from "@interfaces/Ipayment";
 import { Login, Register } from "@repositories/user/user.repository"
 import { AuthData } from "@store/auth/contracts";
 import { Payment } from "mercadopago";
+import { FaConciergeBell } from "react-icons/fa";
 
 export const fetchLogin = async(loginData: LoginDto): Promise<AuthData> => {
     try{
         const data = await Login(loginData);
-        return {...data, paymentMethods:[CREDIT_CARD_PAYMENT] };
+        
+        return data;
     }catch(err) {
         throw new Error("Credenciales incorrectas");
     }

@@ -1,3 +1,5 @@
+import { PaymentMethod } from "@interfaces/Ipayment";
+
 interface Response {
     message: string;
 }
@@ -7,6 +9,7 @@ export interface LoginResponse extends Response {
     email: string;
     token: string;
     admin: boolean;
+    paymentMethods: PaymentMethod[];
 }
 
 export interface RegisterResponse extends Response {
