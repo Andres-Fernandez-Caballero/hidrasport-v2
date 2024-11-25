@@ -1,13 +1,11 @@
 'use client'
-
-import React, {  useRef } from "react";
 import { useAuthStore } from "@store/auth/auth.store";
 import useCheckout from "app/hooks/useCheckout";
 import B2BCheckout from "./B2BCheckout";
 import { SHIPPING_PAP } from "@repositories/shipping";
 
 export default function CheckoutPage() {
-  const {userSession, isLogedIn} = useAuthStore();
+  const {userSession} = useAuthStore();
   const checkoutData = useCheckout();
 
   let productsCost = checkoutData.totalAmountWithShipping
@@ -20,7 +18,6 @@ export default function CheckoutPage() {
         user={userSession}
         productsCost={productsCost}
         shippingCost={checkoutData.shipment.shippingAmount}
-        total={checkoutData.totalAmountWithShipping}
         postalCode={checkoutData.shipment.zipCode}
         shippingType={SHIPPING_PAP}
       />

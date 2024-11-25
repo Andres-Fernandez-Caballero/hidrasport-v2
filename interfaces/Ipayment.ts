@@ -8,3 +8,13 @@ export type PaymentMethod =
   | typeof BANK_TRANSFER
   | typeof TEST_PAYMENT
   | typeof TEST_NO_CARD_PAYMENT;
+
+  export interface IPaymentResponse {
+    response: string;
+  }
+
+  export interface ICouponResponse {
+    detail: string;
+    value: number;
+    min_purchase_value: number;
+  }

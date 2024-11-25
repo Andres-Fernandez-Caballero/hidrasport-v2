@@ -2,14 +2,13 @@ import { useState, useEffect, useCallback } from 'react';
 import useFetch from 'app/hooks/useFetch';
 import urls from '@config/urls';
 import { ITitleListResponse, ITitles } from '@interfaces/ITitle';
-import { IProductListResponse } from '@interfaces/IProduct';
+import router from 'next/router';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<ITitles[]>([]);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
   const { request, loading, error } = useFetch<ITitleListResponse>();
-  const { request: productsRequest } = useFetch<Record<string, number>, IProductListResponse>();
 
   const [debouncedQuery, setDebouncedQuery] = useState('');
 
@@ -39,10 +38,15 @@ const SearchBar = () => {
       setResults([]);
       setButtonDisabled(true);
     }
-  }, [debouncedQuery, handleSearch]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedQuery]);
 
   const handleTitleClick = async (id: number) => {
-    await productsRequest(urls.productsFilter, 'POST', { title__id: id });
+    const filters = { "title__id": id };
+    router.push({
+      pathname: "/productos/filter",
+      query: { filters: JSON.stringify(filters) },
+    });
   };
 
   return (
@@ -70,7 +74,7 @@ const SearchBar = () => {
       {loading && <p className="text-white mt-20">Loading...</p>}
       {error && <p className="text-red-500 mt-20">Error fetching data: {error.message}</p>}
       {results.length > 0 && (
-        <ul className="absolute mt-20 left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white shadow-lg z-10">
+        <ul className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white shadow-lg z-10">
           {results.map((item) => (
             <li
               key={item.id}

@@ -13,7 +13,9 @@ const urls = {
   publicCarts: backendUrl + "/api/cart/public-carts/",
   titles: backendUrl + "/api/store/titles/",
   titlesFilter: backendUrl + "/api/store/titles/filter/",
-  forgotPassword: backendUrl + "/api/accounts/users/send-recover-email/"
+  forgotPassword: backendUrl + "/api/accounts/users/send-recover-email/",
+  payment: backendUrl + "/api/store/payments/payment/",
+  validateCoupon: backendUrl + "/api/store/coupons/validate/"
 };
 
 export default urls;
