@@ -7,9 +7,15 @@ const PaymentButton = ({ postalCode, coupon, shippingType }) => {
   const { request, loading } = useFetch<IPaymentResponse>();
 
   const handlePayment = () => {
-    const modifiedUrl = `${urls.payment}?postalCode=${postalCode}&coupon=${coupon}&shippingType=${shippingType}`;
+    let modifiedUrl = `${urls.payment}?postalCode=${postalCode}&shippingType=${shippingType}`;
+  
+    if (coupon.name) {
+      modifiedUrl += `&coupon=${coupon.name}`;
+    }
+  
     request(modifiedUrl, 'GET');
   };
+  
 
   return (
     <button
@@ -17,7 +23,7 @@ const PaymentButton = ({ postalCode, coupon, shippingType }) => {
       onClick={handlePayment}
       disabled={loading}
     >
-      {loading ? 'Processing...' : 'Pagar'}
+      {loading ? 'Cargando...' : 'Pagar'}
     </button>
   );
 };

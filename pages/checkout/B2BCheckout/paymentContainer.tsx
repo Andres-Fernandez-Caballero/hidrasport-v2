@@ -12,7 +12,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({ productsCost, shipp
   ? parseFloat(Math.max((productsCost - coupon.value), coupon.min_purchase_value).toFixed(2))
   : productsCost;
 
-  const totalCost: number = (newPrice + shippingCost);
+  const totalCost: number = parseFloat((newPrice + shippingCost).toFixed(2));
 
   return (
     <div className="mb-8">
@@ -22,10 +22,10 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({ productsCost, shipp
           <span className="text-lg">Costo de productos:</span>
           {coupon && coupon.value > 0 && productsCost > coupon.min_purchase_value ? (
             <span className="text-lg font-semibold line-through text-gray-500">
-              ${productsCost}
+              ${productsCost.toFixed(2)}
             </span>
           ) : (
-            <span className="text-lg font-semibold">${productsCost}</span>
+            <span className="text-lg font-semibold">${productsCost.toFixed(2)}</span>
           )}
           {coupon && coupon.value > 0 && productsCost > coupon.min_purchase_value && (
             <span className="text-lg font-semibold text-green-600 ml-2">

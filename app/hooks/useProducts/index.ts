@@ -21,7 +21,7 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => 
         setCurrentPage(1);
          // Resetea a la primera página si cambian los filtros
     },
-    [initFilters]);
+    []);
     
 
     useEffect(() => {

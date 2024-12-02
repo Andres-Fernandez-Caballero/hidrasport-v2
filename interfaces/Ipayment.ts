@@ -15,6 +15,7 @@ export type PaymentMethod =
 
   export interface ICouponResponse {
     detail: string;
+    name: string;
     value: number;
     min_purchase_value: number;
   }

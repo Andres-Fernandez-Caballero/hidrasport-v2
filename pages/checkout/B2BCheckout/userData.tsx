@@ -1,6 +1,7 @@
 import React from 'react';
 
 const UserData = ({ user, postalCode }) => {
+  console.log(postalCode)
   return (
     <div className="mb-8">
       <h1 className="text-2xl font-bold mb-4">Datos del usuario</h1>
@@ -30,7 +31,7 @@ const UserData = ({ user, postalCode }) => {
           required
         />
       </div>
-      {postalCode !== 0 && (
+      {postalCode !== "0" && (
         <div className="mt-8">
           <h1 className="text-2xl font-bold mb-4">Datos de envio</h1>
           <div className="grid grid-cols-1 gap-4">
@@ -96,7 +97,7 @@ const UserData = ({ user, postalCode }) => {
           </div>
         </div>
       )}
-      {postalCode === 0 && (
+      {postalCode === "0" && (
         <div className="mt-8">
           <h1 className="text-2xl font-bold mb-4">Datos de retiro</h1>
           <p className="text-lg">Elegiste la opción pickup!</p>

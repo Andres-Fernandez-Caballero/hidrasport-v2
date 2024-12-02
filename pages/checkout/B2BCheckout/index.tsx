@@ -4,13 +4,18 @@ import PaymentContainer from './paymentContainer';
 import CouponContainer from './couponContainer';
 import PaymentButton from './PaymentButton';
 import { ICouponResponse } from '@interfaces/Ipayment';
+import router from 'next/router';
 
-const B2BCheckout = ({ user, productsCost, shippingCost, postalCode , shippingType}) => {
+const B2BCheckout = ({ user, productsCost, shippingCost}) => {
   const [coupon, setCoupon] = useState<ICouponResponse>({
     detail: "",
+    name: "",
     value: 0,
     min_purchase_value: 0,
   });
+  const { postalCode } = router.query;
+
+  const shippingType: string = parseInt(String(postalCode)) > 0 ? "ship_pap" : "pickup";
 
   return (
     <div className="p-8 bg-gray-100 text-gray-800">
