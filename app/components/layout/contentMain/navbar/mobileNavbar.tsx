@@ -58,7 +58,7 @@ const MobileNavbar = ({
         <div className="mt-6 flow-root">
           <div className="-my-6 divide-y divide-gray-500/10">
             <nav className="space-y-2 py-6">
-              {links.map((link, index) => (
+              {links?.map((link, index) => (
                 <Link
                   key={index}
                   onClick={toggleMobileMenuClose}

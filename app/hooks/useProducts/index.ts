@@ -31,7 +31,6 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => 
                 const url = filters ? 
                 `${urls.products}filter/?page=${currentPage}` : 
                 `${urls.products}?page=${currentPage}`;
-                
                 const method = filters ? 'POST' : 'GET';
                             
                 const data = await fetcher(url, method, filters);
