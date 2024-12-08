@@ -6,8 +6,8 @@ export const fetchShippingAmount = async(
     if(!shippingType) return 0;
     try {
         const data = await getShippingAmount(zipCode, shippingType);
-        // TODO: ask for tax_price attribute
-          return data.results[0].price;
+        console.log(data)
+        return data.shipping_cost;
     }catch(error) {
       throw new Error("Error al calcular el costo de envio");  
     }
@@ -16,8 +16,7 @@ export const fetchShippingPO = async(
   zipCode:string ): Promise<number>=> {
     try {
         const data = await getShippingAmount(zipCode, 'ship_pas');
-        console.log(data.results)
-          return data.results;
+          return data.shipping_cost;
     }catch(error) {
       console.log('error envio', error);
       

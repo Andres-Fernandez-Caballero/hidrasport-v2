@@ -26,6 +26,16 @@ export const hidraLifeLink: LinkItem = {
 interface NavbarProps {
   toggleSearchBar: () => void;
   searchBarVisible: boolean;
+  links?: LinkItem[];
+  openModal?: () => void;
+}
+
+export interface MobileNavbarProps extends NavbarProps {
+  isOpen: boolean;
+  toggleMobileMenuClose: () => void;
+}
+export interface DescktopNavbarProps extends NavbarProps {
+  className?: string;
 }
 
 const Navbar = ({ toggleSearchBar, searchBarVisible }: NavbarProps) => {
@@ -117,6 +127,8 @@ const Navbar = ({ toggleSearchBar, searchBarVisible }: NavbarProps) => {
         openModal={openModal}
         isOpen={isOpen}
         toggleMobileMenuClose={toggleMobileMenuClose}
+        toggleSearchBar={toggleSearchBar}
+        searchBarVisible={searchBarVisible}
       />
     </header>
   );

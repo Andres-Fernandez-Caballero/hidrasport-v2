@@ -4,12 +4,12 @@ import { PaymentMethod } from "@interfaces/Ipayment";
 export interface AuthData {
   token: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   username: string;
   admin: boolean;
   paymentMethods: PaymentMethod[];
-  profile: Profile;
+  profile?: Profile;
 }
 
 export interface Profile {
