@@ -1,19 +1,26 @@
 import urls from '@config/urls';
 import { IPaymentResponse } from '@interfaces/Ipayment';
 import useFetch from 'app/hooks/useFetch';
+import router from 'next/router';
 import React from 'react';
 
 const PaymentButton = ({ postalCode, coupon, shippingType }) => {
   const { request, loading } = useFetch<IPaymentResponse>();
 
-  const handlePayment = () => {
+  const handlePayment = async() => {
     let modifiedUrl = `${urls.payment}?postalCode=${postalCode}&shippingType=${shippingType}`;
   
     if (coupon.name) {
       modifiedUrl += `&coupon=${coupon.name}`;
     }
   
-    request(modifiedUrl, 'GET');
+    const data = await request(modifiedUrl, 'GET') as IPaymentResponse;
+    if (data){
+      router.push({
+        pathname: "/OrderConfirmation",
+        query: { orderNumber: data.orderNumber, pickup: data.pickup },
+      });
+    }
   };
   
 
