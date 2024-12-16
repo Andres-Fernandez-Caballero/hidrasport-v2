@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { ILink } from "@interfaces/ILink";
 import useCartStore from "@store/cart/useCartStore";
 import { useAuthStore } from "@store/auth/auth.store";
+import { useSearchBar } from "@store/searchBar.store";
 
 interface LinkItem extends ILink {}
 
@@ -24,8 +25,6 @@ export const hidraLifeLink: LinkItem = {
 };
 
 interface NavbarProps {
-  toggleSearchBar: () => void;
-  searchBarVisible: boolean;
   links?: LinkItem[];
   openModal?: () => void;
 }
@@ -38,7 +37,8 @@ export interface DescktopNavbarProps extends NavbarProps {
   className?: string;
 }
 
-const Navbar = ({ toggleSearchBar, searchBarVisible }: NavbarProps) => {
+const Navbar = () => {
+  const { searchBarIsOpen, toggleSearchBar } = useSearchBar();
   const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isLogedIn, logout } = useAuthStore();
@@ -54,7 +54,7 @@ const Navbar = ({ toggleSearchBar, searchBarVisible }: NavbarProps) => {
   };
 
   return (
-    <header className={`fixed z-10 w-svw bg-stone-950 ${searchBarVisible ? 'mt-18' : ''}`}>
+    <header className={`fixed z-10 w-svw bg-stone-950`}>
       <nav className="flex items-center justify-between py-1 px-6 lg:px-8" aria-label="Global">
         {/* Burger Button */}
         <button type="button" className="rounded-md p-2.5" onClick={toggleMobileMenu}>
@@ -83,7 +83,7 @@ const Navbar = ({ toggleSearchBar, searchBarVisible }: NavbarProps) => {
         {/* Profile, Cart, and Search Button */}
         <div className="inline-flex gap-x-4 items-center">
           <button onClick={toggleSearchBar} className="text-white text-xl p-2.5 hover:scale-125 ease-in-out duration-150">
-            <i className="pi pi-search" aria-hidden="true"></i>
+            {!searchBarIsOpen  && <i className="pi pi-search" aria-hidden="true"></i>}
           </button>
 
           <Link href="/carrito">
@@ -127,8 +127,6 @@ const Navbar = ({ toggleSearchBar, searchBarVisible }: NavbarProps) => {
         openModal={openModal}
         isOpen={isOpen}
         toggleMobileMenuClose={toggleMobileMenuClose}
-        toggleSearchBar={toggleSearchBar}
-        searchBarVisible={searchBarVisible}
       />
     </header>
   );
