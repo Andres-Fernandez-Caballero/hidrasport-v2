@@ -11,9 +11,11 @@ const PaymentFormDataStepComponent = (props: CheckoutFormDataProps) => {
     const { userSession } = useAuthStore()
 
     const optionComponent: Record<PaymentMethod, React.ReactElement> = useMemo(() => ({
-        [CREDIT_CARD_PAYMENT]: <CreditCardForm {...props} />,
-        [BANK_TRANSFER]: <p>{BANK_TRANSFER}</p>,
-    }), [ props]);
+      [CREDIT_CARD_PAYMENT]: <CreditCardForm {...props} />,
+      [BANK_TRANSFER]: <p>{BANK_TRANSFER}</p>,
+      "Test": <div>Test Component</div>,
+      "Test No Card": <div>No Card Test Component</div>,
+  }), [props]);
 
     const [componentForm, setComponentForm] = useState<JSX.Element | null>(optionComponent[checkoutData.shipment.paymentMethod]);
 
