@@ -1,3 +1,6 @@
+import { PaymentMethod } from "@interfaces/Ipayment";
+import { Profile } from "@store/auth/contracts";
+
 interface Response {
     message: string;
 }
@@ -7,6 +10,10 @@ export interface LoginResponse extends Response {
     email: string;
     token: string;
     admin: boolean;
+    paymentMethods: PaymentMethod[];
+    firstName: string;
+    lastName: string;
+    profile: Profile;
 }
 
 export interface RegisterResponse extends Response {

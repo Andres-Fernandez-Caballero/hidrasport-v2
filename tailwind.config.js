@@ -10,7 +10,11 @@ module.exports = {
     "./src/**/*.{,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        18: '4.5rem', // Custom spacing (18 * 0.25rem = 4.5rem)
+      },
+    },
   },
   plugins: [require('flowbite/plugin')],
 };

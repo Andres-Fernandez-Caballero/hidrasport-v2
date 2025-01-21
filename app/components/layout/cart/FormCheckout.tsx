@@ -41,14 +41,16 @@ const FormCheckout = () => {
 
   const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // validate date of somehow
+    const zipCodeToSend = haveZipCode() ? zipCode : '0';
     router.push({
       pathname: '/checkout',
       query: {
-       // zipCode
+        postalCode: zipCodeToSend,
+        shippingType: shippingType
       }
     });
   }
+  
 
   return (
     <div >

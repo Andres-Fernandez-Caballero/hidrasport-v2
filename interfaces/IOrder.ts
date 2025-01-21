@@ -9,6 +9,8 @@ export interface IOrderProduct {
   subproduct_id: string
   subcode: string
   location: string
+  usd_sale_price: string
+  sale_price: string
   price: string
   b2b_price: string
   title: string
@@ -21,6 +23,7 @@ export interface IOrderProduct {
 export interface IOrder {
     id?:number
     user: string
+    user_type: string
     products: IOrderProduct[]
     status: OrderStatus
     total_cost: number
@@ -37,6 +40,7 @@ export interface IOrder {
     mp_metadata: string
     coupon: string
     coupon_value: number
+    dollar_price: number
 }
 
 export interface IOrderFilter extends IPagination{
@@ -57,4 +61,10 @@ export interface IOrderItem {
   timestamp: string;
   payment_date: string;
   products: Product[];
+}
+
+export interface IOrderFilterRequest {
+  status: string;
+  startDate: string;
+  endDate: string;
 }

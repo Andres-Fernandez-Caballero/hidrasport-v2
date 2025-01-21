@@ -7,67 +7,72 @@ import { InitFiltersProps } from "./contracts";
 import fetcher from "./fetcher";
 
 
-const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => {
+const useProducts = (initFilters: InitFiltersProps | undefined = undefined) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);    
     const [error, setError] = useState<string | undefined>();
-    const [pageData, setePageData] = useState<ApiProductsResponse>();
+    const [pageData, setPageData] = useState<ApiProductsResponse>();
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState<InitFiltersProps | undefined>(initFilters);
 
-    /* Este useEffect podria eliminarse */
+    // Efecto para escuchar cambios en la query y actualizar filtros
     useEffect(() => {
-        setFilters(initFilters);
-        setCurrentPage(1);
-         // Resetea a la primera página si cambian los filtros
-    },
-    []);
-    
+        const { filters, page } = router.query;
+
+        if (filters) {
+            const parsedFilters = JSON.parse(filters as string);
+            setFilters(parsedFilters);
+        }
+
+        if (page) {
+            setCurrentPage(parseInt(page as string));
+        }
+    }, [router.query]);
 
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const url = filters ? 
-                `${urls.products}filter/?page=${currentPage}` : 
-                `${urls.products}?page=${currentPage}`;
-                
+                const url = filters
+                    ? `${urls.products}filter/?page=${currentPage}`
+                    : `${urls.products}?page=${currentPage}`;
                 const method = filters ? 'POST' : 'GET';
-                            
+
                 const data = await fetcher(url, method, filters);
                 data.results = data.results.filter(product => product !== null);
 
-                setePageData(data);
+                setPageData(data);
             } catch (err) {
                 setError((err as Error).message);
             } finally {
                 setIsLoading(false);
             }
         };
-    
+
         fetchData();
-    }, [currentPage, filters, router.query]);
-    
-    function addFilter(filter: InitFiltersProps){
+    }, [currentPage, filters]);
+
+    function addFilter(filter: InitFiltersProps) {
         setFilters({
             ...filters,
-            ...filter
+            ...filter,
         });
+        router.push({
+            pathname: router.pathname,
+            query: { ...router.query, filters: JSON.stringify({ ...filters, ...filter }) },
+        }, undefined, { shallow: true });
     }
 
-    function clearFilters(){
+    function clearFilters() {
         setFilters(undefined);
+        router.push({
+            pathname: router.pathname,
+            query: {},
+        }, undefined, { shallow: true });
     }
 
-    const hasNextPage = useCallback(
-        () => (pageData?.next)
-        , [pageData]
-    );
-    
-    const hasPreviousPage = useCallback(
-        () => (pageData?.previous)
-        , [pageData]
-    ) 
+    const hasNextPage = useCallback(() => !!pageData?.next, [pageData]);
+    const hasPreviousPage = useCallback(() => !!pageData?.previous, [pageData]);
 
     const nextPage = useCallback(() => {
         if (pageData?.next) {
@@ -79,8 +84,7 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => 
                 query: { ...router.query, page: nextPage },
             }, undefined, { shallow: true });
         }
-        // 
-    }, [pageData, router, setCurrentPage]);
+    }, [pageData, router]);
 
     const prevPage = useCallback(() => {
         if (pageData?.previous) {
@@ -92,11 +96,11 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => 
                 query: { ...router.query, page: prevPage },
             }, undefined, { shallow: true });
         }
-    }, [pageData, router, setCurrentPage]);
-    
+    }, [pageData, router]);
+
     return { 
         products: pageData?.results ?? [] as Product[], 
-        countProucts: pageData?.count ?? 0,
+        countProducts: pageData?.count ?? 0,
         isLoading, 
         error, 
         currentPage, 
@@ -105,8 +109,9 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined ) => 
         prevPage,
         hasPreviousPage,
         clearFilters,
-        addFilter
+        addFilter,
     };
- }
+};
+
 
  export default useProducts;

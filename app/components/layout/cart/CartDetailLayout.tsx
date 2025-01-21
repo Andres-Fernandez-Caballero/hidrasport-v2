@@ -15,9 +15,7 @@ interface CartItemProps {
   item: iCartProduct;
 }
 
-const CartItem = (props: CartItemProps) => {
-  console.log('item-carrito', props);
-  
+const CartItem = (props: CartItemProps) => {  
   const { addItemToCart, removeFromCart } = useCartStore();
   return (
     <div className={styles.itemContainer}>
@@ -117,7 +115,7 @@ const CartItem = (props: CartItemProps) => {
 
 const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
   <div className="bg-white">
-    <main className="py-14  w-100">
+    <main className="py-10  w-100">
       <div className={styles.sectionName}>
         <h2>Carrito</h2>
       </div>

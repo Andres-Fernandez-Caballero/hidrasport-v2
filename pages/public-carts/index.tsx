@@ -8,13 +8,15 @@ import useLoadPublicCart from 'app/hooks/useLoadPublicCart';
 import PublicCartCard from '@components/common/cards/publicCartCard';
 
 const PublicCartsPage: NextPage = () => {
-  const { response, loading, error, fetchData } = useFetch<IPublicCartList>();
+  const { request, loading, error } = useFetch<IPublicCartList>();
   const { submitCart } = useLoadPublicCart();
   const [carts, setCarts] = useState<IPublicCart[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
 
   const handleFetchData = async (page: number = 1) => {
-    await fetchData(urls.publicCarts + `?page=${page}`, 'GET');
+    const data = await request(urls.publicCarts + `?page=${page}`, 'GET') as IPublicCartList;
+    setCarts(data.results);
+    setTotalPages(data.total_pages);
   };
 
   const handlePageChange = async (page: number) => {
@@ -26,12 +28,6 @@ const PublicCartsPage: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (response) {
-      setCarts(response.results);
-      setTotalPages(response.total_pages);
-    }
-  }, [response]);
 
   const handleSubmitCart = async (cart: IPublicCart) => {
     try {
