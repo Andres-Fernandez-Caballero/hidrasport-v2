@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Navbar from "./contentMain/navbar";
 import SearchBar from "@components/common/searchbar";
@@ -9,6 +9,7 @@ import HydrationZustand from "./hydrationZustand";
 import AuthModal from "./authmodal";
 import Loader from "@components/common/Loader";
 import { ToastContainer } from "react-toastify";
+import { useSearchBar } from "@store/searchBar.store";
 
 type LayoutProps = {
   loading?: boolean;
@@ -18,19 +19,16 @@ type LayoutProps = {
 const Layout = ({ children, loading = false }: LayoutProps) => {
   const { isOpen } = useAuthModalStore();
   const { isLogedIn } = useAuthStore();
-  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
-
-  const toggleSearchBar = () => {
-    setIsSearchBarVisible((prev) => !prev);
-  };
+  const { searchBarIsOpen } = useSearchBar();
+ 
 
   return (
     <HydrationZustand>
       <Head>
         <title>HidraSport - Indumentaria Deportiva</title>
       </Head>
-      <Navbar toggleSearchBar={toggleSearchBar} searchBarVisible={isSearchBarVisible} />
-      {isSearchBarVisible && <SearchBar toggleSearchBar={toggleSearchBar} />}
+      <Navbar />
+      {searchBarIsOpen && <SearchBar />}
       <main>
         {loading ? (
           <Loader />
