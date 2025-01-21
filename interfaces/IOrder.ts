@@ -40,7 +40,7 @@ export interface IOrder {
     mp_metadata: string
     coupon: string
     coupon_value: number
-    dolar_price: number
+    dollar_price: number
 }
 
 export interface IOrderFilter extends IPagination{

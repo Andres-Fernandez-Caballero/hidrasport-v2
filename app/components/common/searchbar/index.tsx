@@ -4,7 +4,12 @@ import urls from '@config/urls';
 import { ITitleListResponse, ITitles } from '@interfaces/ITitle';
 import router from 'next/router';
 
-const SearchBar = () => {
+type SearchBarProps = {
+  toggleSearchBar: () => void;
+};
+
+
+const SearchBar = ({ toggleSearchBar }: SearchBarProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<ITitles[]>([]);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
@@ -43,6 +48,7 @@ const SearchBar = () => {
 
   const handleTitleClick = async (id: number) => {
     const filters = { "title__id": id };
+    toggleSearchBar();
     router.push({
       pathname: "/productos/filter",
       query: { filters: JSON.stringify(filters) },

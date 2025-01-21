@@ -30,7 +30,7 @@ const Layout = ({ children, loading = false }: LayoutProps) => {
         <title>HidraSport - Indumentaria Deportiva</title>
       </Head>
       <Navbar toggleSearchBar={toggleSearchBar} searchBarVisible={isSearchBarVisible} />
-      {isSearchBarVisible && <SearchBar />}
+      {isSearchBarVisible && <SearchBar toggleSearchBar={toggleSearchBar} />}
       <main>
         {loading ? (
           <Loader />

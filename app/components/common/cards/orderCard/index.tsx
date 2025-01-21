@@ -39,7 +39,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
               <div>Envio: ${order.delivery_cost}</div>
             </div>
             <div>
-              <div>Precio dolar blue: ${order.dolar_price}</div>
+              <div>Precio dolar blue: ${order.dollar_price}</div>
               <div>Tipo de venta: {order.user_type}</div>
             </div>
             <button
