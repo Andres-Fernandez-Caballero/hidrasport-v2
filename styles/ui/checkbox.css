@@ -1,0 +1,49 @@
+.hidra-checkbox {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .hidra-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .hidra-checkbox .checkmark {
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    transition: background-color 0.2s;
+  }
+  
+  .hidra-checkbox:hover .checkmark {
+    background-color: #b3b3b3;
+  }
+  
+  .hidra-checkbox input:checked ~ .checkmark {
+    background-color: #4caf50;
+  }
+  
+  .hidra-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .hidra-checkbox input:checked ~ .checkmark:after {
+    display: block;
+  }

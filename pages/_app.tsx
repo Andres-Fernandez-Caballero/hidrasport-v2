@@ -8,10 +8,12 @@ import "react-multi-carousel/lib/styles.css";
 import { PrimeReactProvider } from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
 import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
+import useCategoriesStore from "@store/categories/categoriesStore";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { fetchCart } = useCartStore();
   const { fetchSiteConfig } = useSiteConfigStore();
+  const { loadCategories} = useCategoriesStore();
 
 
   useEffect(() => {
@@ -20,6 +22,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         await Promise.all([
           fetchSiteConfig(),
           fetchCart(),
+          loadCategories(),
         ]
         );
       } catch (error) {

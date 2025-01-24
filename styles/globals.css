@@ -3,3 +3,4 @@
 @tailwind utilities;
 @import "./hidrasportStyles.css";
 @import 'primeicons/primeicons.css';
+@import './ui/checkbox.css';

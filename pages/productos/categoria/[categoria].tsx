@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 const ProductCategoryPage: React.FC = () => {
   const router = useRouter()
   const {categoria} = router.query;
-
-  console.log(categoria);
   
   return (
     <PaginatedView

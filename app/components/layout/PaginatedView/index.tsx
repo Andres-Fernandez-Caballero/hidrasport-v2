@@ -5,6 +5,8 @@ import ProductGridList from "@components/layout/product/productGridList";
 import PaginationMenu from "./paginationButtons";
 import useProducts from "app/hooks/useProducts";
 import { InitFiltersProps } from "app/hooks/useProducts/contracts";
+import ProductFilter from "../Filter";
+import { useRouter } from "next/router";
 
 interface PaginatedViewProps {
     title: string;
@@ -14,7 +16,9 @@ interface PaginatedViewProps {
 
 const PaginatedView = (props: PaginatedViewProps) => {
    const pageData = useProducts(props.initFilters);
-    
+   const router = useRouter();
+   const { categoria: queryParamCategory } = router.query;
+
     if (pageData.error) {
         <ContentMain title={props.title} >
             <EmptyProduct />
@@ -23,6 +27,11 @@ const PaginatedView = (props: PaginatedViewProps) => {
 
     return (
         <ContentMain title={props.title} >
+            <ProductFilter 
+                currentCategory={queryParamCategory as string}
+                addFilter = {pageData.addFilter}
+                clearFilters = {pageData.clearFilters}
+            />
             {pageData.isLoading ? (
                 <Loader />
             ) : (

@@ -8,24 +8,15 @@ import { ILink } from "@interfaces/ILink";
 import useCartStore from "@store/cart/useCartStore";
 import { useAuthStore } from "@store/auth/auth.store";
 import { useSearchBar } from "@store/searchBar.store";
+import useCategoriesStore from "@store/categories/categoriesStore";
 
-interface LinkItem extends ILink {}
-
-export const links: LinkItem[] = [
-  { url: "/productos", text: "Productos" },
-  { url: "/productos/destacados", text: "Destacados ⭐" },
-  { url: "/productos/categoria/Mujer", text: "Mujeres" },
-  { url: "/productos/categoria/Hombre", text: "Hombres" },
-  { url: "/productos/categoria/Deportes", text: "Deportes" },
-];
-
-export const hidraLifeLink: LinkItem = {
+export const hidraLifeLink: ILink = {
   url: "/productos/hidralife",
   text: "Hidralife",
 };
 
 interface NavbarProps {
-  links?: LinkItem[];
+  links?: ILink[];
   openModal?: () => void;
 }
 
@@ -44,6 +35,7 @@ const Navbar = () => {
   const { isLogedIn, logout } = useAuthStore();
   const { cartData } = useCartStore();
   const { asPath } = useRouter();
+  const { categories, subCategoriesByCategory } = useCategoriesStore();
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
@@ -52,6 +44,29 @@ const Navbar = () => {
   const toggleMobileMenuClose = () => {
     setIsOpen(false);
   };
+
+  /**
+   * Links for the Navbar
+   * Se cargan los links de las categorias a trabes del hook useCategoriesStore
+   * las categorias deben usar la url /productos/categoria/[categoria]
+   * los subcategories deben usar la url /productos/[categoria]/[subcategoria]
+   * a su vez se cargan los subcategories de cada categoria
+   * 
+   * @type {ILink[]}
+   * 
+   */
+  const links: ILink[] = [
+    { url: "/productos", text: "Productos" },
+    { url: "/productos/destacados", text: "Destacados ⭐" },
+    ...categories.map(category => ({ 
+      url: `/productos/categoria/${category.name}`, 
+      text: category.name,
+      subLinks: subCategoriesByCategory(category.name).map(subCategory => ({
+        url: `/productos/${category.name}/${subCategory}`,
+        text: subCategory,
+      })),
+     })),
+  ];
 
   return (
     <header className={`fixed z-10 w-svw bg-stone-950`}>
