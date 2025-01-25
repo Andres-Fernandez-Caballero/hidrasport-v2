@@ -81,7 +81,7 @@ const SearchBar = () => {
         </button>
       </div>
     </div>
-    <div className='absolute top-28 left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white shadow-lg z-10'>
+    <div className='absolute top-28 left-1/2 transform -translate-x-1/2 w-full max-w-3xl rounded-lg bg-white shadow-lg z-10'>
           <ResultSearchBar loading={loading} results={results} error={error} handleTitleClick={handleTitleClick} />
     </div>
   </div>
