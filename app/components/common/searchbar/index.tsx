@@ -55,8 +55,17 @@ const SearchBar = () => {
   return (
     <div className="relative">
     {/* Barra de búsqueda */}
-    <div className="fixed top-[56px] left-0 right-0 bg-black p-2 w-full z-20">
-      <div className="flex w-full max-w-3xl md:max-w-lg sm:max-w-xs items-center bg-black p-2 rounded-lg mx-auto">
+    <div className="fixed top-[56px] left-0 right-0 bg-white/30 backdrop-blur-[4px] p-2 w-full z-20 ">
+      <div className="flex w-full max-w-3xl md:max-w-lg sm:max-w-xs items-center bg-gray-300 py-1 px-2 rounded-3xl mx-auto">
+
+      <button
+          className={`px-2 py-1 sm:px-1 sm:py-0 rounded-xl mr-1 ${
+            buttonDisabled ? 'bg-gray-400 text-gray-200' : 'bg-white hover:bg-blue-700'
+          }`}
+          disabled={buttonDisabled}
+        >
+          <i className="pi pi-search text-sm" aria-hidden="true"></i>
+        </button>
         <input
           type="text"
           value={searchQuery}
@@ -65,24 +74,16 @@ const SearchBar = () => {
           className="flex-grow px-2 py-1 sm:px-1 sm:py-0 border-none rounded-l-lg focus:outline-none bg-gray-900 text-white"
         />
         <button
-          className="px-2 py-1 sm:px-1 sm:py-0 text-white hover:bg-white hover:text-black"
+          className="w-9 sm:px-1 sm:py-0 text-white rounded-r-xl transition delay-0 duration-300 ease-in-out hover:bg-rose-300"
           onClick={hideSearchBar}
         >
           <i className="pi pi-times text-sm" aria-hidden="true"></i>
         </button>
-        <button
-          onClick={handleSearch}
-          className={`px-2 py-1 sm:px-1 sm:py-0 rounded-r-lg ${
-            buttonDisabled ? 'bg-gray-400 text-gray-200' : 'bg-white hover:bg-blue-700'
-          }`}
-          disabled={buttonDisabled}
-        >
-          <i className="pi pi-search text-sm" aria-hidden="true"></i>
-        </button>
+        
       </div>
-    </div>
-    <div className='absolute top-28 left-1/2 transform -translate-x-1/2 w-full max-w-3xl rounded-lg bg-white shadow-lg z-10'>
-          <ResultSearchBar loading={loading} results={results} error={error} handleTitleClick={handleTitleClick} />
+      <div className='absolute top-15 left-1/2 transform -translate-x-1/2 w-full max-w-3xl rounded-lg bg-white shadow-lg z-10'>
+            <ResultSearchBar loading={loading} results={results} error={error} handleTitleClick={handleTitleClick} />
+      </div>
     </div>
   </div>
   );
@@ -97,23 +98,24 @@ interface ResultSearchBarProps {
 }
 
 const ResultSearchBar = ({ loading, results, error, handleTitleClick }: ResultSearchBarProps) => (
-  <>
+  <div className="backdrop-blur-xl">
     {loading && <p className="text-white mt-20">Loading...</p>}
       {error && <p className="text-red-500 mt-20">Error fetching data: {error.message}</p>}
       {results.length > 0 && (
-        <ul className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white shadow-lg z-10">
+        <ul className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white/90  shadow-lg z-10">
           {results.map((item) => (
             <li
               key={item.id}
               onClick={() => handleTitleClick(item.id)}
-              className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-black"
+              className="px-4 py-2 cursor-pointer rounded-md text-black
+              transition duration-1200 ease-in-out hover:text-white hover:bg-black/70 hover:font-extrabold"
             >
               {item.name}
             </li>
           ))}
         </ul>
       )}
-  </>
+  </div>
 )
 
 
