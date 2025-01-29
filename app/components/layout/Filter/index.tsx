@@ -15,7 +15,7 @@ const ProductFilter = (props: ProductFilterProps) => {
     };
 
     return (
-        <section className="hidra-section-bg text-white p-4">
+        <section className="hidra-section-bg text-white p-4 hidden">
             {props.currentCategory}
             <div className="flex justify-between items-center">
                 <h2 className="text-lg font-semibold">Filtrar por</h2>
