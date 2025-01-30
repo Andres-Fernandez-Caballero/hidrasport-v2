@@ -6,7 +6,7 @@ import router from 'next/router';
 import { useSearchBar } from '@store/searchBar.store';
 
 const SearchBar = () => {
-  const { hideSearchBar } = useSearchBar();
+  const { hideSearchBar, searchBarIsOpen } = useSearchBar();
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<ITitles[]>([]);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
@@ -55,9 +55,11 @@ const SearchBar = () => {
   return (
     <div className="relative">
     {/* Barra de búsqueda */}
-    <div className="fixed top-[56px] left-0 right-0 bg-white/30 backdrop-blur-[4px] p-2 w-full z-20 ">
-      <div className="flex w-full max-w-3xl md:max-w-lg sm:max-w-xs items-center bg-gray-300 py-1 px-2 rounded-3xl mx-auto">
-
+    <div className={`fixed top-[56px] flex align-middle left-0 right-0 bg-white/30 backdrop-blur-[4px] overflow-y-auto p-2 w-full z-20  delay-50 duration-300 ease-in-out transition-all ${
+            searchBarIsOpen ? 'h-14' : 'delay-300 h-0 p-0'
+          }`}>
+      <div className={`flex w-full max-w-3xl md:max-w-lg sm:max-w-xs overflow-y-hidden items-center bg-gray-300 py-1 px-2 rounded-3xl mx-auto duration-300 ease-in-out transition-all
+        ${searchBarIsOpen ? 'opacity-100 delay-300' : 'opacity-0 p-0 m-0 delay-0'}`}>
       <button
           className={`px-2 py-1 sm:px-1 sm:py-0 rounded-xl mr-1 ${
             buttonDisabled ? 'bg-gray-400 text-gray-200' : 'bg-white hover:bg-blue-700'

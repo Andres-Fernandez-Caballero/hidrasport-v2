@@ -28,7 +28,7 @@ const Layout = ({ children, loading = false }: LayoutProps) => {
         <title>HidraSport - Indumentaria Deportiva</title>
       </Head>
       <Navbar />
-      {searchBarIsOpen && <SearchBar />}
+      <SearchBar />
       <main>
         {loading ? (
           <Loader />
