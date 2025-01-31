@@ -20,7 +20,7 @@ const MobileNavbar = ({
       role="dialog"
       aria-modal="true"
     >
-      <div className="fixed inset-0 z-10"></div>
+      <div className="fixed inset-0 z-10 backdrop-blur-[2px] "></div>
       <div className={styles.mobileNavbarContainer}>
         <div className="flex items-center justify-between">
           <Link href="/" className="-m-1.5 p-1.5">

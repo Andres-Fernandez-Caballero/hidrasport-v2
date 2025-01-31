@@ -39,6 +39,7 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setIsOpen(!isOpen);
+    if(searchBarIsOpen) toggleSearchBar();
   };
 
   const toggleMobileMenuClose = () => {

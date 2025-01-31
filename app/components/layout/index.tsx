@@ -9,7 +9,6 @@ import HydrationZustand from "./hydrationZustand";
 import AuthModal from "./authmodal";
 import Loader from "@components/common/Loader";
 import { ToastContainer } from "react-toastify";
-import { useSearchBar } from "@store/searchBar.store";
 
 type LayoutProps = {
   loading?: boolean;
@@ -19,7 +18,6 @@ type LayoutProps = {
 const Layout = ({ children, loading = false }: LayoutProps) => {
   const { isOpen } = useAuthModalStore();
   const { isLogedIn } = useAuthStore();
-  const { searchBarIsOpen } = useSearchBar();
  
 
   return (
