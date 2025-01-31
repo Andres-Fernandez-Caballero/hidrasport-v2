@@ -7,6 +7,7 @@ import { handleOnSubmit } from "./selectorVariante/SelectorVariante";
 import ImageContainer from "./imageContainer/ImageContainer";
 import useCartStore from "@store/cart/useCartStore"; // Importa el hook de la tienda del carrito
 import urls from "@config/urls";
+import { useRouter } from 'next/router'  // Usage: Page router
 
 export const getServerSideProps: GetServerSideProps<{
   product: Product | undefined | null;
@@ -43,6 +44,7 @@ const Detalle = ({ product }: DetalleProps) => {
   const [currentVariant, setCurrentVariant] = useState<ISubproducto>(subproducts[0]);
   const [size, setSize] = useState<string>(""); // Estado para el tamaño seleccionado
   const { addItemToCart } = useCartStore(); // Hook para agregar al carrito
+  const router = useRouter();
   
 
   if (!product || !product.subproducto || product.subproducto.length === 0) {
@@ -70,7 +72,10 @@ const Detalle = ({ product }: DetalleProps) => {
   
   return (
     <div className={styles.productContainer}>
-
+        <button className={`${styles.buttonBack} hover:scale-110 ease-in-out duration-300`} onClick={() => router.back()}>
+          <i className="pi pi-arrow-left"/>
+          Volver
+        </button>
       <div>
         <div className="md:flex p-4">
           <div className="md:flex-col ">
@@ -99,7 +104,6 @@ const Detalle = ({ product }: DetalleProps) => {
           </div>
         </div>
       </div>
-
       <div className={styles.productAdd}>
         <span>
           ${product.price}
