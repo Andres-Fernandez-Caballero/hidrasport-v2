@@ -4,6 +4,7 @@ import { useAuthStore } from "@store/auth/auth.store";
 import { GoPerson } from "react-icons/go";
 import { FaCartShopping } from "react-icons/fa6";
 import useCartStore from "@store/cart/useCartStore";
+import { ILink } from "@interfaces/ILink";
 
 const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   const { isLogedIn, logout, userSession } = useAuthStore();
@@ -11,7 +12,7 @@ const DescktopNavbar = ({ openModal }: DescktopNavbarProps) => {
   return (
     <>
       <div className="hidden lg:flex lg:gap-x-8 justify-center items-center ">
-        { links.map((link) => (
+        { links.map((link:ILink) => (
           <Link
             key={link.url}
             href={link.url} 

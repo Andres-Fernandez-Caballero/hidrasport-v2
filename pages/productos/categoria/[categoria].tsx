@@ -7,8 +7,9 @@ const ProductCategoryPage: React.FC = () => {
   
   return (
     <PaginatedView
-      title={router.query.categoria as string}
-      initFilters={{categories: [categoria]}}
+        key={categoria as string}
+        title={router.query.categoria as string}
+        initFilters={{categories: [categoria]}}
     />
 )
 }
