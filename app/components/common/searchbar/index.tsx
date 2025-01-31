@@ -56,8 +56,8 @@ const SearchBar = () => {
     <div className="fixed w-[100%] z-10">
     {/* Barra de búsqueda */}
     <div className={`fixed top-[56px] flex align-middle left-0 right-0 bg-white/30 backdrop-blur-[4px] overflow-y-auto 
-            p-2 w-full z-20  delay-50 duration-300 ease-in-out transition-all ${
-            searchBarIsOpen ? 'h-14' : 'delay-300 h-0 p-0'
+            w-full z-20  delay-50 duration-300 ease-in-out transition-all ${
+            searchBarIsOpen ? 'h-14 p-2' : 'delay-300 h-0 p-0'
           }`}>
       <div className={`flex w-full max-w-3xl md:max-w-lg sm:max-w-xs overflow-y-hidden items-center bg-gray-300 
             py-1 px-2 rounded-3xl mx-auto duration-300 ease-in-out transition-all
@@ -101,29 +101,32 @@ interface ResultSearchBarProps {
   handleTitleClick: (id: number) => void;
 }
 
-const ResultSearchBar = ({ loading, results, error, handleTitleClick }: ResultSearchBarProps) => (
-  <div className="backdrop-blur-xl">
+const ResultSearchBar = ({ loading, results, error, handleTitleClick }: ResultSearchBarProps) => {
+  const { searchBarIsOpen } = useSearchBar();
+  return(
+    <div className="backdrop-blur-xl">
     {loading && <div className='flex align-middle justify-center'>
                   <i className='pi pi-spinner pi-spin text-[2.5rem] m-4 text-gray-500'/>
                 </div>
       }
       {error && <p className="text-red-500 mt-20">Error fetching data: {error.message}</p>}
-      {results.length > 0 && !loading && !error && (
+      { searchBarIsOpen && results.length > 0 && !loading && !error && (
         <ul className="absolute left-1/2 transform -translate-x-1/2 w-full max-w-3xl border rounded-lg bg-white/90  shadow-lg z-10">
           {results.map((item) => (
             <li
-              key={item.id}
-              onClick={() => handleTitleClick(item.id)}
+            key={item.id}
+            onClick={() => handleTitleClick(item.id)}
               className="px-4 py-2 cursor-pointer rounded-md text-black
               transition-all duration-300 ease-in-out hover:text-white hover:bg-black/70 hover:font-extrabold"
-            >
+              >
               {item.name}
             </li>
           ))}
         </ul>
       )}
-  </div>
-)
+    </div>
+  )
+}
 
 
 
