@@ -5,6 +5,7 @@ import { useAuthStore } from "@store/auth/auth.store";
 import { GoPerson } from "react-icons/go";
 import styles from "./styles.module.css"
 import useSiteConfigStore from "@store/siteConfig/useSiteConfigStore";
+import { PanelMenu } from "primereact/panelmenu";
 
 const MobileNavbar = ({
   isOpen,
@@ -60,16 +61,7 @@ const MobileNavbar = ({
         <div className="mt-6 flow-root">
           <div className="-my-6 divide-y divide-gray-500/10">
             <nav className="space-y-2 py-6">
-              {links?.map((link, index) => (
-                <Link
-                  key={index}
-                  onClick={toggleMobileMenuClose}
-                  href={link.url}
-                  className={`-mx-3 block rounded-lg px-3 text-base font-semibold leading-7 hover:bg-gray-700`}
-                >
-                  {link.text}
-                </Link>
-              ))}
+              <PanelMenu model={links} className="w-full md:w-20rem text-blue-950" />
             </nav>
             <nav className="py-2">
               {isLogedIn() ? (

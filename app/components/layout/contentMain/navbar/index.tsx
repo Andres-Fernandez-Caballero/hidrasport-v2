@@ -9,8 +9,9 @@ import useCartStore from "@store/cart/useCartStore";
 import { useAuthStore } from "@store/auth/auth.store";
 import { useSearchBar } from "@store/searchBar.store";
 import useCategoriesStore from "@store/categories/categoriesStore";
+import { Button } from "primereact/button";
 
-export const hidraLifeLink: ILink = {
+export const hidraLifeLink: {url:string, text:string} = {
   url: "/productos/hidralife",
   text: "Hidralife",
 };
@@ -24,6 +25,8 @@ export interface MobileNavbarProps extends NavbarProps {
   isOpen: boolean;
   toggleMobileMenuClose: () => void;
 }
+
+
 export interface DescktopNavbarProps extends NavbarProps {
   className?: string;
 }
@@ -35,6 +38,7 @@ const Navbar = () => {
   const { isLogedIn, logout } = useAuthStore();
   const { cartData } = useCartStore();
   const { asPath } = useRouter();
+  const router = useRouter();
   const { categories, subCategoriesByCategory } = useCategoriesStore();
 
   const toggleMobileMenu = () => {
@@ -45,6 +49,22 @@ const Navbar = () => {
   const toggleMobileMenuClose = () => {
     setIsOpen(false);
   };
+
+
+  function handleClick(url:string) {
+    router.push(url);
+    toggleMobileMenuClose();
+  }
+
+  const linkRenderer = (item, options) =>(
+    <span 
+      className="`-mx-3 flex justify-between rounded-lg px-3 text-base font-semibold leading-7 hover:bg-gray-700`"
+      onClick={options.onClick}
+      >
+      <Button onClick={() => handleClick(item.url)} className={`mx-2 w-[100%] ${item.items && 'font-semibold'}`}>{item.label}</Button>
+      {item.items?.length != 0 && item.items && <Button icon="pi pi-chevron-down"/>}
+    </span>
+  )
 
   /**
    * Links for the Navbar
@@ -57,17 +77,22 @@ const Navbar = () => {
    * 
    */
   const links: ILink[] = [
-    { url: "/productos", text: "Productos" },
-    { url: "/productos/destacados", text: "Destacados ⭐" },
+    { url: "/productos", label: "Productos", template:linkRenderer },
+    { url: "/productos/destacados", label: "Destacados ⭐", template:linkRenderer },
     ...categories.map(category => ({ 
       url: `/productos/categoria/${category.name}`, 
-      text: category.name,
-      subLinks: subCategoriesByCategory(category.name).map(subCategory => ({
-        url: `/productos/${category.name}/${subCategory}`,
-        text: subCategory,
+      label: category.name,
+      template:linkRenderer,
+      items: subCategoriesByCategory(category.name).map(subCategory => ({
+        url: subCategory.url,
+        label: subCategory.label,
+        items: subCategory.items,
+        template:linkRenderer
       })),
      })),
   ];
+
+  
 
   return (
     <header className={`fixed z-10 w-svw bg-stone-950`}>
