@@ -11,13 +11,13 @@ const ImageLink = (props: LinkImage) => (
         >
           <Image
             src={props.image}
-            alt={props.text}
+            alt={props.label}
             width={400}
             height={400}
             className=" blur-sm "
           />
           <h2 className="font-sans font-bold text-4xl text-blue-50 tracking-wide absolute inset-0 flex items-center justify-center p-4 bg-transparent bg-opacity-0 hover:bg-opacity-25 hover:scale-110 ease-in-out duration-300">
-            {props.text}
+            {props.label}
           </h2>
         </Link>
 )

@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 const ProductCategoryPage: React.FC = () => {
   const router = useRouter()
   const {categoria} = router.query;
-  
-  console.log(categoria);
-  
+
+  const categories = categoria as string[];
+  console.log(categories);
   return (
     <PaginatedView
-        key={categoria as string}
-        title={(router.query.categoria as string[])[0]}
+        key={categories?.toString()}
+        title={categories? categories[0] : "Categorias"}
         initFilters={{categories: categoria as string[]}}
     />
 )
