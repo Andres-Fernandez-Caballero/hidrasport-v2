@@ -115,7 +115,7 @@ const CartItem = (props: CartItemProps) => {
 
 const CartDetailLayout = ({ cartData }: CartDetailLayoutProps) => (
   <div className="bg-white">
-    <main className="py-14  w-100">
+    <main className="py-10  w-100">
       <div className={styles.sectionName}>
         <h2>Carrito</h2>
       </div>

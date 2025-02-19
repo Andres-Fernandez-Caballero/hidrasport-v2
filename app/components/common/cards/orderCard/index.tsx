@@ -38,6 +38,10 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
               <div>Productos: ${order.products_cost}</div>
               <div>Envio: ${order.delivery_cost}</div>
             </div>
+            <div>
+              <div>Precio dolar blue: ${order.dollar_price}</div>
+              <div>Tipo de venta: {order.user_type}</div>
+            </div>
             <button
               className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
               onClick={toggleExpand}
@@ -69,6 +73,8 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
                         </div>
                         <div>
                           <div>Cantidad: {product.cantidad}</div>
+                          <div>Precio de venta ${product.sale_price}</div>
+                          <div>Precio de venta en usd ${product.usd_sale_price}</div>
                           <div>Precio ${product.price}</div>
                           <div>Precio mayorista ${product.b2b_price}</div>
                         </div>
