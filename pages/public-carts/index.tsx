@@ -8,13 +8,13 @@ import useLoadPublicCart from 'app/hooks/useLoadPublicCart';
 import PublicCartCard from '@components/common/cards/publicCartCard';
 
 const PublicCartsPage: NextPage = () => {
-  const { request, loading, error } = useFetch<IPublicCartList>();
+  const { request, loading, error } = useFetch<null, IPublicCartList>();
   const { submitCart } = useLoadPublicCart();
   const [carts, setCarts] = useState<IPublicCart[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
 
   const handleFetchData = async (page: number = 1) => {
-    const data = await request(urls.publicCarts + `?page=${page}`, 'GET') as IPublicCartList;
+    const data = await request(urls.publicCarts + `?page=${page}`, 'GET');
     setCarts(data.results);
     setTotalPages(data.total_pages);
   };

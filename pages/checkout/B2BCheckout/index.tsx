@@ -6,7 +6,7 @@ import PaymentButton from './PaymentButton';
 import { ICouponResponse } from '@interfaces/Ipayment';
 import router from 'next/router';
 
-const B2BCheckout = ({ user, productsCost, shippingCost}) => {
+const B2BCheckout = ({ productsCost, shippingCost}) => {
   const [coupon, setCoupon] = useState<ICouponResponse>({
     detail: "",
     name: "",
@@ -19,7 +19,7 @@ const B2BCheckout = ({ user, productsCost, shippingCost}) => {
 
   return (
     <div className="p-8 bg-gray-100 text-gray-800">
-      <UserData user={user} postalCode={postalCode} />
+      <UserData postalCode={postalCode} />
       <PaymentContainer productsCost={productsCost} shippingCost={shippingCost} coupon={coupon} />
       <PaymentButton postalCode={postalCode} coupon={coupon} shippingType={shippingType} />
       <CouponContainer setCoupon={setCoupon} />

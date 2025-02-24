@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-const useFetch = <T = undefined, R = unknown>() => {
+const useApi = <T, R>() => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const localStorageItem = localStorage.getItem("auth-storage");
+  let token: string | null = null;
 
   const request = async (
     url: string,
@@ -13,26 +15,24 @@ const useFetch = <T = undefined, R = unknown>() => {
     setError(null);
 
     try {
-      let authToken = '';
-      const authTokenString = localStorage.getItem('auth-storage');
-      if (authTokenString) {
-        const authTokenObject = JSON.parse(authTokenString);
-        const token = authTokenObject.state.userSession.token;
-        authToken = token;
+      if (localStorageItem) {
+        const localStorageData = JSON.parse(localStorageItem);
+        token = localStorageData?.state?.userSession?.token || null;
+        console.log(token)
       }
 
       const response = await fetch(url, {
         method,
         headers: {
           "Content-Type": "application/json",
-          ...(authToken ? { Authorization: `Token ${authToken}` } : {}),
+          ...(token ? { Authorization: `Token ${token}` } : {}),
         },
         body: method === "POST" ? JSON.stringify(body) : undefined,
       });
 
       if (!response.ok) {
         const errorResponse = await response.json();
-        throw new Error(errorResponse.detail || "An error occurred");
+        throw new Error(`${errorResponse.detail}`);
       }
 
       const data = await response.json();
@@ -48,4 +48,4 @@ const useFetch = <T = undefined, R = unknown>() => {
   return { request, loading, error };
 };
 
-export default useFetch;
+export default useApi;
