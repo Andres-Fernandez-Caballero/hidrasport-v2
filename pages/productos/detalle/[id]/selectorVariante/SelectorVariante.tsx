@@ -18,7 +18,7 @@ const SelectorVariante = ({
   size,
   setSize,
 }: SelectorVarianteProps) => {
-
+  
   const handleOnVariantChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const variant = variants.find((v) => v.id.toString() === event.target.value); // Encontrar el subproducto con el id pasado por parametro
     if (variant) setCurrentVariant(variant);
@@ -72,7 +72,7 @@ const SelectorVariante = ({
           <RadioButtonInput
             name="size-choice"
             totalItemsList={orderSizes(getAvailableTalles(product))}
-            itemsAvailables={currentVariant.talles.map(t => t.talle)}
+            itemsAvailables={currentVariant.talles.filter(t => (t.cantidad && t.cantidad > 0) ).map(t => t.talle)}
             currentState={size}
             onChange={handleSizeChange} // Maneja el cambio de tamaño
           />
@@ -93,6 +93,9 @@ export async function handleOnSubmit(
 
   try {
     if (size === "") throw new Error("Debe seleccionar un talle");
+
+
+
     await addItemToCart({
       size,
       subProductId,

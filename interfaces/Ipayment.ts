@@ -10,10 +10,7 @@ export type PaymentMethod =
   | typeof TEST_NO_CARD_PAYMENT;
 
   export interface IPaymentResponse {
-    detail: string;
-    code: string;
-    orderNumber: number;
-    pickup: boolean;
+    response: string;
   }
 
   export interface ICouponResponse {

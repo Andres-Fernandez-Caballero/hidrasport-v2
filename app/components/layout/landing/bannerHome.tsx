@@ -10,7 +10,7 @@ import { LinkImage } from "@interfaces/ILink";
     return (
       <menu className="grid gap-1 grid-rows-1 grid-cols-4 m-5 h-fit">
         {props.items.map((item) => (
-          <ImageLink key={item.text} image={item.image} text={item.text} url={item.url} />
+          <ImageLink key={item.label} image={item.image} label={item.label} url={item.url} />
         ))}
       </menu>
     );

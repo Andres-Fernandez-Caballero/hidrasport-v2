@@ -5,12 +5,13 @@ const ProductCategoryPage: React.FC = () => {
   const router = useRouter()
   const {categoria} = router.query;
 
-  console.log(categoria);
-  
+  const categories = categoria as string[];
+  console.log(categories);
   return (
     <PaginatedView
-      title={router.query.categoria as string}
-      initFilters={{categories: [categoria]}}
+        key={categories?.toString()}
+        title={categories? categories[0] : "Categorias"}
+        initFilters={{categories: categoria as string[]}}
     />
 )
 }
