@@ -3,6 +3,7 @@ import { IPaymentResponse } from '@interfaces/Ipayment';
 import useFetch from 'app/hooks/useFetch';
 import React from 'react';
 import { useAuthStore } from '@store/auth/auth.store';
+import { useRouter } from 'next/router';
 
 interface ProfileData {
   address: string;
@@ -38,8 +39,9 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   const { request, loading } = useFetch<PaymentRequestBody, IPaymentResponse>();
   const { userSession } = useAuthStore();
   const profile = userSession.profile;
+  const router = useRouter();
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     const body: PaymentRequestBody = {
       postalCode,
       shippingType,
@@ -47,7 +49,21 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       ...(coupon?.name ? { coupon: coupon.name } : {}),
     };
 
-    request(urls.payment, 'POST', body);
+    try {
+      const response = await request(urls.payment, 'POST', body);
+      console.log("Payment response:", response);
+
+        router.push({
+          pathname: '/orderConfirmation',
+          query: {
+            orderNumber: response.orderNumber,
+            pickup: response.pickup.toString(),
+          },
+        });
+      
+    } catch (error) {
+      console.error("Error processing payment:", error);
+    }
   };
 
   return (

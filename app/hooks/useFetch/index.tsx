@@ -18,7 +18,6 @@ const useApi = <T, R>() => {
       if (localStorageItem) {
         const localStorageData = JSON.parse(localStorageItem);
         token = localStorageData?.state?.userSession?.token || null;
-        console.log(token)
       }
 
       const response = await fetch(url, {
