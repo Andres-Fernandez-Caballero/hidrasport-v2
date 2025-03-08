@@ -23,7 +23,7 @@ const OrdersPage: NextPage = () => {
       endDate: filters.endDate,
     };
 
-    const data = await request(urls.orders + `?page=${page}`, 'POST', body) as IOrderFilter;
+    const data = await request(urls.orders + `?page=${page}`, 'POST', body);
     setOrders(data.results);
     setTotalPages(data.total_pages);
   };

@@ -4,7 +4,7 @@ import useFetch from 'app/hooks/useFetch';
 import React, { useState, useCallback } from 'react';
 
 const CouponContainer = ({ setCoupon }) => {
-  const { request } = useFetch<ICouponResponse>();
+  const { request } = useFetch<null, ICouponResponse>();
   const [error, setError] = useState('');
 
   const debounce = (func, delay) => {
@@ -21,7 +21,7 @@ const CouponContainer = ({ setCoupon }) => {
     debounce(async (value) => {
       setError('');
       try {
-        const data = await request(`${urls.validateCoupon}${value}`, 'GET') as ICouponResponse;
+        const data = await request(`${urls.validateCoupon}${value}`, 'GET');
         if (!data.detail) {
           setError('El cupón ingresado no es válido.');
           setCoupon('');
@@ -34,7 +34,6 @@ const CouponContainer = ({ setCoupon }) => {
         setCoupon('');
       }
     }, 300),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -48,7 +47,11 @@ const CouponContainer = ({ setCoupon }) => {
         className="w-full p-3 border border-gray-300 rounded"
         onChange={(e) => handleCouponChange(e.target.value)}
       />
-      {error && <div id="coupon-error-msg" className="mt-2 text-red-500 text-sm">{error}</div>}
+      {error && (
+        <div id="coupon-error-msg" className="mt-2 text-red-500 text-sm">
+          {error}
+        </div>
+      )}
     </div>
   );
 };

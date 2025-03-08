@@ -1,5 +1,6 @@
 import { LoginDto, RegisterDto } from "@interfaces/IAuth";
 import { PaymentMethod } from "@interfaces/Ipayment";
+import initialState from "./initalState";
 
 export interface AuthData {
   token: string;
@@ -9,14 +10,14 @@ export interface AuthData {
   username: string;
   admin: boolean;
   paymentMethods: PaymentMethod[];
-  profile?: Profile;
+  profile: Profile;
 }
 
 export interface Profile {
   address: string;
   street_number: number;
   PC: number;
-  telephone: number;
+  telephone: number | null;
   depto: string;
   province: string;
   city: string;
@@ -26,10 +27,14 @@ export interface Profile {
 }
 
 
-  export interface AuthStore {
-    userSession: AuthData;
-    login: (loginData: LoginDto) => Promise<void>;
-    logout: () => void;
-    register: (registerDto: RegisterDto) => Promise<void>;
-    isLogedIn: () => boolean;
-  }
+export interface AuthStore {
+  userSession: AuthData;
+  login: (loginData: LoginDto) => Promise<void>;
+  logout: () => void;
+  register: (registerDto: RegisterDto) => Promise<void>;
+  isLogedIn: () => boolean;
+  updateUserSession: (
+    data: Partial<Omit<AuthData, 'profile'>> & { profile?: Partial<AuthData['profile']> }
+  ) => void;
+}
+

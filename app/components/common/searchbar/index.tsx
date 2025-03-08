@@ -10,7 +10,7 @@ const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<ITitles[]>([]);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
-  const { request, loading, error } = useFetch<ITitleListResponse>();
+  const { request, loading, error,} = useFetch<null, ITitleListResponse>();
 
   const [debouncedQuery, setDebouncedQuery] = useState('');
 
@@ -25,10 +25,7 @@ const SearchBar = () => {
   }, [searchQuery]);
 
   const handleSearch = useCallback(async () => {
-    const data = await request(
-      `${urls.titlesFilter}?q=${encodeURIComponent(debouncedQuery)}`,
-      'GET'
-    ) as ITitleListResponse;
+    const data = await request(`${urls.titlesFilter}?q=${encodeURIComponent(debouncedQuery)}`, 'GET' );
     setResults(data.results);
   }, [debouncedQuery, request]);
 
