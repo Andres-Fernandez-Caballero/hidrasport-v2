@@ -7,7 +7,7 @@ interface ContentMainProps {
 }
 
 const ContentMain: React.FC<ContentMainProps> = ({ children, title }) => (
-  <div className="py-14  w-100">
+  <div className="pt-14  w-100">
       <header className={ styles.sectionName}>
         <h2
         >
