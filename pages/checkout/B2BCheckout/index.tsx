@@ -6,7 +6,9 @@ import PaymentButton from './PaymentButton';
 import { ICouponResponse } from '@interfaces/Ipayment';
 import router from 'next/router';
 
-const B2BCheckout = ({ productsCost, shippingCost}) => {
+const B2BCheckout = ({ user, productsCost, shippingCost}) => {
+  // TODO: user is not used aparently
+  console.log(user.email)
   const [coupon, setCoupon] = useState<ICouponResponse>({
     detail: "",
     name: "",
@@ -21,7 +23,7 @@ const B2BCheckout = ({ productsCost, shippingCost}) => {
     <div className="p-8 bg-gray-100 text-gray-800">
       <UserData postalCode={postalCode} />
       <PaymentContainer productsCost={productsCost} shippingCost={shippingCost} coupon={coupon} />
-      <PaymentButton postalCode={postalCode} coupon={coupon} shippingType={shippingType} />
+      <PaymentButton postalCode={postalCode as string} coupon={coupon} shippingType={shippingType} />
       <CouponContainer setCoupon={setCoupon} />
     </div>
   );
