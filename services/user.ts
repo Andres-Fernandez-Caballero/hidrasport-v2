@@ -23,6 +23,7 @@ export const fetchLogin = async(loginData: LoginDto): Promise<AuthData> => {
 export const fetchRegister = async(registerData: RegisterDto): Promise<AuthData> => {
     try {
         const data = await Register(registerData);
+        //@ts-ignore
         return { ... data, paymentMethods: [CREDIT_CARD_PAYMENT], admin:false }
     }catch (err) {
         throw new Error( (err as Error).message);
