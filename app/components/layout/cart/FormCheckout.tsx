@@ -101,7 +101,7 @@ const FormCheckout = () => {
         <hr />
         <header className="flex justify-between font-bold text-lg text-gray-900">
           <h3>Total</h3>
-          <p>= $ {checkout.totalAmountWithShipping}</p>
+          <p>= ${checkout.totalAmountWithShipping.toFixed(2)}</p>
         </header>
         <button
           type="submit"

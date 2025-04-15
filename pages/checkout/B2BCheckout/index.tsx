@@ -23,7 +23,7 @@ const B2BCheckout = ({ user, productsCost, shippingCost}) => {
     <div className="p-8 bg-gray-100 text-gray-800">
       <UserData postalCode={postalCode} />
       <PaymentContainer productsCost={productsCost} shippingCost={shippingCost} coupon={coupon} />
-      <PaymentButton postalCode={postalCode as string} coupon={coupon} shippingType={shippingType} />
+      <PaymentButton postal_code={postalCode as string} coupon={coupon} shipping_type={shippingType} />
       <CouponContainer setCoupon={setCoupon} />
     </div>
   );
