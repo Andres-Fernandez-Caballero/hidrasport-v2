@@ -1,9 +1,10 @@
 import urls from '@config/urls';
 import { IPaymentResponse } from '@interfaces/Ipayment';
-import useFetch from 'app/hooks/useFetch';
 import React from 'react';
 import { useAuthStore } from '@store/auth/auth.store';
 import { useRouter } from 'next/router';
+import useApi from 'app/hooks/useFetch';
+import { toast } from 'react-toastify';
 
 interface ProfileData {
   address: string;
@@ -19,50 +20,51 @@ interface ProfileData {
 }
 
 interface PaymentRequestBody {
-  postalCode: string;
-  shippingType: string;
+  postal_code: string;
+  shipping_type: string;
   coupon?: string;
-  profile: ProfileData;
+  profile: Omit<ProfileData, 'mayorista' | 'business'>;
 }
 
 interface PaymentButtonProps {
-  postalCode: string;
-  shippingType: string;
+  postal_code: string;
+  shipping_type: string;
   coupon: { name?: string };
 }
 
 const PaymentButton: React.FC<PaymentButtonProps> = ({
-  postalCode,
-  shippingType,
+  postal_code,
+  shipping_type,
   coupon,
 }) => {
-  const { request, loading } = useFetch<PaymentRequestBody, IPaymentResponse>();
+  const { request, loading } = useApi<PaymentRequestBody, IPaymentResponse>();
   const { userSession } = useAuthStore();
   const profile = userSession.profile;
   const router = useRouter();
 
   const handlePayment = async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { mayorista, business, ...strippedProfile } = profile;
+
     const body: PaymentRequestBody = {
-      postalCode,
-      shippingType,
-      profile,
+      postal_code,
+      shipping_type,
+      profile: strippedProfile,
       ...(coupon?.name ? { coupon: coupon.name } : {}),
     };
 
     try {
       const response = await request(urls.payment, 'POST', body);
-      console.log("Payment response:", response);
 
-        router.push({
-          pathname: '/orderConfirmation',
-          query: {
-            orderNumber: response.orderNumber,
-            pickup: response.pickup.toString(),
-          },
-        });
-      
+      if (!response?.order_number || response.pickup === undefined) {
+        console.error('Invalid response structure', response);
+        return;
+      }
+
+      const url = `/order-confirmation?orderNumber=${response.order_number}&pickup=${response.pickup}`;
+      router.push(url);
     } catch (error) {
-      console.error("Error processing payment:", error);
+      toast.error(`Hubo un error con el pago. ${error}`);
     }
   };
 
