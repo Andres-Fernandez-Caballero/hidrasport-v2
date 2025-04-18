@@ -4,7 +4,7 @@ import urls from '../../../app/config/urls';
 import OrderFilter from '@components/common/filters/OrderFilter';
 import OrderCard from '@components/common/cards/orderCard/index';
 import { IOrder, IOrderFilter, IOrderFilterRequest } from '@interfaces/IOrder';
-import useFetch from '../../../app/hooks/useFetch';
+import useFetch from '../../../app/hooks/useApi';
 import Pagination from '@components/common/Pagination/Pagination';
 import withAdmin from '@components/common/hoc/withAdmin/withAdmin';
 

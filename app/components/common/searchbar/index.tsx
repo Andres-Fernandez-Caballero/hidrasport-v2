@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import useFetch from 'app/hooks/useFetch';
+import useFetch from 'app/hooks/useApi';
 import urls from '@config/urls';
 import { ITitleListResponse, ITitles } from '@interfaces/ITitle';
 import router from 'next/router';

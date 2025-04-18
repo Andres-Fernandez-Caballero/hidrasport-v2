@@ -1,6 +1,6 @@
 import urls from '@config/urls';
 import { ICouponResponse } from '@interfaces/Ipayment';
-import useApi from 'app/hooks/useFetch';
+import useApi from 'app/hooks/useApi';
 import React, { useState, useEffect, useRef } from 'react';
 
 const debounce = <T extends (...args: Parameters<T>) => void>(
