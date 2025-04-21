@@ -3,7 +3,7 @@ import { IPaymentResponse } from '@interfaces/Ipayment';
 import React from 'react';
 import { useAuthStore } from '@store/auth/auth.store';
 import { useRouter } from 'next/router';
-import useApi from 'app/hooks/useFetch';
+import useApi from 'app/hooks/useApi';
 import { toast } from 'react-toastify';
 
 interface ProfileData {

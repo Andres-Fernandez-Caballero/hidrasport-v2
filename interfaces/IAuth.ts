@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { IPagination } from "./IPagination";
 export interface IUser {
   email: string;
   username: string;
@@ -23,4 +24,17 @@ export interface RegisterDto {
   email: string;
   password: string;
   password2: string;
+}
+
+export interface UserSearchRequest {
+  username: string;
+}
+
+export interface UserSearchResponse {
+  id: number;
+  username: string;
+}
+
+export interface UserSearchPaginatedResponse extends IPagination {
+  results: UserSearchResponse[];
 }

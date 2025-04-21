@@ -17,7 +17,13 @@ const urls = {
   forgotPassword: backendUrl + "/api/accounts/users/send-recover-email/",
   payment: backendUrl + "/api/store/payment/",
   validateCoupon: backendUrl + "/api/store/coupons/validate/",
-  calculateShipping: backendUrl + "/api/store/get-shipping-cost/"
+  calculateShipping: backendUrl + "/api/store/get-shipping-cost/",
+  /* Client Types */
+  updateUsersClientType: backendUrl + "/api/accounts/users/update-users-client-type/",
+  clientType: backendUrl + "/api/accounts/client-type/",
+  updateClientTypes: backendUrl + "/api/accounts/client-type/update-users-client-type/",
+  /* Accounts */
+  searchUser: backendUrl + "/api/accounts/users/search-user/"
 };
 
 export default urls;

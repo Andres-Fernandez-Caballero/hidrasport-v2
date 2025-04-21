@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
-import useFetch from 'app/hooks/useFetch';
+import useFetch from 'app/hooks/useApi';
 import { IPublicCartList, IPublicCart } from '@interfaces/ICart';
 import urls from '@config/urls';
 import Pagination from '@components/common/Pagination/Pagination';
