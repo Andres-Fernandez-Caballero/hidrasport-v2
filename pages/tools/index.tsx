@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import React from "react";
-import { FaBox, FaCartPlus, FaUserCog  } from 'react-icons/fa';
+import { FaBox, FaCartPlus, FaUserCog, FaFileAlt  } from 'react-icons/fa';
 import Link from 'next/link';
 
 const Tools: NextPage = () => {
@@ -19,6 +19,10 @@ const Tools: NextPage = () => {
         <Link href="/tools/client-type-manager" className="flex flex-col items-center text-center">
           <FaUserCog  className="text-6xl mb-2" />
           <span className="text-xl">Administrar clientes y tipos de clientes</span>
+        </Link>
+        <Link href="/tools/reports" className="flex flex-col items-center text-center">
+          <FaFileAlt  className="text-6xl mb-2" />
+          <span className="text-xl">Reportes</span>
         </Link>
       </div>
     </div>
