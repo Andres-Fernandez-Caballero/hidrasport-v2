@@ -11,6 +11,7 @@ export interface Product {
   title_id: number;
   title: string;
   price: number;
+  suggested_sales_price?: number;
   images: Image[];
   b2b_price: number;
 }

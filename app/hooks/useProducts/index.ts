@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { InitFiltersProps } from "./contracts";
 import fetcher from "./fetcher";
+import { useAuthStore } from "@store/auth/auth.store";
 
 
 const useProducts = (initFilters: InitFiltersProps | undefined = undefined) => {
@@ -14,7 +15,8 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined) => {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState<InitFiltersProps | undefined>(initFilters);
-
+    const {userSession} = useAuthStore();
+    const token = userSession?.token;
     // Efecto para escuchar cambios en la query y actualizar filtros
     useEffect(() => {
         const { filters, page } = router.query;
@@ -38,7 +40,7 @@ const useProducts = (initFilters: InitFiltersProps | undefined = undefined) => {
                     : `${urls.products}?page=${currentPage}&page_size=15`;
                 const method = filters ? 'POST' : 'GET';
 
-                const data = await fetcher(url, method, filters);
+                const data = await fetcher(url, method, filters, token);
                 data.results = data.results.filter(product => product !== null);
 
                 setPageData(data);
