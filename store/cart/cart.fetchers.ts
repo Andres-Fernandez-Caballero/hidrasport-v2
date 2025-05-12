@@ -5,7 +5,7 @@ import urls from "@config/urls";
 export const fetchCartDetails = async(token=''): Promise<ResponseCartDetails> => {
     let response;
     if(token !== ''){ 
-      response = await fetch(`${urls.cart}cart/`, {
+      response = await fetch(`${urls.userCart}`, {
         headers: {
           'Authorization': 'token ' + token,
         },
