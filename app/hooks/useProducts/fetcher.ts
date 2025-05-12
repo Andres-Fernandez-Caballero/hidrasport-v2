@@ -6,13 +6,15 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 const fetcher = async (
     url: string, 
     method: Method = 'GET', 
-    body: InitFiltersProps | undefined = undefined
+    body: InitFiltersProps | undefined = undefined,
+    token?: string
 ): Promise<ApiProductsResponse> => {
     
     const response = await fetch(url, {
         method,
         headers: {
             'Content-Type': 'application/json',
+            ...(token && { 'Authorization': `Token ${token}` }),
         },
         body: body? JSON.stringify(body) : undefined,
     });

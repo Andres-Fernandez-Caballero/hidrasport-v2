@@ -10,7 +10,6 @@ const urls = {
   categoriesList: backendUrl + "/api/store/get-navbar-categories/",
   productsFilter: backendUrl + "/api/store/products/filter/",
   ordersBase: backendUrl + "/api/orders",
-  cart: backendUrl + "/api/cart/",
   publicCarts: backendUrl + "/api/cart/public-carts/",
   titles: backendUrl + "/api/store/titles/",
   titlesFilter: backendUrl + "/api/store/titles/filter/",
@@ -23,7 +22,10 @@ const urls = {
   clientType: backendUrl + "/api/accounts/client-type/",
   updateClientTypes: backendUrl + "/api/accounts/client-type/update-users-client-type/",
   /* Accounts */
-  searchUser: backendUrl + "/api/accounts/users/search-user/"
+  searchUser: backendUrl + "/api/accounts/users/search-user/",
+  /* cart */ 
+  cart: backendUrl + "/api/cart/",
+  userCart: backendUrl + "/api/cart/cart/me",
 };
 
 export default urls;
