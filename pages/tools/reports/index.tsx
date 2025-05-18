@@ -16,7 +16,6 @@ interface Title {
 
 const ReportsPage: NextPage= () => {
   const { request: fetchTitles } = useApi<null, Title[]>();
-  const { request: fetchReport } = useApi<{ title_id: number; start_date: string; end_date: string }, Blob>();
 
   const [titleSearch, setTitleSearch] = useState("");
   const [titles, setTitles] = useState<Title[]>([]);

@@ -41,6 +41,8 @@ export interface IOrder {
     coupon: string
     coupon_value: number
     dollar_price: number
+    client_type_name : string
+    client_type_multiplier: number
 }
 
 export interface IOrderFilter extends IPagination{

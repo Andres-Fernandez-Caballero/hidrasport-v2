@@ -41,6 +41,8 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
             <div>
               <div>Precio dolar blue: ${order.dollar_price}</div>
               <div>Tipo de venta: {order.user_type}</div>
+              <div>Tipo de cliente: {order.client_type_name}</div>
+              <div>Multiplicador de precio: {order.client_type_multiplier}</div>
             </div>
             <button
               className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
