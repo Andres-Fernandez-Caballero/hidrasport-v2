@@ -21,7 +21,7 @@ export interface IOrderProduct {
 }
 
 export interface IOrder {
-    id?:number
+    id:number
     user: string
     user_type: string
     products: IOrderProduct[]
@@ -50,13 +50,25 @@ export interface IOrderFilter extends IPagination{
 }
 
 export enum OrderStatus {
-  PENDING = "Pendiente",
-  READY = "Armado",
-  DISPATCHED = "Enviado",
-  RECEIVED = "Recibido",
-  CLOSED = "Cerrado",
-  CANCELED = "Cancelado"
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED",
+  READY = "READY",
+  DISPATCHED = "DISPATCHED",
+  RECEIVED = "RECEIVED",
+  CLOSED = "CLOSED",
+  CANCELED = "CANCELED"
 }
+
+export const OrderStatusLabels: Record<OrderStatus, string> = {
+  PENDING: "Pendiente",
+  READY: "Armado",
+  DISPATCHED: "Enviado",
+  RECEIVED: "Recibido",
+  CLOSED: "Cerrada",
+  COMPLETED: "Completa",
+  CANCELED: "Cancelado"
+};
+
 
 export interface IOrderItem {
   id: number;
