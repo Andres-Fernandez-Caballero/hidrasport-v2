@@ -6,7 +6,7 @@ interface ProductGridListProps {
 }
 
 const ProductGridList: React.FC<ProductGridListProps> = ({ products }) => (
-  <section className="max-h-[55svh] overflow-scroll mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+  <section className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
     {products.map((product, index: number) => (
       <ProductCardItem product={product} key={index} />
     ))}
