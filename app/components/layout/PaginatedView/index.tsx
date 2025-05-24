@@ -108,7 +108,7 @@ const PaginatedView = (props: PaginatedViewProps) => {
                style={{ transition: 'opacity 0.3s ease, transform 0.3s ease' }}
             >
                <h2>
-                  {props.title ? `${props.title} : :D` : ""}
+                  {props.title ? `${props.title}` : ""}
                </h2>
             </header>
             <EmptyProduct />
@@ -123,7 +123,7 @@ const PaginatedView = (props: PaginatedViewProps) => {
             style={{ transition: 'opacity 0.3s ease, transform 0.3s ease' }}
          >
             <h2>
-               {props.title ? `${props.title} : :D` : ""}
+               {props.title ? `${props.title}` : ""}
             </h2>
          </header>
          <ProductFilter 
