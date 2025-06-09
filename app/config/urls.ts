@@ -28,6 +28,8 @@ const urls = {
   orders: backendUrl + "/api/orders/",
   ordersUpdateStatus: backendUrl + "/api/orders/orders/update-status",
   ordersFilter: backendUrl + "/api/orders/orders/filter/",
+  /* reports */ 
+  downloadReport: backendUrl + "/api/store/stock-report/download-report/",
 };
 
 export default urls;

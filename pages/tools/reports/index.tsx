@@ -1,65 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import { Calendar } from "@components/ui/calendar";
-import { Input } from "app/components/ui/input";
 import { Button } from "app/components/ui/button";
 import { Card, CardContent } from "app/components/ui/card";
-import useApi from "app/hooks/useApi";
 import { NextPage } from "next";
 import withAdmin from "@components/common/hoc/withAdmin/withAdmin";
 import urls from "@config/urls";
+import useBlob from "app/hooks/useBlob";
 
-interface Title {
-  id: number;
-  name: string;
-}
-
-const ReportsPage: NextPage= () => {
-  const { request: fetchTitles } = useApi<null, Title[]>();
-
-  const [titleSearch, setTitleSearch] = useState("");
-  const [titles, setTitles] = useState<Title[]>([]);
-  const [selectedTitle, setSelectedTitle] = useState<Title | null>(null);
+const ReportsPage: NextPage = () => {
+  const { requestBlob } = useBlob();
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    if (titleSearch.length < 3) return;
-
-    if (debounceTimer) clearTimeout(debounceTimer);
-
-    const timer = setTimeout(async () => {
-      const data = await fetchTitles(`${urls.titlesFilter}?q=${titleSearch}`, "GET");
-      setTitles(data);
-    }, 300);
-
-    setDebounceTimer(timer);
-  }, [titleSearch]);
 
   const handleDownload = async () => {
-    if (!selectedTitle || !startDate || !endDate) return;
-    const response = await fetch(`/api/report/download`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Token ${JSON.parse(localStorage.getItem("auth-storage") || "{}").state?.userSession?.token}`,
-      },
-      body: JSON.stringify({
-        title_id: selectedTitle.id,
-        start_date: format(startDate, "yyyy-MM-dd"),
-        end_date: format(endDate, "yyyy-MM-dd"),
-      }),
+    if (!startDate || !endDate) return;
+
+    const params = new URLSearchParams({
+      start_date: format(startDate, "yyyy-MM-dd"),
+      end_date: format(endDate, "yyyy-MM-dd"),
     });
 
-    if (!response.ok) return;
-
-    const blob = await response.blob();
+    const blob = await requestBlob(`${urls.downloadReport}?${params.toString()}`);
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `report-${selectedTitle.name}.csv`;
+    a.download = `report-${format(startDate, "yyyyMMdd")}-${format(endDate, "yyyyMMdd")}.xlsx`;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
   };
 
@@ -67,38 +36,18 @@ const ReportsPage: NextPage= () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-xl p-4">
         <CardContent>
-          <h1 className="text-2xl font-bold mb-4 text-center">Download Report</h1>
+          <h1 className="text-2xl font-bold mb-4 text-center">Descargar reporte</h1>
           <div className="space-y-4">
-            <div>
-              <Input
-                placeholder="Search Title..."
-                value={titleSearch}
-                onChange={(e) => setTitleSearch(e.target.value)}
-              />
-              {titles.length > 0 && (
-                <ul className="border rounded max-h-48 overflow-y-auto mt-2">
-                  {titles.map((t) => (
-                    <li
-                      key={t.id}
-                      className={`px-3 py-2 cursor-pointer hover:bg-gray-200 ${selectedTitle?.id === t.id ? "bg-gray-300" : ""}`}
-                      onClick={() => setSelectedTitle(t)}
-                    >
-                      {t.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
             <div className="flex space-x-4">
               <Calendar mode="single" selected={startDate} onSelect={setStartDate} className="flex-1" />
               <Calendar mode="single" selected={endDate} onSelect={setEndDate} className="flex-1" />
             </div>
             <Button
-              disabled={!selectedTitle || !startDate || !endDate}
+              disabled={!startDate || !endDate}
               onClick={handleDownload}
               className="w-full"
             >
-              Download Report
+              Descargar reporte de inventario
             </Button>
           </div>
         </CardContent>
