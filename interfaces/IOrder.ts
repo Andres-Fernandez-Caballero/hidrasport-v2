@@ -60,7 +60,15 @@ export interface IOrderItem {
   id: number;
   timestamp: string;
   payment_date: string;
-  products: Product[];
+  products: OrderProductItem[];
+}
+
+export interface OrderProductItem {
+  status: string;
+  title: string;
+  id: number;
+  size: string;
+  img_front: string;
 }
 
 export interface IOrderFilterRequest {
