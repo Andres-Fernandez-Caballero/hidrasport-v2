@@ -6,7 +6,6 @@ const ProductCategoryPage: React.FC = () => {
   const {categoria} = router.query;
 
   const categories = categoria as string[];
-  console.log(categories);
   return (
     <PaginatedView
         key={categories?.toString()}

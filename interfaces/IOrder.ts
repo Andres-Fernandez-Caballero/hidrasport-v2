@@ -30,6 +30,7 @@ export interface IOrder {
     delivery_address: string
     province: string
     city: string
+    depto: string
     postal_code: string
     delivery_cost: number
     products_cost: number

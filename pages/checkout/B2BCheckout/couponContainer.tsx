@@ -37,7 +37,6 @@ const CouponContainer = ({ setCoupon }: Props) => {
           setCoupon(data);
         }
       } catch (err) {
-        console.error('Error validating coupon:', err);
         setError('El cupón no es válido.');
         setCoupon(null);
       }

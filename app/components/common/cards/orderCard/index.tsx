@@ -76,6 +76,10 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4 text-sm">
           <div>
             <div><span className="font-medium">Cliente:</span> {order.user}</div>
+            <div><span className="font-medium">Dirección:</span> {order.delivery_address}</div>
+            <div><span className="font-medium">Provincia:</span> {order.province}</div>
+            <div><span className="font-medium">Ciudad:</span> {order.city}</div>
+            <div><span className="font-medium">Depto:</span> {order.depto}</div>
           </div>
           <div>
             <div><span className="font-medium">Cupón:</span> {order.coupon}</div>

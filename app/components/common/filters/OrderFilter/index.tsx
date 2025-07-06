@@ -6,7 +6,7 @@ interface OrderFilterProps {
 }
 
 const OrderFilter: React.FC<OrderFilterProps> = ({ onSubmit }) => {
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('PENDING');
   const [startDate, setStartDate] = useState('2023-01-01');
   const [endDate, setEndDate] = useState('2030-01-01');
 
@@ -38,12 +38,12 @@ const OrderFilter: React.FC<OrderFilterProps> = ({ onSubmit }) => {
               {OrderStatusLabels[statusValue as OrderStatus]}
             </option>
           ))}
-          <option value="">Todos</option>
+
         </select>
 
 
         <div className="flex flex-col sm:flex-row items-center gap-1 w-full sm:w-auto">
-          <label className="text-sm">Start:</label>
+          <label className="text-sm">Desde:</label>
           <input
             type="date"
             value={startDate}
@@ -53,7 +53,7 @@ const OrderFilter: React.FC<OrderFilterProps> = ({ onSubmit }) => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-1 w-full sm:w-auto">
-          <label className="text-sm">End:</label>
+          <label className="text-sm">Hasta:</label>
           <input
             type="date"
             value={endDate}
