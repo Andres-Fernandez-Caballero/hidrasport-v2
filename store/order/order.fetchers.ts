@@ -1,7 +1,7 @@
 import urls from "@config/urls";
 import { IOrderItem } from "@interfaces/IOrder";
 
-const BASE_API_ORDER_URL = urls.ordersBase + "/orders/get-user-orders/";
+const BASE_API_ORDER_URL = urls.orders + "orders/get-user-orders/";
 
 interface IOrderResponse {
     orders: IOrderItem[];

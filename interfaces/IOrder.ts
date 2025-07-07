@@ -21,7 +21,7 @@ export interface IOrderProduct {
 }
 
 export interface IOrder {
-    id?:number
+    id:number
     user: string
     user_type: string
     products: IOrderProduct[]
@@ -30,6 +30,7 @@ export interface IOrder {
     delivery_address: string
     province: string
     city: string
+    depto: string
     postal_code: string
     delivery_cost: number
     products_cost: number
@@ -41,6 +42,8 @@ export interface IOrder {
     coupon: string
     coupon_value: number
     dollar_price: number
+    client_type_name : string
+    client_type_multiplier: number
 }
 
 export interface IOrderFilter extends IPagination{
@@ -48,13 +51,25 @@ export interface IOrderFilter extends IPagination{
 }
 
 export enum OrderStatus {
-  PENDING = "Pendiente",
-  READY = "Armado",
-  DISPATCHED = "Enviado",
-  RECEIVED = "Recibido",
-  CLOSED = "Cerrado",
-  CANCELED = "Cancelado"
+  PENDING = "PENDING",
+  COMPLETED = "COMPLETED",
+  READY = "READY",
+  DISPATCHED = "DISPATCHED",
+  RECEIVED = "RECEIVED",
+  CLOSED = "CLOSED",
+  CANCELED = "CANCELED"
 }
+
+export const OrderStatusLabels: Record<OrderStatus, string> = {
+  PENDING: "Pendiente",
+  READY: "Armado",
+  DISPATCHED: "Enviado",
+  RECEIVED: "Recibido",
+  CLOSED: "Cerrada",
+  COMPLETED: "Completa",
+  CANCELED: "Cancelado"
+};
+
 
 export interface IOrderItem {
   id: number;

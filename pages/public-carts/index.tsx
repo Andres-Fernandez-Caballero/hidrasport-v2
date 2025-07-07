@@ -33,7 +33,6 @@ const PublicCartsPage: NextPage = () => {
     try {
       await submitCart(cart);
     } catch (error) {
-      console.error('Error submitting cart:', error);
       alert(error);
     }
   };

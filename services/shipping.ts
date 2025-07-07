@@ -6,7 +6,6 @@ export const fetchShippingAmount = async(
     if(!shippingType) return 0;
     try {
         const data = await getShippingAmount(zipCode, shippingType);
-        console.log(data)
         return data.shipping_cost;
     }catch(error) {
       throw new Error("Error al calcular el costo de envio");  

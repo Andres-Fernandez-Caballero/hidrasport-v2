@@ -35,7 +35,7 @@ const Navbar = () => {
   const { searchBarIsOpen, toggleSearchBar } = useSearchBar();
   const { openModal } = useAuthModalStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { isLogedIn, logout } = useAuthStore();
+  const { isLogedIn, logout, userSession  } = useAuthStore();
   const { cartData } = useCartStore();
   const { asPath } = useRouter();
   const router = useRouter();
@@ -137,6 +137,14 @@ const Navbar = () => {
               )}
             </span>
           </Link>
+
+          {userSession.admin && (
+            <Link href="/tools">
+              <Button className="text-xs font-bold leading-6 text-white px-3 py-2">
+                <i className="fa-solid text-xl">🛠️</i>
+              </Button>
+            </Link>
+          )}
 
           {isLogedIn() ? (
             <div className="flex items-center justify-end gap-x-2">
