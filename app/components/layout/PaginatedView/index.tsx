@@ -111,6 +111,11 @@ const PaginatedView = (props: PaginatedViewProps) => {
                   {props.title ? `${props.title}` : ""}
                </h2>
             </header>
+            <ProductFilter 
+               currentCategory={queryParamCategory as string}
+               addFilter={pageData.addFilter}
+               clearFilters={pageData.clearFilters}
+            />
             <EmptyProduct />
          </ContentMain>
       );
@@ -134,7 +139,7 @@ const PaginatedView = (props: PaginatedViewProps) => {
          {pageData.isLoading && allProducts.length === 0 ? (
             <Loader />
          ) : (
-            <div>
+            <div className="min-h-full">
                <ProductGridList products={allProducts} />
                <div ref={loaderRef} className="flex justify-center my-4 py-4">
                   {isLoadingMore && <Loader />}

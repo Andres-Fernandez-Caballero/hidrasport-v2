@@ -15,7 +15,7 @@
 
 .childrenContainer{
   display: block;
-  height: 70svh;
+  height: 100svh;
   overflow-y: scroll;
   
 }

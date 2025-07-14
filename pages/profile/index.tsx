@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import styles from "./styles.module.css"
 import useUserData, { IUserProfile } from "app/hooks/useUserData";
 import urls from "@config/urls";
+import Footer from "@components/layout/footer";
 
 const Profile = () => {
   const { userSession, logout } = useAuthStore();
@@ -41,7 +42,9 @@ const Profile = () => {
   }
 
   return (
-    <main className="p-4 w-full min-h-screen flex items-start py-16"> 
+    <>
+  
+    <main className="px-4 w-full min-h-screen flex items-start py-8"> 
       <section className="grid gap-4 grid-cols-1 lg:grid-cols-4 w-full h-full">
         
         <div className="col-span-1 lg:row-span-2 w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col lg:h-[calc(100vh-8rem)]">
@@ -110,7 +113,8 @@ const Profile = () => {
         </div>
       </section>
     </main>
-
+    <Footer />
+</>
   )
 };
 

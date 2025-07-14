@@ -6,7 +6,7 @@ interface ContentMainProps {
 
 const ContentMain: React.FC<ContentMainProps> = ({ children }) => {
   return (
-    <div className="pt-14 w-100">
+    <div className="w-full pt-14">
       <div className={styles.childrenContainer}>
         {children}
       </div>

@@ -6,6 +6,8 @@ import CategoriesSection from "@components/layout/landing/categoriesSection";
 import ProductsSection from "@components/layout/landing/notableProductsSection";
 import useProducts from "app/hooks/useProducts";
 import { useEffect } from "react";
+import Footer from "@components/layout/footer";
+
 
 const Home: NextPage = () => {
  const { landing, fetchLanding} = useLandingStore();
@@ -27,6 +29,7 @@ const Home: NextPage = () => {
       />
       <CategoriesSection />
       <ProductsSection products={products} />
+      <Footer />
     </>
   );
 };

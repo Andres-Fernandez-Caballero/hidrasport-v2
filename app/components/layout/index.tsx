@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Navbar from "./contentMain/navbar";
 import SearchBar from "@components/common/searchbar";
-import Footer from "./contentMain/footer";
 import { useAuthModalStore } from "@store/authModal.store";
 import { useAuthStore } from "@store/auth/auth.store";
 import HydrationZustand from "./hydrationZustand";
@@ -27,7 +26,7 @@ const Layout = ({ children, loading = false }: LayoutProps) => {
       </Head>
       <Navbar />
       <SearchBar />
-      <main>
+      <main className="min-h-screen">
         {loading ? (
           <Loader />
         ) : (
@@ -38,7 +37,6 @@ const Layout = ({ children, loading = false }: LayoutProps) => {
         )}
         <ToastContainer />
       </main>
-      <Footer />
     </HydrationZustand>
   );
 };
