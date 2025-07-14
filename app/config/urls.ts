@@ -1,5 +1,6 @@
 const backendUrl: string = process.env.SERVER_URL || "http://localhost:8000";
 const urls = {
+  backendUrl,
   login: backendUrl + "/api/accounts/login/",
   register: backendUrl + "/api/accounts/register/",
   orders: backendUrl + "/api/orders/orders/filter/",
